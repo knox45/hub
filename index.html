@@ -6,7 +6,7 @@
     <title>Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="hub.png" type="image/png">
-    <style>
+  <style>
         * {
             margin: 0;
             padding: 0;
@@ -17,31 +17,112 @@
         body {
             background-color: #0a0a12;
             color: #f0f0f0;
-            height: 100vh;
+            min-height: 100vh;
+            background-image: linear-gradient(to bottom, #0a0a12, #151522);
+            overflow-x: hidden;
+        }
+
+        /* Barra lateral estilo Riot Games - SEMPRE VISÍVEL */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 90px;
+            background: rgba(15, 15, 25, 0.85);
+            backdrop-filter: blur(15px);
+            border-right: none;
             display: flex;
             flex-direction: column;
-            background-image: linear-gradient(to bottom, #0a0a12, #151522);
+            align-items: center;
+            padding: 25px 0;
+            gap: 25px;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .nav-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            background: rgba(45, 45, 74, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #b0b0c0;
+            position: relative;
             overflow: hidden;
+        }
+
+        .nav-icon:hover {
+            background: rgba(74, 109, 229, 0.2);
+            color: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        .nav-icon.active {
+            background: linear-gradient(135deg, #4a6de5, #6a8eff);
+            color: #ffffff;
+            box-shadow: 0 5px 20px rgba(74, 109, 229, 0.4);
+        }
+
+        .nav-icon i {
+            font-size: 1.5rem;
+        }
+
+        .nav-icon img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        /* Cores específicas para ícones ativos */
+        .nav-icon.active[data-page="spotify"] {
+            background: linear-gradient(135deg, #1DB954, #1ED760);
+            box-shadow: 0 5px 20px rgba(29, 185, 84, 0.4);
+        }
+        .nav-icon.active[data-page="whatsapp"] {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+        }
+        .nav-icon.active[data-page="jw-library"] {
+            background: linear-gradient(135deg, #8A2BE2, #9370DB);
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4);
+        }
+        .nav-icon.active[data-page="jw-org"] {
+            background: linear-gradient(135deg, #2196F3, #64B5F6);
+            box-shadow: 0 5px 20px rgba(33, 150, 243, 0.4);
+        }
+        .nav-icon.active[data-page="watchtower"] {
+            background: linear-gradient(135deg, #4169E1, #6495ED);
+            box-shadow: 0 5px 20px rgba(65, 105, 225, 0.4);
         }
 
         /* Barra superior */
         .top-bar {
-            background-color: #1a1a2e;
+            position: fixed;
+            top: 0;
+            left: 90px;
+            right: 0;
             height: 60px;
+            background: rgba(15, 15, 25, 0.8);
+            backdrop-filter: blur(15px);
+            border-bottom: none;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 25px;
-            border-bottom: 1px solid #2d2d4a;
-            flex-shrink: 0;
-            z-index: 100;
+            padding: 0 30px;
+            z-index: 999;
         }
 
         .logo {
             font-weight: bold;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: #ffffff;
-            letter-spacing: 1px;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -49,45 +130,6 @@
 
         .logo span {
             color: #4a6de5;
-        }
-
-        .logo i {
-            color: #4a6de5;
-            font-size: 1.5rem;
-        }
-
-        .account-info {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .notification-icon {
-            position: relative;
-            cursor: pointer;
-            font-size: 1.2rem;
-            color: #b0b0c0;
-            transition: color 0.3s;
-        }
-
-        .notification-icon:hover {
-            color: #ffffff;
-        }
-
-        .notification-badge {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background-color: #e63946;
-            color: white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            font-size: 0.8rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
         }
 
         .user-avatar {
@@ -108,591 +150,371 @@
             transform: scale(1.1);
         }
 
-        /* Layout principal */
-        .main-container {
-            display: flex;
-            flex: 1;
-            overflow: hidden;
+        /* Conteúdo principal */
+        .main-content {
+            margin-left: 90px;
+            padding-top: 60px;
+            min-height: 100vh;
         }
 
-        /* Barra lateral esquerda */
-        .left-sidebar {
-            width: 90px;
-            background-color: #1a1a2e;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 25px 0;
-            gap: 25px;
-            border-right: 1px solid #2d2d4a;
-            flex-shrink: 0;
-            overflow-y: auto;
-            z-index: 90;
+        /* Páginas */
+        .page {
+            display: none;
+            min-height: calc(100vh - 60px);
+            animation: fadeIn 0.5s ease;
         }
 
-        .nav-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
-            background-color: #2d2d4a;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            color: #b0b0c0;
-            position: relative;
-            padding: 5px;
+        .page.active {
+            display: block;
         }
 
-        .nav-icon:hover {
-            background-color: #3a3a5e;
-            color: #ffffff;
-            transform: translateY(-3px);
+        /* Página inicial */
+        .home-header {
+            padding: 60px 40px 40px;
+            background: linear-gradient(to bottom, rgba(10, 10, 18, 0.9), transparent);
         }
 
-        .nav-icon.active {
-            background: linear-gradient(135deg, #4a6de5, #6a8eff);
-            color: #ffffff;
-            box-shadow: 0 5px 15px rgba(74, 109, 229, 0.4);
-        }
-
-        .nav-icon i {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-        }
-
-        .nav-label {
-            font-size: 0.7rem;
-            font-weight: 500;
-            margin-top: 5px;
-        }
-
-        .nav-icon img {
-            width: 32px;
-            height: 32px;
-            object-fit: contain;
-            border-radius: 6px;
-        }
-
-        /* Cores específicas para ícones ativos */
-        .nav-icon.active[data-page="spotify"] {
-            background: linear-gradient(135deg, #1DB954, #1ED760);
-            box-shadow: 0 5px 15px rgba(29, 185, 84, 0.4);
-        }
-        .nav-icon.active[data-page="whatsapp"] {
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
-        }
-        .nav-icon.active[data-page="jw-library"] {
-            background: linear-gradient(135deg, #8A2BE2, #9370DB);
-            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
-        }
-        .nav-icon.active[data-page="jw-org"] {
-            background: linear-gradient(135deg, #2196F3, #64B5F6);
-            box-shadow: 0 5px 15px rgba(33, 150, 243, 0.4);
-        }
-        .nav-icon.active[data-page="watchtower"] {
-            background: linear-gradient(135deg, #4169E1, #6495ED);
-            box-shadow: 0 5px 15px rgba(65, 105, 225, 0.4);
-        }
-
-        /* Área de conteúdo principal */
-        .content-area {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        .content-header {
-            background-color: rgba(26, 26, 46, 0.95);
-            padding: 30px;
-            border-bottom: 1px solid #2d2d4a;
-            position: relative;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-
-        .content-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.15;
-            z-index: -1;
-        }
-
-        .content-header h1 {
-            font-size: 2.8rem;
-            margin-bottom: 15px;
+        .home-header h1 {
+            font-size: 4rem;
             background: linear-gradient(to right, #ffffff, #8a9eff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
         }
 
-        .content-header p {
+        .home-header p {
             color: #b0b0c0;
-            max-width: 700px;
+            max-width: 800px;
             line-height: 1.6;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
-        .content-main {
-            flex: 1;
-            padding: 30px;
-            overflow-y: auto;
+        /* Grid de aplicativos */
+        .apps-grid {
+            padding: 0 40px 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* Card de app - SEM BORDAS VISÍVEIS */
+        .app-card {
+            background: rgba(26, 26, 46, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            border: none;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            height: 350px;
+            backdrop-filter: blur(10px);
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(26, 26, 46, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .app-cover {
+            height: 180px;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             position: relative;
         }
 
-        .content-main::before {
+        .app-cover::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(to top, rgba(26, 26, 46, 0.9), transparent);
+        }
+
+        /* Ícone do app no canto esquerdo */
+        .app-icon {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            width: 70px;
+            height: 70px;
+            border-radius: 15px;
+            background: white;
+            padding: 10px;
+            z-index: 2;
+        }
+
+        .app-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .app-content {
+            padding: 25px 20px 20px;
+        }
+
+        .app-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        .app-description {
+            color: #b0b0c0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            height: 40px;
+            overflow: hidden;
+        }
+
+        .app-tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .app-tag {
+            background: rgba(74, 109, 229, 0.2);
+            color: #8a9eff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: none;
+        }
+
+        /* Páginas de apps */
+        .app-page {
+            min-height: calc(100vh - 60px);
+        }
+
+        .app-hero {
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 0 60px;
+        }
+
+        .app-hero::after {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.05;
-            z-index: -1;
+            background: linear-gradient(to right, rgba(10, 10, 18, 0.9), rgba(10, 10, 18, 0.5));
         }
 
-        /* Cartões de categoria */
-        .categories-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .category-card {
-            background-color: rgba(26, 26, 46, 0.85);
-            border-radius: 15px;
-            padding: 25px;
-            border: 1px solid #2d2d4a;
-            transition: all 0.4s;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-        }
-
-        .category-card:hover {
-            transform: translateY(-8px);
-            border-color: #4a6de5;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .category-header {
+        .app-hero-content {
+            position: relative;
+            z-index: 2;
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
         }
 
-        .category-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #4a6de5, #6a8eff);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 20px;
-            color: #ffffff;
-            font-size: 1.5rem;
-        }
-
-        .category-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .category-description {
-            color: #b0b0c0;
-            font-size: 1rem;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
-
-        .apps-count {
-            display: inline-block;
-            background-color: #2d2d4a;
-            color: #8a9eff;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        /* Páginas dedicadas aos apps */
-        .app-page {
-            display: none;
-            animation: fadeIn 0.5s ease;
-            height: 100%;
-            overflow-y: auto;
-        }
-
-        .app-page.active {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .app-header-container {
+        .app-hero-icon {
+            width: 140px;
+            height: 140px;
+            border-radius: 25px;
+            background: white;
+            padding: 20px;
             flex-shrink: 0;
         }
 
-        .app-content-container {
-            flex: 1;
-            overflow-y: auto;
-            padding: 30px;
-        }
-
-        .app-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .app-icon-large {
-            width: 100px;
-            height: 100px;
-            border-radius: 20px;
-            margin-right: 30px;
-            object-fit: contain;
-            background-color: white;
-            padding: 15px;
-            border: 2px solid;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .app-icon-large img {
+        .app-hero-icon img {
             width: 100%;
             height: 100%;
             object-fit: contain;
         }
 
-        .app-info h2 {
-            font-size: 2.5rem;
+        .app-hero-info h1 {
+            font-size: 4rem;
             margin-bottom: 10px;
+            font-weight: 800;
         }
 
-        .app-info p {
+        .app-hero-info p {
             color: #b0b0c0;
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             max-width: 600px;
         }
 
-        .app-content {
+        .app-detail-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px;
             display: grid;
             grid-template-columns: 2fr 1fr;
-            gap: 30px;
+            gap: 40px;
         }
 
-        .app-description {
-            background-color: rgba(26, 26, 46, 0.85);
-            border-radius: 15px;
-            padding: 30px;
-            border: 1px solid #2d2d4a;
+        /* Caixas de conteúdo SEM BORDAS */
+        .app-description-content {
+            background: rgba(26, 26, 46, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            border: none;
             backdrop-filter: blur(10px);
         }
 
-        .app-description h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: #ffffff;
+        .app-description-content h2 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: white;
         }
 
-        .app-description p {
+        .app-description-content p {
             color: #b0b0c0;
             line-height: 1.6;
-            margin-bottom: 15px;
-            font-size: 1.05rem;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
         }
 
-        .app-actions {
-            background-color: rgba(26, 26, 46, 0.85);
-            border-radius: 15px;
-            padding: 30px;
-            border: 1px solid #2d2d4a;
+        .app-description-content ul {
+            color: #b0b0c0;
+            line-height: 1.6;
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .app-description-content li {
+            margin-bottom: 10px;
+        }
+
+        .app-sidebar {
+            background: rgba(26, 26, 46, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            border: none;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            gap: 30px;
             backdrop-filter: blur(10px);
         }
 
         .launch-button {
+            background: linear-gradient(135deg, #4a6de5, #6a8eff);
             color: white;
             border: none;
-            padding: 18px 40px;
-            border-radius: 12px;
-            font-size: 1.2rem;
+            padding: 25px;
+            border-radius: 15px;
+            font-size: 1.4rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s;
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
-            width: 100%;
             justify-content: center;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-            min-height: 60px;
+            gap: 15px;
+            transition: all 0.3s;
         }
 
         .launch-button:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 15px 30px rgba(74, 109, 229, 0.4);
         }
 
-        .launch-button:active {
-            transform: translateY(-2px);
+        .app-info-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        .app-details {
-            width: 100%;
-        }
-
-        .detail-item {
+        .info-item {
             display: flex;
             justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid #2d2d4a;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .detail-item:last-child {
-            border-bottom: none;
-        }
-
-        .detail-label {
+        .info-label {
             color: #b0b0c0;
         }
 
-        .detail-value {
-            color: #ffffff;
+        .info-value {
+            color: white;
             font-weight: 600;
         }
 
         /* Botão voltar */
         .back-button {
-            background-color: #2d2d4a;
-            color: #ffffff;
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            background: rgba(26, 26, 46, 0.8);
+            color: white;
             border: none;
             padding: 12px 24px;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 30px;
-        }
-
-        .back-button:hover {
-            background-color: #3a3a5e;
-        }
-
-        /* Barra lateral direita - Status */
-        .right-sidebar {
-            width: 320px;
-            background-color: rgba(26, 26, 46, 0.9);
-            padding: 25px;
-            border-left: 1px solid #2d2d4a;
-            overflow-y: auto;
-            flex-shrink: 0;
+            z-index: 3;
+            transition: all 0.3s;
             backdrop-filter: blur(10px);
         }
 
-        .section-title {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: #ffffff;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #2d2d4a;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .back-button:hover {
+            background: rgba(45, 45, 74, 0.9);
         }
 
-        .section-title i {
-            color: #4a6de5;
-        }
-
-        .status-updates {
-            margin-bottom: 30px;
-        }
-
-        .status-item {
-            background-color: #2d2d4a;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-        }
-
-        .status-date {
-            color: #4a6de5;
-            font-size: 0.85rem;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .quick-apps {
-            margin-top: 30px;
-        }
-
-        .quick-app-list {
-            list-style: none;
-        }
-
-        .quick-app-list li {
-            display: flex;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid #2d2d4a;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            border-radius: 8px;
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-
-        .quick-app-list li:hover {
-            background-color: #2d2d4a;
-        }
-
-        .quick-app-list li:last-child {
-            border-bottom: none;
-        }
-
-        .quick-app-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            background-color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            padding: 8px;
-        }
-
-        .quick-app-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        /* Rodapé */
+        /* Footer */
         .footer {
-            background-color: #1a1a2e;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 25px;
-            border-top: 1px solid #2d2d4a;
-            font-size: 0.9rem;
+            text-align: center;
+            padding: 30px;
             color: #b0b0c0;
-            flex-shrink: 0;
+            border-top: none;
+            margin-left: 90px;
+            background: rgba(15, 15, 25, 0.3);
+            backdrop-filter: blur(10px);
         }
 
-        .footer-status {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .status-indicator {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: #2ecc71;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-
+        /* Animações */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
 
-        /* Ajustes para apps dentro das categorias */
-        .category-apps {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-            flex-wrap: wrap;
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
-        .app-mini-icon {
-            width: 45px;
-            height: 45px;
-            border-radius: 10px;
-            background-color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            padding: 8px;
+        /* CORREÇÃO ESPECÍFICA PARA IMAGEM DO SPOTIFY */
+        #spotify-page .app-hero {
+            background-position: center 25%;
         }
 
-        .app-mini-icon:hover {
-            transform: scale(1.1);
-            background-color: #f0f0f0;
+        .app-card[data-app="spotify"] .app-cover {
+            background-position: center 25%;
         }
 
-        .app-mini-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        /* Responsividade */
-        @media (max-width: 1200px) {
-            .right-sidebar {
-                width: 280px;
-            }
-            
-            .app-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .categories-container {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            }
-        }
-
-        @media (max-width: 992px) {
-            .right-sidebar {
-                display: none;
-            }
-        }
-
+        /* ADAPTAÇÕES PARA MOBILE - BARRA LATERAL SEMPRE VISÍVEL */
         @media (max-width: 768px) {
-            .left-sidebar {
+            /* Barra lateral menor mas sempre visível */
+            .sidebar {
                 width: 70px;
+                padding: 20px 0;
+                gap: 20px;
             }
             
             .nav-icon {
@@ -700,569 +522,679 @@
                 height: 50px;
             }
             
+            .nav-icon i {
+                font-size: 1.2rem;
+            }
+            
             .nav-icon img {
-                width: 28px;
-                height: 28px;
+                width: 24px;
+                height: 24px;
             }
             
-            .nav-label {
-                font-size: 0.6rem;
+            /* Ajustar conteúdo principal */
+            .main-content {
+                margin-left: 70px;
             }
             
-            .content-header h1 {
-                font-size: 2.2rem;
+            .top-bar {
+                left: 70px;
+                padding: 0 20px;
             }
             
-            .categories-container {
+            .home-header {
+                padding: 40px 20px 30px;
+            }
+            
+            .home-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .home-header p {
+                font-size: 1rem;
+            }
+            
+            .apps-grid {
                 grid-template-columns: 1fr;
-            }
-            
-            .app-icon-large {
-                width: 80px;
-                height: 80px;
-            }
-            
-            .app-info h2 {
-                font-size: 2rem;
-            }
-            
-            .app-content {
+                padding: 0 20px 40px;
                 gap: 20px;
             }
             
-            .app-description, .app-actions {
-                padding: 20px;
+            .app-card {
+                height: 320px;
             }
             
-            .launch-button {
-                padding: 16px 30px;
-                font-size: 1.1rem;
+            .app-cover {
+                height: 160px;
+            }
+            
+            .app-icon {
+                width: 60px;
+                height: 60px;
+                bottom: 15px;
+                left: 15px;
+            }
+            
+            .app-hero {
+                height: 300px;
+                padding: 0 20px;
+            }
+            
+            .app-hero-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .app-hero-icon {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .app-hero-info h1 {
+                font-size: 2.5rem;
+            }
+            
+            .app-hero-info p {
+                font-size: 1rem;
+            }
+            
+            .app-detail-content {
+                padding: 30px 20px;
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .app-description-content,
+            .app-sidebar {
+                padding: 25px;
+            }
+            
+            .footer {
+                margin-left: 70px;
+                padding: 25px 20px;
+            }
+            
+            .back-button {
+                top: 20px;
+                left: 20px;
+                padding: 10px 18px;
+                font-size: 0.9rem;
             }
         }
 
-        /* Scrollbar personalizada */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #1a1a2e;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #4a6de5;
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #6a8eff;
+        /* Telas muito pequenas (celulares menores) */
+        @media (max-width: 480px) {
+            .sidebar {
+                width: 60px;
+            }
+            
+            .nav-icon {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .nav-icon img {
+                width: 22px;
+                height: 22px;
+            }
+            
+            .main-content {
+                margin-left: 60px;
+            }
+            
+            .top-bar {
+                left: 60px;
+            }
+            
+            .footer {
+                margin-left: 60px;
+            }
+            
+            .home-header h1 {
+                font-size: 2rem;
+            }
+            
+            .app-card {
+                height: 300px;
+            }
+            
+            .app-cover {
+                height: 150px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Barra lateral estilo Riot - SEMPRE VISÍVEL -->
+    <div class="sidebar">
+        <div class="nav-icon active" data-page="home">
+            <i class="fas fa-home"></i>
+        </div>
+        <div class="nav-icon" data-page="spotify">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwDiicpDsawpNveT7Ota2-EC_vZbP8vneTbg&s" alt="Spotify">
+        </div>
+        <div class="nav-icon" data-page="whatsapp">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/2048px-WhatsApp.svg.png" alt="WhatsApp">
+        </div>
+        <div class="nav-icon" data-page="jw-library">
+            <img src="https://play-lh.googleusercontent.com/53MOlebCzGyoUXApCOgHhr1BLAGsPtbiN7fEH4EC3DGwINuKKODT2U1utFGfIdwrlHo" alt="JW Library">
+        </div>
+        <div class="nav-icon" data-page="jw-org">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQguRAJtdxxQjekZtb9y6NLF-tqsN5mXhM0AQ&s" alt="JW.org">
+        </div>
+        <div class="nav-icon" data-page="watchtower">
+            <img src="https://cms-imgp.jw-cdn.org/img/p/802013134/univ/art/802013134_univ_cnt_8_xl.jpg" alt="Watchtower Library">
+        </div>
+    </div>
+
     <!-- Barra superior -->
     <div class="top-bar">
         <div class="logo">
-           <img src="tipo.png" alt="logo icon" style="width:70px;height:80px;">
+            <img src="tipo.png" alt="logo" style="width:70px; height:80px;">
             <span>Hub</span>
         </div>
-        <div class="account-info">
-            <div class="notification-icon">
-                <i class="fas fa-bell"></i>
-                <div class="notification-badge">3</div>
-            </div>
-            <div class="user-avatar">EU</div>
-        </div>
+        <div class="user-avatar">
+        <i class="fas fa-user-circle"></i>
+</div>
+
     </div>
 
-    <!-- Layout principal -->
-    <div class="main-container">
-        <!-- Barra lateral esquerda com navegação -->
-        <div class="left-sidebar">
-            <div class="nav-icon active" data-page="overview">
-                <i class="fas fa-home"></i>
-                <div class="nav-label">Início</div>
-            </div>
-            <div class="nav-icon" data-page="spotify">
-                <img src="https://www.citypng.com/public/uploads/preview/square-black-green-spotify-app-icon-png-701751694969849j7wtxvnrgo.png" alt="Spotify">
-                <div class="nav-label">Spotify</div>
-            </div>
-            <div class="nav-icon" data-page="whatsapp">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/2048px-WhatsApp.svg.png" alt="WhatsApp">
-                <div class="nav-label">WhatsApp</div>
-            </div>
-            <div class="nav-icon" data-page="jw-library">
-                <img src="https://play-lh.googleusercontent.com/53MOlebCzGyoUXApCOgHhr1BLAGsPtbiN7fEH4EC3DGwINuKKODT2U1utFGfIdwrlHo" alt="JW Library">
-                <div class="nav-label">JW APP</div>
-            </div>
-            <div class="nav-icon" data-page="jw-org">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQguRAJtdxxQjekZtb9y6NLF-tqsN5mXhM0AQ&s" alt="JW.org">
-                <div class="nav-label">JW.org</div>
-            </div>
-            <div class="nav-icon" data-page="watchtower">
-                <img src="https://cms-imgp.jw-cdn.org/img/p/802013134/univ/art/802013134_univ_cnt_8_xl.jpg" alt="Watchtower Library">
-                <div class="nav-label">Watchtower</div>
-            </div>
-        </div>
-
-        <!-- Área de conteúdo principal -->
-        <div class="content-area">
-            <!-- Página inicial - Visão Geral -->
-            <div id="overview-page" class="app-page active">
-                <div class="content-header">
-                    <h1>MEUS APLICATIVOS</h1>
-                    <p>Seu hub pessoal com todos os aplicativos que você mais usa. Organizado por categorias para fácil acesso.</p>
-                </div>
-
-                <div class="content-main">
-                    <h2 class="section-title">CATEGORIAS</h2>
-                    
-                    <div class="categories-container">
-                        <!-- Categoria Espiritual -->
-                        <div class="category-card" data-category="spiritual">
-                            <div class="category-header">
-                                <div class="category-icon" style="background: linear-gradient(135deg, #8A2BE2, #9370DB);">
-                                    <i class="fas fa-pray"></i>
-                                </div>
-                                <div>
-                                    <div class="category-title">Espiritual</div>
-                                    <div class="apps-count">3 aplicativos</div>
-                                </div>
-                            </div>
-                            <div class="category-description">
-                                Aplicativos para estudo bíblico e espiritual.
-                            </div>
-                            <div class="category-apps">
-                                <div class="app-mini-icon" data-page="jw-library">
-                                    <img src="https://play-lh.googleusercontent.com/53MOlebCzGyoUXApCOgHhr1BLAGsPtbiN7fEH4EC3DGwINuKKODT2U1utFGfIdwrlHo" alt="JW Library">
-                                </div>
-                                <div class="app-mini-icon" data-page="jw-org">
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQguRAJtdxxQjekZtb9y6NLF-tqsN5mXhM0AQ&s" alt="JW.org">
-                                </div>
-                                <div class="app-mini-icon" data-page="watchtower">
-                                    <img src="https://cms-imgp.jw-cdn.org/img/p/802013134/univ/art/802013134_univ_cnt_8_xl.jpg" alt="Watchtower Library">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Categoria Entretenimento -->
-                        <div class="category-card" data-category="entertainment">
-                            <div class="category-header">
-                                <div class="category-icon" style="background: linear-gradient(135deg, #1DB954, #1ED760);">
-                                    <i class="fas fa-music"></i>
-                                </div>
-                                <div>
-                                    <div class="category-title">Entretenimento</div>
-                                    <div class="apps-count">1 aplicativo</div>
-                                </div>
-                            </div>
-                            <div class="category-description">
-                                Para música e entretenimento nos momentos de lazer.
-                            </div>
-                            <div class="category-apps">
-                                <div class="app-mini-icon" data-page="spotify">
-                                    <img src="https://www.citypng.com/public/uploads/preview/square-black-green-spotify-app-icon-png-701751694969849j7wtxvnrgo.png" alt="Spotify">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Categoria Comunicação -->
-                        <div class="category-card" data-category="communication">
-                            <div class="category-header">
-                                <div class="category-icon" style="background: linear-gradient(135deg, #25D366, #128C7E);">
-                                    <i class="fas fa-comments"></i>
-                                </div>
-                                <div>
-                                    <div class="category-title">Comunicação</div>
-                                    <div class="apps-count">1 aplicativo</div>
-                                </div>
-                            </div>
-                            <div class="category-description">
-                                Para comunicação com amigos e familiares.
-                            </div>
-                            <div class="category-apps">
-                                <div class="app-mini-icon" data-page="whatsapp">
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/2048px-WhatsApp.svg.png" alt="WhatsApp">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Página do Spotify -->
-            <div id="spotify-page" class="app-page">
-                <div class="app-header-container" style="background: linear-gradient(to right, #1DB954, #1ED760);">
-                    <div class="content-header">
-                        <button class="back-button">
-                            <i class="fas fa-arrow-left"></i> Voltar
-                        </button>
-                        <div class="app-header">
-                            <div class="app-icon-large" style="border-color: #1DB954;">
-                                <img src="https://www.citypng.com/public/uploads/preview/square-black-green-spotify-app-icon-png-701751694969849j7wtxvnrgo.png" alt="Spotify">
-                            </div>
-                            <div class="app-info">
-                                <h2 style="color: #1DB954;">Spotify</h2>
-                                <p>Streaming de música, podcasts e playlists.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="app-content-container">
-                    <div class="app-content">
-                        <div class="app-description">
-                            <h3>Sobre</h3>
-                            <p>Serviço de streaming de música que oferece acesso a milhões de músicas, podcasts e playlists de artistas de todo o mundo.</p>
-                            <p>Recursos básicos gratuitos com opção de upgrade para Premium.</p>
-                            
-                            <h3 style="margin-top: 30px;">Recursos</h3>
-                            <ul style="color: #b0b0c0; line-height: 1.6; padding-left: 20px;">
-                                <li>Milhões de músicas e podcasts</li>
-                                <li>Criação de playlists personalizadas</li>
-                                <li>Recomendações personalizadas</li>
-                                <li>Ouvir offline (Premium)</li>
-                                <li>Qualidade de áudio alta</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="app-actions">
-                            <button class="launch-button" data-url="https://open.spotify.com" style="background: linear-gradient(135deg, #1DB954, #1ED760);">
-                                <i class="fas fa-play-circle"></i>
-                                ABRIR 
-                            </button>
-                            
-                            <div class="app-details">
-                                <h3 style="color: #ffffff; margin-bottom: 20px; text-align: center;">Informações</h3>
-                                <div class="detail-item">
-                                    <span class="detail-label">Categoria</span>
-                                    <span class="detail-value">Entretenimento</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Tipo</span>
-                                    <span class="detail-value">Streaming</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Disponível</span>
-                                    <span class="detail-value" style="color: #1DB954;">Online</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Página do WhatsApp -->
-            <div id="whatsapp-page" class="app-page">
-                <div class="app-header-container" style="background: linear-gradient(to right, #25D366, #128C7E);">
-                    <div class="content-header">
-                        <button class="back-button">
-                            <i class="fas fa-arrow-left"></i> Voltar
-                        </button>
-                        <div class="app-header">
-                            <div class="app-icon-large" style="border-color: #25D366;">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/2048px-WhatsApp.svg.png" alt="WhatsApp">
-                            </div>
-                            <div class="app-info">
-                                <h2 style="color: #25D366;">WhatsApp</h2>
-                                <p>Mensagens e chamadas gratuitas. Simples, seguro e confiável.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="app-content-container">
-                    <div class="app-content">
-                        <div class="app-description">
-                            <h3>Sobre</h3>
-                            <p>Aplicativo de mensagens gratuito e multiplataforma que permite fazer chamadas e enviar mensagens de forma fácil, segura e confiável.</p>
-                            <p>Disponível em telefones no mundo todo.</p>
-                            
-                            <h3 style="margin-top: 30px;">Recursos</h3>
-                            <ul style="color: #b0b0c0; line-height: 1.6; padding-left: 20px;">
-                                <li>Mensagens simples e privadas</li>
-                                <li>Chamadas de voz e vídeo gratuitas</li>
-                                <li>Grupos para manter contato</li>
-                                <li>WhatsApp Web para computador</li>
-                                <li>Figurinhas para expressões</li>
-                                <li>Status que desaparece</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="app-actions">
-                            <button class="launch-button" data-url="https://web.whatsapp.com" style="background: linear-gradient(135deg, #25D366, #128C7E);">
-                                <i class="fas fa-comment"></i>
-                                ABRIR 
-                            </button>
-                            
-                            <div class="app-details">
-                                <h3 style="color: #ffffff; margin-bottom: 20px; text-align: center;">Informações</h3>
-                                <div class="detail-item">
-                                    <span class="detail-label">Categoria</span>
-                                    <span class="detail-value">Comunicação</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Tipo</span>
-                                    <span class="detail-value">Mensagens</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Disponível</span>
-                                    <span class="detail-value" style="color: #25D366;">Online</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Página do JW Library -->
-            <div id="jw-library-page" class="app-page">
-                <div class="app-header-container" style="background: linear-gradient(to right, #8A2BE2, #9370DB);">
-                    <div class="content-header">
-                        <button class="back-button">
-                            <i class="fas fa-arrow-left"></i> Voltar
-                        </button>
-                        <div class="app-header">
-                            <div class="app-icon-large" style="border-color: #8A2BE2;">
-                                <img src="https://play-lh.googleusercontent.com/53MOlebCzGyoUXApCOgHhr1BLAGsPtbiN7fEH4EC3DGwINuKKODT2U1utFGfIdwrlHo" alt="JW Library">
-                            </div>
-                            <div class="app-info">
-                                <h2 style="color: #8A2BE2;">JW Library</h2>
-                                <p>Aplicativo oficial das Testemunhas de Jeová. Bíblia, publicações e vídeos.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="app-content-container">
-                    <div class="app-content">
-                        <div class="app-description">
-                            <h3>Sobre</h3>
-                            <p>Aplicativo oficial que permite acesso a um vasto conjunto de publicações das Testemunhas de Jeová, incluindo a Bíblia, livros, brochuras, revistas e vídeos.</p>
-                            <p>Para estudo pessoal, preparação para reuniões e acesso a informações bíblicas atualizadas.</p>
-                            
-                            <h3 style="margin-top: 30px;">Recursos</h3>
-                            <ul style="color: #b0b0c0; line-height: 1.6; padding-left: 20px;">
-                                <li>Bíblia em dezenas de idiomas</li>
-                                <li>Publicações bíblicas atualizadas</li>
-                                <li>Vídeos e apresentações</li>
-                                <li>Ferramentas de estudo</li>
-                                <li>Acesso offline</li>
-                                <li>Pesquisa avançada</li>
-                                <li>Sincronização entre dispositivos</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="app-actions">
-                            <button class="launch-button" data-url="https://www.jw.org/pt/" style="background: linear-gradient(135deg, #8A2BE2, #9370DB);">
-                                <i class="fas fa-external-link-alt"></i>
-                                ABRIR 
-                            </button>
-                            
-                            <div class="app-details">
-                                <h3 style="color: #ffffff; margin-bottom: 20px; text-align: center;">Informações</h3>
-                                <div class="detail-item">
-                                    <span class="detail-label">Categoria</span>
-                                    <span class="detail-value">Espiritual</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Tipo</span>
-                                    <span class="detail-value">Estudo Bíblico</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Disponível</span>
-                                    <span class="detail-value" style="color: #8A2BE2;">Online/Offline</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Página do JW.org -->
-            <div id="jw-org-page" class="app-page">
-                <div class="app-header-container" style="background: linear-gradient(to right, #2196F3, #64B5F6);">
-                    <div class="content-header">
-                        <button class="back-button">
-                            <i class="fas fa-arrow-left"></i> Voltar
-                        </button>
-                        <div class="app-header">
-                            <div class="app-icon-large" style="border-color: #2196F3;">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQguRAJtdxxQjekZtb9y6NLF-tqsN5mXhM0AQ&s" alt="JW.org">
-                            </div>
-                            <div class="app-info">
-                                <h2 style="color: #2196F3;">JW.org</h2>
-                                <p>Site oficial das Testemunhas de Jeová. Respostas bíblicas, notícias e publicações.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="app-content-container">
-                    <div class="app-content">
-                        <div class="app-description">
-                            <h3>Sobre</h3>
-                            <p>Site oficial das Testemunhas de Jeová, disponível em mais de 1.000 idiomas. Maior página da internet de conteúdo bíblico.</p>
-                            <p>Oferece biblioteca completa de publicações, vídeos, áudios e ferramentas de estudo.</p>
-                            
-                            <h3 style="margin-top: 30px;">Recursos</h3>
-                            <ul style="color: #b0b0c0; line-height: 1.6; padding-left: 20px;">
-                                <li>Site em mais de 1.000 idiomas</li>
-                                <li>Biblioteca completa de publicações</li>
-                                <li>Vídeos e transmissões ao vivo</li>
-                                <li>Notícias sobre atividades</li>
-                                <li>Ferramentas de estudo e pesquisa</li>
-                                <li>Download de publicações</li>
-                                <li>Seção para crianças e jovens</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="app-actions">
-                            <button class="launch-button" data-url="https://www.jw.org/pt" style="background: linear-gradient(135deg, #2196F3, #64B5F6);">
-                                <i class="fas fa-globe"></i>
-                                ACESSAR JW.ORG
-                            </button>
-                            
-                            <div class="app-details">
-                                <h3 style="color: #ffffff; margin-bottom: 20px; text-align: center;">Informações</h3>
-                                <div class="detail-item">
-                                    <span class="detail-label">Categoria</span>
-                                    <span class="detail-value">Espiritual</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Tipo</span>
-                                    <span class="detail-value">Site Oficial</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Idiomas</span>
-                                    <span class="detail-value">1.000+</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Página do Watchtower Library -->
-            <div id="watchtower-page" class="app-page">
-                <div class="app-header-container" style="background: linear-gradient(to right, #4169E1, #6495ED);">
-                    <div class="content-header">
-                        <button class="back-button">
-                            <i class="fas fa-arrow-left"></i> Voltar
-                        </button>
-                        <div class="app-header">
-                            <div class="app-icon-large" style="border-color: #4169E1;">
-                                <img src="https://cms-imgp.jw-cdn.org/img/p/802013134/univ/art/802013134_univ_cnt_8_xl.jpg" alt="Watchtower Library">
-                            </div>
-                            <div class="app-info">
-                                <h2 style="color: #4169E1;">Watchtower Library</h2>
-                                <p>Biblioteca digital completa com publicações desde 1970 até o presente.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="app-content-container">
-                    <div class="app-content">
-                        <div class="app-description">
-                            <h3>Sobre</h3>
-                            <p>Biblioteca digital abrangente que contém publicações das Testemunhas de Jeová desde 1970 até os dias atuais, incluindo todas as revistas A Sentinela e Despertai!.</p>
-                            <p>Ferramenta essencial para pesquisa e estudo bíblico com funcionalidades de busca avançada e referências cruzadas.</p>
-                            
-                            <h3 style="margin-top: 30px;">Recursos</h3>
-                            <ul style="color: #b0b0c0; line-height: 1.6; padding-left: 20px;">
-                                <li>Publicações desde 1970 até o presente</li>
-                                <li>Busca avançada por palavras ou tópicos</li>
-                                <li>Referências cruzadas entre publicações</li>
-                                <li>Ferramentas de anotação e marcação</li>
-                                <li>Índices temáticos organizados</li>
-                                <li>Publicações em múltiplos formatos</li>
-                                <li>Atualizações regulares</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="app-actions">
-                            <button class="launch-button" data-url="https://wol.jw.org" style="background: linear-gradient(135deg, #4169E1, #6495ED);">
-                                <i class="fas fa-book-open"></i>
-                                ABRIR 
-                            </button>
-                            
-                            <div class="app-details">
-                                <h3 style="color: #ffffff; margin-bottom: 20px; text-align: center;">Informações</h3>
-                                <div class="detail-item">
-                                    <span class="detail-label">Categoria</span>
-                                    <span class="detail-value">Espiritual</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Tipo</span>
-                                    <span class="detail-value">Biblioteca Digital</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">Período</span>
-                                    <span class="detail-value">1970-Presente</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Barra lateral direita - Status -->
-        <div class="right-sidebar">
-            <div class="status-updates">
-                <h3 class="section-title"><i class="fas fa-broadcast-tower"></i> STATUS</h3>
-                <div class="status-item">
-                    <div class="status-date"><i class="far fa-clock"></i> Hoje</div>
-                    <div>Todos os aplicativos disponíveis.</div>
-                </div>
+    <!-- Conteúdo principal -->
+    <div class="main-content">
+        <!-- Página inicial -->
+        <div id="home-page" class="page active">
+            <div class="home-header">
+                <h1>MEUS APLICATIVOS</h1>
+                <p>Seu hub pessoal com todos os aplicativos que você mais usa. Clique em qualquer aplicativo para mais informações.</p>
             </div>
 
-            <div class="quick-apps">
-                <h3 class="section-title"><i class="fas fa-bolt"></i> ACESSO RÁPIDO</h3>
-                <ul class="quick-app-list">
-                    <li data-page="spotify">
-                        <div class="quick-app-icon">
-                            <img src="https://www.citypng.com/public/uploads/preview/square-black-green-spotify-app-icon-png-701751694969849j7wtxvnrgo.png" alt="Spotify">
+            <div class="apps-grid">
+                <!-- Spotify -->
+                <div class="app-card" data-app="spotify">
+                    <div class="app-cover" style="background-image: url('https://s2-oglobo.glbimg.com/HN6KqxVbuSn4PfjMfvS4gBuQBQY=/0x0:5472x3648/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2024/4/B/On1ohUTheTlANGm2ayuw/106248306-files-french-singer-aya-danioko-aka-aya-nakamura-poses-during-a-photo-session-on-november.jpg');">
+                        <div class="app-icon">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwDiicpDsawpNveT7Ota2-EC_vZbP8vneTbg&s" alt="Spotify">
                         </div>
-                        <span>Spotify</span>
-                    </li>
-                    <li data-page="whatsapp">
-                        <div class="quick-app-icon">
+                    </div>
+                    <div class="app-content">
+                        <h3 class="app-title">Spotify</h3>
+                        <p class="app-description">Streaming de música, podcasts e playlists. Milhões de músicas e podcasts disponíveis.</p>
+                        <div class="app-tags">
+                            <span class="app-tag">Entretenimento</span>
+                            <span class="app-tag">Música</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WhatsApp -->
+                <div class="app-card" data-app="whatsapp">
+                    <div class="app-cover" style="background-image: url('https://static.whatsapp.net/rsrc.php/v4/yd/r/1kqYbgBsNIE.png');">
+                        <div class="app-icon">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/2048px-WhatsApp.svg.png" alt="WhatsApp">
                         </div>
-                        <span>WhatsApp</span>
-                    </li>
-                    <li data-page="jw-library">
-                        <div class="quick-app-icon">
+                    </div>
+                    <div class="app-content">
+                        <h3 class="app-title">WhatsApp</h3>
+                        <p class="app-description">Mensagens e chamadas gratuitas. Simples, seguro e confiável. Disponível em telefones no mundo todo.</p>
+                        <div class="app-tags">
+                            <span class="app-tag">Comunicação</span>
+                            <span class="app-tag">Mensagens</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- JW Library -->
+                <div class="app-card" data-app="jw-library">
+                    <div class="app-cover" style="background-image: url('https://doity.com.br/blog/app/uploads/2022/05/tipos-de-pesquisa-cientifica-930x534.png');">
+                        <div class="app-icon">
                             <img src="https://play-lh.googleusercontent.com/53MOlebCzGyoUXApCOgHhr1BLAGsPtbiN7fEH4EC3DGwINuKKODT2U1utFGfIdwrlHo" alt="JW Library">
                         </div>
-                        <span>JW Library</span>
-                    </li>
-                    <li data-page="jw-org">
-                        <div class="quick-app-icon">
+                    </div>
+                    <div class="app-content">
+                        <h3 class="app-title">JW Library</h3>
+                        <p class="app-description">Aplicativo oficial das Testemunhas de Jeová. Bíblia, publicações e vídeos para estudo pessoal.</p>
+                        <div class="app-tags">
+                            <span class="app-tag">Espiritual</span>
+                            <span class="app-tag">Bíblia</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- JW.org -->
+                <div class="app-card" data-app="jw-org">
+                    <div class="app-cover" style="background-image: url('https://www.forestprotection.com/images/orman-cesitleri.jpg');">
+                        <div class="app-icon">
                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQguRAJtdxxQjekZtb9y6NLF-tqsN5mXhM0AQ&s" alt="JW.org">
                         </div>
-                        <span>JW.org</span>
-                    </li>
-                </ul>
+                    </div>
+                    <div class="app-content">
+                        <h3 class="app-title">JW.org</h3>
+                        <p class="app-description">Site oficial das Testemunhas de Jeová. Respostas bíblicas, notícias e publicações em 1.000+ idiomas.</p>
+                        <div class="app-tags">
+                            <span class="app-tag">Espiritual</span>
+                            <span class="app-tag">Site Oficial</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Watchtower Library -->
+                <div class="app-card" data-app="watchtower">
+                    <div class="app-cover" style="background-image: url('https://cms-imgp.jw-cdn.org/img/p/802013134/univ/art/802013134_univ_cnt_8_xl.jpg');">
+                        <div class="app-icon">
+                            <img src="https://cms-imgp.jw-cdn.org/img/p/802013134/univ/art/802013134_univ_cnt_8_xl.jpg" alt="Watchtower Library">
+                        </div>
+                    </div>
+                    <div class="app-content">
+                        <h3 class="app-title">Watchtower Library</h3>
+                        <p class="app-description">Biblioteca digital completa com publicações desde 1970 até o presente. Ferramenta essencial para pesquisa.</p>
+                        <div class="app-tags">
+                            <span class="app-tag">Espiritual</span>
+                            <span class="app-tag">Biblioteca</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Rodapé -->
-    <div class="footer">
-        <div>
-            © 2025 RayRay Hub
+        <!-- Página do Spotify -->
+        <div id="spotify-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('https://s2-oglobo.glbimg.com/HN6KqxVbuSn4PfjMfvS4gBuQBQY=/0x0:5472x3648/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2024/4/B/On1ohUTheTlANGm2ayuw/106248306-files-french-singer-aya-danioko-aka-aya-nakamura-poses-during-a-photo-session-on-november.jpg');">
+                <button class="back-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+                <div class="app-hero-content">
+                    <div class="app-hero-icon">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwDiicpDsawpNveT7Ota2-EC_vZbP8vneTbg&s" alt="Spotify">
+                    </div>
+                    <div class="app-hero-info">
+                        <h1 style="color: #1DB954;">Spotify</h1>
+                        <p>Streaming de música, podcasts e playlists. Milhões de músicas e podcasts disponíveis.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="app-detail-content">
+                <div class="app-description-content">
+                    <h2>Sobre o Spotify</h2>
+                    <p>Serviço de streaming de música que oferece acesso a milhões de músicas, podcasts e playlists de artistas de todo o mundo.</p>
+                    <p>Recursos básicos gratuitos com opção de upgrade para Premium para remover anúncios e obter funcionalidades adicionais.</p>
+                    
+                    <h2>Recursos Principais</h2>
+                    <ul>
+                        <li>Acesso a milhões de músicas e podcasts</li>
+                        <li>Criação e compartilhamento de playlists personalizadas</li>
+                        <li>Recomendações personalizadas baseadas em seu gosto</li>
+                        <li>Modo offline disponível para assinantes Premium</li>
+                        <li>Qualidade de áudio alta (até 320 kbps)</li>
+                        <li>Integração com diversas plataformas e dispositivos</li>
+                        <li>Controles de privacidade e compartilhamento</li>
+                    </ul>
+                </div>
+                
+                <div class="app-sidebar">
+                    <button class="launch-button" data-url="https://open.spotify.com" style="background: linear-gradient(135deg, #1DB954, #1ED760);">
+                        <i class="fas fa-play-circle"></i>
+                        ABRIR
+                    </button>
+                    
+                    <div class="app-info-grid">
+                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
+                        <div class="info-item">
+                            <span class="info-label">Categoria</span>
+                            <span class="info-value">Entretenimento</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Tipo</span>
+                            <span class="info-value">Streaming de Música</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Disponibilidade</span>
+                            <span class="info-value" style="color: #1DB954;">Online</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Plano Gratuito</span>
+                            <span class="info-value">Disponível</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="footer-status">
-            <div class="status-indicator"></div>
-            <span>Pronto</span>
+
+        <!-- Página do WhatsApp -->
+        <div id="whatsapp-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('https://static.whatsapp.net/rsrc.php/v4/yd/r/1kqYbgBsNIE.png');">
+                <button class="back-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+                <div class="app-hero-content">
+                    <div class="app-hero-icon">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/2048px-WhatsApp.svg.png" alt="WhatsApp">
+                    </div>
+                    <div class="app-hero-info">
+                        <h1 style="color: #25D366;">WhatsApp</h1>
+                        <p>Mensagens e chamadas gratuitas. Simples, seguro e confiável. Disponível em telefones no mundo todo.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="app-detail-content">
+                <div class="app-description-content">
+                    <h2>Sobre o WhatsApp</h2>
+                    <p>Aplicativo de mensagens gratuito e multiplataforma que permite fazer chamadas e enviar mensagens de forma fácil, segura e confiável.</p>
+                    <p>Disponível em telefones no mundo todo, com criptografia de ponta a ponta para garantir a privacidade das conversas.</p>
+                    
+                    <h2>Recursos Principais</h2>
+                    <ul>
+                        <li>Mensagens simples e privadas com criptografia</li>
+                        <li>Chamadas de voz e vídeo gratuitas de alta qualidade</li>
+                        <li>Grupos para manter contato com família e amigos</li>
+                        <li>WhatsApp Web para usar no computador</li>
+                        <li>Figurinhas para expressar emoções</li>
+                        <li>Status que desaparece após 24 horas</li>
+                        <li>Compartilhamento de arquivos de até 2GB</li>
+                        <li>Mensagens temporárias que se autodestroem</li>
+                    </ul>
+                </div>
+                
+                <div class="app-sidebar">
+                    <button class="launch-button" data-url="https://web.whatsapp.com" style="background: linear-gradient(135deg, #25D366, #128C7E);">
+                        <i class="fas fa-comment"></i>
+                        ABRIR
+                    </button>
+                    
+                    <div class="app-info-grid">
+                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
+                        <div class="info-item">
+                            <span class="info-label">Categoria</span>
+                            <span class="info-value">Comunicação</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Tipo</span>
+                            <span class="info-value">Mensagens Instantâneas</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Disponibilidade</span>
+                            <span class="info-value" style="color: #25D366;">Global</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Criptografia</span>
+                            <span class="info-value">Ponta a Ponta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página do JW Library -->
+        <div id="jw-library-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('https://doity.com.br/blog/app/uploads/2022/05/tipos-de-pesquisa-cientifica-930x534.png');">
+                <button class="back-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+                <div class="app-hero-content">
+                    <div class="app-hero-icon">
+                        <img src="https://play-lh.googleusercontent.com/53MOlebCzGyoUXApCOgHhr1BLAGsPtbiN7fEH4EC3DGwINuKKODT2U1utFGfIdwrlHo" alt="JW Library">
+                    </div>
+                    <div class="app-hero-info">
+                        <h1 style="color: #8A2BE2;">JW Library</h1>
+                        <p>Aplicativo oficial das Testemunhas de Jeová. Bíblia, publicações e vídeos para estudo pessoal.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="app-detail-content">
+                <div class="app-description-content">
+                    <h2>Sobre o JW Library</h2>
+                    <p>Aplicativo oficial que permite acesso a um vasto conjunto de publicações das Testemunhas de Jeová, incluindo a Bíblia, livros, brochuras, revistas e vídeos.</p>
+                    <p>Ferramenta essencial para estudo pessoal, preparação para reuniões e acesso a informações bíblicas atualizadas em diversos idiomas.</p>
+                    
+                    <h2>Recursos Principais</h2>
+                    <ul>
+                        <li>Bíblia em dezenas de idiomas com diferentes traduções</li>
+                        <li>Publicações bíblicas atualizadas regularmente</li>
+                        <li>Vídeos educativos e apresentações</li>
+                        <li>Ferramentas avançadas de estudo e pesquisa</li>
+                        <li>Acesso offline ao conteúdo baixado</li>
+                        <li>Pesquisa avançada por palavras-chave</li>
+                        <li>Sincronização entre múltiplos dispositivos</li>
+                        <li>Anotações pessoais e marcações</li>
+                        <li>Leitura em voz alta</li>
+                    </ul>
+                </div>
+                
+                <div class="app-sidebar">
+                    <button class="launch-button" data-url="https://www.jw.org/pt/" style="background: linear-gradient(135deg, #8A2BE2, #9370DB);">
+                        <i class="fas fa-book-open"></i>
+                        ABRIR
+                    </button>
+                    
+                    <div class="app-info-grid">
+                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
+                        <div class="info-item">
+                            <span class="info-label">Categoria</span>
+                            <span class="info-value">Espiritual</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Tipo</span>
+                            <span class="info-value">Estudo Bíblico</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Disponibilidade</span>
+                            <span class="info-value" style="color: #8A2BE2;">Online/Offline</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Idiomas</span>
+                            <span class="info-value">Múltiplos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página do JW.org -->
+        <div id="jw-org-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('https://www.forestprotection.com/images/orman-cesitleri.jpg');">
+                <button class="back-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+                <div class="app-hero-content">
+                    <div class="app-hero-icon">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQguRAJtdxxQjekZtb9y6NLF-tqsN5mXhM0AQ&s" alt="JW.org">
+                    </div>
+                    <div class="app-hero-info">
+                        <h1 style="color: #2196F3;">JW.org</h1>
+                        <p>Site oficial das Testemunhas de Jeová. Respostas bíblicas, notícias e publicações em 1.000+ idiomas.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="app-detail-content">
+                <div class="app-description-content">
+                    <h2>Sobre o JW.org</h2>
+                    <p>Site oficial das Testemunhas de Jeová, disponível em mais de 1.000 idiomas. Considerada a maior página da internet de conteúdo bíblico.</p>
+                    <p>Oferece biblioteca completa de publicações, vídeos, áudios e ferramentas de estudo para pessoas de todas as idades.</p>
+                    
+                    <h2>Recursos Principais</h2>
+                    <ul>
+                        <li>Disponível em mais de 1.000 idiomas</li>
+                        <li>Biblioteca completa de publicações bíblicas</li>
+                        <li>Vídeos educativos e transmissões ao vivo</li>
+                        <li>Notícias sobre atividades mundiais</li>
+                        <li>Ferramentas de estudo e pesquisa avançada</li>
+                        <li>Download de publicações em PDF e outros formatos</li>
+                        <li>Seções especiais para crianças e jovens</li>
+                        <li>Respostas a perguntas bíblicas comuns</li>
+                        <li>Guia de estudo da Bíblia</li>
+                    </ul>
+                </div>
+                
+                <div class="app-sidebar">
+                    <button class="launch-button" data-url="https://www.jw.org/pt" style="background: linear-gradient(135deg, #2196F3, #64B5F6);">
+                        <i class="fas fa-globe"></i>
+                        ACESSAR
+                    </button>
+                    
+                    <div class="app-info-grid">
+                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
+                        <div class="info-item">
+                            <span class="info-label">Categoria</span>
+                            <span class="info-value">Espiritual</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Tipo</span>
+                            <span class="info-value">Site Oficial</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Idiomas</span>
+                            <span class="info-value">1.000+</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Conteúdo</span>
+                            <span class="info-value">Gratuito</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página do Watchtower Library -->
+        <div id="watchtower-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('https://cms-imgp.jw-cdn.org/img/p/802013134/univ/art/802013134_univ_cnt_8_xl.jpg');">
+                <button class="back-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+                <div class="app-hero-content">
+                    <div class="app-hero-icon">
+                        <img src="https://cms-imgp.jw-cdn.org/img/p/802013134/univ/art/802013134_univ_cnt_8_xl.jpg" alt="Watchtower Library">
+                    </div>
+                    <div class="app-hero-info">
+                        <h1 style="color: #4169E1;">Watchtower Library</h1>
+                        <p>Biblioteca digital completa com publicações desde 1970 até o presente. Ferramenta essencial para pesquisa.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="app-detail-content">
+                <div class="app-description-content">
+                    <h2>Sobre a Watchtower Library</h2>
+                    <p>Biblioteca digital abrangente que contém publicações das Testemunhas de Jeová desde 1970 até os dias atuais, incluindo todas as revistas A Sentinela e Despertai!.</p>
+                    <p>Ferramenta essencial para pesquisa e estudo bíblico com funcionalidades de busca avançada e referências cruzadas entre publicações.</p>
+                    
+                    <h2>Recursos Principais</h2>
+                    <ul>
+                        <li>Publicações desde 1970 até o presente</li>
+                        <li>Busca avançada por palavras, frases ou tópicos</li>
+                        <li>Referências cruzadas entre diferentes publicações</li>
+                        <li>Ferramentas de anotação e marcação de texto</li>
+                        <li>Índices temáticos organizados por assunto</li>
+                        <li>Publicações disponíveis em múltiplos formatos</li>
+                        <li>Atualizações regulares com novas publicações</li>
+                        <li>Interface intuitiva e fácil de navegar</li>
+                        <li>Exportação de anotações e marcações</li>
+                    </ul>
+                </div>
+                
+                <div class="app-sidebar">
+                    <button class="launch-button" data-url="https://wol.jw.org" style="background: linear-gradient(135deg, #4169E1, #6495ED);">
+                        <i class="fas fa-search"></i>
+                        ABRIR
+                    </button>
+                    
+                    <div class="app-info-grid">
+                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
+                        <div class="info-item">
+                            <span class="info-label">Categoria</span>
+                            <span class="info-value">Espiritual</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Tipo</span>
+                            <span class="info-value">Biblioteca Digital</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Período</span>
+                            <span class="info-value">1970-Presente</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Conteúdo</span>
+                            <span class="info-value">Histórico</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            © 2025 RayRay Hub • Todos os aplicativos disponíveis
         </div>
     </div>
 
     <script>
-        // Navegação entre páginas
+        // Dados dos aplicativos com URLs e informações
+        const appsData = {
+            'home': { name: 'Início' },
+            'spotify': { 
+                name: 'Spotify',
+                url: 'https://open.spotify.com',
+                color: '#1DB954'
+            },
+            'whatsapp': { 
+                name: 'WhatsApp',
+                url: 'https://web.whatsapp.com',
+                color: '#25D366'
+            },
+            'jw-library': { 
+                name: 'JW Library',
+                url: 'https://www.jw.org/pt/',
+                color: '#8A2BE2'
+            },
+            'jw-org': { 
+                name: 'JW.org',
+                url: 'https://www.jw.org/pt',
+                color: '#2196F3'
+            },
+            'watchtower': { 
+                name: 'Watchtower Library',
+                url: 'https://wol.jw.org',
+                color: '#4169E1'
+            }
+        };
+
+        // Sistema de navegação
+        function navigateToPage(pageId) {
+            document.querySelectorAll('.nav-icon').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            const activeIcon = document.querySelector(`.nav-icon[data-page="${pageId}"]`);
+            if (activeIcon) {
+                activeIcon.classList.add('active');
+            } else {
+                document.querySelector('.nav-icon[data-page="home"]').classList.add('active');
+            }
+            
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            const targetPage = document.getElementById(`${pageId}-page`);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            } else {
+                document.getElementById('home-page').classList.add('active');
+            }
+            
+            window.scrollTo(0, 0);
+            
+            if (targetPage) {
+                targetPage.style.animation = 'none';
+                setTimeout(() => {
+                    targetPage.style.animation = 'fadeIn 0.5s ease';
+                }, 10);
+            }
+        }
+
+        // Event listeners para navegação
         document.querySelectorAll('.nav-icon').forEach(icon => {
             icon.addEventListener('click', function() {
                 const pageId = this.getAttribute('data-page');
@@ -1270,115 +1202,64 @@
             });
         });
 
-        // Navegação por categorias na página inicial
-        document.querySelectorAll('.category-card').forEach(card => {
+        document.querySelectorAll('.app-card').forEach(card => {
             card.addEventListener('click', function() {
-                const pageId = this.getAttribute('data-page');
-                if (pageId) {
-                    navigateToPage(pageId);
+                const appId = this.getAttribute('data-app');
+                navigateToPage(appId);
+            });
+        });
+
+        document.querySelectorAll('.back-button').forEach(button => {
+            button.addEventListener('click', function() {
+                navigateToPage('home');
+            });
+        });
+
+        document.querySelectorAll('.launch-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const url = this.getAttribute('data-url');
+                if (url) {
+                    openApp(url, this);
                 }
             });
         });
 
-        // Navegação por mini ícones
-        document.querySelectorAll('.app-mini-icon').forEach(icon => {
-            icon.addEventListener('click', function() {
-                const pageId = this.getAttribute('data-page');
-                navigateToPage(pageId);
-            });
-        });
-
-        // Navegação por acesso rápido
-        document.querySelectorAll('.quick-app-list li').forEach(item => {
-            item.addEventListener('click', function() {
-                const pageId = this.getAttribute('data-page');
-                navigateToPage(pageId);
-            });
-        });
-
-        // Função para navegar para uma página específica
-        function navigateToPage(pageId) {
-            // Remove a classe 'active' de todos os ícones
-            document.querySelectorAll('.nav-icon').forEach(item => {
-                item.classList.remove('active');
-            });
+        function openApp(url, button) {
+            const originalText = button.innerHTML;
+            const originalTransform = button.style.transform;
             
-            // Adiciona a classe 'active' ao ícone correspondente
-            const activeIcon = document.querySelector(`.nav-icon[data-page="${pageId}"]`);
-            if (activeIcon) {
-                activeIcon.classList.add('active');
-            }
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ABRINDO...';
+            button.style.transform = 'scale(0.95)';
+            button.disabled = true;
             
-            // Oculta todas as páginas
-            document.querySelectorAll('.app-page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Mostra a página correspondente
-            document.getElementById(`${pageId}-page`).classList.add('active');
-            
-            // Scroll para o topo da página
-            document.querySelector('.content-area').scrollTop = 0;
-            
-            // Animações especiais para transição
-            const pageElement = document.getElementById(`${pageId}-page`);
-            pageElement.style.animation = 'none';
             setTimeout(() => {
-                pageElement.style.animation = 'fadeIn 0.5s ease';
-            }, 10);
+                window.open(url, '_blank');
+                button.innerHTML = originalText;
+                button.style.transform = originalTransform;
+                button.disabled = false;
+                
+                button.innerHTML = '<i class="fas fa-check"></i> ABERTO!';
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                }, 1500);
+            }, 800);
         }
-
-        // Botões voltar
-        document.querySelectorAll('.back-button').forEach(button => {
-            button.addEventListener('click', function() {
-                navigateToPage('overview');
-            });
-        });
-
-        // Botões de iniciar aplicativos
-        document.querySelectorAll('.launch-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const url = this.getAttribute('data-url');
-                
-                // Animação do botão
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 200);
-                
-                // Texto de carregamento
-                const originalText = this.innerHTML;
-                const originalBackground = this.style.background;
-                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ABRINDO...';
-                this.style.opacity = '0.8';
-                this.disabled = true;
-                
-                setTimeout(() => {
-                    this.innerHTML = originalText;
-                    this.style.opacity = '1';
-                    this.disabled = false;
-                    
-                    if (url && url !== '#') {
-                        // Abre o site em uma nova aba
-                        window.open(url, '_blank');
-                        
-                        // Feedback visual
-                        this.innerHTML = '<i class="fas fa-check"></i> ABERTO!';
-                        
-                        setTimeout(() => {
-                            this.innerHTML = originalText;
-                        }, 1500);
-                    }
-                }, 1200);
-            });
-        });
 
         // Inicialização
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Meu Hub Pessoal carregado!');
+            console.log('Hub Pessoal carregado com sucesso!');
             
-            // Garantir que a página inicial está visível
-            navigateToPage('overview');
+            document.querySelectorAll('.app-card').forEach((card, index) => {
+                card.style.animation = `slideUp 0.5s ease ${index * 0.1}s both`;
+            });
+            
+            navigateToPage('home');
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                navigateToPage('home');
+            }
         });
     </script>
 </body>
