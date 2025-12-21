@@ -1577,219 +1577,221 @@
             © 2025 RayRay Hub • Todos os aplicativos disponíveis
         </div>
     </div>
-
-    <script>
-        // Dados dos aplicativos com URLs e informações
-        const appsData = {
-            'home': { name: 'Início' },
-            'ray-links': { 
-                name: 'Ray Links',
-                url: 'https://rayraymaster.github.io/hublink/',
-                color: '#FF6B6B'
-            },
-            'spotify': { 
-                name: 'Spotify',
-                url: 'https://open.spotify.com',
-                color: '#1DB954'
-            },
-            'whatsapp': { 
-                name: 'WhatsApp',
-                url: 'https://web.whatsapp.com',
-                color: '#25D366'
-            },
-            'jw-library': { 
-                name: 'JW Library',
-                url: 'https://www.jw.org/pt/',
-                color: '#8A2BE2'
-            },
-            'jw-org': { 
-                name: 'JW.org',
-                url: 'https://www.jw.org/pt',
-                color: '#2196F3'
-            },
-            'watchtower': { 
-                name: 'Watchtower Library',
-                url: 'https://wol.jw.org',
-                color: '#4169E1'
-            },
-            'vscode': { 
-                name: 'Visual Studio Code',
-                url: 'https://code.visualstudio.com',
-                color: '#007ACC'
-            },
-            'google-photos': { 
-                name: 'Google Photos',
-                url: 'https://photos.google.com',
-                color: '#4285F4'
-            },
-            'riot-client': { 
-                name: 'Riot Client',
-                url: 'https://riotgames.com',
-                color: '#FF4654'
-            },
-            'terms': { 
-                name: 'Termos e Condições',
-                url: '#',
-                color: '#FFA726'
-            }
-        };
-
-        // URLs alternativas para dispositivos móveis
-        const mobileAlternativeURLs = {
-            'whatsapp': 'https://web.whatsapp.com',
-            'spotify': 'https://open.spotify.com',
-            'vscode': 'https://vscode.dev',
-            'riot-client': 'https://riotgames.com',
-            'jw-library': 'https://www.jw.org/pt/'
-        };
-
-        // Função para detectar dispositivo móvel
-        function isMobileDevice() {
-            return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+<script>
+    // Dados dos aplicativos com URLs e informações
+    const appsData = {
+        'home': { name: 'Início' },
+        'ray-links': { 
+            name: 'Ray Links',
+            url: 'https://rayraymaster.github.io/hublink/',
+            color: '#FF6B6B'
+        },
+        'spotify': { 
+            name: 'Spotify',
+            url: 'https://open.spotify.com',
+            color: '#1DB954'
+        },
+        'whatsapp': { 
+            name: 'WhatsApp',
+            url: 'https://web.whatsapp.com',
+            color: '#25D366'
+        },
+        'jw-library': { 
+            name: 'JW Library',
+            url: 'https://www.jw.org/pt/',
+            color: '#8A2BE2'
+        },
+        'jw-org': { 
+            name: 'JW.org',
+            url: 'https://www.jw.org/pt',
+            color: '#2196F3'
+        },
+        'watchtower': { 
+            name: 'Watchtower Library',
+            url: 'https://wol.jw.org',
+            color: '#4169E1'
+        },
+        'vscode': { 
+            name: 'Visual Studio Code',
+            url: 'https://code.visualstudio.com',
+            color: '#007ACC'
+        },
+        'google-photos': { 
+            name: 'Google Photos',
+            url: 'https://photos.google.com',
+            color: '#4285F4'
+        },
+        'riot-client': { 
+            name: 'Riot Client',
+            url: 'https://riotgames.com',
+            color: '#FF4654'
         }
+    };
 
-        // Sistema de navegação
-        function navigateToPage(pageId) {
-            document.querySelectorAll('.nav-icon').forEach(item => {
-                item.classList.remove('active');
-            });
-            
-            const activeIcon = document.querySelector(`.nav-icon[data-page="${pageId}"]`);
-            if (activeIcon) {
-                activeIcon.classList.add('active');
-            }
-            
-            document.querySelectorAll('.terms-icon').forEach(item => {
-                item.classList.remove('active');
-            });
-            
-            if (pageId === 'terms') {
-                document.querySelector('.terms-icon').classList.add('active');
-            }
-            
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            const targetPage = document.getElementById(`${pageId}-page`);
-            if (targetPage) {
-                targetPage.classList.add('active');
-            } else {
-                document.getElementById('home-page').classList.add('active');
-            }
-            
-            window.scrollTo(0, 0);
-            
-            if (targetPage) {
-                targetPage.style.animation = 'none';
-                setTimeout(() => {
-                    targetPage.style.animation = 'fadeIn 0.5s ease';
-                }, 10);
-            }
+    // URLs alternativas para dispositivos móveis
+    const mobileAlternativeURLs = {
+        'whatsapp': 'https://web.whatsapp.com',
+        'spotify': 'https://open.spotify.com',
+        'vscode': 'https://vscode.dev',
+        'riot-client': 'https://riotgames.com',
+        'jw-library': 'https://www.jw.org/pt/'
+    };
+
+    // Função para detectar dispositivo móvel
+    function isMobileDevice() {
+        return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+
+    // Sistema de navegação
+    function navigateToPage(pageId) {
+        // Remove active de todos os ícones da sidebar
+        document.querySelectorAll('.nav-icon').forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        // Ativa o ícone correspondente
+        const activeIcon = document.querySelector(`.nav-icon[data-page="${pageId}"]`);
+        if (activeIcon) {
+            activeIcon.classList.add('active');
         }
-
-        // Event listeners para navegação
-        document.querySelectorAll('.nav-icon').forEach(icon => {
-            icon.addEventListener('click', function() {
-                const pageId = this.getAttribute('data-page');
-                navigateToPage(pageId);
-            });
+        
+        // Esconde todas as páginas
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
         });
-
-        // Event listener para o ícone de termos
-        document.querySelector('.terms-icon').addEventListener('click', function() {
-            const pageId = this.getAttribute('data-page');
-            // Aqui você pode definir para onde o botão de termos vai navegar
-            // Por enquanto, vou deixar para você configurar depois
-            console.log('Botão de termos clicado. Configure a navegação na função navigateToPage.');
-            // navigateToPage('terms'); // Descomente esta linha quando criar a página de termos
-        });
-
-        document.querySelectorAll('.app-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const appId = this.getAttribute('data-app');
-                navigateToPage(appId);
-            });
-        });
-
-        document.querySelectorAll('.back-button').forEach(button => {
-            button.addEventListener('click', function() {
-                navigateToPage('home');
-            });
-        });
-
-        // Função para abrir apps com verificação de dispositivo
-        function openApp(url, button, appId) {
-            const originalText = button.innerHTML;
-            const originalTransform = button.style.transform;
-            
-            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ABRINDO...';
-            button.style.transform = 'scale(0.95)';
-            button.disabled = true;
-            
+        
+        // Mostra a página alvo
+        const targetPage = document.getElementById(`${pageId}-page`);
+        if (targetPage) {
+            targetPage.classList.add('active');
+        } else {
+            // Se a página não existir, volta para home
+            document.getElementById('home-page').classList.add('active');
+            document.querySelector('.nav-icon[data-page="home"]').classList.add('active');
+        }
+        
+        // Rola para o topo
+        window.scrollTo(0, 0);
+        
+        // Adiciona animação
+        if (targetPage) {
+            targetPage.style.animation = 'none';
             setTimeout(() => {
-                // Verifica se é dispositivo móvel e se há URL alternativa
-                if (isMobileDevice() && mobileAlternativeURLs[appId]) {
-                    window.open(mobileAlternativeURLs[appId], '_blank');
-                    console.log(`Dispositivo móvel detectado. Redirecionando para: ${mobileAlternativeURLs[appId]}`);
-                } else {
-                    // Tenta abrir como protocolo/app primeiro
-                    if (url.includes('://') && !url.startsWith('http')) {
-                        // É um protocolo de app (como whatsapp://, spotify:)
-                        const appWindow = window.open(url, '_blank');
-                        
-                        // Se não abrir o app (janela bloqueada ou app não instalado), abre o site
-                        if (!appWindow || appWindow.closed || typeof appWindow.closed === 'undefined') {
-                            console.log('App não instalado ou bloqueado. Redirecionando para site.');
-                            // Busca URL alternativa ou usa URL padrão do appData
-                            const fallbackUrl = appsData[appId]?.url || mobileAlternativeURLs[appId] || `https://${appId}.com`;
-                            window.open(fallbackUrl, '_blank');
-                        }
-                    } else {
-                        // É uma URL normal (http/https)
-                        window.open(url, '_blank');
-                    }
-                }
-                
-                button.innerHTML = originalText;
-                button.style.transform = originalTransform;
-                button.disabled = false;
-                
-                button.innerHTML = '<i class="fas fa-check"></i> ABERTO!';
-                setTimeout(() => {
-                    button.innerHTML = originalText;
-                }, 1500);
-            }, 800);
+                targetPage.style.animation = 'fadeIn 0.5s ease';
+            }, 10);
         }
+    }
 
-        // Atualizar os event listeners dos botões de lançamento
-        document.querySelectorAll('.launch-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const url = this.getAttribute('data-url');
-                const appId = this.closest('.app-page').id.replace('-page', '');
-                if (url) {
-                    openApp(url, this, appId);
-                }
-            });
+    // Event listeners para navegação da sidebar
+    document.querySelectorAll('.nav-icon').forEach(icon => {
+        icon.addEventListener('click', function() {
+            const pageId = this.getAttribute('data-page');
+            navigateToPage(pageId);
         });
+    });
 
-        // Inicialização
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Hub Pessoal carregado com sucesso!');
-            console.log('Dispositivo:', isMobileDevice() ? 'Móvel' : 'Desktop');
-            
-            document.querySelectorAll('.app-card').forEach((card, index) => {
-                card.style.animation = `slideUp 0.5s ease ${index * 0.1}s both`;
-            });
-            
+    // Event listener para o botão de termos - ABRE termos.html
+    document.querySelector('.terms-icon').addEventListener('click', function() {
+        // Abre termos.html em uma nova aba
+        window.open('termos.html', '_blank');
+        
+        // Adiciona efeito visual de clique
+        this.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+            this.style.transform = '';
+        }, 200);
+    });
+
+    // Event listeners para os cards dos apps
+    document.querySelectorAll('.app-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const appId = this.getAttribute('data-app');
+            navigateToPage(appId);
+        });
+    });
+
+    // Event listeners para botões de voltar
+    document.querySelectorAll('.back-button').forEach(button => {
+        button.addEventListener('click', function() {
             navigateToPage('home');
         });
+    });
 
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                navigateToPage('home');
+    // Função para abrir apps com verificação de dispositivo
+    function openApp(url, button, appId) {
+        const originalText = button.innerHTML;
+        const originalTransform = button.style.transform;
+        
+        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ABRINDO...';
+        button.style.transform = 'scale(0.95)';
+        button.disabled = true;
+        
+        setTimeout(() => {
+            // Verifica se é dispositivo móvel e se há URL alternativa
+            if (isMobileDevice() && mobileAlternativeURLs[appId]) {
+                window.open(mobileAlternativeURLs[appId], '_blank');
+                console.log(`Dispositivo móvel detectado. Redirecionando para: ${mobileAlternativeURLs[appId]}`);
+            } else {
+                // Tenta abrir como protocolo/app primeiro
+                if (url.includes('://') && !url.startsWith('http')) {
+                    // É um protocolo de app (como whatsapp://, spotify:)
+                    const appWindow = window.open(url, '_blank');
+                    
+                    // Se não abrir o app (janela bloqueada ou app não instalado), abre o site
+                    if (!appWindow || appWindow.closed || typeof appWindow.closed === 'undefined') {
+                        console.log('App não instalado ou bloqueado. Redirecionando para site.');
+                        // Busca URL alternativa ou usa URL padrão do appData
+                        const fallbackUrl = appsData[appId]?.url || mobileAlternativeURLs[appId] || `https://${appId}.com`;
+                        window.open(fallbackUrl, '_blank');
+                    }
+                } else {
+                    // É uma URL normal (http/https)
+                    window.open(url, '_blank');
+                }
+            }
+            
+            button.innerHTML = originalText;
+            button.style.transform = originalTransform;
+            button.disabled = false;
+            
+            button.innerHTML = '<i class="fas fa-check"></i> ABERTO!';
+            setTimeout(() => {
+                button.innerHTML = originalText;
+            }, 1500);
+        }, 800);
+    }
+
+    // Event listeners para botões de lançar apps
+    document.querySelectorAll('.launch-button').forEach(button => {
+        button.addEventListener('click', function() {
+            const url = this.getAttribute('data-url');
+            const appId = this.closest('.app-page').id.replace('-page', '');
+            if (url) {
+                openApp(url, this, appId);
             }
         });
-    </script>
+    });
+
+    // Inicialização
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Hub Pessoal carregado com sucesso!');
+        console.log('Dispositivo:', isMobileDevice() ? 'Móvel' : 'Desktop');
+        
+        // Adiciona animações aos cards
+        document.querySelectorAll('.app-card').forEach((card, index) => {
+            card.style.animation = `slideUp 0.5s ease ${index * 0.1}s both`;
+        });
+        
+        // Inicia na página inicial
+        navigateToPage('home');
+    });
+
+    // Tecla ESC volta para home
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            navigateToPage('home');
+        }
+    });
+</script>
 </body>
 </html>
