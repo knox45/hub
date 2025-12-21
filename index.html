@@ -6,7 +6,7 @@
     <title>Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="hub.png" type="image/png">
-  <style>
+    <style>
         * {
             margin: 0;
             padding: 0;
@@ -81,6 +81,10 @@
         }
 
         /* Cores específicas para ícones ativos */
+        .nav-icon.active[data-page="ray-links"] {
+            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+        }
         .nav-icon.active[data-page="spotify"] {
             background: linear-gradient(135deg, #1DB954, #1ED760);
             box-shadow: 0 5px 20px rgba(29, 185, 84, 0.4);
@@ -108,6 +112,10 @@
         .nav-icon.active[data-page="google-photos"] {
             background: linear-gradient(135deg, #4285F4, #34A853);
             box-shadow: 0 5px 20px rgba(66, 133, 244, 0.4);
+        }
+        .nav-icon.active[data-page="riot-client"] {
+            background: linear-gradient(135deg, #FF4654, #FF6B7C);
+            box-shadow: 0 5px 20px rgba(255, 70, 84, 0.4);
         }
 
         /* Barra superior */
@@ -678,6 +686,10 @@
         <div class="nav-icon active" data-page="home">
             <i class="fas fa-home"></i>
         </div>
+        <!-- SEU SITE DE LINKS (ANTES DO SPOTIFY) -->
+        <div class="nav-icon" data-page="ray-links">
+            <img src="ray.png" alt="Ray Links">
+        </div>
         <div class="nav-icon" data-page="spotify">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwDiicpDsawpNveT7Ota2-EC_vZbP8vneTbg&s" alt="Spotify">
         </div>
@@ -693,20 +705,16 @@
         <div class="nav-icon" data-page="watchtower">
             <img src="https://cms-imgp.jw-cdn.org/img/p/802013134/univ/art/802013134_univ_cnt_8_xl.jpg" alt="Watchtower Library">
         </div>
-        <!-- NOVOS ÍCONES ADICIONADOS -->
         <div class="nav-icon" data-page="vscode">
             <img src="https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxj7kCzMIlSC20SNjaJf9GmG15ocnF.zbBRgxMSlB7Ejh6FbgNzxLvZOoW7N3ML56fn3m5Z4MO.M8pYrCFVKIhqM-&format=source" alt="VS Code">
         </div>
         <div class="nav-icon" data-page="google-photos">
             <img src="https://www.oficinadanet.com.br/imagens/post_categoria/2671/google-photos.png" alt="Google Photos">
         </div>
-        <!-- ESPAÇO PARA ADICIONAR MAIS 2 APPS -->
-        <!-- <div class="nav-icon" data-page="app7">
-            <img src="URL_DO_ICONE" alt="App 7">
+        <!-- RIOT CLIENT (NO FINAL) -->
+        <div class="nav-icon" data-page="riot-client">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKnJaJcVfuAJc2YxBhBp4ujW956ygaVD0vaA&s" alt="Riot Client">
         </div>
-        <div class="nav-icon" data-page="app8">
-            <img src="URL_DO_ICONE" alt="App 8">
-        </div> -->
     </div>
 
     <!-- Barra superior -->
@@ -716,9 +724,8 @@
             <span>Hub</span>
         </div>
         <div class="user-avatar">
-        <i class="fas fa-user-circle"></i>
-</div>
-
+            <i class="fas fa-user-circle"></i>
+        </div>
     </div>
 
     <!-- Conteúdo principal -->
@@ -731,6 +738,23 @@
             </div>
 
             <div class="apps-grid">
+                <!-- Ray Links - NOVO APP -->
+                <div class="app-card" data-app="ray-links">
+                    <div class="app-cover" style="background-image: url('https://img.odcdn.com.br/wp-content/uploads/2021/05/Linktree-e1622124166688.png');">
+                        <div class="app-icon">
+                            <img src="ray.png" alt="Ray Links">
+                        </div>
+                    </div>
+                    <div class="app-content">
+                        <h3 class="app-title">Ray Links</h3>
+                        <p class="app-description">Meu site pessoal de links, com todos os meus perfis sociais, projetos e contatos importantes em um só lugar.</p>
+                        <div class="app-tags">
+                            <span class="app-tag">Pessoal</span>
+                            <span class="app-tag">Links</span>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Spotify -->
                 <div class="app-card" data-app="spotify">
                     <div class="app-cover" style="background-image: url('https://s2-oglobo.glbimg.com/HN6KqxVbuSn4PfjMfvS4gBuQBQY=/0x0:5472x3648/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2024/4/B/On1ohUTheTlANGm2ayuw/106248306-files-french-singer-aya-danioko-aka-aya-nakamura-poses-during-a-photo-session-on-november.jpg');">
@@ -816,7 +840,7 @@
                     </div>
                 </div>
 
-                <!-- Visual Studio Code - NOVO APP -->
+                <!-- Visual Studio Code -->
                 <div class="app-card" data-app="vscode">
                     <div class="app-cover" style="background-image: url('https://learn.microsoft.com/pt-br/shows/visual-studio-code/media/visual-studio-code-banner-image.jpg');">
                         <div class="app-icon">
@@ -833,7 +857,7 @@
                     </div>
                 </div>
 
-                <!-- Google Photos - NOVO APP -->
+                <!-- Google Photos -->
                 <div class="app-card" data-app="google-photos">
                     <div class="app-cover" style="background-image: url('https://www.notebookcheck.info/fileadmin/Notebooks/News/_nc4/Google-Photos-Quick-Edit-feature.jpg');">
                         <div class="app-icon">
@@ -850,40 +874,87 @@
                     </div>
                 </div>
 
-                <!-- ESPAÇO PARA ADICIONAR MAIS 2 APPS -->
-                <!-- 
-                <div class="app-card" data-app="app7">
-                    <div class="app-cover" style="background-image: url('URL_DA_CAPA');">
+                <!-- Riot Client - NOVO APP -->
+                <div class="app-card" data-app="riot-client">
+                    <div class="app-cover" style="background-image: url('https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/cf701cc9fda8942c3cfdf9f26e6ed410d4c59343-1920x1080.jpg?accountingTag=TFT?auto=format&fit=fill&q=80&w=1920');">
                         <div class="app-icon">
-                            <img src="URL_DO_ICONE" alt="App 7">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKnJaJcVfuAJc2YxBhBp4ujW956ygaVD0vaA&s" alt="Riot Client">
                         </div>
                     </div>
                     <div class="app-content">
-                        <h3 class="app-title">App 7</h3>
-                        <p class="app-description">Descrição do aplicativo 7.</p>
+                        <h3 class="app-title">Riot Client</h3>
+                        <p class="app-description">Plataforma da Riot Games para acessar todos os jogos: Valorant, League of Legends, Wild Rift e mais.</p>
                         <div class="app-tags">
-                            <span class="app-tag">Categoria 1</span>
-                            <span class="app-tag">Categoria 2</span>
+                            <span class="app-tag">Jogos</span>
+                            <span class="app-tag">Plataforma</span>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <div class="app-card" data-app="app8">
-                    <div class="app-cover" style="background-image: url('URL_DA_CAPA');">
-                        <div class="app-icon">
-                            <img src="URL_DO_ICONE" alt="App 8">
-                        </div>
+        <!-- Página do Ray Links -->
+        <div id="ray-links-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('https://img.odcdn.com.br/wp-content/uploads/2021/05/Linktree-e1622124166688.png');">
+                <button class="back-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+                <div class="app-hero-content">
+                    <div class="app-hero-icon">
+                        <img src="ray.png" alt="Ray Links">
                     </div>
-                    <div class="app-content">
-                        <h3 class="app-title">App 8</h3>
-                        <p class="app-description">Descrição do aplicativo 8.</p>
-                        <div class="app-tags">
-                            <span class="app-tag">Categoria 1</span>
-                            <span class="app-tag">Categoria 2</span>
+                    <div class="app-hero-info">
+                        <h1 style="color: #FF6B6B;">Ray Links</h1>
+                        <p>Meu site pessoal de links, com todos os meus perfis sociais, projetos e contatos importantes em um só lugar.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="app-detail-content">
+                <div class="app-description-content">
+                    <h2>Sobre o Ray Links</h2>
+                    <p>Meu site pessoal estilo Linktree que reúne todos os meus links importantes em uma única página. Perfeito para compartilhar em perfis de redes sociais e bio.</p>
+                    <p>Organizado por categorias para fácil acesso a projetos, redes sociais, contatos profissionais e recursos úteis.</p>
+                    
+                    <h2>O que você encontra</h2>
+                    <ul>
+                        <li>Todos os meus perfis sociais em um só lugar</li>
+                        <li>Projetos pessoais e portfólio</li>
+                        <li>Links para contato profissional</li>
+                        <li>Recursos e ferramentas que recomendo</li>
+                        <li>Novidades e atualizações sobre meus projetos</li>
+                        <li>Links rápidos para minhas redes principais</li>
+                        <li>Design responsivo que funciona em qualquer dispositivo</li>
+                        <li>Atualizações regulares com novos links</li>
+                    </ul>
+                </div>
+                
+                <div class="app-sidebar">
+                    <button class="launch-button" data-url="https://rayraymaster.github.io/hublink/" style="background: linear-gradient(135deg, #FF6B6B, #FF8E53);">
+                        <i class="fas fa-external-link-alt"></i>
+                        ACESSAR
+                    </button>
+                    
+                    <div class="app-info-grid">
+                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
+                        <div class="info-item">
+                            <span class="info-label">Categoria</span>
+                            <span class="info-value">Pessoal</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Tipo</span>
+                            <span class="info-value">Site de Links</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Disponibilidade</span>
+                            <span class="info-value" style="color: #FF6B6B;">24/7</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Acesso</span>
+                            <span class="info-value">Gratuito</span>
                         </div>
                     </div>
                 </div>
-                -->
             </div>
         </div>
 
@@ -1348,40 +1419,47 @@
             </div>
         </div>
 
-        <!-- ESPAÇO PARA ADICIONAR MAIS 2 PÁGINAS DE APPS -->
-        <!-- 
-        <div id="app7-page" class="page app-page">
-            <div class="app-hero" style="background-image: url('URL_DA_CAPA');">
+        <!-- Página do Riot Client -->
+        <div id="riot-client-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/cf701cc9fda8942c3cfdf9f26e6ed410d4c59343-1920x1080.jpg?accountingTag=TFT?auto=format&fit=fill&q=80&w=1920');">
                 <button class="back-button">
                     <i class="fas fa-arrow-left"></i> Voltar
                 </button>
                 <div class="app-hero-content">
                     <div class="app-hero-icon">
-                        <img src="URL_DO_ICONE" alt="App 7">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKnJaJcVfuAJc2YxBhBp4ujW956ygaVD0vaA&s" alt="Riot Client">
                     </div>
                     <div class="app-hero-info">
-                        <h1 style="color: #COR_PRINCIPAL;">App 7</h1>
-                        <p>Descrição curta do aplicativo 7.</p>
+                        <h1 style="color: #FF4654;">Riot Client</h1>
+                        <p>Plataforma da Riot Games para acessar todos os jogos: Valorant, League of Legends, Wild Rift e mais.</p>
                     </div>
                 </div>
             </div>
             
             <div class="app-detail-content">
                 <div class="app-description-content">
-                    <h2>Sobre o App 7</h2>
-                    <p>Descrição detalhada do aplicativo 7.</p>
+                    <h2>Sobre o Riot Client</h2>
+                    <p>Plataforma unificada da Riot Games que permite acesso a todos os jogos da empresa em uma única interface. Gerencie seus jogos, amigos, compras e configurações de forma centralizada.</p>
+                    <p>O Riot Client serve como hub para Valorant, League of Legends, Legends of Runeterra, Teamfight Tactics e Wild Rift (no PC).</p>
                     
                     <h2>Recursos Principais</h2>
                     <ul>
-                        <li>Recurso 1</li>
-                        <li>Recurso 2</li>
-                        <li>Recurso 3</li>
+                        <li>Acesso a todos os jogos da Riot em um só lugar</li>
+                        <li>Gerenciamento centralizado de amigos e chat</li>
+                        <li>Loja unificada para compras em qualquer jogo</li>
+                        <li>Notificações de atualizações e eventos</li>
+                        <li>Biblioteca de jogos organizada</li>
+                        <li>Sistema de recompensas e missões</li>
+                        <li>Configurações de conta centralizadas</li>
+                        <li>Suporte a múltiplas contas e regiões</li>
+                        <li>Integração com serviços Riot</li>
+                        <li>Atualizações automáticas de jogos</li>
                     </ul>
                 </div>
                 
                 <div class="app-sidebar">
-                    <button class="launch-button" data-url="URL_DO_APP" style="background: linear-gradient(135deg, #COR1, #COR2);">
-                        <i class="fas fa-icone"></i>
+                    <button class="launch-button" data-url="riotclient:" style="background: linear-gradient(135deg, #FF4654, #FF6B7C);">
+                        <i class="fas fa-gamepad"></i>
                         ABRIR
                     </button>
                     
@@ -1389,75 +1467,24 @@
                         <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
                         <div class="info-item">
                             <span class="info-label">Categoria</span>
-                            <span class="info-value">Categoria</span>
+                            <span class="info-value">Jogos</span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">Tipo</span>
-                            <span class="info-value">Tipo</span>
+                            <span class="info-value">Plataforma de Jogos</span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">Disponibilidade</span>
-                            <span class="info-value" style="color: #COR;">Status</span>
+                            <span class="info-value" style="color: #FF4654;">Global</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Jogos</span>
+                            <span class="info-value">5+</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div id="app8-page" class="page app-page">
-            <div class="app-hero" style="background-image: url('URL_DA_CAPA');">
-                <button class="back-button">
-                    <i class="fas fa-arrow-left"></i> Voltar
-                </button>
-                <div class="app-hero-content">
-                    <div class="app-hero-icon">
-                        <img src="URL_DO_ICONE" alt="App 8">
-                    </div>
-                    <div class="app-hero-info">
-                        <h1 style="color: #COR_PRINCIPAL;">App 8</h1>
-                        <p>Descrição curta do aplicativo 8.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="app-detail-content">
-                <div class="app-description-content">
-                    <h2>Sobre o App 8</h2>
-                    <p>Descrição detalhada do aplicativo 8.</p>
-                    
-                    <h2>Recursos Principais</h2>
-                    <ul>
-                        <li>Recurso 1</li>
-                        <li>Recurso 2</li>
-                        <li>Recurso 3</li>
-                    </ul>
-                </div>
-                
-                <div class="app-sidebar">
-                    <button class="launch-button" data-url="URL_DO_APP" style="background: linear-gradient(135deg, #COR1, #COR2);">
-                        <i class="fas fa-icone"></i>
-                        ABRIR
-                    </button>
-                    
-                    <div class="app-info-grid">
-                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
-                        <div class="info-item">
-                            <span class="info-label">Categoria</span>
-                            <span class="info-value">Categoria</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Tipo</span>
-                            <span class="info-value">Tipo</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Disponibilidade</span>
-                            <span class="info-value" style="color: #COR;">Status</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        -->
 
         <!-- Footer -->
         <div class="footer">
@@ -1469,6 +1496,11 @@
         // Dados dos aplicativos com URLs e informações
         const appsData = {
             'home': { name: 'Início' },
+            'ray-links': { 
+                name: 'Ray Links',
+                url: 'https://rayraymaster.github.io/hublink/',
+                color: '#FF6B6B'
+            },
             'spotify': { 
                 name: 'Spotify',
                 url: 'https://open.spotify.com',
@@ -1503,6 +1535,11 @@
                 name: 'Google Photos',
                 url: 'https://photos.google.com',
                 color: '#4285F4'
+            },
+            'riot-client': { 
+                name: 'Riot Client',
+                url: 'https://riotgames.com',
+                color: '#FF4654'
             }
         };
 
