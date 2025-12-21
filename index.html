@@ -117,6 +117,10 @@
             background: linear-gradient(135deg, #FF4654, #FF6B7C);
             box-shadow: 0 5px 20px rgba(255, 70, 84, 0.4);
         }
+        .nav-icon.active[data-page="terms"] {
+            background: linear-gradient(135deg, #FFA726, #FFB74D);
+            box-shadow: 0 5px 20px rgba(255, 167, 38, 0.4);
+        }
 
         /* Barra superior */
         .top-bar {
@@ -146,6 +150,45 @@
 
         .logo span {
             color: #4a6de5;
+        }
+
+        /* NOVO: Container para botões do usuário */
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* NOVO: Botão de Termos no estilo dos ícones */
+        .terms-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: rgba(45, 45, 74, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #b0b0c0;
+            border: none;
+            position: relative;
+        }
+
+        .terms-icon:hover {
+            background: rgba(74, 109, 229, 0.3);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .terms-icon i {
+            font-size: 1.2rem;
+        }
+
+        .terms-icon.active {
+            background: linear-gradient(135deg, #FFA726, #FFB74D);
+            color: #ffffff;
+            box-shadow: 0 5px 20px rgba(255, 167, 38, 0.4);
         }
 
         .user-avatar {
@@ -636,6 +679,27 @@
                 padding: 10px 18px;
                 font-size: 0.9rem;
             }
+
+            /* Ajustes para botões na top-bar no mobile */
+            .user-actions {
+                gap: 10px;
+            }
+            
+            .terms-icon {
+                width: 35px;
+                height: 35px;
+                border-radius: 10px;
+            }
+            
+            .terms-icon i {
+                font-size: 1rem;
+            }
+            
+            .user-avatar {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
         }
 
         /* Telas muito pequenas (celulares menores) */
@@ -676,6 +740,22 @@
             
             .app-cover {
                 height: 150px;
+            }
+
+            .terms-icon {
+                width: 32px;
+                height: 32px;
+                border-radius: 8px;
+            }
+            
+            .terms-icon i {
+                font-size: 0.9rem;
+            }
+            
+            .user-avatar {
+                width: 32px;
+                height: 32px;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -723,8 +803,14 @@
             <img src="tipo.png" alt="logo" style="width:70px; height:80px;">
             <span>Hub</span>
         </div>
-        <div class="user-avatar">
-            <i class="fas fa-user-circle"></i>
+        <div class="user-actions">
+            <!-- NOVO: Botão de Termos no estilo dos ícones -->
+            <div class="terms-icon" data-page="terms">
+                <i class="fas fa-file-contract"></i>
+            </div>
+            <div class="user-avatar">
+                <i class="fas fa-user-circle"></i>
+            </div>
         </div>
     </div>
 
@@ -1540,8 +1626,27 @@
                 name: 'Riot Client',
                 url: 'https://riotgames.com',
                 color: '#FF4654'
+            },
+            'terms': { 
+                name: 'Termos e Condições',
+                url: '#',
+                color: '#FFA726'
             }
         };
+
+        // URLs alternativas para dispositivos móveis
+        const mobileAlternativeURLs = {
+            'whatsapp': 'https://web.whatsapp.com',
+            'spotify': 'https://open.spotify.com',
+            'vscode': 'https://vscode.dev',
+            'riot-client': 'https://riotgames.com',
+            'jw-library': 'https://www.jw.org/pt/'
+        };
+
+        // Função para detectar dispositivo móvel
+        function isMobileDevice() {
+            return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
 
         // Sistema de navegação
         function navigateToPage(pageId) {
@@ -1552,8 +1657,14 @@
             const activeIcon = document.querySelector(`.nav-icon[data-page="${pageId}"]`);
             if (activeIcon) {
                 activeIcon.classList.add('active');
-            } else {
-                document.querySelector('.nav-icon[data-page="home"]').classList.add('active');
+            }
+            
+            document.querySelectorAll('.terms-icon').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            if (pageId === 'terms') {
+                document.querySelector('.terms-icon').classList.add('active');
             }
             
             document.querySelectorAll('.page').forEach(page => {
@@ -1585,6 +1696,15 @@
             });
         });
 
+        // Event listener para o ícone de termos
+        document.querySelector('.terms-icon').addEventListener('click', function() {
+            const pageId = this.getAttribute('data-page');
+            // Aqui você pode definir para onde o botão de termos vai navegar
+            // Por enquanto, vou deixar para você configurar depois
+            console.log('Botão de termos clicado. Configure a navegação na função navigateToPage.');
+            // navigateToPage('terms'); // Descomente esta linha quando criar a página de termos
+        });
+
         document.querySelectorAll('.app-card').forEach(card => {
             card.addEventListener('click', function() {
                 const appId = this.getAttribute('data-app');
@@ -1598,16 +1718,8 @@
             });
         });
 
-        document.querySelectorAll('.launch-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const url = this.getAttribute('data-url');
-                if (url) {
-                    openApp(url, this);
-                }
-            });
-        });
-
-        function openApp(url, button) {
+        // Função para abrir apps com verificação de dispositivo
+        function openApp(url, button, appId) {
             const originalText = button.innerHTML;
             const originalTransform = button.style.transform;
             
@@ -1616,7 +1728,29 @@
             button.disabled = true;
             
             setTimeout(() => {
-                window.open(url, '_blank');
+                // Verifica se é dispositivo móvel e se há URL alternativa
+                if (isMobileDevice() && mobileAlternativeURLs[appId]) {
+                    window.open(mobileAlternativeURLs[appId], '_blank');
+                    console.log(`Dispositivo móvel detectado. Redirecionando para: ${mobileAlternativeURLs[appId]}`);
+                } else {
+                    // Tenta abrir como protocolo/app primeiro
+                    if (url.includes('://') && !url.startsWith('http')) {
+                        // É um protocolo de app (como whatsapp://, spotify:)
+                        const appWindow = window.open(url, '_blank');
+                        
+                        // Se não abrir o app (janela bloqueada ou app não instalado), abre o site
+                        if (!appWindow || appWindow.closed || typeof appWindow.closed === 'undefined') {
+                            console.log('App não instalado ou bloqueado. Redirecionando para site.');
+                            // Busca URL alternativa ou usa URL padrão do appData
+                            const fallbackUrl = appsData[appId]?.url || mobileAlternativeURLs[appId] || `https://${appId}.com`;
+                            window.open(fallbackUrl, '_blank');
+                        }
+                    } else {
+                        // É uma URL normal (http/https)
+                        window.open(url, '_blank');
+                    }
+                }
+                
                 button.innerHTML = originalText;
                 button.style.transform = originalTransform;
                 button.disabled = false;
@@ -1628,9 +1762,21 @@
             }, 800);
         }
 
+        // Atualizar os event listeners dos botões de lançamento
+        document.querySelectorAll('.launch-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const url = this.getAttribute('data-url');
+                const appId = this.closest('.app-page').id.replace('-page', '');
+                if (url) {
+                    openApp(url, this, appId);
+                }
+            });
+        });
+
         // Inicialização
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Hub Pessoal carregado com sucesso!');
+            console.log('Dispositivo:', isMobileDevice() ? 'Móvel' : 'Desktop');
             
             document.querySelectorAll('.app-card').forEach((card, index) => {
                 card.style.animation = `slideUp 0.5s ease ${index * 0.1}s both`;
