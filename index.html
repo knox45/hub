@@ -101,6 +101,14 @@
             background: linear-gradient(135deg, #4169E1, #6495ED);
             box-shadow: 0 5px 20px rgba(65, 105, 225, 0.4);
         }
+        .nav-icon.active[data-page="vscode"] {
+            background: linear-gradient(135deg, #007ACC, #1F9CF0);
+            box-shadow: 0 5px 20px rgba(0, 122, 204, 0.4);
+        }
+        .nav-icon.active[data-page="google-photos"] {
+            background: linear-gradient(135deg, #4285F4, #34A853);
+            box-shadow: 0 5px 20px rgba(66, 133, 244, 0.4);
+        }
 
         /* Barra superior */
         .top-bar {
@@ -685,6 +693,20 @@
         <div class="nav-icon" data-page="watchtower">
             <img src="https://cms-imgp.jw-cdn.org/img/p/802013134/univ/art/802013134_univ_cnt_8_xl.jpg" alt="Watchtower Library">
         </div>
+        <!-- NOVOS ÍCONES ADICIONADOS -->
+        <div class="nav-icon" data-page="vscode">
+            <img src="https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxj7kCzMIlSC20SNjaJf9GmG15ocnF.zbBRgxMSlB7Ejh6FbgNzxLvZOoW7N3ML56fn3m5Z4MO.M8pYrCFVKIhqM-&format=source" alt="VS Code">
+        </div>
+        <div class="nav-icon" data-page="google-photos">
+            <img src="https://www.oficinadanet.com.br/imagens/post_categoria/2671/google-photos.png" alt="Google Photos">
+        </div>
+        <!-- ESPAÇO PARA ADICIONAR MAIS 2 APPS -->
+        <!-- <div class="nav-icon" data-page="app7">
+            <img src="URL_DO_ICONE" alt="App 7">
+        </div>
+        <div class="nav-icon" data-page="app8">
+            <img src="URL_DO_ICONE" alt="App 8">
+        </div> -->
     </div>
 
     <!-- Barra superior -->
@@ -793,6 +815,75 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Visual Studio Code - NOVO APP -->
+                <div class="app-card" data-app="vscode">
+                    <div class="app-cover" style="background-image: url('https://learn.microsoft.com/pt-br/shows/visual-studio-code/media/visual-studio-code-banner-image.jpg');">
+                        <div class="app-icon">
+                            <img src="https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxj7kCzMIlSC20SNjaJf9GmG15ocnF.zbBRgxMSlB7Ejh6FbgNzxLvZOoW7N3ML56fn3m5Z4MO.M8pYrCFVKIhqM-&format=source" alt="VS Code">
+                        </div>
+                    </div>
+                    <div class="app-content">
+                        <h3 class="app-title">Visual Studio Code</h3>
+                        <p class="app-description">Editor de código fonte leve e poderoso com suporte para desenvolvimento em diversas linguagens.</p>
+                        <div class="app-tags">
+                            <span class="app-tag">Desenvolvimento</span>
+                            <span class="app-tag">Editor de Código</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google Photos - NOVO APP -->
+                <div class="app-card" data-app="google-photos">
+                    <div class="app-cover" style="background-image: url('https://www.notebookcheck.info/fileadmin/Notebooks/News/_nc4/Google-Photos-Quick-Edit-feature.jpg');">
+                        <div class="app-icon">
+                            <img src="https://www.oficinadanet.com.br/imagens/post_categoria/2671/google-photos.png" alt="Google Photos">
+                        </div>
+                    </div>
+                    <div class="app-content">
+                        <h3 class="app-title">Google Photos</h3>
+                        <p class="app-description">Armazenamento inteligente de fotos e vídeos com backup automático e ferramentas de edição.</p>
+                        <div class="app-tags">
+                            <span class="app-tag">Fotos</span>
+                            <span class="app-tag">Armazenamento</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ESPAÇO PARA ADICIONAR MAIS 2 APPS -->
+                <!-- 
+                <div class="app-card" data-app="app7">
+                    <div class="app-cover" style="background-image: url('URL_DA_CAPA');">
+                        <div class="app-icon">
+                            <img src="URL_DO_ICONE" alt="App 7">
+                        </div>
+                    </div>
+                    <div class="app-content">
+                        <h3 class="app-title">App 7</h3>
+                        <p class="app-description">Descrição do aplicativo 7.</p>
+                        <div class="app-tags">
+                            <span class="app-tag">Categoria 1</span>
+                            <span class="app-tag">Categoria 2</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="app-card" data-app="app8">
+                    <div class="app-cover" style="background-image: url('URL_DA_CAPA');">
+                        <div class="app-icon">
+                            <img src="URL_DO_ICONE" alt="App 8">
+                        </div>
+                    </div>
+                    <div class="app-content">
+                        <h3 class="app-title">App 8</h3>
+                        <p class="app-description">Descrição do aplicativo 8.</p>
+                        <div class="app-tags">
+                            <span class="app-tag">Categoria 1</span>
+                            <span class="app-tag">Categoria 2</span>
+                        </div>
+                    </div>
+                </div>
+                -->
             </div>
         </div>
 
@@ -1123,6 +1214,251 @@
             </div>
         </div>
 
+        <!-- Página do Visual Studio Code -->
+        <div id="vscode-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('https://learn.microsoft.com/pt-br/shows/visual-studio-code/media/visual-studio-code-banner-image.jpg');">
+                <button class="back-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+                <div class="app-hero-content">
+                    <div class="app-hero-icon">
+                        <img src="https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxj7kCzMIlSC20SNjaJf9GmG15ocnF.zbBRgxMSlB7Ejh6FbgNzxLvZOoW7N3ML56fn3m5Z4MO.M8pYrCFVKIhqM-&format=source" alt="VS Code">
+                    </div>
+                    <div class="app-hero-info">
+                        <h1 style="color: #007ACC;">Visual Studio Code</h1>
+                        <p>Editor de código fonte leve e poderoso com suporte para desenvolvimento em diversas linguagens.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="app-detail-content">
+                <div class="app-description-content">
+                    <h2>Sobre o Visual Studio Code</h2>
+                    <p>Editor de código-fonte desenvolvido pela Microsoft para Windows, Linux e macOS. Inclui suporte para depuração, controle Git incorporado, realce de sintaxe, complementação inteligente de código e refatoração de código.</p>
+                    <p>Leve, rápido e altamente customizável através de extensões disponíveis no marketplace oficial.</p>
+                    
+                    <h2>Recursos Principais</h2>
+                    <ul>
+                        <li>Suporte para múltiplas linguagens de programação</li>
+                        <li>Depurador integrado para debugging</li>
+                        <li>Controle Git incorporado</li>
+                        <li>IntelliSense para autocompletar código inteligente</li>
+                        <li>Sistema de extensões para personalização</li>
+                        <li>Terminal integrado</li>
+                        <li>Multiplataforma (Windows, macOS, Linux)</li>
+                        <li>Gratuito e de código aberto</li>
+                        <li>Suporte a múltiplos cursores e seleção múltipla</li>
+                        <li>Comparador de arquivos integrado</li>
+                    </ul>
+                </div>
+                
+                <div class="app-sidebar">
+                    <button class="launch-button" data-url="vscode://" style="background: linear-gradient(135deg, #007ACC, #1F9CF0);">
+                        <i class="fas fa-code"></i>
+                        ABRIR
+                    </button>
+                    
+                    <div class="app-info-grid">
+                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
+                        <div class="info-item">
+                            <span class="info-label">Categoria</span>
+                            <span class="info-value">Desenvolvimento</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Tipo</span>
+                            <span class="info-value">Editor de Código</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Disponibilidade</span>
+                            <span class="info-value" style="color: #007ACC;">Multiplataforma</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Licença</span>
+                            <span class="info-value">Gratuito</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página do Google Photos -->
+        <div id="google-photos-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('https://www.notebookcheck.info/fileadmin/Notebooks/News/_nc4/Google-Photos-Quick-Edit-feature.jpg');">
+                <button class="back-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+                <div class="app-hero-content">
+                    <div class="app-hero-icon">
+                        <img src="https://www.oficinadanet.com.br/imagens/post_categoria/2671/google-photos.png" alt="Google Photos">
+                    </div>
+                    <div class="app-hero-info">
+                        <h1 style="color: #4285F4;">Google Photos</h1>
+                        <p>Armazenamento inteligente de fotos e vídeos com backup automático e ferramentas de edição.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="app-detail-content">
+                <div class="app-description-content">
+                    <h2>Sobre o Google Photos</h2>
+                    <p>Serviço de compartilhamento e armazenamento de fotos desenvolvido pelo Google. Permite backup automático de fotos e vídeos, reconhecimento facial, criação de álbuns automáticos e ferramentas avançadas de edição.</p>
+                    <p>Oferece armazenamento gratuito (com compressão) ou armazenamento original contando na cota do Google One.</p>
+                    
+                    <h2>Recursos Principais</h2>
+                    <ul>
+                        <li>Backup automático de fotos e vídeos</li>
+                        <li>Reconhecimento facial e agrupamento por pessoas</li>
+                        <li>Busca inteligente por objetos, lugares e pessoas</li>
+                        <li>Criação automática de álbuns, animações e filmes</li>
+                        <li>Ferramentas avançadas de edição de fotos</li>
+                        <li>Compartilhamento fácil com familiares e amigos</li>
+                        <li>Sincronização entre dispositivos</li>
+                        <li>Armazenamento ilimitado em qualidade "Alta"</li>
+                        <li>Recuperação de fotos excluídas por 60 dias</li>
+                        <li>Integração com outros serviços Google</li>
+                    </ul>
+                </div>
+                
+                <div class="app-sidebar">
+                    <button class="launch-button" data-url="https://photos.google.com" style="background: linear-gradient(135deg, #4285F4, #34A853);">
+                        <i class="fas fa-images"></i>
+                        ABRIR
+                    </button>
+                    
+                    <div class="app-info-grid">
+                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
+                        <div class="info-item">
+                            <span class="info-label">Categoria</span>
+                            <span class="info-value">Fotos</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Tipo</span>
+                            <span class="info-value">Armazenamento de Fotos</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Armazenamento</span>
+                            <span class="info-value" style="color: #34A853;">15GB Gratuito</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Inteligência</span>
+                            <span class="info-value">Busca por IA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ESPAÇO PARA ADICIONAR MAIS 2 PÁGINAS DE APPS -->
+        <!-- 
+        <div id="app7-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('URL_DA_CAPA');">
+                <button class="back-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+                <div class="app-hero-content">
+                    <div class="app-hero-icon">
+                        <img src="URL_DO_ICONE" alt="App 7">
+                    </div>
+                    <div class="app-hero-info">
+                        <h1 style="color: #COR_PRINCIPAL;">App 7</h1>
+                        <p>Descrição curta do aplicativo 7.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="app-detail-content">
+                <div class="app-description-content">
+                    <h2>Sobre o App 7</h2>
+                    <p>Descrição detalhada do aplicativo 7.</p>
+                    
+                    <h2>Recursos Principais</h2>
+                    <ul>
+                        <li>Recurso 1</li>
+                        <li>Recurso 2</li>
+                        <li>Recurso 3</li>
+                    </ul>
+                </div>
+                
+                <div class="app-sidebar">
+                    <button class="launch-button" data-url="URL_DO_APP" style="background: linear-gradient(135deg, #COR1, #COR2);">
+                        <i class="fas fa-icone"></i>
+                        ABRIR
+                    </button>
+                    
+                    <div class="app-info-grid">
+                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
+                        <div class="info-item">
+                            <span class="info-label">Categoria</span>
+                            <span class="info-value">Categoria</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Tipo</span>
+                            <span class="info-value">Tipo</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Disponibilidade</span>
+                            <span class="info-value" style="color: #COR;">Status</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="app8-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('URL_DA_CAPA');">
+                <button class="back-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+                <div class="app-hero-content">
+                    <div class="app-hero-icon">
+                        <img src="URL_DO_ICONE" alt="App 8">
+                    </div>
+                    <div class="app-hero-info">
+                        <h1 style="color: #COR_PRINCIPAL;">App 8</h1>
+                        <p>Descrição curta do aplicativo 8.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="app-detail-content">
+                <div class="app-description-content">
+                    <h2>Sobre o App 8</h2>
+                    <p>Descrição detalhada do aplicativo 8.</p>
+                    
+                    <h2>Recursos Principais</h2>
+                    <ul>
+                        <li>Recurso 1</li>
+                        <li>Recurso 2</li>
+                        <li>Recurso 3</li>
+                    </ul>
+                </div>
+                
+                <div class="app-sidebar">
+                    <button class="launch-button" data-url="URL_DO_APP" style="background: linear-gradient(135deg, #COR1, #COR2);">
+                        <i class="fas fa-icone"></i>
+                        ABRIR
+                    </button>
+                    
+                    <div class="app-info-grid">
+                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
+                        <div class="info-item">
+                            <span class="info-label">Categoria</span>
+                            <span class="info-value">Categoria</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Tipo</span>
+                            <span class="info-value">Tipo</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Disponibilidade</span>
+                            <span class="info-value" style="color: #COR;">Status</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        -->
+
         <!-- Footer -->
         <div class="footer">
             © 2025 RayRay Hub • Todos os aplicativos disponíveis
@@ -1157,6 +1493,16 @@
                 name: 'Watchtower Library',
                 url: 'https://wol.jw.org',
                 color: '#4169E1'
+            },
+            'vscode': { 
+                name: 'Visual Studio Code',
+                url: 'https://code.visualstudio.com',
+                color: '#007ACC'
+            },
+            'google-photos': { 
+                name: 'Google Photos',
+                url: 'https://photos.google.com',
+                color: '#4285F4'
             }
         };
 
