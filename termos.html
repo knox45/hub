@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termos de Uso - Hub de Serviços</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        :root {
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --text-primary: #333333;
+            --text-secondary: #555555;
+            --accent-color: #2c3e50;
+            --accent-light: #4a6fa5;
+            --border-color: #eaeaea;
+            --warning-bg: #fff8e1;
+            --warning-border: #ffc107;
+            --info-bg: #e8f4fd;
+            --info-border: #2196f3;
+            --personal-bg: #e8f5e9;
+            --personal-border: #4caf50;
+            --copyright-bg: #f9f9f9;
+            --disclaimer-bg: #fef7e0;
+            --disclaimer-border: #ff9800;
+            --highlight-bg: #e3f2fd;
+            --header-gradient: linear-gradient(135deg, #2c3e50, #1a2530);
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #121212;
+            --bg-secondary: #1e1e1e;
+            --text-primary: #f0f0f0;
+            --text-secondary: #cccccc;
+            --accent-color: #4a6fa5;
+            --accent-light: #6a8fc5;
+            --border-color: #333333;
+            --warning-bg: #332c00;
+            --warning-border: #ffc107;
+            --info-bg: #0d2b3d;
+            --info-border: #2196f3;
+            --personal-bg: #1a2e1a;
+            --personal-border: #4caf50;
+            --copyright-bg: #2a2a2a;
+            --disclaimer-bg: #332800;
+            --disclaimer-border: #ff9800;
+            --highlight-bg: #1a3a4a;
+            --header-gradient: linear-gradient(135deg, #1a2530, #0d1218);
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: var(--header-gradient);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: background-color 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .terms-content {
+            background-color: var(--bg-secondary);
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+            border: 1px solid var(--border-color);
+        }
+
+        .section {
+            margin-bottom: 35px;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+        }
+
+        .section h2 {
+            color: var(--accent-color);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h2 i {
+            color: var(--accent-light);
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+        }
+
+        .section ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .section li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 10px;
+            color: var(--text-secondary);
+        }
+
+        .warning-box {
+            background-color: var(--warning-bg);
+            border-left: 5px solid var(--warning-border);
+            padding: 20px;
+            border-radius: 5px;
+            margin: 25px 0;
+        }
+
+        .warning-box h3 {
+            color: #e65100;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .info-box {
+            background-color: var(--info-bg);
+            border-left: 5px solid var(--info-border);
+            padding: 20px;
+            border-radius: 5px;
+            margin: 25px 0;
+        }
+
+        .info-box h3 {
+            color: #1565c0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .personal-use-box {
+            background-color: var(--personal-bg);
+            border-left: 5px solid var(--personal-border);
+            padding: 20px;
+            border-radius: 5px;
+            margin: 25px 0;
+        }
+
+        .personal-use-box h3 {
+            color: #2e7d32;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .copyright-notice {
+            background-color: var(--copyright-bg);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+
+        .copyright-notice h3 {
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            background-color: var(--highlight-bg);
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: background-color 0.3s;
+        }
+
+        .disclaimer {
+            background-color: var(--disclaimer-bg);
+            border: 2px solid var(--disclaimer-border);
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .disclaimer p {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #5d4037;
+        }
+
+        [data-theme="dark"] .disclaimer p {
+            color: #ffcc80;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .terms-content {
+                padding: 25px;
+            }
+            
+            .section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .theme-toggle {
+                top: 15px;
+                right: 15px;
+                width: 35px;
+                height: 35px;
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body:not([data-theme="light"]) {
+                color-scheme: dark;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+            <i class="fas fa-moon"></i>
+        </button>
+        <div class="container">
+            <h1><i class="fas fa-file-contract"></i> Termos de Uso</h1>
+            <p>Leia atentamente os termos e condições que regem o uso deste hub de serviços</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="disclaimer">
+            <p><i class="fas fa-exclamation-circle"></i> AO ACESSAR E UTILIZAR ESTE SITE, VOCÊ CONCORDA AUTOMATICAMENTE COM ESTES TERMOS DE USO.</p>
+        </div>
+
+        <div class="terms-content">
+            <div class="section">
+                <h2><i class="fas fa-info-circle"></i> Sobre este Hub</h2>
+                <p>Este site funciona como um <span class="highlight">hub de redirecionamento pessoal</span> que integra e organiza links para diversos serviços online. Nossa plataforma não hospeda nenhum conteúdo próprio, servindo exclusivamente como um diretório organizado para acesso a serviços de terceiros.</p>
+                <p>Este site foi <span class="highlight">desenvolvido para uso pessoal do proprietário</span> e os recursos foram criados especificamente para atender às suas necessidades individuais. Outras pessoas podem eventualmente acessar e utilizar este hub, mas devem estar cientes de que a experiência e funcionalidades foram projetadas para um usuário específico.</p>
+            </div>
+
+            <div class="personal-use-box">
+                <h3><i class="fas fa-user-circle"></i> Propósito e Uso Pessoal</h3>
+                <p>Este hub foi criado como uma ferramenta de organização pessoal para o proprietário. Os recursos, layout e funcionalidades foram desenvolvidos conforme as necessidades específicas de um único usuário.</p>
+                <p>O acesso por terceiros é possível, mas estes devem compreender que:</p>
+                <ul>
+                    <li>O site não foi otimizado para uso geral do público</li>
+                    <li>As funcionalidades atendem a necessidades pessoais específicas</li>
+                    <li>Não há garantia de que todos os recursos serão úteis ou funcionais para outros usuários</li>
+                    <li>O proprietário não assume responsabilidade pela utilidade do site para terceiros</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h3><i class="fas fa-exclamation-triangle"></i> Aviso de Segurança</h3>
+                <p>Este site <strong>não é enganoso</strong> e não contém ataques de phishing. Utilizamos tecnologias padrão da web (JavaScript, HTML, CSS) para proporcionar uma experiência de usuário funcional.</p>
+                <p>Seu navegador pode exibir alertas sobre redirecionamentos para sites externos - isso é um <span class="highlight">procedimento de segurança normal</span> e esperado para qualquer site que direcione para domínios de terceiros.</p>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-external-link-alt"></i> Natureza dos Redirecionamentos</h2>
+                <p>Este site funciona exclusivamente como um <span class="highlight">agregador de links pessoal</span> e não faz uso de nenhum conteúdo dos sites listados. Todas as funcionalidades são providas através de:</p>
+                <ul>
+                    <li><i class="fas fa-arrow-right"></i> Redirecionamento direto para os sites originais</li>
+                    <li><i class="fas fa-link"></i> Organização pessoal de links categorizados</li>
+                    <li><i class="fas fa-code"></i> Uso de JavaScript para experiência personalizada</li>
+                    <li><i class="fas fa-filter"></i> Interface customizada para necessidades específicas</li>
+                </ul>
+                <p>Não armazenamos, replicamos ou modificamos qualquer conteúdo dos serviços para os quais redirecionamos. O usuário acessa diretamente os serviços originais em seus domínios próprios.</p>
+            </div>
+
+            <div class="copyright-notice">
+                <h3><i class="fas fa-balance-scale"></i> Direitos Autorais e Conformidade Legal</h3>
+                <p>Os sites e serviços para os quais redirecionamos são de propriedade de seus respectivos detentores de direitos autorais.</p>
+                <p>Este hub <span class="highlight">não viola direitos autorais</span> pois:</p>
+                <ul>
+                    <li>Não hospeda nem reproduz conteúdo protegido</li>
+                    <li>Funciona apenas como um organizador de links pessoal</li>
+                    <li>Redireciona diretamente para os sites originais</li>
+                    <li>Não interfere na gestão de direitos dos detentores originais</li>
+                </ul>
+                <p>Este site está em conformidade com as leis aplicáveis, funcionando como uma ferramenta de organização pessoal que não infringe propriedade intelectual alheia.</p>
+            </div>
+
+            <div class="info-box">
+                <h3><i class="fas fa-shield-alt"></i> Isenção de Responsabilidade</h3>
+                <p>Este site não se responsabiliza por:</p>
+                <ul>
+                    <li>Uso feito pelos usuários em serviços de terceiros</li>
+                    <li>Conteúdo, funcionalidades ou disponibilidade dos sites redirecionados</li>
+                    <li>Práticas de coleta de dados de serviços externos</li>
+                    <li>Qualquer violação de termos cometida por usuários em plataformas de terceiros</li>
+                </ul>
+                <p>O acesso e uso dos serviços de terceiros são de inteira responsabilidade do usuário, que deve cumprir com os termos e condições estabelecidos por cada serviço.</p>
+                <p>Este hub não garante que todos os recursos serão funcionais ou úteis para todos os usuários, uma vez que foi desenvolvido para necessidades pessoais específicas.</p>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-code"></i> Tecnologias Utilizadas</h2>
+                <p>Este site utiliza tecnologias web padrão para funcionamento:</p>
+                <ul>
+                    <li><strong>JavaScript:</strong> Para funcionalidades interativas e redirecionamento</li>
+                    <li><strong>HTML5 & CSS3:</strong> Para estrutura e apresentação personalizada</li>
+                    <li><strong>Links diretos:</strong> Para redirecionamento aos serviços originais</li>
+                </ul>
+                <p>Não utilizamos tecnologias maliciosas, scripts de mineração, ou qualquer código que comprometa a segurança do usuário.</p>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-user-check"></i> Aceitação dos Termos</h2>
+                <p>Ao acessar e utilizar este site, você automaticamente concorda com estes Termos de Uso. Se você não concordar com qualquer parte destes termos, deve imediatamente cessar o uso deste hub.</p>
+                <p>Estes termos podem ser atualizados periodicamente para refletir a natureza evolutiva deste projeto pessoal.</p>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-palette"></i> Preferências de Tema</h2>
+                <p>Este site respeita as preferências de aparência do seu navegador e sistema operacional. Você pode:</p>
+                <ul>
+                    <li>Usar o botão no cabeçalho para alternar entre modo claro e escuro</li>
+                    <li>Manter a preferência do seu sistema através das configurações do navegador</li>
+                    <li>Sua escolha será salva para visitas futuras</li>
+                </ul>
+                <p>O tema será automaticamente ajustado conforme as configurações do seu dispositivo.</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>© <span id="currentYear"></span> Hub de Serviços Pessoal. Este site é destinado primariamente a uso pessoal do proprietário.</p>
+            <p>Última atualização: <span id="currentDate"></span></p>
+            <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">
+                <i class="fas fa-sun"></i> Tema atual: <span id="themeStatus">Claro</span>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Detectar e aplicar preferência de tema do sistema
+        function detectSystemTheme() {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                return 'dark';
+            }
+            return 'light';
+        }
+
+        // Salvar tema no localStorage
+        function saveThemePreference(theme) {
+            localStorage.setItem('themePreference', theme);
+        }
+
+        // Carregar tema salvo ou usar o do sistema
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('themePreference');
+            const systemTheme = detectSystemTheme();
+            const theme = savedTheme || systemTheme;
+            
+            document.documentElement.setAttribute('data-theme', theme);
+            updateThemeButton(theme);
+            updateThemeStatus(theme);
+        }
+
+        // Atualizar botão de tema
+        function updateThemeButton(theme) {
+            const button = document.getElementById('themeToggle');
+            if (theme === 'dark') {
+                button.innerHTML = '<i class="fas fa-sun"></i>';
+                button.setAttribute('aria-label', 'Alternar para tema claro');
+            } else {
+                button.innerHTML = '<i class="fas fa-moon"></i>';
+                button.setAttribute('aria-label', 'Alternar para tema escuro');
+            }
+        }
+
+        // Atualizar status do tema no footer
+        function updateThemeStatus(theme) {
+            const themeStatus = document.getElementById('themeStatus');
+            themeStatus.textContent = theme === 'dark' ? 'Escuro' : 'Claro';
+        }
+
+        // Alternar tema
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            saveThemePreference(newTheme);
+            updateThemeButton(newTheme);
+            updateThemeStatus(newTheme);
+        }
+
+        // Escutar mudanças no tema do sistema
+        function watchSystemTheme() {
+            const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            
+            mediaQuery.addEventListener('change', (e) => {
+                // Só mudar se o usuário não tiver uma preferência salva
+                if (!localStorage.getItem('themePreference')) {
+                    const newTheme = e.matches ? 'dark' : 'light';
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    updateThemeButton(newTheme);
+                    updateThemeStatus(newTheme);
+                }
+            });
+        }
+
+        // Atualizar ano atual no footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Atualizar data atual no footer
+        const now = new Date();
+        const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+        document.getElementById('currentDate').textContent = now.toLocaleDateString('pt-BR', options);
+        
+        // Adicionar efeito sutil de destaque em termos importantes
+        document.addEventListener('DOMContentLoaded', function() {
+            const highlights = document.querySelectorAll('.highlight');
+            highlights.forEach(highlight => {
+                highlight.addEventListener('mouseenter', function() {
+                    this.style.transition = 'all 0.3s ease';
+                    if (document.documentElement.getAttribute('data-theme') === 'dark') {
+                        this.style.backgroundColor = '#2a4a5a';
+                    } else {
+                        this.style.backgroundColor = '#bbdefb';
+                    }
+                });
+                highlight.addEventListener('mouseleave', function() {
+                    if (document.documentElement.getAttribute('data-theme') === 'dark') {
+                        this.style.backgroundColor = '#1a3a4a';
+                    } else {
+                        this.style.backgroundColor = '#e3f2fd';
+                    }
+                });
+            });
+        });
+
+        // Inicializar tema
+        loadTheme();
+        
+        // Escutar mudanças no tema do sistema
+        watchSystemTheme();
+        
+        // Configurar botão de alternância
+        document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+    </script>
+</body>
+</html>
