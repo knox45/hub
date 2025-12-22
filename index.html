@@ -1699,11 +1699,11 @@ function showRedirectWarning(button) {
 
   button.parentNode.insertBefore(div, button);
 
-  setTimeout(() => div.remove(), 4000);
+  setTimeout(() => div.remove(), 3000);
 }
 
 /* ===============================
-   ABRIR APP / SITE
+   ABRIR APP / SITE (MOBILE FIX)
 ================================ */
 function openApp(button, appId) {
   const app = appsData[appId];
@@ -1716,6 +1716,13 @@ function openApp(button, appId) {
   button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Abrindo...';
   button.disabled = true;
 
+  // 🔥 MOBILE: redireciona direto (sem timeout)
+  if (!app.protocol && isMobile()) {
+    window.location.href = app.mobileUrl;
+    return;
+  }
+
+  // APP via protocolo
   if (app.protocol) {
     const iframe = document.createElement('iframe');
     iframe.style.display = 'none';
@@ -1728,14 +1735,12 @@ function openApp(button, appId) {
       button.disabled = false;
     }, 1200);
   } else {
+    // DESKTOP
     setTimeout(() => {
-      isMobile()
-        ? window.location.href = app.mobileUrl
-        : window.open(app.url, '_blank', 'noopener,noreferrer');
-
+      window.open(app.url, '_blank', 'noopener,noreferrer');
       button.innerHTML = original;
       button.disabled = false;
-    }, 600);
+    }, 400);
   }
 }
 
@@ -1747,7 +1752,6 @@ document.addEventListener('DOMContentLoaded', () => {
   createDeviceIndicator();
   window.addEventListener('resize', createDeviceIndicator);
 
-  // Navegação
   document.querySelectorAll('.nav-icon').forEach(icon => {
     icon.addEventListener('click', () => {
       navigateToPage(icon.dataset.page);
@@ -1764,7 +1768,6 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => navigateToPage('home'));
   });
 
-  // Botão abrir
   document.querySelectorAll('.launch-button').forEach(button => {
     button.addEventListener('click', () => {
       const page = button.closest('.app-page');
@@ -1784,6 +1787,7 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') navigateToPage('home');
 });
 </script>
+
 
 </body>
 </html>
