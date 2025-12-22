@@ -1672,6 +1672,83 @@ function isDesktop() {
 }
 
 /* ===============================
+   CRIAR INDICADOR PERMANENTE DE DISPOSITIVO (CENTRO SUPERIOR)
+================================ */
+function createPermanentDeviceIndicator() {
+  // Remover indicador anterior se existir
+  const existingIndicator = document.querySelector('.permanent-device-indicator');
+  if (existingIndicator) {
+    existingIndicator.remove();
+  }
+  
+  const deviceType = isMobile() ? 'Mobile' : 'Computador';
+  const deviceIcon = isMobile() ? 'fa-mobile-alt' : 'fa-desktop';
+  const deviceClass = isMobile() ? 'mobile' : 'desktop';
+  
+  const indicator = document.createElement('div');
+  indicator.className = `permanent-device-indicator ${deviceClass}`;
+  indicator.style.cssText = `
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: ${isMobile() ? 'rgba(33, 150, 243, 0.15)' : 'rgba(156, 39, 176, 0.15)'};
+    color: ${isMobile() ? '#2196F3' : '#9C27B0'};
+    border: 1px solid ${isMobile() ? 'rgba(33, 150, 243, 0.3)' : 'rgba(156, 39, 176, 0.3)'};
+    font-size: 0.7rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    animation: slideDown 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap;
+    max-width: 90%;
+  `;
+  
+  indicator.innerHTML = `
+    <i class="fas ${deviceIcon}" style="font-size: 0.8rem;"></i>
+    <span class="device-text">${deviceType}</span>
+  `;
+  
+  document.body.appendChild(indicator);
+  
+  // Atualizar o texto ao redimensionar (para mudança mobile/desktop)
+  window.addEventListener('resize', updateDeviceIndicator);
+}
+
+/* ===============================
+   ATUALIZAR INDICADOR DE DISPOSITIVO
+================================ */
+function updateDeviceIndicator() {
+  const indicator = document.querySelector('.permanent-device-indicator');
+  if (!indicator) return;
+  
+  const deviceType = isMobile() ? 'Mobile' : 'Computador';
+  const deviceIcon = isMobile() ? 'fa-mobile-alt' : 'fa-desktop';
+  const deviceClass = isMobile() ? 'mobile' : 'desktop';
+  
+  // Atualizar classes
+  indicator.className = `permanent-device-indicator ${deviceClass}`;
+  
+  // Atualizar estilos
+  indicator.style.background = isMobile() ? 'rgba(33, 150, 243, 0.15)' : 'rgba(156, 39, 176, 0.15)';
+  indicator.style.color = isMobile() ? '#2196F3' : '#9C27B0';
+  indicator.style.border = `1px solid ${isMobile() ? 'rgba(33, 150, 243, 0.3)' : 'rgba(156, 39, 176, 0.3)'}`;
+  
+  // Atualizar conteúdo
+  indicator.innerHTML = `
+    <i class="fas ${deviceIcon}" style="font-size: 0.8rem;"></i>
+    <span class="device-text">${deviceType}</span>
+  `;
+}
+
+/* ===============================
    NAVEGAÇÃO ENTRE PÁGINAS
 ================================ */
 function navigateToPage(pageId) {
@@ -1718,54 +1795,204 @@ document.querySelector('.terms-icon')?.addEventListener('click', () => {
 });
 
 /* ===============================
-   FUNÇÃO PARA ABRIR APPS
-   (INTELIGENTE - DIFERENCIA MOBILE E DESKTOP)
+   FUNÇÃO AUXILIAR: HEX PARA RGB
 ================================ */
-function openApp(url, button, appId) {
-  const appData = appsData[appId];
-  const originalHTML = button.innerHTML;
-  const originalText = button.textContent;
+function hexToRgb(hex) {
+  // Remove o # se existir
+  hex = hex.replace('#', '');
   
-  button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Abrindo...';
-  button.disabled = true;
-
-  // Remover qualquer fallback anterior
-  const existingFallback = button.parentNode.querySelector('.mobile-fallback');
-  if (existingFallback) {
-    existingFallback.remove();
-  }
-
-  // Timeout para detectar se abriu ou não
-  let openedSuccessfully = false;
-  const openTimeout = setTimeout(() => {
-    if (!openedSuccessfully) {
-      showFallback(button, appData);
-    }
-  }, 1000);
-
-  // Tentar abrir baseado no dispositivo
-  if (isMobile()) {
-    // 📱 MOBILE: Primeiro tenta protocolo, depois site mobile
-    openOnMobile(appData, button, openTimeout, () => {
-      openedSuccessfully = true;
-    });
-  } else {
-    // 💻 DESKTOP: Primeiro tenta protocolo, depois site desktop
-    openOnDesktop(appData, button, openTimeout, () => {
-      openedSuccessfully = true;
-    });
-  }
-
-  // Restaurar botão após 2 segundos
-  setTimeout(() => {
-    button.innerHTML = originalHTML;
-    button.disabled = false;
-    clearTimeout(openTimeout);
-  }, 2000);
+  // Converte para RGB
+  const r = parseInt(hex.substring(0, 2), 16);
+  const g = parseInt(hex.substring(2, 4), 16);
+  const b = parseInt(hex.substring(4, 6), 16);
+  
+  return `${r}, ${g}, ${b}`;
 }
 
 /* ===============================
-   ABRIR NO MOBILE
+   MOSTRAR PERGUNTA AO USUÁRIO
+================================ */
+function showUserPrompt(button, appData, message = null) {
+  // Não mostrar prompt se já existe um
+  if (button.parentNode.querySelector('.user-prompt')) return;
+  
+  const prompt = document.createElement('div');
+  prompt.className = 'user-prompt';
+  prompt.style.cssText = `
+    margin-top: 15px;
+    padding: 15px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 10px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    animation: fadeIn 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  `;
+  
+  const appColor = appData.color || '#4a6de5';
+  const deviceType = isMobile() ? 'mobile' : 'computador';
+  
+  const defaultMessage = `Não conseguimos abrir o aplicativo ${appData.name} no seu ${deviceType}.`;
+  
+  prompt.innerHTML = `
+    <div style="margin-bottom: 15px;">
+      <p style="margin: 0 0 8px 0; color: #fff; font-size: 1rem; font-weight: bold;">
+        <i class="fas fa-question-circle" style="color: ${appColor};"></i> 
+        ${message || defaultMessage}
+      </p>
+      <p style="margin: 0; color: #b0b0c0; font-size: 0.85rem;">
+        O que você gostaria de fazer?
+      </p>
+    </div>
+    <div style="display: flex; gap: 10px;">
+      ${appData.protocol ? `
+        <button class="prompt-button try-again-btn" 
+           style="flex: 1;
+                  padding: 10px; 
+                  background: rgba(${hexToRgb(appColor)}, 0.3); 
+                  border-radius: 8px; 
+                  color: ${appColor}; 
+                  border: 1px solid rgba(${hexToRgb(appColor)}, 0.4);
+                  font-weight: bold; 
+                  text-align: center;
+                  cursor: pointer;
+                  transition: all 0.3s;
+                  font-size: 0.85rem;">
+          <i class="fas fa-redo"></i> Tentar abrir app novamente
+        </button>
+      ` : ''}
+      <button class="prompt-button open-site-btn"
+         style="flex: 1;
+                padding: 10px; 
+                background: rgba(74, 109, 229, 0.3); 
+                border-radius: 8px; 
+                color: #4a6de5; 
+                border: 1px solid rgba(74, 109, 229, 0.4);
+                font-weight: bold; 
+                text-align: center;
+                cursor: pointer;
+                transition: all 0.3s;
+                font-size: 0.85rem;">
+        <i class="fas fa-external-link-alt"></i> Abrir site no navegador
+      </button>
+      <button class="prompt-button cancel-btn"
+         style="flex: 0.5;
+                padding: 10px; 
+                background: rgba(255, 255, 255, 0.1); 
+                border-radius: 8px; 
+                color: #b0b0c0; 
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                font-weight: bold; 
+                text-align: center;
+                cursor: pointer;
+                transition: all 0.3s;
+                font-size: 0.85rem;">
+        <i class="fas fa-times"></i> Cancelar
+      </button>
+    </div>
+  `;
+  
+  // Adicionar eventos aos botões
+  const tryAgainBtn = prompt.querySelector('.try-again-btn');
+  const openSiteBtn = prompt.querySelector('.open-site-btn');
+  const cancelBtn = prompt.querySelector('.cancel-btn');
+  
+  if (tryAgainBtn) {
+    tryAgainBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      prompt.remove();
+      // Tentar abrir o app novamente
+      setTimeout(() => {
+        openAppProtocol(appData, button);
+      }, 300);
+    });
+  }
+  
+  if (openSiteBtn) {
+    openSiteBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      prompt.remove();
+      // Abrir site
+      if (isMobile()) {
+        window.location.href = appData.mobileUrl;
+      } else {
+        window.open(appData.url, '_blank', 'noopener,noreferrer');
+      }
+    });
+  }
+  
+  if (cancelBtn) {
+    cancelBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      prompt.remove();
+    });
+  }
+  
+  // Adicionar hover effect
+  prompt.querySelectorAll('.prompt-button').forEach(btn => {
+    btn.addEventListener('mouseenter', () => {
+      btn.style.transform = 'translateY(-2px)';
+      btn.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+    });
+    
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = 'translateY(0)';
+      btn.style.boxShadow = 'none';
+    });
+  });
+  
+  button.parentNode.appendChild(prompt);
+  
+  // Remover automaticamente após 30 segundos (segurança)
+  setTimeout(() => {
+    if (prompt.parentNode) {
+      prompt.style.animation = 'fadeOut 0.5s ease';
+      setTimeout(() => prompt.remove(), 500);
+    }
+  }, 30000);
+}
+
+/* ===============================
+   TENTAR ABRIR PROTOCOLO DO APP
+================================ */
+function openAppProtocol(appData, button) {
+  if (!appData.protocol) return false;
+  
+  // Atualizar botão para mostrar que está tentando
+  const originalHTML = button.innerHTML;
+  button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Tentando novamente...';
+  button.disabled = true;
+  
+  // Tentar abrir protocolo
+  try {
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.src = appData.protocol;
+    document.body.appendChild(iframe);
+    
+    setTimeout(() => {
+      document.body.removeChild(iframe);
+      button.innerHTML = originalHTML;
+      button.disabled = false;
+      
+      // Se não abriu após 2 segundos, mostrar prompt novamente
+      setTimeout(() => {
+        showUserPrompt(button, appData, "Ainda não conseguimos abrir o aplicativo.");
+      }, 2000);
+    }, 500);
+    
+    return true;
+  } catch (e) {
+    button.innerHTML = originalHTML;
+    button.disabled = false;
+    showUserPrompt(button, appData, "Erro ao tentar abrir o aplicativo.");
+    return false;
+  }
+}
+
+/* ===============================
+   ABRIR NO MOBILE (VERSÃO CORRIGIDA - PERGUNTA AO USUÁRIO)
 ================================ */
 function openOnMobile(appData, button, timeout, successCallback) {
   if (appData.protocol) {
@@ -1782,116 +2009,105 @@ function openOnMobile(appData, button, timeout, successCallback) {
     setTimeout(() => {
       document.body.removeChild(iframe);
       
-      // Se não abriu o app, tentar site mobile
+      // Se não abriu o app após 1.5 segundos, PERGUNTAR ao usuário
       setTimeout(() => {
-        window.location.href = appData.mobileUrl;
-      }, 300);
+        if (typeof successCallback === 'function') {
+          successCallback();
+        }
+        showUserPrompt(button, appData);
+      }, 1500);
     }, 500);
     
   } else {
     // Sem protocolo, abrir site mobile diretamente
     window.location.href = appData.mobileUrl;
-    successCallback();
+    if (typeof successCallback === 'function') {
+      successCallback();
+    }
   }
 }
 
 /* ===============================
-   ABRIR NO DESKTOP
+   ABRIR NO DESKTOP (VERSÃO CORRIGIDA - PERGUNTA AO USUÁRIO)
 ================================ */
 function openOnDesktop(appData, button, timeout, successCallback) {
   if (appData.protocol) {
-    // Tentar abrir protocolo (app desktop)
+    // 💻 DESKTOP: Tenta abrir o protocolo (app)
     try {
-      // Método 1: Tentar abrir diretamente
-      window.location.href = appData.protocol;
+      // Criar iframe para tentar abrir protocolo
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.src = appData.protocol;
+      document.body.appendChild(iframe);
       
-      // Método 2: Se falhar, abrir em nova aba após delay
+      // Remover iframe após 500ms
       setTimeout(() => {
-        const fallbackWindow = window.open(appData.url, '_blank', 'noopener,noreferrer');
-        if (fallbackWindow) {
+        document.body.removeChild(iframe);
+        if (typeof successCallback === 'function') {
           successCallback();
         }
+        
+        // Se não abriu após 1.5 segundos, PERGUNTAR ao usuário
+        setTimeout(() => {
+          showUserPrompt(button, appData);
+        }, 1500);
       }, 500);
       
     } catch (e) {
-      // Se erro, abrir site em nova aba
-      window.open(appData.url, '_blank', 'noopener,noreferrer');
-      successCallback();
+      console.log('Erro ao tentar abrir protocolo:', e);
+      if (typeof successCallback === 'function') {
+        successCallback();
+      }
+      // Se erro, mostrar prompt imediatamente
+      showUserPrompt(button, appData, "Erro ao tentar abrir o aplicativo.");
     }
   } else {
     // Sem protocolo, abrir site em nova aba
     window.open(appData.url, '_blank', 'noopener,noreferrer');
-    successCallback();
+    if (typeof successCallback === 'function') {
+      successCallback();
+    }
   }
 }
 
 /* ===============================
-   MOSTRAR FALLBACK (SE NÃO ABRIU)
+   FUNÇÃO PARA ABRIR APPS - VERSÃO CORRIGIDA
 ================================ */
-function showFallback(button, appData) {
-  const fallback = document.createElement('div');
-  fallback.className = 'mobile-fallback';
-  fallback.style.cssText = `
-    margin-top: 15px;
-    padding: 12px;
-    background: rgba(0,0,0,0.4);
-    border-radius: 10px;
-    font-size: 0.9rem;
-    border: 1px solid rgba(255,255,255,0.1);
-    animation: fadeIn 0.3s ease;
-  `;
+function openApp(url, button, appId) {
+  const appData = appsData[appId];
+  const originalHTML = button.innerHTML;
   
-  // Cor específica para cada app
-  const appColor = appData.color || '#4a6de5';
-  
-  fallback.innerHTML = `
-    <p style="margin: 0 0 10px 0; color: #b0b0c0; font-size: 0.85rem;">
-      <i class="fas fa-info-circle"></i> Não conseguiu abrir automaticamente?
-    </p>
-    <a href="${appData.url}" 
-       target="_blank" 
-       style="display: block; 
-              padding: 10px; 
-              background: rgba(${hexToRgb(appColor)}, 0.2); 
-              border-radius: 8px; 
-              color: ${appColor}; 
-              text-decoration: none; 
-              font-weight: bold; 
-              text-align: center;
-              border: 1px solid rgba(${hexToRgb(appColor)}, 0.3);
-              transition: all 0.3s;">
-      <i class="fas fa-external-link-alt"></i> Abrir site do ${appData.name}
-    </a>
-  `;
-  
-  // Adicionar hover effect via JavaScript
-  const link = fallback.querySelector('a');
-  link.addEventListener('mouseenter', () => {
-    link.style.background = `rgba(${hexToRgb(appColor)}, 0.3)`;
-    link.style.transform = 'translateY(-2px)';
-  });
-  
-  link.addEventListener('mouseleave', () => {
-    link.style.background = `rgba(${hexToRgb(appColor)}, 0.2)`;
-    link.style.transform = 'translateY(0)';
-  });
-  
-  button.parentNode.appendChild(fallback);
-}
+  button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Abrindo...';
+  button.disabled = true;
 
-/* ===============================
-   FUNÇÃO AUXILIAR: HEX PARA RGB
-================================ */
-function hexToRgb(hex) {
-  // Remove o # se existir
-  hex = hex.replace('#', '');
+  // Remover qualquer prompt anterior
+  const existingPrompt = button.parentNode.querySelector('.user-prompt');
+  if (existingPrompt) {
+    existingPrompt.remove();
+  }
+
+  // Flag para controle
+  let openedSuccessfully = false;
   
-  // Converte para RGB
-  const r = parseInt(hex.substring(0, 2), 16);
-  const g = parseInt(hex.substring(2, 4), 16);
-  const b = parseInt(hex.substring(4, 6), 16);
-  
-  return `${r}, ${g}, ${b}`;
+  // Tentar abrir baseado no dispositivo
+  if (isMobile()) {
+    // 📱 MOBILE: Tenta protocolo, depois PERGUNTA
+    openOnMobile(appData, button, null, () => {
+      openedSuccessfully = true;
+    });
+  } else {
+    // 💻 DESKTOP: Tenta protocolo, depois PERGUNTA
+    openOnDesktop(appData, button, null, () => {
+      openedSuccessfully = true;
+    });
+  }
+
+  // Restaurar botão após 3 segundos (se ainda não tiver sido restaurado)
+  setTimeout(() => {
+    if (!button.disabled) return;
+    button.innerHTML = originalHTML;
+    button.disabled = false;
+  }, 3000);
 }
 
 /* ===============================
@@ -1916,63 +2132,23 @@ document.querySelectorAll('.launch-button').forEach(button => {
 });
 
 /* ===============================
-   DETECTAR CLIQUE FORA DO FALLBACK
+   DETECTAR CLIQUE FORA DO PROMPT
 ================================ */
 document.addEventListener('click', (e) => {
-  if (e.target.classList.contains('mobile-fallback') || 
-      e.target.closest('.mobile-fallback')) {
-    // Não fazer nada se clicar no fallback
+  if (e.target.classList.contains('user-prompt') || 
+      e.target.closest('.user-prompt')) {
+    // Não fazer nada se clicar no prompt
     return;
   }
   
-  // Remover fallbacks ao clicar em qualquer outro lugar
-  document.querySelectorAll('.mobile-fallback').forEach(fallback => {
-    fallback.remove();
+  // Remover prompts ao clicar em qualquer outro lugar
+  document.querySelectorAll('.user-prompt').forEach(prompt => {
+    prompt.remove();
   });
 });
 
 /* ===============================
-   INICIALIZAÇÃO
-================================ */
-document.addEventListener('DOMContentLoaded', () => {
-  navigateToPage('home');
-  
-  // Adicionar animação CSS para fadeIn
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .mobile-fallback {
-      animation: fadeIn 0.3s ease !important;
-    }
-    
-    .mobile-fallback a:hover {
-      transform: translateY(-2px) !important;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2) !important;
-    }
-  `;
-  document.head.appendChild(style);
-});
-
-/* ===============================
-   TECLA ESC PARA VOLTAR
-================================ */
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    navigateToPage('home');
-    // Remover fallbacks ao pressionar ESC
-    document.querySelectorAll('.mobile-fallback').forEach(fallback => {
-      fallback.remove();
-    });
-  }
-});
-
-/* ===============================
    DETECTAR SE O APP FOI INSTALADO
-   (Detecção básica por user agent)
 ================================ */
 function checkIfAppInstalled(appName) {
   const userAgent = navigator.userAgent.toLowerCase();
@@ -2000,7 +2176,6 @@ function updateButtonLabels() {
     
     if (appId && appsData[appId]) {
       const appData = appsData[appId];
-      const icon = button.querySelector('i');
       
       if (isMobile()) {
         if (appData.protocol && checkIfAppInstalled(appId)) {
@@ -2015,23 +2190,84 @@ function updateButtonLabels() {
           button.innerHTML = `<i class="fas fa-globe"></i> ACESSAR SITE`;
         }
       }
-      
-      // Manter o ícone original se existir
-      if (icon) {
-        button.prepend(icon.cloneNode(true));
-        button.querySelector('i:last-child')?.remove();
-      }
     }
   });
 }
 
-// Atualizar labels quando a página carregar
-window.addEventListener('load', updateButtonLabels);
+/* ===============================
+   INICIALIZAÇÃO
+================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  navigateToPage('home');
+  
+  // Adicionar animações CSS
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes fadeOut {
+      from { opacity: 1; transform: translateY(0); }
+      to { opacity: 0; transform: translateY(-10px); }
+    }
+    
+    @keyframes slideDown {
+      from { opacity: 0; transform: translate(-50%, -20px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
+    
+    .user-prompt {
+      animation: fadeIn 0.3s ease !important;
+    }
+    
+    .prompt-button:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2) !important;
+    }
+    
+    .prompt-button:active {
+      transform: translateY(0) !important;
+    }
+  `;
+  document.head.appendChild(style);
+  
+  // Criar indicador permanente
+  createPermanentDeviceIndicator();
+  
+  // Atualizar labels dos botões
+  updateButtonLabels();
+});
 
-// Atualizar labels quando redimensionar (mudar de mobile para desktop ou vice-versa)
-window.addEventListener('resize', updateButtonLabels);
+/* ===============================
+   TECLA ESC PARA VOLTAR
+================================ */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    navigateToPage('home');
+    // Remover prompts ao pressionar ESC
+    document.querySelectorAll('.user-prompt').forEach(prompt => {
+      prompt.remove();
+    });
+  }
+});
+
+/* ===============================
+   ATUALIZAR LABELS E INDICADOR AO REDIMENSIONAR
+================================ */
+window.addEventListener('resize', () => {
+  updateButtonLabels();
+  updateDeviceIndicator();
+});
+
+/* ===============================
+   ATUALIZAR AO CARREGAR COMPLETAMENTE
+================================ */
+window.addEventListener('load', () => {
+  updateButtonLabels();
+});
 </script>
-
 
 </body>
 </html>
