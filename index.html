@@ -1580,232 +1580,213 @@
         </div>
     </div>
 <script>
-    /* ===============================
-   CRIAR MENSAGEM INFORMATIVA (SUBSTITUI O INDICADOR DE DISPOSITIVO)
+/* ===============================
+   DADOS DOS APPS COM PROTOCOLOS
 ================================ */
-function showAppNotification(button, appData) {
-  // Não mostrar notificação se já existe uma
-  if (button.parentNode.querySelector('.app-notification')) return;
-  
-  const notification = document.createElement('div');
-  notification.className = 'app-notification';
-  notification.style.cssText = `
-    margin-top: 10px;
-    padding: 12px 15px;
-    background: rgba(26, 26, 46, 0.6);
-    border-radius: 10px;
-    font-size: 0.8rem;
-    border-left: 3px solid ${appData.color || '#4a6de5'};
-    animation: slideUp 0.3s ease;
-    backdrop-filter: blur(5px);
-  `;
-  
-  const deviceText = isMobile() ? 'dispositivo móvel' : 'computador';
-  
-  notification.innerHTML = `
-    <div style="display: flex; align-items: flex-start; gap: 10px;">
-      <i class="fas fa-info-circle" style="color: ${appData.color || '#4a6de5'}; font-size: 1rem; margin-top: 2px;"></i>
-      <div style="flex: 1;">
-        <p style="margin: 0 0 5px 0; color: #ffffff; font-weight: 600; font-size: 0.85rem;">
-          ${appData.protocol ? 'Abrindo aplicativo...' : 'Abrindo site...'}
-        </p>
-        <p style="margin: 0; color: #b0b0c0; font-size: 0.75rem; line-height: 1.4;">
-          ${appData.protocol 
-            ? `Tentando abrir ${appData.name} no seu ${deviceText}. Se não abrir, você poderá escolher abrir o site.` 
-            : `Este aplicativo será aberto no seu navegador como site, pois não possui versão específica para ${deviceText}.`}
-        </p>
-      </div>
-    </div>
-  `;
-  
-  button.parentNode.insertBefore(notification, button.nextSibling);
-  
-  // Remover automaticamente após 8 segundos
-  setTimeout(() => {
-    if (notification.parentNode) {
-      notification.style.animation = 'fadeOut 0.5s ease';
-      setTimeout(() => notification.remove(), 500);
-    }
-  }, 8000);
+const appsData = {
+  'home': { name: 'Início' },
+  'ray-links': {
+    name: 'Ray Links',
+    url: 'https://loirinhodid.github.io/hublink/',
+    mobileUrl: 'https://loirinhodid.github.io/hublink/',
+    protocol: null,
+    color: '#FF6B6B'
+  },
+  'spotify': {
+    name: 'Spotify',
+    url: 'https://open.spotify.com',
+    mobileUrl: 'https://open.spotify.com',
+    protocol: 'spotify:',
+    color: '#1DB954'
+  },
+  'whatsapp': {
+    name: 'WhatsApp',
+    url: 'https://web.whatsapp.com',
+    mobileUrl: 'https://web.whatsapp.com',
+    protocol: 'whatsapp://',
+    color: '#25D366'
+  },
+  'epic-games': {
+    name: 'Epic Games',
+    url: 'https://store.epicgames.com',
+    mobileUrl: 'https://store.epicgames.com',
+    protocol: 'com.epicgames.launcher://',
+    color: '#FFD700'
+  },
+  'jw-org': {
+    name: 'JW.org',
+    url: 'https://www.jw.org/pt',
+    mobileUrl: 'https://www.jw.org/pt',
+    protocol: null,
+    color: '#2196F3'
+  },
+  'watchtower': {
+    name: 'Watchtower Library',
+    url: 'https://wol.jw.org',
+    mobileUrl: 'https://wol.jw.org',
+    protocol: null,
+    color: '#4169E1'
+  },
+  'vscode': {
+    name: 'Visual Studio Code',
+    url: 'https://code.visualstudio.com',
+    mobileUrl: 'https://code.visualstudio.com',
+    protocol: 'vscode://',
+    color: '#007ACC'
+  },
+  'google-photos': {
+    name: 'Google Photos',
+    url: 'https://photos.google.com',
+    mobileUrl: 'https://photos.google.com',
+    protocol: null,
+    color: '#4285F4'
+  },
+  'riot-client': {
+    name: 'Riot Client',
+    url: 'https://riotgames.com',
+    mobileUrl: 'https://riotgames.com',
+    protocol: 'riotclient://',
+    color: '#FF4654'
+  }
+};
+
+/* ===============================
+   DETECÇÃO DE DISPOSITIVO
+================================ */
+function isMobile() {
+  return /android|iphone|ipad|ipod|opera mini|iemobile|mobile/i.test(navigator.userAgent);
 }
 
 /* ===============================
-   REMOVER FUNÇÕES ANTIGAS DO INDICADOR DE DISPOSITIVO
-   (vou substituir as funções anteriores)
+   INDICADOR DE DISPOSITIVO (SEM DUPLICAÇÃO)
 ================================ */
+function createDeviceIndicator() {
+  document.querySelector('.device-indicator')?.remove();
+
+  const indicator = document.createElement('div');
+  indicator.className = 'device-indicator';
+  indicator.style.cssText = `
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10000;
+    padding: 6px 15px;
+    border-radius: 20px;
+    background: rgba(0,0,0,0.2);
+    color: #fff;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(10px);
+    pointer-events: none;
+  `;
+
+  indicator.innerHTML = `
+    <i class="fas ${isMobile() ? 'fa-mobile-alt' : 'fa-desktop'}"></i>
+    <span>${isMobile() ? 'Mobile' : 'Computador'}</span>
+  `;
+
+  document.body.appendChild(indicator);
+}
 
 /* ===============================
-   FUNÇÃO PARA ABRIR APPS - VERSÃO CORRIGIDA COM NOTIFICAÇÃO
+   AVISO DE REDIRECIONAMENTO
 ================================ */
-function openApp(url, button, appId) {
+function showRedirectWarning(button) {
+  if (button.parentNode.querySelector('.redirect-warning')) return;
+
+  const warning = document.createElement('div');
+  warning.className = 'redirect-warning';
+  warning.style.cssText = `
+    margin-bottom: 10px;
+    padding: 10px 14px;
+    background: rgba(255,193,7,0.15);
+    border-left: 4px solid #FFC107;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: slideUp 0.3s ease;
+  `;
+
+  warning.innerHTML = `
+    <i class="fas fa-external-link-alt" style="color:#FFC107;"></i>
+    <span>Você será redirecionado para o navegador</span>
+  `;
+
+  button.parentNode.insertBefore(warning, button);
+
+  setTimeout(() => {
+    warning.style.animation = 'fadeOut 0.3s ease';
+    setTimeout(() => warning.remove(), 300);
+  }, 4000);
+}
+
+/* ===============================
+   ABRIR APP / SITE
+================================ */
+function openApp(button, appId) {
   const appData = appsData[appId];
   const originalHTML = button.innerHTML;
-  
-  // Mostrar notificação informativa ANTES de tentar abrir
-  showAppNotification(button, appData);
-  
+
+  if (!appData.protocol) {
+    showRedirectWarning(button);
+  }
+
   button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Abrindo...';
   button.disabled = true;
 
-  // Remover qualquer prompt anterior
-  const existingPrompt = button.parentNode.querySelector('.user-prompt');
-  if (existingPrompt) {
-    existingPrompt.remove();
-  }
+  if (appData.protocol) {
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.src = appData.protocol;
+    document.body.appendChild(iframe);
 
-  // Remover notificação antiga se existir
-  const existingNotification = button.parentNode.querySelector('.app-notification');
-  if (existingNotification) {
-    existingNotification.remove();
-  }
-
-  // Flag para controle
-  let openedSuccessfully = false;
-  
-  // Tentar abrir baseado no dispositivo
-  if (isMobile()) {
-    // 📱 MOBILE: Tenta protocolo, depois PERGUNTA
-    openOnMobile(appData, button, null, () => {
-      openedSuccessfully = true;
-    });
+    setTimeout(() => {
+      document.body.removeChild(iframe);
+      button.innerHTML = originalHTML;
+      button.disabled = false;
+    }, 1500);
   } else {
-    // 💻 DESKTOP: Tenta protocolo, depois PERGUNTA
-    openOnDesktop(appData, button, null, () => {
-      openedSuccessfully = true;
-    });
+    setTimeout(() => {
+      if (isMobile()) {
+        window.location.href = appData.mobileUrl;
+      } else {
+        window.open(appData.url, '_blank', 'noopener,noreferrer');
+      }
+      button.innerHTML = originalHTML;
+      button.disabled = false;
+    }, 600);
   }
-
-  // Restaurar botão após 3 segundos (se ainda não tiver sido restaurado)
-  setTimeout(() => {
-    if (!button.disabled) return;
-    button.innerHTML = originalHTML;
-    button.disabled = false;
-  }, 3000);
 }
 
 /* ===============================
-   ATUALIZAR INICIALIZAÇÃO PARA REMOVER INDICADOR ANTIGO
+   BOTÕES
 ================================ */
-document.addEventListener('DOMContentLoaded', () => {
-  navigateToPage('home');
-  
-  // Adicionar animações CSS
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    @keyframes fadeOut {
-      from { opacity: 1; transform: translateY(0); }
-      to { opacity: 0; transform: translateY(-10px); }
-    }
-    
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .user-prompt {
-      animation: fadeIn 0.3s ease !important;
-    }
-    
-    .app-notification {
-      animation: slideUp 0.3s ease !important;
-    }
-    
-    .prompt-button:hover {
-      transform: translateY(-2px) !important;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2) !important;
-    }
-    
-    .prompt-button:active {
-      transform: translateY(0) !important;
-    }
-    
-    /* Estilo para apps sem protocolo (sites) */
-    .launch-button.site-only {
-      position: relative;
-    }
-    
-    .launch-button.site-only::after {
-      content: '🌐 Site';
-      position: absolute;
-      top: -8px;
-      right: -8px;
-      background: rgba(74, 109, 229, 0.9);
-      color: white;
-      padding: 2px 8px;
-      border-radius: 10px;
-      font-size: 0.6rem;
-      font-weight: bold;
-    }
-  `;
-  document.head.appendChild(style);
-  
-  // ATUALIZAR: Não criar mais o indicador de dispositivo
-  // Removido: createPermanentDeviceIndicator();
-  
-  // Atualizar labels dos botões
-  updateButtonLabels();
-  
-  // Adicionar indicador visual para apps que são apenas sites
-  document.querySelectorAll('.launch-button').forEach(button => {
-    const appId = button.closest('.app-page')?.id.replace('-page', '');
-    if (appId && appsData[appId] && !appsData[appId].protocol) {
-      button.classList.add('site-only');
-    }
+document.querySelectorAll('.launch-button').forEach(button => {
+  button.addEventListener('click', () => {
+    const appId = button.closest('.app-page').id.replace('-page', '');
+    openApp(button, appId);
   });
 });
 
 /* ===============================
-   ATUALIZAR LABELS DOS BOTÕES COM INFORMAÇÃO ADICIONAL
+   ESTILOS + INIT
 ================================ */
-function updateButtonLabels() {
-  document.querySelectorAll('.launch-button').forEach(button => {
-    const appId = button.closest('.app-page')?.id.replace('-page', '');
-    
-    if (appId && appsData[appId]) {
-      const appData = appsData[appId];
-      
-      // Adicionar/remover classe para indicar se é apenas site
-      if (appData.protocol) {
-        button.classList.remove('site-only');
-      } else {
-        button.classList.add('site-only');
-      }
-      
-      if (isMobile()) {
-        if (appData.protocol && checkIfAppInstalled(appId)) {
-          button.innerHTML = `<i class="fas fa-mobile-alt"></i> ABRIR APP`;
-        } else {
-          button.innerHTML = `<i class="fas fa-external-link-alt"></i> ABRIR SITE`;
-        }
-      } else {
-        if (appData.protocol) {
-          button.innerHTML = `<i class="fas fa-desktop"></i> ABRIR APP`;
-        } else {
-          button.innerHTML = `<i class="fas fa-globe"></i> ACESSAR SITE`;
-        }
-      }
-    }
-  });
-}
+document.addEventListener('DOMContentLoaded', () => {
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes slideUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeOut { from { opacity:1; } to { opacity:0; } }
+  `;
+  document.head.appendChild(style);
 
-/* ===============================
-   FUNÇÕES QUE PRECISAM SER REMOVIDAS COMPLETAMENTE:
-================================ */
-// REMOVER: createPermanentDeviceIndicator() - função antiga
-// REMOVER: updateDeviceIndicator() - função antiga
-// REMOVER: window.addEventListener('resize', updateDeviceIndicator); das outras partes
-
-/* ===============================
-   ATUALIZAR RESIZE EVENT
-================================ */
-window.addEventListener('resize', () => {
-  updateButtonLabels();
-  // Removido: updateDeviceIndicator();
+  createDeviceIndicator();
+  window.addEventListener('resize', createDeviceIndicator);
 });
 </script>
 
