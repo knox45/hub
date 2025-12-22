@@ -1581,114 +1581,94 @@
     </div>
 <script>
 /* ===============================
-   DADOS DOS APPS COM PROTOCOLOS
+   CONFIGURAÇÃO DOS APPS
 ================================ */
 const appsData = {
-  'home': { name: 'Início' },
-  'ray-links': {
-    name: 'Ray Links',
-    url: 'https://loirinhodid.github.io/hublink/',
-    mobileUrl: 'https://loirinhodid.github.io/hublink/',
-    protocol: null,
-    color: '#FF6B6B'
-  },
-  'spotify': {
+  home: { name: 'Início' },
+
+  spotify: {
     name: 'Spotify',
     url: 'https://open.spotify.com',
     mobileUrl: 'https://open.spotify.com',
     protocol: 'spotify:',
     color: '#1DB954'
   },
-  'whatsapp': {
+
+  whatsapp: {
     name: 'WhatsApp',
     url: 'https://web.whatsapp.com',
     mobileUrl: 'https://web.whatsapp.com',
     protocol: 'whatsapp://',
     color: '#25D366'
   },
-  'epic-games': {
-    name: 'Epic Games',
-    url: 'https://store.epicgames.com',
-    mobileUrl: 'https://store.epicgames.com',
-    protocol: 'com.epicgames.launcher://',
-    color: '#FFD700'
-  },
-  'jw-org': {
-    name: 'JW.org',
-    url: 'https://www.jw.org/pt',
-    mobileUrl: 'https://www.jw.org/pt',
+
+  'ray-links': {
+    name: 'Ray Links',
+    url: 'https://loirinhodid.github.io/hublink/',
+    mobileUrl: 'https://loirinhodid.github.io/hublink/',
     protocol: null,
-    color: '#2196F3'
-  },
-  'watchtower': {
-    name: 'Watchtower Library',
-    url: 'https://wol.jw.org',
-    mobileUrl: 'https://wol.jw.org',
-    protocol: null,
-    color: '#4169E1'
-  },
-  'vscode': {
-    name: 'Visual Studio Code',
-    url: 'https://code.visualstudio.com',
-    mobileUrl: 'https://code.visualstudio.com',
-    protocol: 'vscode://',
-    color: '#007ACC'
-  },
-  'google-photos': {
-    name: 'Google Photos',
-    url: 'https://photos.google.com',
-    mobileUrl: 'https://photos.google.com',
-    protocol: null,
-    color: '#4285F4'
-  },
-  'riot-client': {
-    name: 'Riot Client',
-    url: 'https://riotgames.com',
-    mobileUrl: 'https://riotgames.com',
-    protocol: 'riotclient://',
-    color: '#FF4654'
+    color: '#FF6B6B'
   }
 };
 
 /* ===============================
-   DETECÇÃO DE DISPOSITIVO
+   DETECTAR MOBILE
 ================================ */
 function isMobile() {
-  return /android|iphone|ipad|ipod|opera mini|iemobile|mobile/i.test(navigator.userAgent);
+  return /android|iphone|ipad|ipod|mobile/i.test(navigator.userAgent);
 }
 
 /* ===============================
-   INDICADOR DE DISPOSITIVO (SEM DUPLICAÇÃO)
+   INDICADOR DE DISPOSITIVO
 ================================ */
 function createDeviceIndicator() {
   document.querySelector('.device-indicator')?.remove();
 
-  const indicator = document.createElement('div');
-  indicator.className = 'device-indicator';
-  indicator.style.cssText = `
-    position: fixed;
-    top: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10000;
-    padding: 6px 15px;
-    border-radius: 20px;
-    background: rgba(0,0,0,0.2);
-    color: #fff;
-    font-size: 0.75rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    backdrop-filter: blur(10px);
-    pointer-events: none;
+  const el = document.createElement('div');
+  el.className = 'device-indicator';
+  el.style.cssText = `
+    position:fixed;
+    top:14px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:9999;
+    padding:6px 14px;
+    border-radius:20px;
+    background:rgba(0,0,0,.3);
+    color:#fff;
+    font-size:.75rem;
+    display:flex;
+    gap:8px;
+    align-items:center;
+    pointer-events:none;
+    backdrop-filter:blur(10px);
   `;
 
-  indicator.innerHTML = `
+  el.innerHTML = `
     <i class="fas ${isMobile() ? 'fa-mobile-alt' : 'fa-desktop'}"></i>
     <span>${isMobile() ? 'Mobile' : 'Computador'}</span>
   `;
 
-  document.body.appendChild(indicator);
+  document.body.appendChild(el);
+}
+
+/* ===============================
+   NAVEGAÇÃO ENTRE PÁGINAS
+================================ */
+function navigateToPage(pageId) {
+  document.querySelectorAll('.page, .app-page')
+    .forEach(p => p.classList.remove('active'));
+
+  document.querySelectorAll('.nav-icon')
+    .forEach(i => i.classList.remove('active'));
+
+  const page = document.getElementById(`${pageId}-page`);
+  const icon = document.querySelector(`.nav-icon[data-page="${pageId}"]`);
+
+  if (page) page.classList.add('active');
+  if (icon) icon.classList.add('active');
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 /* ===============================
@@ -1697,96 +1677,111 @@ function createDeviceIndicator() {
 function showRedirectWarning(button) {
   if (button.parentNode.querySelector('.redirect-warning')) return;
 
-  const warning = document.createElement('div');
-  warning.className = 'redirect-warning';
-  warning.style.cssText = `
-    margin-bottom: 10px;
-    padding: 10px 14px;
-    background: rgba(255,193,7,0.15);
-    border-left: 4px solid #FFC107;
-    border-radius: 8px;
-    font-size: 0.8rem;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    animation: slideUp 0.3s ease;
+  const div = document.createElement('div');
+  div.className = 'redirect-warning';
+  div.style.cssText = `
+    margin-bottom:10px;
+    padding:10px 14px;
+    background:rgba(255,193,7,.15);
+    border-left:4px solid #FFC107;
+    border-radius:8px;
+    font-size:.8rem;
+    color:#fff;
+    display:flex;
+    gap:8px;
+    align-items:center;
   `;
 
-  warning.innerHTML = `
-    <i class="fas fa-external-link-alt" style="color:#FFC107;"></i>
+  div.innerHTML = `
+    <i class="fas fa-external-link-alt" style="color:#FFC107"></i>
     <span>Você será redirecionado para o navegador</span>
   `;
 
-  button.parentNode.insertBefore(warning, button);
+  button.parentNode.insertBefore(div, button);
 
-  setTimeout(() => {
-    warning.style.animation = 'fadeOut 0.3s ease';
-    setTimeout(() => warning.remove(), 300);
-  }, 4000);
+  setTimeout(() => div.remove(), 4000);
 }
 
 /* ===============================
    ABRIR APP / SITE
 ================================ */
 function openApp(button, appId) {
-  const appData = appsData[appId];
-  const originalHTML = button.innerHTML;
+  const app = appsData[appId];
+  if (!app) return;
 
-  if (!appData.protocol) {
-    showRedirectWarning(button);
-  }
+  const original = button.innerHTML;
+
+  if (!app.protocol) showRedirectWarning(button);
 
   button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Abrindo...';
   button.disabled = true;
 
-  if (appData.protocol) {
+  if (app.protocol) {
     const iframe = document.createElement('iframe');
     iframe.style.display = 'none';
-    iframe.src = appData.protocol;
+    iframe.src = app.protocol;
     document.body.appendChild(iframe);
 
     setTimeout(() => {
-      document.body.removeChild(iframe);
-      button.innerHTML = originalHTML;
+      iframe.remove();
+      button.innerHTML = original;
       button.disabled = false;
-    }, 1500);
+    }, 1200);
   } else {
     setTimeout(() => {
-      if (isMobile()) {
-        window.location.href = appData.mobileUrl;
-      } else {
-        window.open(appData.url, '_blank', 'noopener,noreferrer');
-      }
-      button.innerHTML = originalHTML;
+      isMobile()
+        ? window.location.href = app.mobileUrl
+        : window.open(app.url, '_blank', 'noopener,noreferrer');
+
+      button.innerHTML = original;
       button.disabled = false;
     }, 600);
   }
 }
 
 /* ===============================
-   BOTÕES
-================================ */
-document.querySelectorAll('.launch-button').forEach(button => {
-  button.addEventListener('click', () => {
-    const appId = button.closest('.app-page').id.replace('-page', '');
-    openApp(button, appId);
-  });
-});
-
-/* ===============================
-   ESTILOS + INIT
+   EVENTOS
 ================================ */
 document.addEventListener('DOMContentLoaded', () => {
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes slideUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
-    @keyframes fadeOut { from { opacity:1; } to { opacity:0; } }
-  `;
-  document.head.appendChild(style);
 
   createDeviceIndicator();
   window.addEventListener('resize', createDeviceIndicator);
+
+  // Navegação
+  document.querySelectorAll('.nav-icon').forEach(icon => {
+    icon.addEventListener('click', () => {
+      navigateToPage(icon.dataset.page);
+    });
+  });
+
+  document.querySelectorAll('.app-card').forEach(card => {
+    card.addEventListener('click', () => {
+      navigateToPage(card.dataset.app);
+    });
+  });
+
+  document.querySelectorAll('.back-button').forEach(btn => {
+    btn.addEventListener('click', () => navigateToPage('home'));
+  });
+
+  // Botão abrir
+  document.querySelectorAll('.launch-button').forEach(button => {
+    button.addEventListener('click', () => {
+      const page = button.closest('.app-page');
+      if (!page) return;
+      const appId = page.id.replace('-page', '');
+      openApp(button, appId);
+    });
+  });
+
+  navigateToPage('home');
+});
+
+/* ===============================
+   ESC VOLTA HOME
+================================ */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') navigateToPage('home');
 });
 </script>
 
