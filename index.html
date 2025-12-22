@@ -1581,45 +1581,38 @@
     </div>
 <script>
 /* ===============================
-   CONFIGURAÇÃO DOS APPS
+   APPS
 ================================ */
 const appsData = {
-  home: { name: 'Início' },
-
   spotify: {
     name: 'Spotify',
     url: 'https://open.spotify.com',
     mobileUrl: 'https://open.spotify.com',
-    protocol: 'spotify:',
-    color: '#1DB954'
+    protocol: 'spotify:'
   },
-
   whatsapp: {
     name: 'WhatsApp',
     url: 'https://web.whatsapp.com',
     mobileUrl: 'https://web.whatsapp.com',
-    protocol: 'whatsapp://',
-    color: '#25D366'
+    protocol: 'whatsapp://'
   },
-
   'ray-links': {
     name: 'Ray Links',
     url: 'https://loirinhodid.github.io/hublink/',
     mobileUrl: 'https://loirinhodid.github.io/hublink/',
-    protocol: null,
-    color: '#FF6B6B'
+    protocol: null
   }
 };
 
 /* ===============================
-   DETECTAR MOBILE
+   MOBILE
 ================================ */
 function isMobile() {
   return /android|iphone|ipad|ipod|mobile/i.test(navigator.userAgent);
 }
 
 /* ===============================
-   INDICADOR DE DISPOSITIVO
+   INDICADOR
 ================================ */
 function createDeviceIndicator() {
   document.querySelector('.device-indicator')?.remove();
@@ -1628,20 +1621,19 @@ function createDeviceIndicator() {
   el.className = 'device-indicator';
   el.style.cssText = `
     position:fixed;
-    top:14px;
+    top:12px;
     left:50%;
     transform:translateX(-50%);
     z-index:9999;
     padding:6px 14px;
     border-radius:20px;
-    background:rgba(0,0,0,.3);
+    background:rgba(0,0,0,.35);
     color:#fff;
     font-size:.75rem;
     display:flex;
     gap:8px;
     align-items:center;
     pointer-events:none;
-    backdrop-filter:blur(10px);
   `;
 
   el.innerHTML = `
@@ -1653,7 +1645,7 @@ function createDeviceIndicator() {
 }
 
 /* ===============================
-   NAVEGAÇÃO ENTRE PÁGINAS
+   NAVEGAÇÃO
 ================================ */
 function navigateToPage(pageId) {
   document.querySelectorAll('.page, .app-page')
@@ -1662,27 +1654,24 @@ function navigateToPage(pageId) {
   document.querySelectorAll('.nav-icon')
     .forEach(i => i.classList.remove('active'));
 
-  const page = document.getElementById(`${pageId}-page`);
-  const icon = document.querySelector(`.nav-icon[data-page="${pageId}"]`);
+  document.getElementById(`${pageId}-page`)?.classList.add('active');
+  document.querySelector(`.nav-icon[data-page="${pageId}"]`)?.classList.add('active');
 
-  if (page) page.classList.add('active');
-  if (icon) icon.classList.add('active');
-
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({ top: 0 });
 }
 
 /* ===============================
-   AVISO DE REDIRECIONAMENTO
+   AVISO
 ================================ */
 function showRedirectWarning(button) {
-  if (button.parentNode.querySelector('.redirect-warning')) return;
+  if (button.previousElementSibling?.classList.contains('redirect-warning')) return;
 
   const div = document.createElement('div');
   div.className = 'redirect-warning';
   div.style.cssText = `
-    margin-bottom:10px;
-    padding:10px 14px;
-    background:rgba(255,193,7,.15);
+    margin-bottom:8px;
+    padding:10px;
+    background:rgba(255,193,7,.18);
     border-left:4px solid #FFC107;
     border-radius:8px;
     font-size:.8rem;
@@ -1697,50 +1686,32 @@ function showRedirectWarning(button) {
     <span>Você será redirecionado para o navegador</span>
   `;
 
-  button.parentNode.insertBefore(div, button);
-
+  button.before(div);
   setTimeout(() => div.remove(), 3000);
 }
 
 /* ===============================
-   ABRIR APP / SITE (MOBILE FIX)
+   ABRIR APP
 ================================ */
-function openApp(button, appId) {
+function openApp(appId) {
   const app = appsData[appId];
   if (!app) return;
 
-  const original = button.innerHTML;
+  if (!app.protocol) showRedirectWarning(event.target);
 
-  if (!app.protocol) showRedirectWarning(button);
-
-  button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Abrindo...';
-  button.disabled = true;
-
-  // 🔥 MOBILE: redireciona direto (sem timeout)
   if (!app.protocol && isMobile()) {
     window.location.href = app.mobileUrl;
     return;
   }
 
-  // APP via protocolo
   if (app.protocol) {
     const iframe = document.createElement('iframe');
     iframe.style.display = 'none';
     iframe.src = app.protocol;
     document.body.appendChild(iframe);
-
-    setTimeout(() => {
-      iframe.remove();
-      button.innerHTML = original;
-      button.disabled = false;
-    }, 1200);
+    setTimeout(() => iframe.remove(), 1200);
   } else {
-    // DESKTOP
-    setTimeout(() => {
-      window.open(app.url, '_blank', 'noopener,noreferrer');
-      button.innerHTML = original;
-      button.disabled = false;
-    }, 400);
+    window.open(app.url, '_blank', 'noopener,noreferrer');
   }
 }
 
@@ -1753,40 +1724,26 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', createDeviceIndicator);
 
   document.querySelectorAll('.nav-icon').forEach(icon => {
-    icon.addEventListener('click', () => {
-      navigateToPage(icon.dataset.page);
-    });
+    icon.onclick = () => navigateToPage(icon.dataset.page);
   });
 
   document.querySelectorAll('.app-card').forEach(card => {
-    card.addEventListener('click', () => {
-      navigateToPage(card.dataset.app);
-    });
+    card.onclick = () => navigateToPage(card.dataset.app);
   });
 
   document.querySelectorAll('.back-button').forEach(btn => {
-    btn.addEventListener('click', () => navigateToPage('home'));
+    btn.onclick = () => navigateToPage('home');
   });
 
-  document.querySelectorAll('.launch-button').forEach(button => {
-    button.addEventListener('click', () => {
-      const page = button.closest('.app-page');
-      if (!page) return;
-      const appId = page.id.replace('-page', '');
-      openApp(button, appId);
-    });
+  // 🔥 AQUI ESTÁ A CORREÇÃO REAL
+  document.querySelectorAll('.launch-button').forEach(btn => {
+    btn.onclick = () => openApp(btn.dataset.app);
   });
 
   navigateToPage('home');
 });
-
-/* ===============================
-   ESC VOLTA HOME
-================================ */
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') navigateToPage('home');
-});
 </script>
+
 
 
 </body>
