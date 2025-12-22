@@ -1579,503 +1579,69 @@
             © 2025 RayRay Hub • Todos os aplicativos disponíveis
         </div>
     </div>
-<script>
 /* ===============================
-   DADOS DOS APPS COM PROTOCOLOS
+   CRIAR MENSAGEM INFORMATIVA (SUBSTITUI O INDICADOR DE DISPOSITIVO)
 ================================ */
-const appsData = {
-  'home': { name: 'Início' },
-  'ray-links': {
-    name: 'Ray Links',
-    url: 'https://loirinhodid.github.io/hublink/',
-    mobileUrl: 'https://loirinhodid.github.io/hublink/',
-    protocol: null,
-    color: '#FF6B6B'
-  },
-  'spotify': {
-    name: 'Spotify',
-    url: 'https://open.spotify.com',
-    mobileUrl: 'https://open.spotify.com',
-    protocol: 'spotify:',
-    color: '#1DB954'
-  },
-  'whatsapp': {
-    name: 'WhatsApp',
-    url: 'https://web.whatsapp.com',
-    mobileUrl: 'https://web.whatsapp.com',
-    protocol: 'whatsapp://',
-    color: '#25D366'
-  },
-  'epic-games': {
-    name: 'Epic Games',
-    url: 'https://store.epicgames.com',
-    mobileUrl: 'https://store.epicgames.com',
-    protocol: 'com.epicgames.launcher://',
-    color: '#FFD700'
-  },
-  'jw-org': {
-    name: 'JW.org',
-    url: 'https://www.jw.org/pt',
-    mobileUrl: 'https://www.jw.org/pt',
-    protocol: null,
-    color: '#2196F3'
-  },
-  'watchtower': {
-    name: 'Watchtower Library',
-    url: 'https://wol.jw.org',
-    mobileUrl: 'https://wol.jw.org',
-    protocol: null,
-    color: '#4169E1'
-  },
-  'vscode': {
-    name: 'Visual Studio Code',
-    url: 'https://code.visualstudio.com',
-    mobileUrl: 'https://code.visualstudio.com',
-    protocol: 'vscode://',
-    color: '#007ACC'
-  },
-  'google-photos': {
-    name: 'Google Photos',
-    url: 'https://photos.google.com',
-    mobileUrl: 'https://photos.google.com',
-    protocol: null,
-    color: '#4285F4'
-  },
-  'riot-client': {
-    name: 'Riot Client',
-    url: 'https://riotgames.com',
-    mobileUrl: 'https://riotgames.com',
-    protocol: 'riotclient://',
-    color: '#FF4654'
-  }
-};
-
-/* ===============================
-   DETECÇÃO DE DISPOSITIVO
-================================ */
-function isMobile() {
-  // Detecção mais confiável de mobile
-  const hasTouchScreen = ('ontouchstart' in window) || 
-                         (navigator.maxTouchPoints > 0) || 
-                         (navigator.msMaxTouchPoints > 0);
+function showAppNotification(button, appData) {
+  // Não mostrar notificação se já existe uma
+  if (button.parentNode.querySelector('.app-notification')) return;
   
-  const isSmallScreen = window.innerWidth <= 768;
-  const userAgent = navigator.userAgent.toLowerCase();
-  
-  const isMobileUserAgent = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
-  
-  return (hasTouchScreen && isSmallScreen) || isMobileUserAgent;
-}
-
-function isDesktop() {
-  return !isMobile();
-}
-
-/* ===============================
-   CRIAR INDICADOR PERMANENTE DE DISPOSITIVO (CENTRO SUPERIOR)
-================================ */
-function createPermanentDeviceIndicator() {
-  // Remover indicador anterior se existir
-  const existingIndicator = document.querySelector('.permanent-device-indicator');
-  if (existingIndicator) {
-    existingIndicator.remove();
-  }
-  
-  const deviceType = isMobile() ? 'Mobile' : 'Computador';
-  const deviceIcon = isMobile() ? 'fa-mobile-alt' : 'fa-desktop';
-  const deviceClass = isMobile() ? 'mobile' : 'desktop';
-  
-  const indicator = document.createElement('div');
-  indicator.className = `permanent-device-indicator ${deviceClass}`;
-  indicator.style.cssText = `
-    position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 9999;
-    padding: 4px 12px;
-    border-radius: 20px;
-    background: ${isMobile() ? 'rgba(33, 150, 243, 0.15)' : 'rgba(156, 39, 176, 0.15)'};
-    color: ${isMobile() ? '#2196F3' : '#9C27B0'};
-    border: 1px solid ${isMobile() ? 'rgba(33, 150, 243, 0.3)' : 'rgba(156, 39, 176, 0.3)'};
-    font-size: 0.7rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    animation: slideDown 0.3s ease;
-    pointer-events: none;
-    white-space: nowrap;
-    max-width: 90%;
-  `;
-  
-  indicator.innerHTML = `
-    <i class="fas ${deviceIcon}" style="font-size: 0.8rem;"></i>
-    <span class="device-text">${deviceType}</span>
-  `;
-  
-  document.body.appendChild(indicator);
-  
-  // Atualizar o texto ao redimensionar (para mudança mobile/desktop)
-  window.addEventListener('resize', updateDeviceIndicator);
-}
-
-/* ===============================
-   ATUALIZAR INDICADOR DE DISPOSITIVO
-================================ */
-function updateDeviceIndicator() {
-  const indicator = document.querySelector('.permanent-device-indicator');
-  if (!indicator) return;
-  
-  const deviceType = isMobile() ? 'Mobile' : 'Computador';
-  const deviceIcon = isMobile() ? 'fa-mobile-alt' : 'fa-desktop';
-  const deviceClass = isMobile() ? 'mobile' : 'desktop';
-  
-  // Atualizar classes
-  indicator.className = `permanent-device-indicator ${deviceClass}`;
-  
-  // Atualizar estilos
-  indicator.style.background = isMobile() ? 'rgba(33, 150, 243, 0.15)' : 'rgba(156, 39, 176, 0.15)';
-  indicator.style.color = isMobile() ? '#2196F3' : '#9C27B0';
-  indicator.style.border = `1px solid ${isMobile() ? 'rgba(33, 150, 243, 0.3)' : 'rgba(156, 39, 176, 0.3)'}`;
-  
-  // Atualizar conteúdo
-  indicator.innerHTML = `
-    <i class="fas ${deviceIcon}" style="font-size: 0.8rem;"></i>
-    <span class="device-text">${deviceType}</span>
-  `;
-}
-
-/* ===============================
-   NAVEGAÇÃO ENTRE PÁGINAS
-================================ */
-function navigateToPage(pageId) {
-  document.querySelectorAll('.nav-icon').forEach(i => i.classList.remove('active'));
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-
-  const icon = document.querySelector(`.nav-icon[data-page="${pageId}"]`);
-  const page = document.getElementById(`${pageId}-page`);
-
-  if (icon) icon.classList.add('active');
-  if (page) page.classList.add('active');
-  else {
-    document.getElementById('home-page').classList.add('active');
-    document.querySelector('.nav-icon[data-page="home"]').classList.add('active');
-  }
-
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-/* ===============================
-   EVENTOS DE NAVEGAÇÃO
-================================ */
-document.querySelectorAll('.nav-icon').forEach(icon => {
-  icon.addEventListener('click', () => {
-    navigateToPage(icon.dataset.page);
-  });
-});
-
-document.querySelectorAll('.app-card').forEach(card => {
-  card.addEventListener('click', () => {
-    navigateToPage(card.dataset.app);
-  });
-});
-
-document.querySelectorAll('.back-button').forEach(btn => {
-  btn.addEventListener('click', () => navigateToPage('home'));
-});
-
-/* ===============================
-   TERMOS
-================================ */
-document.querySelector('.terms-icon')?.addEventListener('click', () => {
-  window.open('termos.html', '_blank', 'noopener');
-});
-
-/* ===============================
-   FUNÇÃO AUXILIAR: HEX PARA RGB
-================================ */
-function hexToRgb(hex) {
-  // Remove o # se existir
-  hex = hex.replace('#', '');
-  
-  // Converte para RGB
-  const r = parseInt(hex.substring(0, 2), 16);
-  const g = parseInt(hex.substring(2, 4), 16);
-  const b = parseInt(hex.substring(4, 6), 16);
-  
-  return `${r}, ${g}, ${b}`;
-}
-
-/* ===============================
-   MOSTRAR PERGUNTA AO USUÁRIO
-================================ */
-function showUserPrompt(button, appData, message = null) {
-  // Não mostrar prompt se já existe um
-  if (button.parentNode.querySelector('.user-prompt')) return;
-  
-  const prompt = document.createElement('div');
-  prompt.className = 'user-prompt';
-  prompt.style.cssText = `
-    margin-top: 15px;
-    padding: 15px;
-    background: rgba(0,0,0,0.5);
+  const notification = document.createElement('div');
+  notification.className = 'app-notification';
+  notification.style.cssText = `
+    margin-top: 10px;
+    padding: 12px 15px;
+    background: rgba(26, 26, 46, 0.6);
     border-radius: 10px;
-    font-size: 0.9rem;
-    border: 1px solid rgba(255,255,255,0.2);
-    animation: fadeIn 0.3s ease;
-    position: relative;
-    overflow: hidden;
+    font-size: 0.8rem;
+    border-left: 3px solid ${appData.color || '#4a6de5'};
+    animation: slideUp 0.3s ease;
+    backdrop-filter: blur(5px);
   `;
   
-  const appColor = appData.color || '#4a6de5';
-  const deviceType = isMobile() ? 'mobile' : 'computador';
+  const deviceText = isMobile() ? 'dispositivo móvel' : 'computador';
   
-  const defaultMessage = `Não conseguimos abrir o aplicativo ${appData.name} no seu ${deviceType}.`;
-  
-  prompt.innerHTML = `
-    <div style="margin-bottom: 15px;">
-      <p style="margin: 0 0 8px 0; color: #fff; font-size: 1rem; font-weight: bold;">
-        <i class="fas fa-question-circle" style="color: ${appColor};"></i> 
-        ${message || defaultMessage}
-      </p>
-      <p style="margin: 0; color: #b0b0c0; font-size: 0.85rem;">
-        O que você gostaria de fazer?
-      </p>
-    </div>
-    <div style="display: flex; gap: 10px;">
-      ${appData.protocol ? `
-        <button class="prompt-button try-again-btn" 
-           style="flex: 1;
-                  padding: 10px; 
-                  background: rgba(${hexToRgb(appColor)}, 0.3); 
-                  border-radius: 8px; 
-                  color: ${appColor}; 
-                  border: 1px solid rgba(${hexToRgb(appColor)}, 0.4);
-                  font-weight: bold; 
-                  text-align: center;
-                  cursor: pointer;
-                  transition: all 0.3s;
-                  font-size: 0.85rem;">
-          <i class="fas fa-redo"></i> Tentar abrir app novamente
-        </button>
-      ` : ''}
-      <button class="prompt-button open-site-btn"
-         style="flex: 1;
-                padding: 10px; 
-                background: rgba(74, 109, 229, 0.3); 
-                border-radius: 8px; 
-                color: #4a6de5; 
-                border: 1px solid rgba(74, 109, 229, 0.4);
-                font-weight: bold; 
-                text-align: center;
-                cursor: pointer;
-                transition: all 0.3s;
-                font-size: 0.85rem;">
-        <i class="fas fa-external-link-alt"></i> Abrir site no navegador
-      </button>
-      <button class="prompt-button cancel-btn"
-         style="flex: 0.5;
-                padding: 10px; 
-                background: rgba(255, 255, 255, 0.1); 
-                border-radius: 8px; 
-                color: #b0b0c0; 
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                font-weight: bold; 
-                text-align: center;
-                cursor: pointer;
-                transition: all 0.3s;
-                font-size: 0.85rem;">
-        <i class="fas fa-times"></i> Cancelar
-      </button>
+  notification.innerHTML = `
+    <div style="display: flex; align-items: flex-start; gap: 10px;">
+      <i class="fas fa-info-circle" style="color: ${appData.color || '#4a6de5'}; font-size: 1rem; margin-top: 2px;"></i>
+      <div style="flex: 1;">
+        <p style="margin: 0 0 5px 0; color: #ffffff; font-weight: 600; font-size: 0.85rem;">
+          ${appData.protocol ? 'Abrindo aplicativo...' : 'Abrindo site...'}
+        </p>
+        <p style="margin: 0; color: #b0b0c0; font-size: 0.75rem; line-height: 1.4;">
+          ${appData.protocol 
+            ? `Tentando abrir ${appData.name} no seu ${deviceText}. Se não abrir, você poderá escolher abrir o site.` 
+            : `Este aplicativo será aberto no seu navegador como site, pois não possui versão específica para ${deviceText}.`}
+        </p>
+      </div>
     </div>
   `;
   
-  // Adicionar eventos aos botões
-  const tryAgainBtn = prompt.querySelector('.try-again-btn');
-  const openSiteBtn = prompt.querySelector('.open-site-btn');
-  const cancelBtn = prompt.querySelector('.cancel-btn');
+  button.parentNode.insertBefore(notification, button.nextSibling);
   
-  if (tryAgainBtn) {
-    tryAgainBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      prompt.remove();
-      // Tentar abrir o app novamente
-      setTimeout(() => {
-        openAppProtocol(appData, button);
-      }, 300);
-    });
-  }
-  
-  if (openSiteBtn) {
-    openSiteBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      prompt.remove();
-      // Abrir site
-      if (isMobile()) {
-        window.location.href = appData.mobileUrl;
-      } else {
-        window.open(appData.url, '_blank', 'noopener,noreferrer');
-      }
-    });
-  }
-  
-  if (cancelBtn) {
-    cancelBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      prompt.remove();
-    });
-  }
-  
-  // Adicionar hover effect
-  prompt.querySelectorAll('.prompt-button').forEach(btn => {
-    btn.addEventListener('mouseenter', () => {
-      btn.style.transform = 'translateY(-2px)';
-      btn.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
-    });
-    
-    btn.addEventListener('mouseleave', () => {
-      btn.style.transform = 'translateY(0)';
-      btn.style.boxShadow = 'none';
-    });
-  });
-  
-  button.parentNode.appendChild(prompt);
-  
-  // Remover automaticamente após 30 segundos (segurança)
+  // Remover automaticamente após 8 segundos
   setTimeout(() => {
-    if (prompt.parentNode) {
-      prompt.style.animation = 'fadeOut 0.5s ease';
-      setTimeout(() => prompt.remove(), 500);
+    if (notification.parentNode) {
+      notification.style.animation = 'fadeOut 0.5s ease';
+      setTimeout(() => notification.remove(), 500);
     }
-  }, 30000);
+  }, 8000);
 }
 
 /* ===============================
-   TENTAR ABRIR PROTOCOLO DO APP
+   REMOVER FUNÇÕES ANTIGAS DO INDICADOR DE DISPOSITIVO
+   (vou substituir as funções anteriores)
 ================================ */
-function openAppProtocol(appData, button) {
-  if (!appData.protocol) return false;
-  
-  // Atualizar botão para mostrar que está tentando
-  const originalHTML = button.innerHTML;
-  button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Tentando novamente...';
-  button.disabled = true;
-  
-  // Tentar abrir protocolo
-  try {
-    const iframe = document.createElement('iframe');
-    iframe.style.display = 'none';
-    iframe.src = appData.protocol;
-    document.body.appendChild(iframe);
-    
-    setTimeout(() => {
-      document.body.removeChild(iframe);
-      button.innerHTML = originalHTML;
-      button.disabled = false;
-      
-      // Se não abriu após 2 segundos, mostrar prompt novamente
-      setTimeout(() => {
-        showUserPrompt(button, appData, "Ainda não conseguimos abrir o aplicativo.");
-      }, 2000);
-    }, 500);
-    
-    return true;
-  } catch (e) {
-    button.innerHTML = originalHTML;
-    button.disabled = false;
-    showUserPrompt(button, appData, "Erro ao tentar abrir o aplicativo.");
-    return false;
-  }
-}
 
 /* ===============================
-   ABRIR NO MOBILE (VERSÃO CORRIGIDA - PERGUNTA AO USUÁRIO)
-================================ */
-function openOnMobile(appData, button, timeout, successCallback) {
-  if (appData.protocol) {
-    // Tentar abrir protocolo (app nativo)
-    const protocolUrl = appData.protocol;
-    
-    // Criar iframe invisível para tentar abrir protocolo
-    const iframe = document.createElement('iframe');
-    iframe.style.display = 'none';
-    iframe.src = protocolUrl;
-    document.body.appendChild(iframe);
-    
-    // Remover iframe após 500ms
-    setTimeout(() => {
-      document.body.removeChild(iframe);
-      
-      // Se não abriu o app após 1.5 segundos, PERGUNTAR ao usuário
-      setTimeout(() => {
-        if (typeof successCallback === 'function') {
-          successCallback();
-        }
-        showUserPrompt(button, appData);
-      }, 1500);
-    }, 500);
-    
-  } else {
-    // Sem protocolo, abrir site mobile diretamente
-    window.location.href = appData.mobileUrl;
-    if (typeof successCallback === 'function') {
-      successCallback();
-    }
-  }
-}
-
-/* ===============================
-   ABRIR NO DESKTOP (VERSÃO CORRIGIDA - PERGUNTA AO USUÁRIO)
-================================ */
-function openOnDesktop(appData, button, timeout, successCallback) {
-  if (appData.protocol) {
-    // 💻 DESKTOP: Tenta abrir o protocolo (app)
-    try {
-      // Criar iframe para tentar abrir protocolo
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.src = appData.protocol;
-      document.body.appendChild(iframe);
-      
-      // Remover iframe após 500ms
-      setTimeout(() => {
-        document.body.removeChild(iframe);
-        if (typeof successCallback === 'function') {
-          successCallback();
-        }
-        
-        // Se não abriu após 1.5 segundos, PERGUNTAR ao usuário
-        setTimeout(() => {
-          showUserPrompt(button, appData);
-        }, 1500);
-      }, 500);
-      
-    } catch (e) {
-      console.log('Erro ao tentar abrir protocolo:', e);
-      if (typeof successCallback === 'function') {
-        successCallback();
-      }
-      // Se erro, mostrar prompt imediatamente
-      showUserPrompt(button, appData, "Erro ao tentar abrir o aplicativo.");
-    }
-  } else {
-    // Sem protocolo, abrir site em nova aba
-    window.open(appData.url, '_blank', 'noopener,noreferrer');
-    if (typeof successCallback === 'function') {
-      successCallback();
-    }
-  }
-}
-
-/* ===============================
-   FUNÇÃO PARA ABRIR APPS - VERSÃO CORRIGIDA
+   FUNÇÃO PARA ABRIR APPS - VERSÃO CORRIGIDA COM NOTIFICAÇÃO
 ================================ */
 function openApp(url, button, appId) {
   const appData = appsData[appId];
   const originalHTML = button.innerHTML;
+  
+  // Mostrar notificação informativa ANTES de tentar abrir
+  showAppNotification(button, appData);
   
   button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Abrindo...';
   button.disabled = true;
@@ -2084,6 +1650,12 @@ function openApp(url, button, appId) {
   const existingPrompt = button.parentNode.querySelector('.user-prompt');
   if (existingPrompt) {
     existingPrompt.remove();
+  }
+
+  // Remover notificação antiga se existir
+  const existingNotification = button.parentNode.querySelector('.app-notification');
+  if (existingNotification) {
+    existingNotification.remove();
   }
 
   // Flag para controle
@@ -2111,64 +1683,83 @@ function openApp(url, button, appId) {
 }
 
 /* ===============================
-   BOTÕES DE LANÇAR
+   ATUALIZAR INICIALIZAÇÃO PARA REMOVER INDICADOR ANTIGO
 ================================ */
-document.querySelectorAll('.launch-button').forEach(button => {
-  button.addEventListener('click', () => {
-    const url = button.dataset.url;
-    const appId = button.closest('.app-page').id.replace('-page', '');
+document.addEventListener('DOMContentLoaded', () => {
+  navigateToPage('home');
+  
+  // Adicionar animações CSS
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
     
-    if (appId && appsData[appId]) {
-      openApp(url, button, appId);
-    } else {
-      // Fallback para URLs diretas
-      if (isMobile()) {
-        window.location.href = url;
-      } else {
-        window.open(url, '_blank', 'noopener,noreferrer');
-      }
+    @keyframes fadeOut {
+      from { opacity: 1; transform: translateY(0); }
+      to { opacity: 0; transform: translateY(-10px); }
+    }
+    
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .user-prompt {
+      animation: fadeIn 0.3s ease !important;
+    }
+    
+    .app-notification {
+      animation: slideUp 0.3s ease !important;
+    }
+    
+    .prompt-button:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2) !important;
+    }
+    
+    .prompt-button:active {
+      transform: translateY(0) !important;
+    }
+    
+    /* Estilo para apps sem protocolo (sites) */
+    .launch-button.site-only {
+      position: relative;
+    }
+    
+    .launch-button.site-only::after {
+      content: '🌐 Site';
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: rgba(74, 109, 229, 0.9);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 0.6rem;
+      font-weight: bold;
+    }
+  `;
+  document.head.appendChild(style);
+  
+  // ATUALIZAR: Não criar mais o indicador de dispositivo
+  // Removido: createPermanentDeviceIndicator();
+  
+  // Atualizar labels dos botões
+  updateButtonLabels();
+  
+  // Adicionar indicador visual para apps que são apenas sites
+  document.querySelectorAll('.launch-button').forEach(button => {
+    const appId = button.closest('.app-page')?.id.replace('-page', '');
+    if (appId && appsData[appId] && !appsData[appId].protocol) {
+      button.classList.add('site-only');
     }
   });
 });
 
 /* ===============================
-   DETECTAR CLIQUE FORA DO PROMPT
-================================ */
-document.addEventListener('click', (e) => {
-  if (e.target.classList.contains('user-prompt') || 
-      e.target.closest('.user-prompt')) {
-    // Não fazer nada se clicar no prompt
-    return;
-  }
-  
-  // Remover prompts ao clicar em qualquer outro lugar
-  document.querySelectorAll('.user-prompt').forEach(prompt => {
-    prompt.remove();
-  });
-});
-
-/* ===============================
-   DETECTAR SE O APP FOI INSTALADO
-================================ */
-function checkIfAppInstalled(appName) {
-  const userAgent = navigator.userAgent.toLowerCase();
-  
-  switch(appName) {
-    case 'spotify':
-      return /spotify/i.test(userAgent);
-    case 'whatsapp':
-      return /whatsapp/i.test(userAgent);
-    case 'epic-games':
-      return /epicgames/i.test(userAgent);
-    case 'vscode':
-      return /vscode/i.test(userAgent);
-    default:
-      return false;
-  }
-}
-
-/* ===============================
-   ATUALIZAR BOTÕES BASEADO NO DISPOSITIVO
+   ATUALIZAR LABELS DOS BOTÕES COM INFORMAÇÃO ADICIONAL
 ================================ */
 function updateButtonLabels() {
   document.querySelectorAll('.launch-button').forEach(button => {
@@ -2176,6 +1767,13 @@ function updateButtonLabels() {
     
     if (appId && appsData[appId]) {
       const appData = appsData[appId];
+      
+      // Adicionar/remover classe para indicar se é apenas site
+      if (appData.protocol) {
+        button.classList.remove('site-only');
+      } else {
+        button.classList.add('site-only');
+      }
       
       if (isMobile()) {
         if (appData.protocol && checkIfAppInstalled(appId)) {
@@ -2195,79 +1793,19 @@ function updateButtonLabels() {
 }
 
 /* ===============================
-   INICIALIZAÇÃO
+   FUNÇÕES QUE PRECISAM SER REMOVIDAS COMPLETAMENTE:
 ================================ */
-document.addEventListener('DOMContentLoaded', () => {
-  navigateToPage('home');
-  
-  // Adicionar animações CSS
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    @keyframes fadeOut {
-      from { opacity: 1; transform: translateY(0); }
-      to { opacity: 0; transform: translateY(-10px); }
-    }
-    
-    @keyframes slideDown {
-      from { opacity: 0; transform: translate(-50%, -20px); }
-      to { opacity: 1; transform: translate(-50%, 0); }
-    }
-    
-    .user-prompt {
-      animation: fadeIn 0.3s ease !important;
-    }
-    
-    .prompt-button:hover {
-      transform: translateY(-2px) !important;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2) !important;
-    }
-    
-    .prompt-button:active {
-      transform: translateY(0) !important;
-    }
-  `;
-  document.head.appendChild(style);
-  
-  // Criar indicador permanente
-  createPermanentDeviceIndicator();
-  
-  // Atualizar labels dos botões
-  updateButtonLabels();
-});
+// REMOVER: createPermanentDeviceIndicator() - função antiga
+// REMOVER: updateDeviceIndicator() - função antiga
+// REMOVER: window.addEventListener('resize', updateDeviceIndicator); das outras partes
 
 /* ===============================
-   TECLA ESC PARA VOLTAR
-================================ */
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    navigateToPage('home');
-    // Remover prompts ao pressionar ESC
-    document.querySelectorAll('.user-prompt').forEach(prompt => {
-      prompt.remove();
-    });
-  }
-});
-
-/* ===============================
-   ATUALIZAR LABELS E INDICADOR AO REDIMENSIONAR
+   ATUALIZAR RESIZE EVENT
 ================================ */
 window.addEventListener('resize', () => {
   updateButtonLabels();
-  updateDeviceIndicator();
+  // Removido: updateDeviceIndicator();
 });
-
-/* ===============================
-   ATUALIZAR AO CARREGAR COMPLETAMENTE
-================================ */
-window.addEventListener('load', () => {
-  updateButtonLabels();
-});
-</script>
 
 </body>
 </html>
