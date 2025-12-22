@@ -74,8 +74,8 @@
         }
 
         .nav-icon img {
-            width: 32px;
-            height: 32px;
+            width: 40px;
+            height: 40px;
             object-fit: contain;
             border-radius: 8px;
         }
@@ -93,9 +93,9 @@
             background: linear-gradient(135deg, #25D366, #128C7E);
             box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
         }
-        .nav-icon.active[data-page="jw-library"] {
-            background: linear-gradient(135deg, #8A2BE2, #9370DB);
-            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4);
+        .nav-icon.active[data-page="epic-games"] {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
         }
         .nav-icon.active[data-page="jw-org"] {
             background: linear-gradient(135deg, #2196F3, #64B5F6);
@@ -586,8 +586,8 @@
             }
             
             .nav-icon img {
-                width: 24px;
-                height: 24px;
+                width: 30px;
+                height: 30px;
             }
             
             /* Ajustar conteúdo principal */
@@ -714,8 +714,8 @@
             }
             
             .nav-icon img {
-                width: 22px;
-                height: 22px;
+                width: 26px;
+                height: 26px;
             }
             
             .main-content {
@@ -776,8 +776,9 @@
         <div class="nav-icon" data-page="whatsapp">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/2048px-WhatsApp.svg.png" alt="WhatsApp">
         </div>
-        <div class="nav-icon" data-page="jw-library">
-            <img src="https://play-lh.googleusercontent.com/53MOlebCzGyoUXApCOgHhr1BLAGsPtbiN7fEH4EC3DGwINuKKODT2U1utFGfIdwrlHo" alt="JW Library">
+        <!-- EPIC GAMES COM ÍCONE VISÍVEL -->
+        <div class="nav-icon" data-page="epic-games">
+            <img src="https://icon-icons.com/download-file?file=https%3A%2F%2Fimages.icon-icons.com%2F2428%2FPNG%2F512%2Fepic_games_black_logo_icon_147139.png" alt="Epic Games" style="filter: brightness(0) invert(1);">
         </div>
         <div class="nav-icon" data-page="jw-org">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQguRAJtdxxQjekZtb9y6NLF-tqsN5mXhM0AQ&s" alt="JW.org">
@@ -875,19 +876,19 @@
                     </div>
                 </div>
 
-                <!-- JW Library -->
-                <div class="app-card" data-app="jw-library">
-                    <div class="app-cover" style="background-image: url('https://doity.com.br/blog/app/uploads/2022/05/tipos-de-pesquisa-cientifica-930x534.png');">
+                <!-- Epic Games -->
+                <div class="app-card" data-app="epic-games">
+                    <div class="app-cover" style="background-image: url('https://cdn2.unrealengine.com/fneco-twitter-header-1500x500-15b7e9a0aaad.jpg');">
                         <div class="app-icon">
-                            <img src="https://play-lh.googleusercontent.com/53MOlebCzGyoUXApCOgHhr1BLAGsPtbiN7fEH4EC3DGwINuKKODT2U1utFGfIdwrlHo" alt="JW Library">
+                            <img src="https://icon-icons.com/download-file?file=https%3A%2F%2Fimages.icon-icons.com%2F2428%2FPNG%2F512%2Fepic_games_black_logo_icon_147139.png" alt="Epic Games">
                         </div>
                     </div>
                     <div class="app-content">
-                        <h3 class="app-title">JW Library</h3>
-                        <p class="app-description">Aplicativo oficial das Testemunhas de Jeová. Bíblia, publicações e vídeos para estudo pessoal.</p>
+                        <h3 class="app-title">Epic Games</h3>
+                        <p class="app-description">Plataforma de distribuição digital e loja online. Acesse jogos gratuitos, Unreal Engine e Fortnite.</p>
                         <div class="app-tags">
-                            <span class="app-tag">Espiritual</span>
-                            <span class="app-tag">Bíblia</span>
+                            <span class="app-tag">Jogos</span>
+                            <span class="app-tag">Plataforma</span>
                         </div>
                     </div>
                 </div>
@@ -1173,46 +1174,47 @@
             </div>
         </div>
 
-        <!-- Página do JW Library -->
-        <div id="jw-library-page" class="page app-page">
-            <div class="app-hero" style="background-image: url('https://doity.com.br/blog/app/uploads/2022/05/tipos-de-pesquisa-cientifica-930x534.png');">
+        <!-- Página da Epic Games -->
+        <div id="epic-games-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('https://cdn2.unrealengine.com/fneco-twitter-header-1500x500-15b7e9a0aaad.jpg');">
                 <button class="back-button">
                     <i class="fas fa-arrow-left"></i> Voltar
                 </button>
                 <div class="app-hero-content">
-                    <div class="app-hero-icon">
-                        <img src="https://play-lh.googleusercontent.com/53MOlebCzGyoUXApCOgHhr1BLAGsPtbiN7fEH4EC3DGwINuKKODT2U1utFGfIdwrlHo" alt="JW Library">
+                    <div class="app-hero-icon" style="background: linear-gradient(135deg, #FFD700, #FFA500); padding: 15px;">
+                        <img src="https://icon-icons.com/download-file?file=https%3A%2F%2Fimages.icon-icons.com%2F2428%2FPNG%2F512%2Fepic_games_black_logo_icon_147139.png" alt="Epic Games" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
                     <div class="app-hero-info">
-                        <h1 style="color: #8A2BE2;">JW Library</h1>
-                        <p>Aplicativo oficial das Testemunhas de Jeová. Bíblia, publicações e vídeos para estudo pessoal.</p>
+                        <h1 style="color: #FFD700; text-shadow: 0 2px 10px rgba(0,0,0,0.7);">Epic Games</h1>
+                        <p>Plataforma de distribuição digital e loja online. Acesse jogos gratuitos, Unreal Engine e Fortnite.</p>
                     </div>
                 </div>
             </div>
             
             <div class="app-detail-content">
                 <div class="app-description-content">
-                    <h2>Sobre o JW Library</h2>
-                    <p>Aplicativo oficial que permite acesso a um vasto conjunto de publicações das Testemunhas de Jeová, incluindo a Bíblia, livros, brochuras, revistas e vídeos.</p>
-                    <p>Ferramenta essencial para estudo pessoal, preparação para reuniões e acesso a informações bíblicas atualizadas em diversos idiomas.</p>
+                    <h2>Sobre a Epic Games</h2>
+                    <p>A Epic Games é uma empresa americana de desenvolvimento de jogos e software conhecida por criar o Unreal Engine, Fortnite, e a Epic Games Store. A plataforma oferece jogos gratuitos semanais, descontos exclusivos e acesso a ferramentas de desenvolvimento.</p>
+                    <p>A Epic Games Store revolucionou o mercado com seu programa de jogos gratuitos semanais e uma taxa de revenda mais justa para desenvolvedores.</p>
                     
                     <h2>Recursos Principais</h2>
                     <ul>
-                        <li>Bíblia em dezenas de idiomas com diferentes traduções</li>
-                        <li>Publicações bíblicas atualizadas regularmente</li>
-                        <li>Vídeos educativos e apresentações</li>
-                        <li>Ferramentas avançadas de estudo e pesquisa</li>
-                        <li>Acesso offline ao conteúdo baixado</li>
-                        <li>Pesquisa avançada por palavras-chave</li>
-                        <li>Sincronização entre múltiplos dispositivos</li>
-                        <li>Anotações pessoais e marcações</li>
-                        <li>Leitura em voz alta</li>
+                        <li>Jogos gratuitos semanais para manter na biblioteca</li>
+                        <li>Epic Games Store com descontos exclusivos</li>
+                        <li>Unreal Engine - motor gráfico líder da indústria</li>
+                        <li>Fortnite - Battle Royale gratuito e popular</li>
+                        <li>Suporte a desenvolvedores com 88% de royalties</li>
+                        <li>Integração com Epic Online Services</li>
+                        <li>Biblioteca de jogos multiplataforma</li>
+                        <li>Epic Rewards e programas de fidelidade</li>
+                        <li>Lançamentos exclusivos de jogos</li>
+                        <li>Ferramentas para desenvolvedores gratuitas</li>
                     </ul>
                 </div>
                 
                 <div class="app-sidebar">
-                    <button class="launch-button" data-url="jwlibrary:home" style="background: linear-gradient(135deg, #8A2BE2, #9370DB);">
-                        <i class="fas fa-book-open"></i>
+                    <button class="launch-button" data-url="com.epicgames.launcher://" style="background: linear-gradient(135deg, #FFD700, #FFA500); border: 2px solid #FFC107; box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4); color: #000000; font-weight: bold;">
+                        <i class="fas fa-rocket" style="color: #000000;"></i>
                         ABRIR
                     </button>
                     
@@ -1220,19 +1222,19 @@
                         <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
                         <div class="info-item">
                             <span class="info-label">Categoria</span>
-                            <span class="info-value">Espiritual</span>
+                            <span class="info-value">Jogos</span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">Tipo</span>
-                            <span class="info-value">Estudo Bíblico</span>
+                            <span class="info-value">Plataforma de Jogos</span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Disponibilidade</span>
-                            <span class="info-value" style="color: #8A2BE2;">Online/Offline</span>
+                            <span class="info-label">Usuários</span>
+                            <span class="info-value" style="color: #FFD700;">230M+</span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Idiomas</span>
-                            <span class="info-value">Múltiplos</span>
+                            <span class="info-label">Jogos Gratuitos</span>
+                            <span class="info-value">Semanais</span>
                         </div>
                     </div>
                 </div>
@@ -1598,10 +1600,10 @@ const appsData = {
     url: 'https://web.whatsapp.com',
     color: '#25D366'
   },
-  'jw-library': {
-    name: 'JW Library',
-    url: 'https://www.jw.org/pt/',
-    color: '#8A2BE2'
+  'epic-games': {
+    name: 'Epic Games',
+    url: 'com.epicgames.launcher://',
+    color: '#FFD700'
   },
   'jw-org': {
     name: 'JW.org',
@@ -1640,7 +1642,6 @@ function isMobile() {
 
 /* ===============================
    NAVEGAÇÃO ENTRE PÁGINAS
-   (NÃO ALTERADO)
 ================================ */
 function navigateToPage(pageId) {
   document.querySelectorAll('.nav-icon').forEach(i => i.classList.remove('active'));
@@ -1695,31 +1696,44 @@ function openApp(url, button, appId) {
   button.innerHTML = 'Acessando...';
   button.disabled = true;
 
-  if (isMobile()) {
-    // 📱 Mobile → mesma aba (Chrome-friendly)
-    window.location.href = url;
-  } else {
-    // 💻 Desktop → nova aba (seguro)
-    window.open(url, '_blank', 'noopener,noreferrer');
+  // Remover qualquer fallback anterior
+  const existingFallback = button.parentNode.querySelector('.mobile-fallback');
+  if (existingFallback) {
+    existingFallback.remove();
   }
 
-  // Fallback VISÍVEL (não invasivo)
-  if (!button.nextElementSibling) {
-    const fallback = document.createElement('a');
-    fallback.href = url;
-    fallback.target = '_blank';
-    fallback.rel = 'noopener noreferrer';
-    fallback.textContent = 'Abrir pelo site';
-    fallback.style.display = 'block';
-    fallback.style.marginTop = '8px';
-    fallback.style.opacity = '0.85';
-    button.parentNode.appendChild(fallback);
+  if (isMobile()) {
+    // 📱 Mobile - Tentar abrir protocolo, se falhar, abrir site
+    if (url.startsWith('http')) {
+      window.location.href = url;
+    } else {
+      // Para protocolos como com.epicgames.launcher://
+      window.location.href = url;
+      
+      // Fallback após 1 segundo
+      setTimeout(() => {
+        const fallback = document.createElement('div');
+        fallback.style.cssText = 'margin-top: 10px; padding: 10px; background: rgba(0,0,0,0.3); border-radius: 10px; font-size: 0.9rem; border: 1px solid rgba(255,255,255,0.1);';
+        fallback.innerHTML = '<p style="margin: 0 0 8px 0; color: #b0b0c0;">Se não abrir automaticamente:</p>' +
+                            '<a href="https://store.epicgames.com" target="_blank" style="display: block; padding: 8px; background: rgba(255, 215, 0, 0.2); border-radius: 8px; color: #FFD700; text-decoration: none; font-weight: bold; text-align: center; border: 1px solid rgba(255, 215, 0, 0.3);">› Abrir site da Epic Games</a>';
+        fallback.className = 'mobile-fallback';
+        button.parentNode.appendChild(fallback);
+      }, 1000);
+    }
+  } else {
+    // 💻 Desktop - Nova aba
+    if (url.startsWith('http')) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    } else {
+      // Tentar abrir protocolo
+      window.location.href = url;
+    }
   }
 
   setTimeout(() => {
     button.innerHTML = original;
     button.disabled = false;
-  }, 700);
+  }, 1500);
 }
 
 /* ===============================
