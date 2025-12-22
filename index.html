@@ -802,6 +802,7 @@
     <div class="top-bar">
         <div class="logo">
             <img src="tipo.png" alt="logo" style="width:70px; height:80px;">
+            <span>Hub</span>
         </div>
         <div class="user-actions">
             <!-- NOVO: Botão de Termos no estilo dos ícones -->
@@ -1583,288 +1584,297 @@
    APPS
 ================================ */
 const appsData = {
-  'home': { name: 'Início' },
-  'ray-links': {
-    name: 'Ray Links',
-    url: 'https://loirinhodid.github.io/hublink/',
-    mobileUrl: 'https://loirinhodid.github.io/hublink/',
-    protocol: null,
-    color: '#FF6B6B'
-  },
-  'spotify': {
-    name: 'Spotify',
-    url: 'https://open.spotify.com',
-    mobileUrl: 'https://open.spotify.com',
-    protocol: 'spotify:',
-    color: '#1DB954'
-  },
-  'whatsapp': {
-    name: 'WhatsApp',
-    url: 'https://web.whatsapp.com',
-    mobileUrl: 'https://web.whatsapp.com',
-    protocol: 'whatsapp://',
-    color: '#25D366'
-  },
-  'epic-games': {
-    name: 'Epic Games',
-    url: 'https://store.epicgames.com',
-    mobileUrl: 'https://store.epicgames.com',
-    protocol: 'com.epicgames.launcher://',
-    color: '#FFD700'
-  },
-  'jw-org': {
-    name: 'JW.org',
-    url: 'https://www.jw.org/pt',
-    mobileUrl: 'https://www.jw.org/pt',
-    protocol: null,
-    color: '#2196F3'
-  },
-  'watchtower': {
-    name: 'Watchtower Library',
-    url: 'https://wol.jw.org',
-    mobileUrl: 'https://wol.jw.org',
-    protocol: null,
-    color: '#4169E1'
-  },
-  'vscode': {
-    name: 'Visual Studio Code',
-    url: 'https://code.visualstudio.com',
-    mobileUrl: 'https://code.visualstudio.com',
-    protocol: 'vscode://',
-    color: '#007ACC'
-  },
-  'google-photos': {
-    name: 'Google Photos',
-    url: 'https://photos.google.com',
-    mobileUrl: 'https://photos.google.com',
-    protocol: null,
-    color: '#4285F4'
-  },
-  'riot-client': {
-    name: 'Riot Client',
-    url: 'https://riotgames.com',
-    mobileUrl: 'https://riotgames.com',
-    protocol: 'riotclient://',
-    color: '#FF4654'
-  }
+    'home': { name: 'Início' },
+    'ray-links': {
+        name: 'Ray Links',
+        url: 'https://loirinhodid.github.io/hublink/',
+        mobileUrl: 'https://loirinhodid.github.io/hublink/',
+        protocol: null,
+        color: '#FF6B6B'
+    },
+    'spotify': {
+        name: 'Spotify',
+        url: 'https://open.spotify.com',
+        mobileUrl: 'https://open.spotify.com',
+        protocol: 'spotify:',
+        color: '#1DB954'
+    },
+    'whatsapp': {
+        name: 'WhatsApp',
+        url: 'https://web.whatsapp.com',
+        mobileUrl: 'https://web.whatsapp.com',
+        protocol: 'whatsapp://',
+        color: '#25D366'
+    },
+    'epic-games': {
+        name: 'Epic Games',
+        url: 'https://store.epicgames.com',
+        mobileUrl: 'https://store.epicgames.com',
+        protocol: 'com.epicgames.launcher://',
+        color: '#FFD700'
+    },
+    'jw-org': {
+        name: 'JW.org',
+        url: 'https://www.jw.org/pt',
+        mobileUrl: 'https://www.jw.org/pt',
+        protocol: null,
+        color: '#2196F3'
+    },
+    'watchtower': {
+        name: 'Watchtower Library',
+        url: 'https://wol.jw.org',
+        mobileUrl: 'https://wol.jw.org',
+        protocol: null,
+        color: '#4169E1'
+    },
+    'vscode': {
+        name: 'Visual Studio Code',
+        url: 'https://code.visualstudio.com',
+        mobileUrl: 'https://code.visualstudio.com',
+        protocol: 'vscode://',
+        color: '#007ACC'
+    },
+    'google-photos': {
+        name: 'Google Photos',
+        url: 'https://photos.google.com',
+        mobileUrl: 'https://photos.google.com',
+        protocol: null,
+        color: '#4285F4'
+    },
+    'riot-client': {
+        name: 'Riot Client',
+        url: 'https://riotgames.com',
+        mobileUrl: 'https://riotgames.com',
+        protocol: 'riotclient://',
+        color: '#FF4654'
+    }
 };
 
 /* ===============================
    MOBILE
 ================================ */
 function isMobile() {
-  return /android|iphone|ipad|ipod|mobile/i.test(navigator.userAgent);
+    return /android|iphone|ipad|ipod|mobile/i.test(navigator.userAgent);
 }
 
 /* ===============================
    INDICADOR
 ================================ */
 function createDeviceIndicator() {
-  document.querySelector('.device-indicator')?.remove();
+    document.querySelector('.device-indicator')?.remove();
 
-  const el = document.createElement('div');
-  el.className = 'device-indicator';
-  el.style.cssText = `
-    position:fixed;
-    top:12px;
-    left:50%;
-    transform:translateX(-50%);
-    z-index:9999;
-    padding:6px 14px;
-    border-radius:20px;
-    background:rgba(0,0,0,.35);
-    color:#fff;
-    font-size:.75rem;
-    display:flex;
-    gap:8px;
-    align-items:center;
-    pointer-events:none;
-  `;
+    const el = document.createElement('div');
+    el.className = 'device-indicator';
+    el.style.cssText = `
+        position:fixed;
+        top:12px;
+        left:50%;
+        transform:translateX(-50%);
+        z-index:9999;
+        padding:6px 14px;
+        border-radius:20px;
+        background:rgba(0,0,0,.35);
+        color:#fff;
+        font-size:.75rem;
+        display:flex;
+        gap:8px;
+        align-items:center;
+        pointer-events:none;
+    `;
 
-  el.innerHTML = `
-    <i class="fas ${isMobile() ? 'fa-mobile-alt' : 'fa-desktop'}"></i>
-    <span>${isMobile() ? 'Mobile' : 'Computador'}</span>
-  `;
+    el.innerHTML = `
+        <i class="fas ${isMobile() ? 'fa-mobile-alt' : 'fa-desktop'}"></i>
+        <span>${isMobile() ? 'Mobile' : 'Computador'}</span>
+    `;
 
-  document.body.appendChild(el);
+    document.body.appendChild(el);
 }
 
 /* ===============================
    NAVEGAÇÃO
 ================================ */
 function navigateToPage(pageId) {
-  document.querySelectorAll('.page, .app-page')
-    .forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.page, .app-page')
+        .forEach(p => p.classList.remove('active'));
 
-  document.querySelectorAll('.nav-icon')
-    .forEach(i => i.classList.remove('active'));
+    document.querySelectorAll('.nav-icon')
+        .forEach(i => i.classList.remove('active'));
 
-  document.getElementById(`${pageId}-page`)?.classList.add('active');
-  document.querySelector(`.nav-icon[data-page="${pageId}"]`)?.classList.add('active');
+    document.getElementById(`${pageId}-page`)?.classList.add('active');
+    document.querySelector(`.nav-icon[data-page="${pageId}"]`)?.classList.add('active');
 
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 /* ===============================
    AVISO
 ================================ */
 function showRedirectWarning(button) {
-  if (button.previousElementSibling?.classList.contains('redirect-warning')) return;
+    if (button.previousElementSibling?.classList.contains('redirect-warning')) return;
 
-  const div = document.createElement('div');
-  div.className = 'redirect-warning';
-  div.style.cssText = `
-    margin-bottom:8px;
-    padding:10px;
-    background:rgba(255,193,7,.18);
-    border-left:4px solid #FFC107;
-    border-radius:8px;
-    font-size:.8rem;
-    color:#fff;
-    display:flex;
-    gap:8px;
-    align-items:center;
-  `;
+    const div = document.createElement('div');
+    div.className = 'redirect-warning';
+    div.style.cssText = `
+        margin-bottom:8px;
+        padding:10px;
+        background:rgba(255,193,7,.18);
+        border-left:4px solid #FFC107;
+        border-radius:8px;
+        font-size:.8rem;
+        color:#fff;
+        display:flex;
+        gap:8px;
+        align-items:center;
+    `;
 
-  div.innerHTML = `
-    <i class="fas fa-external-link-alt" style="color:#FFC107"></i>
-    <span>Você será redirecionado para o navegador</span>
-  `;
+    div.innerHTML = `
+        <i class="fas fa-external-link-alt" style="color:#FFC107"></i>
+        <span>Você será redirecionado para o navegador</span>
+    `;
 
-  button.before(div);
-  setTimeout(() => div.remove(), 3000);
+    button.before(div);
+    setTimeout(() => div.remove(), 3000);
 }
 
 /* ===============================
-   ABRIR APP
+   ABRIR APP - CORRIGIDO
 ================================ */
 function openApp(appId, button) {
-  const app = appsData[appId];
-  if (!app) return;
+    const app = appsData[appId];
+    if (!app) return;
 
-  if (button) {
-    // Mostrar estado de carregamento
-    const originalHTML = button.innerHTML;
-    const originalText = button.textContent;
-    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Abrindo...';
-    button.disabled = true;
+    if (button) {
+        const originalHTML = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Abrindo...';
+        button.disabled = true;
 
-    // Restaurar botão após 2 segundos
-    setTimeout(() => {
-      button.innerHTML = originalHTML;
-      button.disabled = false;
-    }, 2000);
-  }
-
-  // Se não tem protocolo, mostrar aviso
-  if (!app.protocol) {
-    if (button) showRedirectWarning(button);
-  }
-
-  // Abrir baseado no dispositivo
-  if (isMobile()) {
-    // Para mobile: tenta protocolo primeiro, depois site
-    if (app.protocol) {
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.src = app.protocol;
-      document.body.appendChild(iframe);
-      
-      // Fallback: se não abrir app, abre site após delay
-      setTimeout(() => {
-        iframe.remove();
-        window.location.href = app.mobileUrl;
-      }, 1200);
-    } else {
-      window.location.href = app.mobileUrl;
-    }
-  } else {
-    // Para desktop: tenta protocolo primeiro, depois abre nova aba
-    if (app.protocol) {
-      try {
-        window.location.href = app.protocol;
-        // Fallback: abre em nova aba após delay
         setTimeout(() => {
-          window.open(app.url, '_blank', 'noopener,noreferrer');
-        }, 500);
-      } catch (e) {
-        window.open(app.url, '_blank', 'noopener,noreferrer');
-      }
-    } else {
-      window.open(app.url, '_blank', 'noopener,noreferrer');
+            button.innerHTML = originalHTML;
+            button.disabled = false;
+        }, 2000);
     }
-  }
+
+    // Se não tem protocolo, mostrar aviso
+    if (!app.protocol) {
+        if (button) showRedirectWarning(button);
+    }
+
+    // COMPUTADOR: Tenta protocolo primeiro, depois abre site
+    if (!isMobile()) {
+        if (app.protocol) {
+            console.log('Computador: Tentando abrir via protocolo:', app.protocol);
+            
+            // Primeiro tenta abrir o aplicativo nativo via protocolo
+            window.location.href = app.protocol;
+            
+            // Depois de um tempo, se não conseguiu abrir o app, abre o site
+            // (isso evita abrir ambos imediatamente)
+            setTimeout(() => {
+                console.log('Computador: Fallback para site');
+                window.open(app.url, '_blank', 'noopener,noreferrer');
+            }, 1000);
+        } else {
+            // Se não tem protocolo, abre o site diretamente
+            console.log('Computador: Abrindo site (sem protocolo)');
+            window.open(app.url, '_blank', 'noopener,noreferrer');
+        }
+    }
+    // MOBILE: Tenta protocolo, mas se não funcionar rapidamente, abre o site
+    else {
+        if (app.protocol) {
+            console.log('Mobile: Tentando abrir via protocolo:', app.protocol);
+            
+            // Tenta abrir o app nativo
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = app.protocol;
+            document.body.appendChild(iframe);
+            
+            // Se o app não abrir em 1.5 segundos, abre o site mobile
+            setTimeout(() => {
+                console.log('Mobile: Fallback para site mobile');
+                iframe.remove();
+                window.location.href = app.mobileUrl;
+            }, 1500);
+        } else {
+            // Se não tem protocolo, abre o site mobile
+            console.log('Mobile: Abrindo site mobile (sem protocolo)');
+            window.location.href = app.mobileUrl;
+        }
+    }
 }
 
 /* ===============================
    TERMOS
 ================================ */
 document.querySelector('.terms-icon')?.addEventListener('click', () => {
-  window.open('termos.html', '_blank', 'noopener');
+    window.open('termos.html', '_blank', 'noopener');
 });
 
 /* ===============================
    EVENTOS
 ================================ */
 document.addEventListener('DOMContentLoaded', () => {
-  createDeviceIndicator();
-  window.addEventListener('resize', createDeviceIndicator);
+    createDeviceIndicator();
+    window.addEventListener('resize', createDeviceIndicator);
 
-  // Navegação pelos ícones da barra lateral
-  document.querySelectorAll('.nav-icon').forEach(icon => {
-    icon.addEventListener('click', () => {
-      navigateToPage(icon.dataset.page);
+    // Navegação pelos ícones da barra lateral
+    document.querySelectorAll('.nav-icon').forEach(icon => {
+        icon.addEventListener('click', () => {
+            navigateToPage(icon.dataset.page);
+        });
     });
-  });
 
-  // Navegação pelos cards na página inicial
-  document.querySelectorAll('.app-card').forEach(card => {
-    card.addEventListener('click', () => {
-      navigateToPage(card.dataset.app);
+    // Navegação pelos cards na página inicial
+    document.querySelectorAll('.app-card').forEach(card => {
+        card.addEventListener('click', () => {
+            navigateToPage(card.dataset.app);
+        });
     });
-  });
 
-  // Botões voltar
-  document.querySelectorAll('.back-button').forEach(btn => {
-    btn.addEventListener('click', () => navigateToPage('home'));
-  });
+    // Botões voltar
+    document.querySelectorAll('.back-button').forEach(btn => {
+        btn.addEventListener('click', () => navigateToPage('home'));
+    });
 
-  // Botões de lançar (CORREÇÃO IMPORTANTE)
-  document.querySelectorAll('.launch-button').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      // Obter o ID do app a partir da página atual
-      const appPage = this.closest('.app-page');
-      if (!appPage) return;
-      
-      const appId = appPage.id.replace('-page', '');
-      
-      // Verificar se o app está nos dados
-      if (appsData[appId]) {
-        openApp(appId, this);
-      } else {
-        // Fallback para URL direta do botão
-        const url = this.dataset.url;
-        if (isMobile()) {
-          window.location.href = url;
-        } else {
-          window.open(url, '_blank', 'noopener,noreferrer');
+    // Botões de lançar
+    document.querySelectorAll('.launch-button').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Obter o ID do app a partir da página atual
+            const appPage = this.closest('.app-page');
+            if (!appPage) return;
+            
+            const appId = appPage.id.replace('-page', '');
+            
+            // Verificar se o app está nos dados
+            if (appsData[appId]) {
+                openApp(appId, this);
+            } else {
+                // Fallback para URL direta do botão
+                const url = this.dataset.url;
+                if (isMobile()) {
+                    window.location.href = url;
+                } else {
+                    window.open(url, '_blank', 'noopener,noreferrer');
+                }
+            }
+        });
+    });
+
+    // Tecla ESC para voltar
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            navigateToPage('home');
         }
-      }
     });
-  });
 
-  // Tecla ESC para voltar
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') {
-      navigateToPage('home');
-    }
-  });
-
-  navigateToPage('home');
+    navigateToPage('home');
 });
 </script>
+
+
 </body>
 </html>
