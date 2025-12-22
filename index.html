@@ -1737,12 +1737,13 @@ function showRedirectWarning(button) {
 }
 
 /* ===============================
-   ABRIR APP - CORRIGIDO
+   ABRIR APP - CORRIGIDO (NÃO ABRE OS DOIS JUNTOS)
 ================================ */
 function openApp(appId, button) {
     const app = appsData[appId];
     if (!app) return;
 
+    // Mostrar estado de carregamento no botão IMEDIATAMENTE
     if (button) {
         const originalHTML = button.innerHTML;
         button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Abrindo...';
@@ -1754,54 +1755,60 @@ function openApp(appId, button) {
         }, 2000);
     }
 
-    // Se não tem protocolo, mostrar aviso
-    if (!app.protocol) {
-        if (button) showRedirectWarning(button);
+    // Se não tem protocolo, mostrar aviso IMEDIATAMENTE
+    if (!app.protocol && button) {
+        showRedirectWarning(button);
     }
 
-    // COMPUTADOR: Tenta protocolo primeiro, depois abre site
-    if (!isMobile()) {
-        if (app.protocol) {
-            console.log('Computador: Tentando abrir via protocolo:', app.protocol);
-            
-            // Primeiro tenta abrir o aplicativo nativo via protocolo
-            window.location.href = app.protocol;
-            
-            // Depois de um tempo, se não conseguiu abrir o app, abre o site
-            // (isso evita abrir ambos imediatamente)
-            setTimeout(() => {
-                console.log('Computador: Fallback para site');
+    // Pequeno delay para mostrar o aviso antes do redirecionamento
+    setTimeout(() => {
+        // COMPUTADOR
+        if (!isMobile()) {
+            if (app.protocol) {
+                // Tenta protocolo e monitora se falhou
+                const openedProtocol = window.open(app.protocol, '_self');
+                
+                // Se não conseguiu abrir o protocolo, tenta o site após delay
+                if (!openedProtocol) {
+                    setTimeout(() => {
+                        // Só abre o site se ainda estiver na mesma página
+                        if (window.location.href.indexOf('http') === 0) {
+                            window.open(app.url, '_blank', 'noopener,noreferrer');
+                        }
+                    }, 500);
+                }
+            } else {
+                // Se não tem protocolo, abre o site diretamente
                 window.open(app.url, '_blank', 'noopener,noreferrer');
-            }, 1000);
-        } else {
-            // Se não tem protocolo, abre o site diretamente
-            console.log('Computador: Abrindo site (sem protocolo)');
-            window.open(app.url, '_blank', 'noopener,noreferrer');
+            }
         }
-    }
-    // MOBILE: Tenta protocolo, mas se não funcionar rapidamente, abre o site
-    else {
-        if (app.protocol) {
-            console.log('Mobile: Tentando abrir via protocolo:', app.protocol);
-            
-            // Tenta abrir o app nativo
-            const iframe = document.createElement('iframe');
-            iframe.style.display = 'none';
-            iframe.src = app.protocol;
-            document.body.appendChild(iframe);
-            
-            // Se o app não abrir em 1.5 segundos, abre o site mobile
-            setTimeout(() => {
-                console.log('Mobile: Fallback para site mobile');
-                iframe.remove();
+        // MOBILE
+        else {
+            if (app.protocol) {
+                // Tenta abrir o app nativo
+                const iframe = document.createElement('iframe');
+                iframe.style.display = 'none';
+                iframe.src = app.protocol;
+                document.body.appendChild(iframe);
+                
+                // Remove o iframe após tentativa
+                setTimeout(() => {
+                    iframe.remove();
+                }, 100);
+                
+                // Fallback: se o app não abrir, redireciona para site após 1.2 segundos
+                setTimeout(() => {
+                    // Só redireciona se ainda estiver na mesma página
+                    if (!document.hidden) {
+                        window.location.href = app.mobileUrl;
+                    }
+                }, 1200);
+            } else {
+                // Se não tem protocolo, abre o site mobile
                 window.location.href = app.mobileUrl;
-            }, 1500);
-        } else {
-            // Se não tem protocolo, abre o site mobile
-            console.log('Mobile: Abrindo site mobile (sem protocolo)');
-            window.location.href = app.mobileUrl;
+            }
         }
-    }
+    }, 300);
 }
 
 /* ===============================
@@ -1874,7 +1881,6 @@ document.addEventListener('DOMContentLoaded', () => {
     navigateToPage('home');
 });
 </script>
-
 
 </body>
 </html>
