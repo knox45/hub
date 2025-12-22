@@ -1631,14 +1631,16 @@ const appsData = {
 };
 
 /* ===============================
-   DETECÇÃO DE DISPOSITIVO
+   DETECÇÃO DE MOBILE (SEGURA)
+   (substitui userAgent)
 ================================ */
-function isMobileDevice() {
-  return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+function isMobile() {
+  return window.matchMedia('(pointer: coarse)').matches;
 }
 
 /* ===============================
    NAVEGAÇÃO ENTRE PÁGINAS
+   (NÃO ALTERADO)
 ================================ */
 function navigateToPage(pageId) {
   document.querySelectorAll('.nav-icon').forEach(i => i.classList.remove('active'));
@@ -1654,7 +1656,7 @@ function navigateToPage(pageId) {
     document.querySelector('.nav-icon[data-page="home"]').classList.add('active');
   }
 
-  window.scrollTo(0, 0);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 /* ===============================
@@ -1679,40 +1681,45 @@ document.querySelectorAll('.back-button').forEach(btn => {
 /* ===============================
    TERMOS
 ================================ */
-document.querySelector('.terms-icon').addEventListener('click', function () {
-  window.open('termos.html', '_blank');
+document.querySelector('.terms-icon')?.addEventListener('click', () => {
+  window.open('termos.html', '_blank', 'noopener');
 });
 
 /* ===============================
-   ABERTURA DE APPS (SEGURA)
+   ABERTURA DE APPS
+   (AJUSTE REAL FEITO AQUI)
 ================================ */
 function openApp(url, button, appId) {
   const original = button.innerHTML;
 
-  button.innerHTML = 'ABRINDO...';
+  button.innerHTML = 'Acessando...';
   button.disabled = true;
 
-  /* 
-     AÇÃO ÚNICA POR CLIQUE
-     SEM FALLBACK AUTOMÁTICO
-  */
-  window.open(url, '_blank');
+  if (isMobile()) {
+    // 📱 Mobile → mesma aba (Chrome-friendly)
+    window.location.href = url;
+  } else {
+    // 💻 Desktop → nova aba (seguro)
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
 
-  /* Fallback manual (visível) */
+  // Fallback VISÍVEL (não invasivo)
   if (!button.nextElementSibling) {
     const fallback = document.createElement('a');
-    fallback.href = appsData[appId]?.url || url;
+    fallback.href = url;
     fallback.target = '_blank';
+    fallback.rel = 'noopener noreferrer';
     fallback.textContent = 'Abrir pelo site';
     fallback.style.display = 'block';
     fallback.style.marginTop = '8px';
+    fallback.style.opacity = '0.85';
     button.parentNode.appendChild(fallback);
   }
 
   setTimeout(() => {
     button.innerHTML = original;
     button.disabled = false;
-  }, 800);
+  }, 700);
 }
 
 /* ===============================
@@ -1740,6 +1747,7 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') navigateToPage('home');
 });
 </script>
+
 
 </body>
 </html>
