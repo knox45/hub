@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Jogos | Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="hub.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a0f 0%, #151522 100%);
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ===== BOTÃO VOLTAR (POSICIONADO PARA NÃO CONFLITAR) ===== */
+        .back-button {
+            position: fixed;
+            top: 80px;
+            left: 20px;
+            background: rgba(26, 26, 46, 0.8);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-button:hover {
+            background: rgba(45, 45, 74, 0.9);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ===== INDICADOR DO DISPOSITIVO COM ANIMAÇÃO ===== */
+        .device-indicator {
+            position: fixed;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            padding: 8px 20px;
+            border-radius: 25px;
+            background: rgba(74, 109, 229, 0.25);
+            backdrop-filter: blur(15px);
+            color: #8a9eff;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            pointer-events: none;
+            border: 1px solid rgba(74, 109, 229, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(74, 109, 229, 0.4);
+                border-color: rgba(74, 109, 229, 0.3);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(74, 109, 229, 0);
+                border-color: rgba(74, 109, 229, 0.5);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(74, 109, 229, 0);
+                border-color: rgba(74, 109, 229, 0.3);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== CABEÇALHO SUPERIOR COM LOGO ===== */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: rgba(15, 15, 25, 0.8);
+            backdrop-filter: blur(15px);
+            border-bottom: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            z-index: 999;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            width: 70px;
+            height: 80px;
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .terms-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: rgba(45, 45, 74, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #b0b0c0;
+            border: none;
+            position: relative;
+        }
+
+        .terms-icon:hover {
+            background: rgba(74, 109, 229, 0.3);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(74, 109, 229, 0.2);
+        }
+
+        .terms-icon i {
+            font-size: 1.2rem;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4a6de5, #6a8eff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .user-avatar:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(74, 109, 229, 0.3);
+        }
+
+        /* ===== CONTEÚDO PRINCIPAL ===== */
+        .main-content {
+            padding-top: 60px;
+            min-height: 100vh;
+        }
+
+        /* ===== HEADER DOS JOGOS ===== */
+        .games-header {
+            text-align: center;
+            padding: 100px 40px 40px;
+            position: relative;
+            animation: fadeIn 0.7s ease;
+        }
+
+        .games-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #ffd700, #ffa500);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+        }
+
+        .games-header p {
+            font-size: 1.1rem;
+            color: #aaa;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* ===== GALLERY GRID (MELHORADO) ===== */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 0 30px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            animation: fadeIn 0.9s ease;
+        }
+
+        /* ===== CARD COM BORDAS ANIMADAS VISÍVEIS ===== */
+        .card {
+            position: relative;
+            background: linear-gradient(145deg, #1a1a24, #121218);
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            animation: fadeIn 1.1s ease;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, 
+                #ff6b6b, #4a6de5, #1db954, #ffd700,
+                #9c27b0, #ff9800, #00bcd4);
+            background-size: 400% 400%;
+            border-radius: 19px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            animation: borderPulse 3s linear infinite;
+        }
+
+        @keyframes borderPulse {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            border-color: rgba(255, 165, 0, 0.5);
+        }
+
+        /* ===== IMAGEM ===== */
+        .card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+
+        .card:hover .card-image {
+            transform: scale(1.1);
+        }
+
+        /* ===== GAME INFO ===== */
+        .game-info {
+            background: rgba(20, 20, 28, 0.95);
+            padding: 20px 15px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .game-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .game-status {
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .status-online {
+            color: #4CAF50;
+        }
+
+        .status-icon {
+            font-size: 0.7rem;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #888;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 20px;
+            background: rgba(15, 15, 25, 0.3);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 1.3s ease;
+        }
+
+        .footer a {
+            color: #ffa500;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: #ffd700;
+            text-decoration: underline;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .back-button {
+                top: 70px;
+                left: 15px;
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+            
+            .top-bar {
+                padding: 0 20px;
+            }
+            
+            .games-header {
+                padding: 80px 20px 30px;
+            }
+            
+            .games-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                padding: 0 20px 40px;
+                gap: 20px;
+            }
+            
+            .card-image {
+                height: 170px;
+            }
+            
+            .footer {
+                padding: 25px 20px;
+            }
+            
+            .terms-icon {
+                width: 35px;
+                height: 35px;
+                border-radius: 10px;
+            }
+            
+            .terms-icon i {
+                font-size: 1rem;
+            }
+            
+            .user-avatar {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+            
+            .device-indicator {
+                padding: 6px 16px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .back-button {
+                top: 65px;
+                left: 10px;
+                padding: 8px 15px;
+                font-size: 0.85rem;
+            }
+            
+            .games-header h1 {
+                font-size: 2rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+                max-width: 350px;
+            }
+            
+            .terms-icon {
+                width: 32px;
+                height: 32px;
+                border-radius: 8px;
+            }
+            
+            .terms-icon i {
+                font-size: 0.9rem;
+            }
+            
+            .user-avatar {
+                width: 32px;
+                height: 32px;
+                font-size: 0.9rem;
+            }
+            
+            .device-indicator {
+                padding: 5px 14px;
+                font-size: 0.75rem;
+                top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== BOTÃO VOLTAR (POSICIONADO ABAIXO DA TOP-BAR) ===== -->
+    <button class="back-button" id="backButton">
+        <i class="fas fa-arrow-left"></i> Voltar para Hub
+    </button>
+
+    <!-- ===== INDICADOR DO DISPOSITIVO COM ANIMAÇÃO ===== -->
+    <div class="device-indicator" id="deviceIndicator">
+        <i class="fas fa-desktop"></i>
+        <span>Computador</span>
+    </div>
+
+    <!-- ===== CABEÇALHO COM LOGO ===== -->
+    <div class="top-bar">
+        <div class="logo">
+            <img src="tipo.png" alt="logo">
+        </div>
+        <div class="user-actions">
+            <!-- Botão de Termos (abre termos.html) -->
+            <div class="terms-icon" id="termsButton">
+                <i class="fas fa-file-contract"></i>
+            </div>
+            <!-- Avatar do Usuário -->
+            <div class="user-avatar">
+                <i class="fas fa-user-circle"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+    <div class="main-content">
+        <div class="games-header">
+            <h1><i class="fas fa-gamepad"></i> Meus Jogos</h1>
+            <p>Clique em qualquer jogo para abrir. Todos estão disponíveis e prontos para jogar!</p>
+        </div>
+
+        <section class="gallery" id="gallery"></section>
+
+        <div class="footer">
+            <p>Galeria de Jogos • Hub • <a href="#" onclick="refreshGallery()">Recarregar Jogos</a></p>
+            <p><i class="far fa-copyright"></i> 2023 - Todos os direitos reservados aos respectivos desenvolvedores</p>
+        </div>
+    </div>
+
+<script>
+// ===== ARRAY COMPLETO COM TODOS OS 13 JOGOS =====
+const games = [
+  {
+    name: "League of Legends",
+    image: "https://www.riotgames.com/darkroom/800/0ac7b5a1364b9e888627f896d4085766:980dc9ab786d8025b58c05958207486f/lol-sn24-1920x1080-kv-final.jpg",
+    link: "https://www.leagueoflegends.com",
+    status: "online"
+  },
+  {
+    name: "Wild Rift",
+    image: "https://s2-ge.glbimg.com/MFtEC-1AStDzt69twCXr5IJPejE=/0x0:1280x720/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_bc8228b6673f488aa253bbcb03c80ec5/internal_photos/bs/2021/4/E/IthlRZSb6wdPyyE32CEg/wild-rift-registro.jpg",
+    link: "https://wildrift.leagueoflegends.com",
+    status: "online"
+  },
+  {
+    name: "2XKO",
+    image: "https://www.riotgames.com/darkroom/1440/f89dcd503e2bba01d44f436544c794be:28f157178e4c06b20b13f6c64631bf52/2xko-brvl24-social-3840x2160-desktopwallpaper-duo-ekko-ahri-v001a-1.png",
+    link: "https://2xko.riotgames.com",
+    status: "online"
+  },
+  {
+    name: "Fortnite",
+    image: "https://cdn2.unrealengine.com/the-future-of-fortnite-is-here-1920x1080-fd281a65c8ef.jpg",
+    link: "https://www.fortnite.com",
+    status: "online"
+  },
+  {
+    name: "Minecraft",
+    image: "https://cms-assets.xboxservices.com/assets/80/3e/803ec2fd-8b6e-409f-a6c6-e5b19cb118da.jpg?n=Minecraft_Sneaky-Slider-1084_The-Copper-Age_1600x675.jpg",
+    link: "https://www.minecraft.net",
+    status: "online"
+  },
+  {
+    name: "Valorant",
+    image: "https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/26e8fff3ab3587144420aaa27b0e85167bb47336-1920x1080.jpg?accountingTag=VAL",
+    link: "https://playvalorant.com",
+    status: "online"
+  },
+  {
+    name: "Disney Speedstorm",
+    image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgo5ekPOyKHEMmHXSNpas9LbFKPuWr03zjSpW0HVjj6eHrNyUEyW2ziHuASSSDUpKT2qD26jzr0-zKaImE7Cyd10LfAh1q1Zr7aV4H44M8uVEz6fuJKT3V71o4j-0nNYLu1VDks3G3T9LtGDwyh1TiO1rVqW3RAnYjJYWPcNHofJJqgD2uj3LWXn6yKYt0/s3840/Disney_Speedstorm_capa.jpg",
+    link: "https://disneyspeedstorm.com",
+    status: "online"
+  },
+  {
+    name: "TFT",
+    image: "https://cdn.aptoide.com/imgs/7/4/2/742f363386eef2450062148e8fd000bb_fgraphic.png",
+    link: "https://teamfighttactics.leagueoflegends.com",
+    status: "online"
+  },
+  {
+    name: "Skate",
+    image: "https://media.contentapi.ea.com/content/dam/eacom/skate/common/skate-key-art-16x9.jpg.adapt.crop191x100.1200w.jpg",
+    link: "https://www.ea.com/games/skate",
+    status: "online"
+  },
+  // ===== NOVOS JOGOS ADICIONADOS =====
+  {
+    name: "Ananta",
+    image: "https://www.anantagame.com/images/20250922/1758531082979_b6414f6476.png",
+    link: "https://www.anantagame.com",
+    status: "online"
+  },
+  {
+    name: "Cyberpunk 2077",
+    image: "https://static.cdprojektred.com/cms.cdprojektred.com/16x9_big/f4ce7b1be9bc4b0ee2df8f9a311a850a594d3d1a-1280x720.jpg",
+    link: "https://www.cyberpunk.net",
+    status: "online"
+  },
+  {
+    name: "Forza Horizon 5",
+    image: "https://image.api.playstation.com/vulcan/ap/rnd/202501/2717/0c5df2b67b23263d055f3b78aeb77a6ce4668bb078fced77.jpg",
+    link: "https://forza.net/horizon5",
+    status: "online"
+  },
+  {
+    name: "Crash Bandicoot 4",
+    image: "https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/b_white/f_auto/q_auto/store/software/switch/70010000029035/52f1799d32072107f9f0ecad96fb833c4a0850b7e1cc6b1c7ca630b9f89dd2a0",
+    link: "https://www.crashbandicoot.com/crash4",
+    status: "online"
+  }
+];
+
+// Elementos DOM
+const gallery = document.getElementById("gallery");
+const deviceIndicator = document.getElementById("deviceIndicator");
+const backButton = document.getElementById("backButton");
+const termsButton = document.getElementById("termsButton");
+
+// Função para detectar dispositivo COM ANIMAÇÃO
+function updateDeviceIndicator() {
+    const isMobile = /android|iphone|ipad|ipod|mobile/i.test(navigator.userAgent);
+    const icon = isMobile ? "fa-mobile-alt" : "fa-desktop";
+    const text = isMobile ? "Mobile" : "Computador";
+    
+    deviceIndicator.innerHTML = `<i class="fas ${icon}"></i><span>${text}</span>`;
+    deviceIndicator.style.animation = 'pulse 2s infinite';
+}
+
+// Função para renderizar jogos
+function renderGames() {
+    gallery.innerHTML = '';
+    
+    games.forEach(game => {
+        const card = document.createElement("div");
+        card.className = "card";
+        
+        card.onclick = () => {
+            window.open(game.link, "_blank", "noopener,noreferrer");
+        };
+
+        const statusText = game.status === 'online' 
+            ? '<span class="status-online"><i class="fas fa-circle status-icon"></i> Online</span>'
+            : '<span class="status-offline"><i class="fas fa-exclamation-circle status-icon"></i> Offline</span>';
+
+        card.innerHTML = `
+            <img src="${game.image}" alt="${game.name}" class="card-image" 
+                 onerror="this.src='https://via.placeholder.com/400x200/333/666?text=${encodeURIComponent(game.name)}'">
+            <div class="game-info">
+                <div class="game-title">${game.name}</div>
+                <div class="game-status">${statusText}</div>
+            </div>
+        `;
+        gallery.appendChild(card);
+    });
+}
+
+// Função para recarregar jogos
+function refreshGallery() {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        card.style.opacity = '0.5';
+        card.style.transform = 'scale(0.95)';
+    });
+    
+    setTimeout(() => {
+        renderGames();
+        alert('Jogos recarregados com sucesso!');
+    }, 500);
+}
+
+// Inicialização
+document.addEventListener('DOMContentLoaded', () => {
+    updateDeviceIndicator();
+    renderGames();
+    
+    window.addEventListener('resize', updateDeviceIndicator);
+    
+    backButton.addEventListener('click', () => {
+        window.location.href = 'index.html';
+    });
+    
+    termsButton.addEventListener('click', () => {
+        window.open('termos.html', '_blank', 'noopener');
+    });
+    
+    document.querySelector('.user-avatar').addEventListener('click', () => {
+        alert('Perfil do usuário (em desenvolvimento)');
+    });
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            window.location.href = 'index.html';
+        }
+    });
+});
+
+setInterval(updateDeviceIndicator, 5000);
+</script>
+
+</body>
+</html>
