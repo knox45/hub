@@ -877,7 +877,52 @@
                 padding: 4px 10px;
             }
         }
+        /* =========================
+   BOTÃO GAMES - NEON QUENTE
+========================= */
+.neon-games {
+    background: linear-gradient(
+        135deg,
+        #ff6a00,
+        #ff1744,
+        #ff9100,
+        #ff3d00
+    );
+    background-size: 300% 300%;
+    color: #fff;
+
+    box-shadow:
+        0 0 8px rgba(255, 106, 0, 0.6),
+        0 0 18px rgba(255, 23, 68, 0.5),
+        0 0 28px rgba(255, 61, 0, 0.4);
+
+    animation: neonHotFlow 3.5s ease infinite;
+}
+
+/* ÍCONE – proporção corrigida */
+.neon-games i {
+    font-size: 1.65rem; /* melhor que o padrão */
+    line-height: 1;
+}
+
+/* Hover mais intenso */
+.neon-games:hover {
+    transform: translateY(-4px) scale(1.06);
+    box-shadow:
+        0 0 12px #ff6a00,
+        0 0 26px #ff1744,
+        0 0 40px #ff9100;
+}
+
+/* Animação do gradiente quente */
+@keyframes neonHotFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
     </style>
+    
 </head>
 <body>
     <!-- Barra lateral estilo Riot - COM SCROLL -->
@@ -885,6 +930,10 @@
         <div class="nav-icon active" data-page="home">
             <i class="fas fa-home"></i>
         </div>
+        <a href="game.html" class="nav-icon neon-games" title="Games">
+    <i class="fa-solid fa-grip"></i>
+</a>
+
         <!-- SEU SITE DE LINKS -->
         <div class="nav-icon" data-page="ray-links">
             <img src="ray.png" alt="Ray Links">
