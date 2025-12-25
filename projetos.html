@@ -14,22 +14,22 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* ===== BOTÃO VOLTAR PARA HUB (POSICIONADO CORRETAMENTE) ===== */
+        /* ===== BOTÃO VOLTAR PARA HUB (REPOSICIONADO) ===== */
         .back-button-hub {
             position: fixed;
-            top: 90px; /* Abaixo da top-bar */
-            left: 20px;
+            top: 20px; /* Posicionado no topo, ao lado do logo */
+            right: 120px; /* Posicionado à direita, depois do avatar do usuário */
             background: rgba(26, 26, 46, 0.8);
             color: white;
             border: none;
-            padding: 12px 24px;
+            padding: 10px 20px;
             border-radius: 10px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             z-index: 1000;
             transition: all 0.3s;
             backdrop-filter: blur(10px);
@@ -38,7 +38,7 @@
 
         .back-button-hub:hover {
             background: rgba(45, 45, 74, 0.9);
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             border-color: rgba(74, 109, 229, 0.4);
         }
@@ -137,7 +137,7 @@
 
         /* Página inicial */
         .home-header {
-            padding: 80px 40px 40px; /* Aumentado para espaço do botão */
+            padding: 80px 40px 40px;
             background: linear-gradient(to bottom, rgba(10, 10, 18, 0.9), transparent);
             text-align: center;
         }
@@ -573,19 +573,19 @@
         @media (max-width: 768px) {
             /* Botão voltar para hub responsivo */
             .back-button-hub {
-                top: 80px;
-                left: 15px;
-                padding: 10px 18px;
-                font-size: 0.9rem;
+                top: 15px;
+                right: 100px;
+                padding: 8px 15px;
+                font-size: 0.8rem;
             }
             
             .top-bar {
-                padding: 0 20px;
+                padding: 0 15px;
                 height: 55px;
             }
             
             .logo {
-                font-size: 1.3rem;
+                font-size: 1.2rem;
             }
             
             .logo img {
@@ -594,7 +594,7 @@
             }
             
             .home-header {
-                padding: 60px 20px 30px;
+                padding: 70px 20px 30px;
             }
             
             .home-header h1 {
@@ -692,10 +692,10 @@
 
         @media (max-width: 480px) {
             .back-button-hub {
-                top: 75px;
-                left: 10px;
-                padding: 8px 15px;
-                font-size: 0.85rem;
+                top: 12px;
+                right: 90px;
+                padding: 6px 12px;
+                font-size: 0.75rem;
             }
             
             .home-header h1 {
@@ -724,7 +724,7 @@
     </style>
 </head>
 <body>
-    <!-- ===== BOTÃO VOLTAR PARA HUB (FIXO) ===== -->
+    <!-- ===== BOTÃO VOLTAR PARA HUB (REPOSICIONADO) ===== -->
     <button class="back-button-hub" id="backButtonHub">
         <i class="fas fa-arrow-left"></i> Voltar para Hub
     </button>
@@ -761,7 +761,7 @@
                     </div>
                     <div class="app-content">
                         <h3 class="app-title">DsChurros</h3>
-                        <p class="app-description">Site especializado em churros deliciosos. Cardápio variado, promoções e delivery disponível.</p>
+                        <p class="app-description">Site especializado em churros artesanais com cardápio variado e deliciosas opções.</p>
                         <div class="app-tags">
                             <span class="app-tag">Alimentação</span>
                             <span class="app-tag">Churros</span>
@@ -778,7 +778,7 @@
                     </div>
                     <div class="app-content">
                         <h3 class="app-title">The Spike Ahri</h3>
-                        <p class="app-description">Site inspirado na Ahri de League of Legends. Fã-site com builds, skins, histórias e muito mais.</p>
+                        <p class="app-description">Site dedicado à Ahri de League of Legends com história, habilidades e conteúdo exclusivo.</p>
                         <div class="app-tags">
                             <span class="app-tag">Games</span>
                             <span class="app-tag">League of Legends</span>
@@ -795,7 +795,7 @@
                     </div>
                     <div class="app-content">
                         <h3 class="app-title">Receitas Italianas</h3>
-                        <p class="app-description">Site com receitas tradicionais italianas. Massas, pizzas, risotos e sobremesas autênticas.</p>
+                        <p class="app-description">Site com receitas tradicionais italianas, desde massas caseiras até sobremesas autênticas.</p>
                         <div class="app-tags">
                             <span class="app-tag">Culinária</span>
                             <span class="app-tag">Itália</span>
@@ -812,7 +812,7 @@
                     </div>
                     <div class="app-content">
                         <h3 class="app-title">Links DsChurros</h3>
-                        <p class="app-description">Hub de links para todos os projetos relacionados à marca Dschurros. Redes sociais, contatos e mais.</p>
+                        <p class="app-description">Hub central com todos os links importantes da marca Dschurros em um só lugar.</p>
                         <div class="app-tags">
                             <span class="app-tag">Links</span>
                             <span class="app-tag">Hub</span>
@@ -840,7 +840,7 @@
                     </div>
                     <div class="app-hero-info">
                         <h1 style="color: #FF6B6B;">DsChurros</h1>
-                        <p>Site especializado em churros deliciosos. Cardápio variado, promoções e delivery disponível.</p>
+                        <p>Site especializado em churros artesanais com cardápio variado e deliciosas opções.</p>
                     </div>
                 </div>
             </div>
@@ -848,20 +848,16 @@
             <div class="app-detail-content">
                 <div class="app-description-content">
                     <h2>Sobre o DsChurros</h2>
-                    <p>O DsChurros é um site dedicado aos amantes de churros, oferecendo uma experiência completa desde o cardápio online até o delivery. Especializados em churros tradicionais e recheios criativos.</p>
-                    <p>Nosso objetivo é levar a alegria dos churros artesanais para todos, com qualidade premium e sabores inovadores.</p>
+                    <p>O DsChurros é um site completo dedicado aos amantes de churros, oferecendo uma experiência gastronômica única com cardápio digital e sistema de encomendas. Especializados em churros tradicionais e criativos.</p>
+                    <p>Nosso objetivo é levar a alegria dos churros artesanais diretamente até você, com qualidade premium, ingredientes selecionados e muito sabor em cada mordida.</p>
                     
                     <h2>Recursos Principais</h2>
                     <ul>
-                        <li>Cardápio digital completo com fotos</li>
-                        <li>Sistema de pedidos online integrado</li>
-                        <li>Delivery com rastreamento em tempo real</li>
-                        <li>Promoções exclusivas para clientes frequentes</li>
-                        <li>Receitas especiais e churros temáticos</li>
-                        <li>Blog com dicas e curiosidades sobre churros</li>
-                        <li>Sistema de reservas para eventos</li>
-                        <li>Programa de fidelidade com benefícios</li>
-                        <li>Atendimento via WhatsApp integrado</li>
+                        <li>Cardápio digital completo com fotos em alta qualidade</li>
+                        <li>Sistema de reservas para eventos e encomendas</li>
+                        <li>Atendimento personalizado via WhatsApp</li>
+                        <li>História da marca e tradição dos churros</li>
+                        <li>Promoções especiais e novidades sazonais</li>
                     </ul>
                 </div>
                 
@@ -886,8 +882,8 @@
                             <span class="info-value" style="color: #FF6B6B;">Online</span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Delivery</span>
-                            <span class="info-value">Disponível</span>
+                            <span class="info-label">Versão</span>
+                            <span class="info-value">2.0</span>
                         </div>
                     </div>
                 </div>
@@ -906,7 +902,7 @@
                     </div>
                     <div class="app-hero-info">
                         <h1 style="color: #9C27B0;">The Spike Ahri</h1>
-                        <p>Site inspirado na Ahri de League of Legends. Fã-site com builds, skins, histórias e muito mais.</p>
+                        <p>Descubra quem é Ahri, suas habilidades e um espaço especial feito para fãs da Raposa de Nove Caudas.</p>
                     </div>
                 </div>
             </div>
@@ -914,20 +910,17 @@
             <div class="app-detail-content">
                 <div class="app-description-content">
                     <h2>Sobre o The Spike Ahri</h2>
-                    <p>The Spike Ahri é um fã-site dedicado à campeã Ahri do jogo League of Legends. Oferece guias completos, builds atualizadas, análises de skins e toda a lore da personagem.</p>
-                    <p>Para jogadores que querem dominar Ahri no mid lane ou simplesmente para fãs que querem conhecer mais sobre esta personagem fascinante.</p>
+                    <p>The Spike Ahri é um site dedicado à campeã Ahri do universo de League of Legends. O site apresenta um resumo completo sobre a personagem, suas habilidades detalhadas e um currículo fictício inspirado em sua história rica em lore.</p>
+                    <p>Também conta com link para uma música favorita do grupo K/DA e um mural especial dedicado à versão da Ahri no 2XKO, criado especialmente para os fãs da personagem mais carismática de Runeterra.</p>
                     
                     <h2>Recursos Principais</h2>
                     <ul>
-                        <li>Guias de builds atualizadas para cada patch</li>
-                        <li>Análises detalhadas de todas as skins de Ahri</li>
-                        <li>Lore completa e história da personagem</li>
-                        <li>Dicas de combos e gameplay avançado</li>
-                        <li>Comparativo de runas e itens</li>
-                        <li>Vídeos de highlights e montagens</li>
-                        <li>Fórum da comunidade de fãs de Ahri</li>
-                        <li>Notícias sobre atualizações relacionadas</li>
-                        <li>Wallpapers e artes exclusivas</li>
+                        <li>Seção informativa completa sobre a história da Ahri</li>
+                        <li>Lista explicativa detalhada das habilidades da campeã</li>
+                        <li>Currículo fictício apresentando o perfil profissional da Ahri</li>
+                        <li>Link integrado para música favorita do grupo K/DA</li>
+                        <li>Mural exclusivo dedicado à versão da Ahri no 2XKO</li>
+                        <li>Design inspirado no tema da Raposa de Nove Caudas</li>
                     </ul>
                 </div>
                 
@@ -972,7 +965,7 @@
                     </div>
                     <div class="app-hero-info">
                         <h1 style="color: #9e7e09;">Receitas Italianas</h1>
-                        <p>Site com receitas tradicionais italianas. Massas, pizzas, risotos e sobremesas autênticas.</p>
+                        <p>Site completo com receitas tradicionais italianas. Massas, pizzas, risotos e sobremesas autênticas da Itália.</p>
                     </div>
                 </div>
             </div>
@@ -980,20 +973,18 @@
             <div class="app-detail-content">
                 <div class="app-description-content">
                     <h2>Sobre o Receitas Italianas</h2>
-                    <p>Receitas Italianas é um site dedicado à culinária italiana autêntica. Desde receitas familiares tradicionais até criações contemporâneas, tudo com o verdadeiro sabor da Itália.</p>
-                    <p>Ideal para quem quer cozinhar como um italiano ou simplesmente apreciar a rica cultura gastronômica da Itália.</p>
+                    <p>Receitas Italianas é um site dedicado à culinária italiana autêntica. Desde receitas familiares tradicionais passadas por gerações até criações contemporâneas inovadoras, tudo com o verdadeiro sabor da Itália em cada detalhe.</p>
+                    <p>Ideal para quem quer cozinhar como um verdadeiro italiano ou simplesmente apreciar a rica cultura gastronômica da Itália através de receitas testadas e aprovadas.</p>
                     
                     <h2>Recursos Principais</h2>
                     <ul>
                         <li>Receitas tradicionais de todas as regiões da Itália</li>
-                        <li>Vídeos passo a passo com chefs italianos</li>
-                        <li>Dicionário de ingredientes e técnicas italianas</li>
-                        <li>Menu semanal com sugestões de pratos</li>
-                        <li>Dicas para encontrar ingredientes autênticos</li>
-                        <li>Receitas adaptadas para cozinheiros iniciantes</li>
-                        <li>Seção especial de massas caseiras</li>
-                        <li>Receitas de pizzas e focaccias</li>
-                        <li>Sobremesas italianas clássicas</li>
+                        <li>Dicionário completo de ingredientes e técnicas italianas</li>
+                        <li>Dicas práticas para encontrar ingredientes autênticos</li>
+                        <li>Receitas adaptadas para cozinheiros iniciantes e experts</li>
+                        <li>Seção especial de massas caseiras passo a passo</li>
+                        <li>Receitas de pizzas tradicionais napolitanas</li>
+                        <li>Vídeos tutoriais com chefs italianos</li>
                     </ul>
                 </div>
                 
@@ -1019,7 +1010,7 @@
                         </div>
                         <div class="info-item">
                             <span class="info-label">Nível</span>
-                            <span class="info-value">Todos</span>
+                            <span class="info-value">Todos os níveis</span>
                         </div>
                     </div>
                 </div>
@@ -1038,7 +1029,7 @@
                     </div>
                     <div class="app-hero-info">
                         <h1 style="color: #2196F3;">Links DsChurros</h1>
-                        <p>Hub de links para todos os projetos relacionados à marca Dschurros. Redes sociais, contatos e mais.</p>
+                        <p>Hub central de links para todos os projetos relacionados à marca Dschurros. Redes sociais, contatos e mais em um só lugar.</p>
                     </div>
                 </div>
             </div>
@@ -1046,20 +1037,17 @@
             <div class="app-detail-content">
                 <div class="app-description-content">
                     <h2>Sobre o Links DsChurros</h2>
-                    <p>Links DsChurros é o hub central para todos os projetos e canais relacionados à marca DsChurros. Um único lugar para acessar todas as redes sociais, sites e pontos de contato.</p>
-                    <p>Perfeito para clientes, parceiros e fãs que querem acompanhar todas as novidades e iniciativas da marca DsChurros.</p>
+                    <p>Links DsChurros é o hub central definitivo para todos os projetos e canais relacionados à marca DsChurros. Um único lugar organizado e acessível para encontrar todas as redes sociais, sites oficiais e pontos de contato importantes.</p>
+                    <p>Perfeito para clientes, fãs e parceiros que querem acompanhar todas as novidades, promoções e atualizações da DsChurros de maneira simples e eficiente.</p>
                     
                     <h2>Recursos Principais</h2>
                     <ul>
-                        <li>Links para todas as redes sociais da marca</li>
-                        <li>Contatos diretos para delivery e reservas</li>
-                        <li>Links para sites parceiros e afiliados</li>
-                        <li>Catálogo digital completo de produtos</li>
-                        <li>Promoções e cupons de desconto exclusivos</li>
-                        <li>Blog com novidades e atualizações</li>
-                        <li>Mapa de localização das lojas físicas</li>
-                        <li>Formulário de contato profissional</li>
-                        <li>Links para aplicativos mobile</li>
+                        <li>Links organizados para todas as redes sociais da marca</li>
+                        <li>Acesso rápido aos sites oficiais dos projetos</li>
+                        <li>Canais de contato direto com a equipe</li>
+                        <li>Novidades e atualizações em tempo real</li>
+                        <li>Promoções exclusivas para seguidores</li>
+                        <li>Links para encomendas e delivery</li>
                     </ul>
                 </div>
                 
