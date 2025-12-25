@@ -14,6 +14,35 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        /* ===== BOTÃO VOLTAR PARA HUB (POSICIONADO CORRETAMENTE) ===== */
+        .back-button-hub {
+            position: fixed;
+            top: 90px; /* Abaixo da top-bar */
+            left: 20px;
+            background: rgba(26, 26, 46, 0.8);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(74, 109, 229, 0.2);
+        }
+
+        .back-button-hub:hover {
+            background: rgba(45, 45, 74, 0.9);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-color: rgba(74, 109, 229, 0.4);
+        }
+
         body {
             background-color: #0a0a12;
             color: #f0f0f0;
@@ -71,33 +100,6 @@
             gap: 15px;
         }
 
-        /* Botão de voltar no estilo dos ícones */
-        .back-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            background: rgba(156, 74, 226, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: #d0b0ff;
-            border: none;
-            position: relative;
-        }
-
-        .back-icon:hover {
-            background: rgba(156, 74, 226, 0.4);
-            color: #ffffff;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(156, 74, 226, 0.3);
-        }
-
-        .back-icon i {
-            font-size: 1.2rem;
-        }
-
         .user-avatar {
             width: 40px;
             height: 40px;
@@ -135,7 +137,7 @@
 
         /* Página inicial */
         .home-header {
-            padding: 60px 40px 40px;
+            padding: 80px 40px 40px; /* Aumentado para espaço do botão */
             background: linear-gradient(to bottom, rgba(10, 10, 18, 0.9), transparent);
             text-align: center;
         }
@@ -488,7 +490,7 @@
         }
 
         /* Botão voltar na página de detalhes */
-        .back-button {
+        .app-back-button {
             position: absolute;
             top: 30px;
             left: 30px;
@@ -509,7 +511,7 @@
             border: 1px solid rgba(156, 74, 226, 0.2);
         }
 
-        .back-button:hover {
+        .app-back-button:hover {
             background: rgba(45, 45, 74, 0.9);
             border-color: rgba(156, 74, 226, 0.4);
         }
@@ -569,6 +571,14 @@
 
         /* ADAPTAÇÕES PARA MOBILE */
         @media (max-width: 768px) {
+            /* Botão voltar para hub responsivo */
+            .back-button-hub {
+                top: 80px;
+                left: 15px;
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+            
             .top-bar {
                 padding: 0 20px;
                 height: 55px;
@@ -584,7 +594,7 @@
             }
             
             .home-header {
-                padding: 40px 20px 30px;
+                padding: 60px 20px 30px;
             }
             
             .home-header h1 {
@@ -657,7 +667,7 @@
                 padding: 25px 20px;
             }
             
-            .back-button {
+            .app-back-button {
                 top: 20px;
                 left: 20px;
                 padding: 10px 18px;
@@ -666,16 +676,6 @@
 
             .user-actions {
                 gap: 10px;
-            }
-            
-            .back-icon {
-                width: 35px;
-                height: 35px;
-                border-radius: 10px;
-            }
-            
-            .back-icon i {
-                font-size: 1rem;
             }
             
             .user-avatar {
@@ -691,6 +691,13 @@
         }
 
         @media (max-width: 480px) {
+            .back-button-hub {
+                top: 75px;
+                left: 10px;
+                padding: 8px 15px;
+                font-size: 0.85rem;
+            }
+            
             .home-header h1 {
                 font-size: 2rem;
             }
@@ -703,16 +710,6 @@
                 height: 130px;
             }
 
-            .back-icon {
-                width: 32px;
-                height: 32px;
-                border-radius: 8px;
-            }
-            
-            .back-icon i {
-                font-size: 0.9rem;
-            }
-            
             .user-avatar {
                 width: 32px;
                 height: 32px;
@@ -727,6 +724,11 @@
     </style>
 </head>
 <body>
+    <!-- ===== BOTÃO VOLTAR PARA HUB (FIXO) ===== -->
+    <button class="back-button-hub" id="backButtonHub">
+        <i class="fas fa-arrow-left"></i> Voltar para Hub
+    </button>
+
     <!-- Barra superior simplificada - SEM barra lateral -->
     <div class="top-bar">
         <div class="logo">
@@ -734,11 +736,6 @@
             <span>Meus Projetos</span>
         </div>
         <div class="user-actions">
-            <!-- Botão de voltar para home -->
-             
-            <div class="back-icon" id="back-to-home">
-                <i class="fas fa-arrow-left"></i>
-            </div>
             <div class="user-avatar">
                 <i class="fas fa-user-circle"></i>
             </div>
@@ -823,15 +820,19 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="footer">
+                © 2025 Meus Projetos • Todos os direitos reservados
+            </div>
         </div>
 
         <!-- =============== PÁGINAS DOS PROJETOS =============== -->
 
         <!-- Página do Dschurros -->
-        <div id="dschurros-page" class="page app-page">
+        <div id="dschurros-page" class="page">
             <div class="app-hero" style="background-image: url('https://p2.trrsf.com/image/fget/cf/1200/630/middle/images.terra.com/2023/03/23/137588257-churros-com-chocolate.jpg');">
-                <button class="back-button">
-                    <i class="fas fa-arrow-left"></i> Voltar
+                <button class="app-back-button" onclick="navigateToPage('home-page')">
+                    <i class="fas fa-arrow-left"></i> Voltar para Projetos
                 </button>
                 <div class="app-hero-content">
                     <div class="app-hero-icon">
@@ -865,8 +866,7 @@
                 </div>
                 
                 <div class="app-sidebar">
-                    <!-- COLOQUE AQUI O LINK REAL DO SITE DSCHURROS -->
-                    <button class="launch-button dschurros" data-url="https://dschurros.github.io/site/">
+                    <button class="launch-button dschurros" onclick="window.open('https://dschurros.github.io/site/', '_blank')">
                         <i class="fas fa-external-link-alt"></i>
                         ACESSAR SITE
                     </button>
@@ -895,10 +895,10 @@
         </div>
 
         <!-- Página do The Spike Ahri -->
-        <div id="the-spike-ahri-page" class="page app-page">
+        <div id="the-spike-ahri-page" class="page">
             <div class="app-hero" style="background-image: url('https://sm.ign.com/t/ign_in/video/2/2xko-offic/2xko-official-ahri-gameplay-trailer_5jr5.1200.png');">
-                <button class="back-button">
-                    <i class="fas fa-arrow-left"></i> Voltar
+                <button class="app-back-button" onclick="navigateToPage('home-page')">
+                    <i class="fas fa-arrow-left"></i> Voltar para Projetos
                 </button>
                 <div class="app-hero-content">
                     <div class="app-hero-icon">
@@ -932,8 +932,7 @@
                 </div>
                 
                 <div class="app-sidebar">
-                    <!-- COLOQUE AQUI O LINK REAL DO SITE THE SPIKE AHRI -->
-                    <button class="launch-button the-spike-ahri" data-url="https://loirinhodid.github.io/codex-ray/">
+                    <button class="launch-button the-spike-ahri" onclick="window.open('https://loirinhodid.github.io/codex-ray/', '_blank')">
                         <i class="fas fa-external-link-alt"></i>
                         ACESSAR SITE
                     </button>
@@ -962,10 +961,10 @@
         </div>
 
         <!-- Página do Receitas Italianas -->
-        <div id="receitas-italianas-page" class="page app-page">
+        <div id="receitas-italianas-page" class="page">
             <div class="app-hero" style="background-image: url('https://alegrafoods.com.br/wp-content/uploads/2020/07/9-img-blog.png');">
-                <button class="back-button">
-                    <i class="fas fa-arrow-left"></i> Voltar
+                <button class="app-back-button" onclick="navigateToPage('home-page')">
+                    <i class="fas fa-arrow-left"></i> Voltar para Projetos
                 </button>
                 <div class="app-hero-content">
                     <div class="app-hero-icon">
@@ -999,8 +998,7 @@
                 </div>
                 
                 <div class="app-sidebar">
-                    <!-- COLOQUE AQUI O LINK REAL DO SITE RECEITAS ITALIANAS -->
-                    <button class="launch-button receitas-italianas" data-url="https://loirinhodid.github.io/meu-site/">
+                    <button class="launch-button receitas-italianas" onclick="window.open('https://loirinhodid.github.io/meu-site/', '_blank')">
                         <i class="fas fa-external-link-alt"></i>
                         ACESSAR SITE
                     </button>
@@ -1029,10 +1027,10 @@
         </div>
 
         <!-- Página do Links Dschurros -->
-        <div id="links-dschurros-page" class="page app-page">
+        <div id="links-dschurros-page" class="page">
             <div class="app-hero" style="background-image: url('https://t.ctcdn.com.br/a-ZX5Rnzm_gPIYtjYeT4E4ncC6s=/640x360/smart/i605666.jpeg');">
-                <button class="back-button">
-                    <i class="fas fa-arrow-left"></i> Voltar
+                <button class="app-back-button" onclick="navigateToPage('home-page')">
+                    <i class="fas fa-arrow-left"></i> Voltar para Projetos
                 </button>
                 <div class="app-hero-content">
                     <div class="app-hero-icon">
@@ -1066,8 +1064,7 @@
                 </div>
                 
                 <div class="app-sidebar">
-                    <!-- COLOQUE AQUI O LINK REAL DO SITE LINKS DSCHURROS -->
-                    <button class="launch-button links-dschurros" data-url="https://loirinhodid.github.io/linkdschurros">
+                    <button class="launch-button links-dschurros" onclick="window.open('https://loirinhodid.github.io/linkdschurros', '_blank')">
                         <i class="fas fa-external-link-alt"></i>
                         ACESSAR SITE
                     </button>
@@ -1094,83 +1091,21 @@
                 </div>
             </div>
         </div>
-
-        <!-- Footer -->
-        <div class="footer">
-            © 2025 Meus Projetos • Todos os direitos reservados
-        </div>
     </div>
 
 <script>
-    /* ===============================
-   PROJETOS
-================================ */
-const appsData = {
-    'home': { name: 'Início' },
-    'dschurros': {
-        name: 'DsChurros',
-        url: 'https://dschurros.github.io/site/',
-        mobileUrl: 'https://dschurros.github.io/site/',
-        protocol: null,
-        color: '#FF6B6B'
-    },
-    'the-spike-ahri': {
-        name: 'The Spike Ahri',
-        url: 'https://loirinhodid.github.io/codex-ray/',
-        mobileUrl: 'https://loirinhodid.github.io/codex-ray/',
-        protocol: null,
-        color: '#9C27B0'
-    },
-    'receitas-italianas': {
-        name: 'Receitas Italianas',
-        url: 'https://loirinhodid.github.io/meu-site/',
-        mobileUrl: 'https://loirinhodid.github.io/meu-site/',
-        protocol: null,
-        color: '#4CAF50'
-    },
-    'links-dschurros': {
-        name: 'Links DsChurros',
-        url: 'https://loirinhodid.github.io/linkdschurros',
-        mobileUrl: 'https://loirinhodid.github.io/linkdschurros',
-        protocol: null,
-        color: '#2196F3'
-    }
-};
-
 /* ===============================
-   MOBILE
+   FUNÇÕES PRINCIPAIS
 ================================ */
 function isMobile() {
     return /android|iphone|ipad|ipod|mobile/i.test(navigator.userAgent);
 }
 
-/* ===============================
-   INDICADOR COM ANIMAÇÃO
-================================ */
 function createDeviceIndicator() {
     document.querySelector('.device-indicator')?.remove();
 
     const el = document.createElement('div');
     el.className = 'device-indicator';
-    el.style.cssText = `
-        position: fixed;
-        top: 12px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 9999;
-        padding: 6px 14px;
-        border-radius: 20px;
-        background: rgba(0, 0, 0, 0.35);
-        color: #fff;
-        font-size: .75rem;
-        display: flex;
-        gap: 8px;
-        align-items: center;
-        pointer-events: none;
-        border: 1px solid rgba(156, 74, 226, 0.3);
-        animation: pulse 2s infinite;
-    `;
-
     el.innerHTML = `
         <i class="fas ${isMobile() ? 'fa-mobile-alt' : 'fa-desktop'}"></i>
         <span>${isMobile() ? 'Mobile' : 'Computador'}</span>
@@ -1179,32 +1114,22 @@ function createDeviceIndicator() {
     document.body.appendChild(el);
 }
 
-/* ===============================
-   NAVEGAÇÃO
-================================ */
 function navigateToPage(pageId) {
     // Esconder todas as páginas
-    document.querySelectorAll('.page, .app-page')
-        .forEach(p => p.classList.remove('active'));
-
+    document.querySelectorAll('.page').forEach(p => {
+        p.classList.remove('active');
+    });
+    
     // Mostrar a página solicitada
-    const pageElement = document.getElementById(`${pageId}-page`);
+    const pageElement = document.getElementById(pageId);
     if (pageElement) {
         pageElement.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
-    // Scroll suave para o topo
-    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-/* ===============================
-   ABRIR APP
-================================ */
-function openApp(appId, button) {
-    const app = appsData[appId];
-    if (!app) return;
-
-    // Mostrar estado de carregamento no botão
+function openApp(url, button) {
+    // Mostrar estado de carregamento
     if (button) {
         const originalHTML = button.innerHTML;
         button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Abrindo...';
@@ -1213,109 +1138,53 @@ function openApp(appId, button) {
         setTimeout(() => {
             button.innerHTML = originalHTML;
             button.disabled = false;
-        }, 2000);
+        }, 1500);
     }
 
-    // Pequeno delay
+    // Abrir o site
     setTimeout(() => {
-        // COMPUTADOR
-        if (!isMobile()) {
-            if (app.protocol) {
-                const openedProtocol = window.open(app.protocol, '_self');
-                
-                if (!openedProtocol) {
-                    setTimeout(() => {
-                        if (window.location.href.indexOf('http') === 0) {
-                            window.open(app.url, '_blank', 'noopener,noreferrer');
-                        }
-                    }, 500);
-                }
-            } else {
-                window.open(app.url, '_blank', 'noopener,noreferrer');
-            }
-        }
-        // MOBILE
-        else {
-            if (app.protocol) {
-                const iframe = document.createElement('iframe');
-                iframe.style.display = 'none';
-                iframe.src = app.protocol;
-                document.body.appendChild(iframe);
-                
-                setTimeout(() => {
-                    iframe.remove();
-                }, 100);
-                
-                setTimeout(() => {
-                    if (!document.hidden) {
-                        window.location.href = app.mobileUrl;
-                    }
-                }, 1200);
-            } else {
-                window.location.href = app.mobileUrl;
-            }
+        if (isMobile()) {
+            window.location.href = url;
+        } else {
+            window.open(url, '_blank', 'noopener,noreferrer');
         }
     }, 300);
 }
 
 /* ===============================
-   EVENTOS
+   INICIALIZAÇÃO
 ================================ */
 document.addEventListener('DOMContentLoaded', () => {
     createDeviceIndicator();
     window.addEventListener('resize', createDeviceIndicator);
 
-    // Botão voltar para home
-    document.getElementById('back-to-home').addEventListener('click', () => {
-        navigateToPage('home');
+    // Botão voltar para hub
+    document.getElementById('backButtonHub').addEventListener('click', () => {
+        window.location.href = 'index.html';
     });
 
     // Navegação pelos cards na página inicial
     document.querySelectorAll('.app-card').forEach(card => {
         card.addEventListener('click', () => {
             const appId = card.dataset.app;
-            navigateToPage(appId);
+            navigateToPage(appId + '-page');
         });
     });
 
-    // Botões voltar nas páginas de detalhes
-    document.querySelectorAll('.back-button').forEach(btn => {
-        btn.addEventListener('click', () => navigateToPage('home'));
+    // Avatar do usuário
+    document.querySelector('.user-avatar').addEventListener('click', () => {
+        alert('Perfil do usuário (em desenvolvimento)');
     });
 
-    // Botões de lançar
-    document.querySelectorAll('.launch-button').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            const appPage = this.closest('.app-page');
-            if (!appPage) return;
-            
-            const appId = appPage.id.replace('-page', '');
-            
-            if (appsData[appId]) {
-                openApp(appId, this);
-            } else {
-                const url = this.dataset.url;
-                if (isMobile()) {
-                    window.location.href = url;
-                } else {
-                    window.open(url, '_blank', 'noopener,noreferrer');
-                }
-            }
-        });
-    });
-
-    // Tecla ESC para voltar
+    // Tecla ESC para voltar para home
     document.addEventListener('keydown', e => {
         if (e.key === 'Escape') {
-            navigateToPage('home');
+            navigateToPage('home-page');
         }
     });
 
     // Inicializar
-    navigateToPage('home');
+    navigateToPage('home-page');
 });
 </script>
 
