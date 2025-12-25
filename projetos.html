@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Projetos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="hub.png" type="image/png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0a0a12;
+            color: #f0f0f0;
+            min-height: 100vh;
+            background-image: linear-gradient(to bottom, #0a0a12, #151522);
+            overflow-x: hidden;
+        }
+
+        /* Barra superior simplificada - SEM barra lateral */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: rgba(15, 15, 25, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            z-index: 999;
+            border-bottom: 1px solid rgba(74, 109, 229, 0.2);
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            width: 70px;
+            height: 80px;
+            object-fit: contain;
+        }
+
+        .logo span {
+            color: #9c4ae2;
+            background: linear-gradient(to right, #9c4ae2, #6a8eff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+
+        /* Container para botões do usuário */
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Botão de voltar no estilo dos ícones */
+        .back-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: rgba(156, 74, 226, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #d0b0ff;
+            border: none;
+            position: relative;
+        }
+
+        .back-icon:hover {
+            background: rgba(156, 74, 226, 0.4);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(156, 74, 226, 0.3);
+        }
+
+        .back-icon i {
+            font-size: 1.2rem;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #9c4ae2, #6a8eff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .user-avatar:hover {
+            transform: scale(1.1);
+        }
+
+        /* Conteúdo principal - SEM margem lateral */
+        .main-content {
+            padding-top: 60px;
+            min-height: 100vh;
+        }
+
+        /* Páginas */
+        .page {
+            display: none;
+            min-height: calc(100vh - 60px);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Página inicial */
+        .home-header {
+            padding: 60px 40px 40px;
+            background: linear-gradient(to bottom, rgba(10, 10, 18, 0.9), transparent);
+            text-align: center;
+        }
+
+        .home-header h1 {
+            font-size: 4rem;
+            background: linear-gradient(to right, #ffffff, #9c4ae2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .home-header p {
+            color: #b0b0c0;
+            max-width: 800px;
+            line-height: 1.6;
+            font-size: 1.2rem;
+            margin: 0 auto;
+        }
+
+        /* Grid de aplicativos - COMPACTADO */
+        .apps-grid {
+            padding: 0 40px 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Card de app */
+        .app-card {
+            background: rgba(26, 26, 46, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(156, 74, 226, 0.1);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            height: 320px;
+            backdrop-filter: blur(10px);
+        }
+
+        .app-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            background: rgba(26, 26, 46, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border-color: rgba(156, 74, 226, 0.3);
+        }
+
+        .app-cover {
+            height: 160px;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        .app-cover::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(26, 26, 46, 0.9), transparent);
+        }
+
+        /* Ícone do app no canto esquerdo - ATUALIZADO COM ÍCONES FA */
+        .app-icon {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            background: rgba(156, 74, 226, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            color: white;
+            font-size: 1.8rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .app-icon i {
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Ícones específicos com cores personalizadas */
+        .app-card[data-app="dschurros"] .app-icon {
+            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+        }
+        
+        .app-card[data-app="the-spike-ahri"] .app-icon {
+            background: linear-gradient(135deg, #9C27B0, #E91E63);
+        }
+        
+        .app-card[data-app="receitas-italianas"] .app-icon {
+            background: linear-gradient(135deg, #4CAF50, #8BC34A);
+        }
+        
+        .app-card[data-app="links-dschurros"] .app-icon {
+            background: linear-gradient(135deg, #2196F3, #64B5F6);
+        }
+
+        .app-content {
+            padding: 20px 20px 15px;
+        }
+
+        .app-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        .app-description {
+            color: #b0b0c0;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            height: 35px;
+            overflow: hidden;
+        }
+
+        .app-tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .app-tag {
+            background: rgba(156, 74, 226, 0.15);
+            color: #d0b0ff;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border: 1px solid rgba(156, 74, 226, 0.3);
+        }
+
+        /* Páginas de apps */
+        .app-page {
+            min-height: calc(100vh - 60px);
+        }
+
+        .app-hero {
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 0 60px;
+        }
+
+        .app-hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, rgba(10, 10, 18, 0.9), rgba(10, 10, 18, 0.5));
+        }
+
+        .app-hero-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Ícone do app na página de detalhes - ATUALIZADO COM ÍCONES FA */
+        .app-hero-icon {
+            width: 140px;
+            height: 140px;
+            border-radius: 25px;
+            background: rgba(156, 74, 226, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: white;
+            font-size: 3.5rem;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Cores específicas para cada projeto */
+        #dschurros-page .app-hero-icon {
+            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+        }
+        
+        #the-spike-ahri-page .app-hero-icon {
+            background: linear-gradient(135deg, #9C27B0, #E91E63);
+        }
+        
+        #receitas-italianas-page .app-hero-icon {
+            background: linear-gradient(135deg, #4CAF50, #8BC34A);
+        }
+        
+        #links-dschurros-page .app-hero-icon {
+            background: linear-gradient(135deg, #2196F3, #64B5F6);
+        }
+
+        .app-hero-info h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .app-hero-info p {
+            color: #b0b0c0;
+            font-size: 1.3rem;
+            max-width: 600px;
+        }
+
+        .app-detail-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        /* Caixas de conteúdo */
+        .app-description-content {
+            background: rgba(26, 26, 46, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(156, 74, 226, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .app-description-content h2 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .app-description-content p {
+            color: #b0b0c0;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .app-description-content ul {
+            color: #b0b0c0;
+            line-height: 1.6;
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .app-description-content li {
+            margin-bottom: 10px;
+        }
+
+        .app-sidebar {
+            background: rgba(26, 26, 46, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(156, 74, 226, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .launch-button {
+            background: linear-gradient(135deg, #9c4ae2, #6a8eff);
+            color: white;
+            border: none;
+            padding: 25px;
+            border-radius: 15px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            transition: all 0.3s;
+        }
+
+        .launch-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(156, 74, 226, 0.4);
+        }
+
+        /* CORES ESPECIAIS PARA BOTÕES DOS PROJETOS */
+        .launch-button.dschurros {
+            background: linear-gradient(135deg, #FF6B6B, #FF8E53) !important;
+        }
+        .launch-button.the-spike-ahri {
+            background: linear-gradient(135deg, #9C27B0, #E91E63) !important;
+        }
+        .launch-button.receitas-italianas {
+            background: linear-gradient(135deg, #4CAF50, #8BC34A) !important;
+        }
+        .launch-button.links-dschurros {
+            background: linear-gradient(135deg, #2196F3, #64B5F6) !important;
+        }
+
+        .launch-button.dschurros:hover {
+            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4) !important;
+        }
+        .launch-button.the-spike-ahri:hover {
+            box-shadow: 0 15px 30px rgba(156, 39, 176, 0.4) !important;
+        }
+        .launch-button.receitas-italianas:hover {
+            box-shadow: 0 15px 30px rgba(76, 175, 80, 0.4) !important;
+        }
+        .launch-button.links-dschurros:hover {
+            box-shadow: 0 15px 30px rgba(33, 150, 243, 0.4) !important;
+        }
+
+        .app-info-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(156, 74, 226, 0.1);
+        }
+
+        .info-label {
+            color: #b0b0c0;
+        }
+
+        .info-value {
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Botão voltar na página de detalhes */
+        .back-button {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            background: rgba(26, 26, 46, 0.8);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 3;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(156, 74, 226, 0.2);
+        }
+
+        .back-button:hover {
+            background: rgba(45, 45, 74, 0.9);
+            border-color: rgba(156, 74, 226, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #b0b0c0;
+            border-top: 1px solid rgba(156, 74, 226, 0.1);
+            background: rgba(15, 15, 25, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Indicador de dispositivo com animação */
+        .device-indicator {
+            position: fixed;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.35);
+            color: #fff;
+            font-size: 0.75rem;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            pointer-events: none;
+            border: 1px solid rgba(156, 74, 226, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(156, 74, 226, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 6px rgba(156, 74, 226, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(156, 74, 226, 0);
+            }
+        }
+
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* ADAPTAÇÕES PARA MOBILE */
+        @media (max-width: 768px) {
+            .top-bar {
+                padding: 0 20px;
+                height: 55px;
+            }
+            
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            .logo img {
+                width: 60px;
+                height: 70px;
+            }
+            
+            .home-header {
+                padding: 40px 20px 30px;
+            }
+            
+            .home-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .home-header p {
+                font-size: 1rem;
+            }
+            
+            .apps-grid {
+                grid-template-columns: 1fr;
+                padding: 0 20px 40px;
+                gap: 20px;
+            }
+            
+            .app-card {
+                height: 300px;
+            }
+            
+            .app-cover {
+                height: 140px;
+            }
+            
+            .app-icon {
+                width: 50px;
+                height: 50px;
+                bottom: 15px;
+                left: 15px;
+                font-size: 1.5rem;
+            }
+            
+            .app-hero {
+                height: 300px;
+                padding: 0 20px;
+            }
+            
+            .app-hero-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .app-hero-icon {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+            
+            .app-hero-info h1 {
+                font-size: 2.5rem;
+            }
+            
+            .app-hero-info p {
+                font-size: 1rem;
+            }
+            
+            .app-detail-content {
+                padding: 30px 20px;
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .app-description-content,
+            .app-sidebar {
+                padding: 25px;
+            }
+            
+            .footer {
+                padding: 25px 20px;
+            }
+            
+            .back-button {
+                top: 20px;
+                left: 20px;
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+
+            .user-actions {
+                gap: 10px;
+            }
+            
+            .back-icon {
+                width: 35px;
+                height: 35px;
+                border-radius: 10px;
+            }
+            
+            .back-icon i {
+                font-size: 1rem;
+            }
+            
+            .user-avatar {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+
+            .device-indicator {
+                font-size: 0.7rem;
+                padding: 5px 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .home-header h1 {
+                font-size: 2rem;
+            }
+            
+            .app-card {
+                height: 280px;
+            }
+            
+            .app-cover {
+                height: 130px;
+            }
+
+            .back-icon {
+                width: 32px;
+                height: 32px;
+                border-radius: 8px;
+            }
+            
+            .back-icon i {
+                font-size: 0.9rem;
+            }
+            
+            .user-avatar {
+                width: 32px;
+                height: 32px;
+                font-size: 0.9rem;
+            }
+
+            .device-indicator {
+                font-size: 0.65rem;
+                padding: 4px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra superior simplificada - SEM barra lateral -->
+    <div class="top-bar">
+        <div class="logo">
+            <img src="tipo.png" alt="logo">
+            <span>Meus Projetos</span>
+        </div>
+        <div class="user-actions">
+            <!-- Botão de voltar para home -->
+             
+            <div class="back-icon" id="back-to-home">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+            <div class="user-avatar">
+                <i class="fas fa-user-circle"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conteúdo principal -->
+    <div class="main-content">
+        <!-- Página inicial -->
+        <div id="home-page" class="page active">
+            <div class="home-header">
+                <h1>MEUS PROJETOS</h1>
+                <p>Esta é a página dos meus projetos pessoais. Clique em qualquer projeto para mais informações e para acessá-lo.</p>
+            </div>
+
+            <div class="apps-grid">
+                <!-- Dschurros -->
+                <div class="app-card" data-app="dschurros">
+                    <div class="app-cover" style="background-image: url('https://p2.trrsf.com/image/fget/cf/1200/630/middle/images.terra.com/2023/03/23/137588257-churros-com-chocolate.jpg');">
+                        <div class="app-icon">
+                            <i class="fas fa-cookie-bite"></i>
+                        </div>
+                    </div>
+                    <div class="app-content">
+                        <h3 class="app-title">DsChurros</h3>
+                        <p class="app-description">Site especializado em churros deliciosos. Cardápio variado, promoções e delivery disponível.</p>
+                        <div class="app-tags">
+                            <span class="app-tag">Alimentação</span>
+                            <span class="app-tag">Churros</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The Spike Ahri -->
+                <div class="app-card" data-app="the-spike-ahri">
+                    <div class="app-cover" style="background-image: url('https://sm.ign.com/t/ign_in/video/2/2xko-offic/2xko-official-ahri-gameplay-trailer_5jr5.1200.png');">
+                        <div class="app-icon">
+                            <i class="fas fa-paw"></i>
+                        </div>
+                    </div>
+                    <div class="app-content">
+                        <h3 class="app-title">The Spike Ahri</h3>
+                        <p class="app-description">Site inspirado na Ahri de League of Legends. Fã-site com builds, skins, histórias e muito mais.</p>
+                        <div class="app-tags">
+                            <span class="app-tag">Games</span>
+                            <span class="app-tag">League of Legends</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Receitas Italianas -->
+                <div class="app-card" data-app="receitas-italianas">
+                    <div class="app-cover" style="background-image: url('https://images.unsplash.com/photo-1579684947550-22e945225d9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="app-icon">
+                            <i class="fas fa-pizza-slice"></i>
+                        </div>
+                    </div>
+                    <div class="app-content">
+                        <h3 class="app-title">Receitas Italianas</h3>
+                        <p class="app-description">Site com receitas tradicionais italianas. Massas, pizzas, risotos e sobremesas autênticas.</p>
+                        <div class="app-tags">
+                            <span class="app-tag">Culinária</span>
+                            <span class="app-tag">Itália</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Links Dschurros -->
+                <div class="app-card" data-app="links-dschurros">
+                    <div class="app-cover" style="background-image: url('https://p2.trrsf.com/image/fget/cf/1200/630/middle/images.terra.com/2023/03/23/137588257-churros-com-chocolate.jpg');">
+                        <div class="app-icon">
+                            <i class="fas fa-link"></i>
+                        </div>
+                    </div>
+                    <div class="app-content">
+                        <h3 class="app-title">Links DsChurros</h3>
+                        <p class="app-description">Hub de links para todos os projetos relacionados à marca Dschurros. Redes sociais, contatos e mais.</p>
+                        <div class="app-tags">
+                            <span class="app-tag">Links</span>
+                            <span class="app-tag">Hub</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =============== PÁGINAS DOS PROJETOS =============== -->
+
+        <!-- Página do Dschurros -->
+        <div id="dschurros-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('https://p2.trrsf.com/image/fget/cf/1200/630/middle/images.terra.com/2023/03/23/137588257-churros-com-chocolate.jpg');">
+                <button class="back-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+                <div class="app-hero-content">
+                    <div class="app-hero-icon">
+                        <i class="fas fa-cookie-bite"></i>
+                    </div>
+                    <div class="app-hero-info">
+                        <h1 style="color: #FF6B6B;">DsChurros</h1>
+                        <p>Site especializado em churros deliciosos. Cardápio variado, promoções e delivery disponível.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="app-detail-content">
+                <div class="app-description-content">
+                    <h2>Sobre o DsChurros</h2>
+                    <p>O DsChurros é um site dedicado aos amantes de churros, oferecendo uma experiência completa desde o cardápio online até o delivery. Especializados em churros tradicionais e recheios criativos.</p>
+                    <p>Nosso objetivo é levar a alegria dos churros artesanais para todos, com qualidade premium e sabores inovadores.</p>
+                    
+                    <h2>Recursos Principais</h2>
+                    <ul>
+                        <li>Cardápio digital completo com fotos</li>
+                        <li>Sistema de pedidos online integrado</li>
+                        <li>Delivery com rastreamento em tempo real</li>
+                        <li>Promoções exclusivas para clientes frequentes</li>
+                        <li>Receitas especiais e churros temáticos</li>
+                        <li>Blog com dicas e curiosidades sobre churros</li>
+                        <li>Sistema de reservas para eventos</li>
+                        <li>Programa de fidelidade com benefícios</li>
+                        <li>Atendimento via WhatsApp integrado</li>
+                    </ul>
+                </div>
+                
+                <div class="app-sidebar">
+                    <!-- COLOQUE AQUI O LINK REAL DO SITE DSCHURROS -->
+                    <button class="launch-button dschurros" data-url="https://dschurros.github.io/site/">
+                        <i class="fas fa-external-link-alt"></i>
+                        ACESSAR SITE
+                    </button>
+                    
+                    <div class="app-info-grid">
+                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
+                        <div class="info-item">
+                            <span class="info-label">Categoria</span>
+                            <span class="info-value">Alimentação</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Tipo</span>
+                            <span class="info-value">Site de Churros</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Status</span>
+                            <span class="info-value" style="color: #FF6B6B;">Online</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Delivery</span>
+                            <span class="info-value">Disponível</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página do The Spike Ahri -->
+        <div id="the-spike-ahri-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('https://sm.ign.com/t/ign_in/video/2/2xko-offic/2xko-official-ahri-gameplay-trailer_5jr5.1200.png');">
+                <button class="back-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+                <div class="app-hero-content">
+                    <div class="app-hero-icon">
+                        <i class="fas fa-paw"></i>
+                    </div>
+                    <div class="app-hero-info">
+                        <h1 style="color: #9C27B0;">The Spike Ahri</h1>
+                        <p>Site inspirado na Ahri de League of Legends. Fã-site com builds, skins, histórias e muito mais.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="app-detail-content">
+                <div class="app-description-content">
+                    <h2>Sobre o The Spike Ahri</h2>
+                    <p>The Spike Ahri é um fã-site dedicado à campeã Ahri do jogo League of Legends. Oferece guias completos, builds atualizadas, análises de skins e toda a lore da personagem.</p>
+                    <p>Para jogadores que querem dominar Ahri no mid lane ou simplesmente para fãs que querem conhecer mais sobre esta personagem fascinante.</p>
+                    
+                    <h2>Recursos Principais</h2>
+                    <ul>
+                        <li>Guias de builds atualizadas para cada patch</li>
+                        <li>Análises detalhadas de todas as skins de Ahri</li>
+                        <li>Lore completa e história da personagem</li>
+                        <li>Dicas de combos e gameplay avançado</li>
+                        <li>Comparativo de runas e itens</li>
+                        <li>Vídeos de highlights e montagens</li>
+                        <li>Fórum da comunidade de fãs de Ahri</li>
+                        <li>Notícias sobre atualizações relacionadas</li>
+                        <li>Wallpapers e artes exclusivas</li>
+                    </ul>
+                </div>
+                
+                <div class="app-sidebar">
+                    <!-- COLOQUE AQUI O LINK REAL DO SITE THE SPIKE AHRI -->
+                    <button class="launch-button the-spike-ahri" data-url="https://loirinhodid.github.io/codex-ray/">
+                        <i class="fas fa-external-link-alt"></i>
+                        ACESSAR SITE
+                    </button>
+                    
+                    <div class="app-info-grid">
+                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
+                        <div class="info-item">
+                            <span class="info-label">Categoria</span>
+                            <span class="info-value">Games</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Tipo</span>
+                            <span class="info-value">Fã-site</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Jogo</span>
+                            <span class="info-value">League of Legends</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Atualização</span>
+                            <span class="info-value">Por patch</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página do Receitas Italianas -->
+        <div id="receitas-italianas-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('https://images.unsplash.com/photo-1579684947550-22e945225d9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');">
+                <button class="back-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+                <div class="app-hero-content">
+                    <div class="app-hero-icon">
+                        <i class="fas fa-pizza-slice"></i>
+                    </div>
+                    <div class="app-hero-info">
+                        <h1 style="color: #4CAF50;">Receitas Italianas</h1>
+                        <p>Site com receitas tradicionais italianas. Massas, pizzas, risotos e sobremesas autênticas.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="app-detail-content">
+                <div class="app-description-content">
+                    <h2>Sobre o Receitas Italianas</h2>
+                    <p>Receitas Italianas é um site dedicado à culinária italiana autêntica. Desde receitas familiares tradicionais até criações contemporâneas, tudo com o verdadeiro sabor da Itália.</p>
+                    <p>Ideal para quem quer cozinhar como um italiano ou simplesmente apreciar a rica cultura gastronômica da Itália.</p>
+                    
+                    <h2>Recursos Principais</h2>
+                    <ul>
+                        <li>Receitas tradicionais de todas as regiões da Itália</li>
+                        <li>Vídeos passo a passo com chefs italianos</li>
+                        <li>Dicionário de ingredientes e técnicas italianas</li>
+                        <li>Menu semanal com sugestões de pratos</li>
+                        <li>Dicas para encontrar ingredientes autênticos</li>
+                        <li>Receitas adaptadas para cozinheiros iniciantes</li>
+                        <li>Seção especial de massas caseiras</li>
+                        <li>Receitas de pizzas e focaccias</li>
+                        <li>Sobremesas italianas clássicas</li>
+                    </ul>
+                </div>
+                
+                <div class="app-sidebar">
+                    <!-- COLOQUE AQUI O LINK REAL DO SITE RECEITAS ITALIANAS -->
+                    <button class="launch-button receitas-italianas" data-url="https://loirinhodid.github.io/meu-site/">
+                        <i class="fas fa-external-link-alt"></i>
+                        ACESSAR SITE
+                    </button>
+                    
+                    <div class="app-info-grid">
+                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
+                        <div class="info-item">
+                            <span class="info-label">Categoria</span>
+                            <span class="info-value">Culinária</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Tipo</span>
+                            <span class="info-value">Site de Receitas</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Cozinha</span>
+                            <span class="info-value">Italiana</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Nível</span>
+                            <span class="info-value">Todos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página do Links Dschurros -->
+        <div id="links-dschurros-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');">
+                <button class="back-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+                <div class="app-hero-content">
+                    <div class="app-hero-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <div class="app-hero-info">
+                        <h1 style="color: #2196F3;">Links DsChurros</h1>
+                        <p>Hub de links para todos os projetos relacionados à marca Dschurros. Redes sociais, contatos e mais.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="app-detail-content">
+                <div class="app-description-content">
+                    <h2>Sobre o Links DsChurros</h2>
+                    <p>Links DsChurros é o hub central para todos os projetos e canais relacionados à marca DsChurros. Um único lugar para acessar todas as redes sociais, sites e pontos de contato.</p>
+                    <p>Perfeito para clientes, parceiros e fãs que querem acompanhar todas as novidades e iniciativas da marca DsChurros.</p>
+                    
+                    <h2>Recursos Principais</h2>
+                    <ul>
+                        <li>Links para todas as redes sociais da marca</li>
+                        <li>Contatos diretos para delivery e reservas</li>
+                        <li>Links para sites parceiros e afiliados</li>
+                        <li>Catálogo digital completo de produtos</li>
+                        <li>Promoções e cupons de desconto exclusivos</li>
+                        <li>Blog com novidades e atualizações</li>
+                        <li>Mapa de localização das lojas físicas</li>
+                        <li>Formulário de contato profissional</li>
+                        <li>Links para aplicativos mobile</li>
+                    </ul>
+                </div>
+                
+                <div class="app-sidebar">
+                    <!-- COLOQUE AQUI O LINK REAL DO SITE LINKS DSCHURROS -->
+                    <button class="launch-button links-dschurros" data-url="https://loirinhodid.github.io/linkdschurros">
+                        <i class="fas fa-external-link-alt"></i>
+                        ACESSAR SITE
+                    </button>
+                    
+                    <div class="app-info-grid">
+                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
+                        <div class="info-item">
+                            <span class="info-label">Categoria</span>
+                            <span class="info-value">Links</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Tipo</span>
+                            <span class="info-value">Hub de Links</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Marca</span>
+                            <span class="info-value">DsChurros</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Links</span>
+                            <span class="info-value">Todos os projetos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            © 2025 Meus Projetos • Todos os direitos reservados
+        </div>
+    </div>
+
+<script>
+    /* ===============================
+   PROJETOS
+================================ */
+const appsData = {
+    'home': { name: 'Início' },
+    'dschurros': {
+        name: 'DsChurros',
+        url: 'https://dschurros.github.io/site/',
+        mobileUrl: 'https://dschurros.github.io/site/',
+        protocol: null,
+        color: '#FF6B6B'
+    },
+    'the-spike-ahri': {
+        name: 'The Spike Ahri',
+        url: 'https://loirinhodid.github.io/codex-ray/',
+        mobileUrl: 'https://loirinhodid.github.io/codex-ray/',
+        protocol: null,
+        color: '#9C27B0'
+    },
+    'receitas-italianas': {
+        name: 'Receitas Italianas',
+        url: 'https://loirinhodid.github.io/meu-site/',
+        mobileUrl: 'https://loirinhodid.github.io/meu-site/',
+        protocol: null,
+        color: '#4CAF50'
+    },
+    'links-dschurros': {
+        name: 'Links DsChurros',
+        url: 'https://loirinhodid.github.io/linkdschurros',
+        mobileUrl: 'https://loirinhodid.github.io/linkdschurros',
+        protocol: null,
+        color: '#2196F3'
+    }
+};
+
+/* ===============================
+   MOBILE
+================================ */
+function isMobile() {
+    return /android|iphone|ipad|ipod|mobile/i.test(navigator.userAgent);
+}
+
+/* ===============================
+   INDICADOR COM ANIMAÇÃO
+================================ */
+function createDeviceIndicator() {
+    document.querySelector('.device-indicator')?.remove();
+
+    const el = document.createElement('div');
+    el.className = 'device-indicator';
+    el.style.cssText = `
+        position: fixed;
+        top: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+        padding: 6px 14px;
+        border-radius: 20px;
+        background: rgba(0, 0, 0, 0.35);
+        color: #fff;
+        font-size: .75rem;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        pointer-events: none;
+        border: 1px solid rgba(156, 74, 226, 0.3);
+        animation: pulse 2s infinite;
+    `;
+
+    el.innerHTML = `
+        <i class="fas ${isMobile() ? 'fa-mobile-alt' : 'fa-desktop'}"></i>
+        <span>${isMobile() ? 'Mobile' : 'Computador'}</span>
+    `;
+
+    document.body.appendChild(el);
+}
+
+/* ===============================
+   NAVEGAÇÃO
+================================ */
+function navigateToPage(pageId) {
+    // Esconder todas as páginas
+    document.querySelectorAll('.page, .app-page')
+        .forEach(p => p.classList.remove('active'));
+
+    // Mostrar a página solicitada
+    const pageElement = document.getElementById(`${pageId}-page`);
+    if (pageElement) {
+        pageElement.classList.add('active');
+    }
+
+    // Scroll suave para o topo
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ===============================
+   ABRIR APP
+================================ */
+function openApp(appId, button) {
+    const app = appsData[appId];
+    if (!app) return;
+
+    // Mostrar estado de carregamento no botão
+    if (button) {
+        const originalHTML = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Abrindo...';
+        button.disabled = true;
+
+        setTimeout(() => {
+            button.innerHTML = originalHTML;
+            button.disabled = false;
+        }, 2000);
+    }
+
+    // Pequeno delay
+    setTimeout(() => {
+        // COMPUTADOR
+        if (!isMobile()) {
+            if (app.protocol) {
+                const openedProtocol = window.open(app.protocol, '_self');
+                
+                if (!openedProtocol) {
+                    setTimeout(() => {
+                        if (window.location.href.indexOf('http') === 0) {
+                            window.open(app.url, '_blank', 'noopener,noreferrer');
+                        }
+                    }, 500);
+                }
+            } else {
+                window.open(app.url, '_blank', 'noopener,noreferrer');
+            }
+        }
+        // MOBILE
+        else {
+            if (app.protocol) {
+                const iframe = document.createElement('iframe');
+                iframe.style.display = 'none';
+                iframe.src = app.protocol;
+                document.body.appendChild(iframe);
+                
+                setTimeout(() => {
+                    iframe.remove();
+                }, 100);
+                
+                setTimeout(() => {
+                    if (!document.hidden) {
+                        window.location.href = app.mobileUrl;
+                    }
+                }, 1200);
+            } else {
+                window.location.href = app.mobileUrl;
+            }
+        }
+    }, 300);
+}
+
+/* ===============================
+   EVENTOS
+================================ */
+document.addEventListener('DOMContentLoaded', () => {
+    createDeviceIndicator();
+    window.addEventListener('resize', createDeviceIndicator);
+
+    // Botão voltar para home
+    document.getElementById('back-to-home').addEventListener('click', () => {
+        navigateToPage('home');
+    });
+
+    // Navegação pelos cards na página inicial
+    document.querySelectorAll('.app-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const appId = card.dataset.app;
+            navigateToPage(appId);
+        });
+    });
+
+    // Botões voltar nas páginas de detalhes
+    document.querySelectorAll('.back-button').forEach(btn => {
+        btn.addEventListener('click', () => navigateToPage('home'));
+    });
+
+    // Botões de lançar
+    document.querySelectorAll('.launch-button').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const appPage = this.closest('.app-page');
+            if (!appPage) return;
+            
+            const appId = appPage.id.replace('-page', '');
+            
+            if (appsData[appId]) {
+                openApp(appId, this);
+            } else {
+                const url = this.dataset.url;
+                if (isMobile()) {
+                    window.location.href = url;
+                } else {
+                    window.open(url, '_blank', 'noopener,noreferrer');
+                }
+            }
+        });
+    });
+
+    // Tecla ESC para voltar
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            navigateToPage('home');
+        }
+    });
+
+    // Inicializar
+    navigateToPage('home');
+});
+</script>
+
+</body>
+</html>
