@@ -2472,10 +2472,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Redirecionar para projetos.html quando clicar em Projetos
-    document.querySelector('.neon-projetos')?.addEventListener('click', () => {
-        window.open('projetos.html', '_blank', 'noopener');
-    });
+   // Redirecionar para projetos.html quando clicar em Projetos - NA MESMA ABA
+document.querySelector('.neon-projetos')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    window.location.href = 'projetos.html';
+});
 
     // Inicializar
     navigateToPage('home');
