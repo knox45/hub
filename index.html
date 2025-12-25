@@ -1,3 +1,6 @@
+Aqui está o HTML completo com todas as modificações solicitadas:
+
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -6,7 +9,7 @@
     <title>Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="hub.png" type="image/png">
-    <style>
+   <style>
         * {
             margin: 0;
             padding: 0;
@@ -101,11 +104,138 @@
             border-radius: 8px;
         }
 
-        /* Cores específicas para ícones ativos */
-        .nav-icon.active[data-page="ray-links"] {
-            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
-            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+        /* =========================
+           ÍCONE HOME - NEON AZUL
+        ========================= */
+        .neon-home {
+            background: linear-gradient(
+                135deg,
+                #0066ff,
+                #00ccff,
+                #0066ff,
+                #0099ff
+            ) !important;
+            background-size: 300% 300% !important;
+            color: #fff !important;
+            box-shadow:
+                0 0 10px rgba(0, 102, 255, 0.6),
+                0 0 20px rgba(0, 204, 255, 0.5),
+                0 0 30px rgba(0, 153, 255, 0.4) !important;
+            animation: neonBlueFlow 3s ease infinite !important;
         }
+
+        /* Quando o Home está ativo (página inicial) */
+        .neon-home.active {
+            background: linear-gradient(
+                135deg,
+                #0066ff,
+                #00ccff,
+                #0066ff,
+                #0099ff
+            ) !important;
+            background-size: 300% 300% !important;
+            box-shadow:
+                0 0 15px #0066ff,
+                0 0 30px #00ccff,
+                0 0 45px #0099ff !important;
+        }
+
+        .neon-home:hover {
+            transform: translateY(-4px) scale(1.06) !important;
+            box-shadow:
+                0 0 20px #0066ff,
+                0 0 40px #00ccff,
+                0 0 60px #0099ff !important;
+        }
+
+        @keyframes neonBlueFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* =========================
+           BOTÃO PROJETOS - NEON ROXO
+        ========================= */
+        .neon-projetos {
+            background: linear-gradient(
+                135deg,
+                #9d4edd,
+                #c77dff,
+                #7b2cbf,
+                #9d4edd
+            ) !important;
+            background-size: 300% 300% !important;
+            color: #fff !important;
+            box-shadow:
+                0 0 10px rgba(157, 78, 221, 0.6),
+                0 0 20px rgba(199, 125, 255, 0.5),
+                0 0 30px rgba(123, 44, 191, 0.4) !important;
+            animation: neonPurpleFlow 4s ease infinite !important;
+        }
+
+        .neon-projetos:hover {
+            transform: translateY(-4px) scale(1.06) !important;
+            box-shadow:
+                0 0 20px #9d4edd,
+                0 0 40px #c77dff,
+                0 0 60px #7b2cbf !important;
+        }
+
+        @keyframes neonPurpleFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* =========================
+           BOTÃO GAMES - NEON QUENTE
+        ========================= */
+        .neon-games {
+            background: linear-gradient(
+                135deg,
+                #ff6a00,
+                #ff1744,
+                #ff9100,
+                #ff3d00
+            ) !important;
+            background-size: 300% 300% !important;
+            color: #fff !important;
+            box-shadow:
+                0 0 8px rgba(255, 106, 0, 0.6),
+                0 0 18px rgba(255, 23, 68, 0.5),
+                0 0 28px rgba(255, 61, 0, 0.4) !important;
+            animation: neonHotFlow 3.5s ease infinite !important;
+        }
+
+        .neon-games:hover {
+            transform: translateY(-4px) scale(1.06) !important;
+            box-shadow:
+                0 0 15px #ff6a00,
+                0 0 30px #ff1744,
+                0 0 45px #ff9100 !important;
+        }
+
+        @keyframes neonHotFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* IMPORTANTE: Remover o estilo padrão .nav-icon.active para não sobrescrever os neon */
+        .nav-icon.neon-home,
+        .nav-icon.neon-projetos,
+        .nav-icon.neon-games {
+            background: none !important;
+        }
+        
+        .nav-icon.neon-home:hover,
+        .nav-icon.neon-projetos:hover,
+        .nav-icon.neon-games:hover {
+            background: none !important;
+        }
+
+        /* Cores específicas para ícones ativos - APENAS PARA ÍCONES NÃO-NEON */
         .nav-icon.active[data-page="spotify"] {
             background: linear-gradient(135deg, #1DB954, #1ED760);
             box-shadow: 0 5px 20px rgba(29, 185, 84, 0.4);
@@ -114,17 +244,21 @@
             background: linear-gradient(135deg, #25D366, #128C7E);
             box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
         }
-        .nav-icon.active[data-page="epic-games"] {
-            background: linear-gradient(135deg, #4a6de5, #6a8eff); /* MUDADO: Azul em vez de amarelo */
-            box-shadow: 0 5px 20px rgba(74, 109, 229, 0.4);
+        .nav-icon.active[data-page="netflix"] {
+            background: linear-gradient(135deg, #E50914, #FF1A1A);
+            box-shadow: 0 5px 20px rgba(229, 9, 20, 0.4);
+        }
+        .nav-icon.active[data-page="youtube"] {
+            background: linear-gradient(135deg, #FF0000, #FF3333);
+            box-shadow: 0 5px 20px rgba(255, 0, 0, 0.4);
         }
         .nav-icon.active[data-page="jw-org"] {
             background: linear-gradient(135deg, #2196F3, #64B5F6);
             box-shadow: 0 5px 20px rgba(33, 150, 243, 0.4);
         }
-        .nav-icon.active[data-page="watchtower"] {
-            background: linear-gradient(135deg, #4169E1, #6495ED);
-            box-shadow: 0 5px 20px rgba(65, 105, 225, 0.4);
+        .nav-icon.active[data-page="github"] {
+            background: linear-gradient(135deg, #333333, #666666);
+            box-shadow: 0 5px 20px rgba(51, 51, 51, 0.4);
         }
         .nav-icon.active[data-page="vscode"] {
             background: linear-gradient(135deg, #007ACC, #1F9CF0);
@@ -137,14 +271,6 @@
         .nav-icon.active[data-page="riot-client"] {
             background: linear-gradient(135deg, #FF4654, #FF6B7C);
             box-shadow: 0 5px 20px rgba(255, 70, 84, 0.4);
-        }
-        .nav-icon.active[data-page="youtube"] {
-            background: linear-gradient(135deg, #FF0000, #FF3333);
-            box-shadow: 0 5px 20px rgba(255, 0, 0, 0.4);
-        }
-        .nav-icon.active[data-page="netflix"] {
-            background: linear-gradient(135deg, #E50914, #FF1A1A);
-            box-shadow: 0 5px 20px rgba(229, 9, 20, 0.4);
         }
         .nav-icon.active[data-page="office365"] {
             background: linear-gradient(135deg, #D83B01, #FF6B35);
@@ -531,7 +657,7 @@
             box-shadow: 0 15px 30px rgba(74, 109, 229, 0.4);
         }
 
-        /* CORES ESPECIAIS PARA BOTÕES DE APPS NOVOS */
+        /* CORES ESPECIAIS PARA BOTÕES DE APPS */
         .launch-button.youtube {
             background: linear-gradient(135deg, #FF0000, #CC0000) !important;
         }
@@ -549,6 +675,9 @@
         }
         .launch-button.drive {
             background: linear-gradient(135deg, #4285F4, #3367D6) !important;
+        }
+        .launch-button.github {
+            background: linear-gradient(135deg, #333333, #555555) !important;
         }
 
         .launch-button.youtube:hover {
@@ -568,6 +697,9 @@
         }
         .launch-button.drive:hover {
             box-shadow: 0 15px 30px rgba(66, 133, 244, 0.4) !important;
+        }
+        .launch-button.github:hover {
+            box-shadow: 0 15px 30px rgba(51, 51, 51, 0.4) !important;
         }
 
         .app-info-grid {
@@ -669,15 +801,6 @@
         @keyframes slideUp {
             from { transform: translateY(30px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
-        }
-
-        /* CORREÇÃO ESPECÍFICA PARA IMAGEM DO SPOTIFY */
-        #spotify-page .app-hero {
-            background-position: center 25%;
-        }
-
-        .app-card[data-app="spotify"] .app-cover {
-            background-position: center 25%;
         }
 
         /* ADAPTAÇÕES PARA MOBILE */
@@ -877,100 +1000,58 @@
                 padding: 4px 10px;
             }
         }
-        /* =========================
-   BOTÃO GAMES - NEON QUENTE
-========================= */
-.neon-games {
-    background: linear-gradient(
-        135deg,
-        #ff6a00,
-        #ff1744,
-        #ff9100,
-        #ff3d00
-    );
-    background-size: 300% 300%;
-    color: #fff;
-
-    box-shadow:
-        0 0 8px rgba(255, 106, 0, 0.6),
-        0 0 18px rgba(255, 23, 68, 0.5),
-        0 0 28px rgba(255, 61, 0, 0.4);
-
-    animation: neonHotFlow 3.5s ease infinite;
-}
-
-/* ÍCONE – proporção corrigida */
-.neon-games i {
-    font-size: 1.65rem; /* melhor que o padrão */
-    line-height: 1;
-}
-
-/* Hover mais intenso */
-.neon-games:hover {
-    transform: translateY(-4px) scale(1.06);
-    box-shadow:
-        0 0 12px #ff6a00,
-        0 0 26px #ff1744,
-        0 0 40px #ff9100;
-}
-
-/* Animação do gradiente quente */
-@keyframes neonHotFlow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
     </style>
-    
 </head>
 <body>
     <!-- Barra lateral estilo Riot - COM SCROLL -->
     <div class="sidebar">
-        <div class="nav-icon active" data-page="home">
-            <i class="fas fa-home"></i>
-        </div>
+      
+       <!-- Ícone Home com efeito neon azul -->
+    <div class="nav-icon active neon-home" data-page="home">
+        <i class="fas fa-home"></i>
+    </div>
+        
         <a href="game.html" class="nav-icon neon-games" title="Games">
-    <i class="fa-solid fa-grip"></i>
-</a>
+            <i class="fa-solid fa-grip"></i>
+        </a>
+        <!-- Adicione este código na barra lateral (sidebar), logo após o botão de Games -->
+       <a href="projetos.html" class="nav-icon neon-projetos" title="Projetos">
+       <i class="fa-regular fa-gem"></i>
+       </a>
 
-        <!-- SEU SITE DE LINKS -->
-        <div class="nav-icon" data-page="ray-links">
-            <img src="ray.png" alt="Ray Links">
-        </div>
+
         <div class="nav-icon" data-page="spotify">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwDiicpDsawpNveT7Ota2-EC_vZbP8vneTbg&s" alt="Spotify">
         </div>
         <div class="nav-icon" data-page="whatsapp">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/2048px-WhatsApp.svg.png" alt="WhatsApp">
         </div>
-        <!-- EPIC GAMES - MUDADO: Ícone na barra lateral agora tem cor azul padrão -->
-        <div class="nav-icon" data-page="epic-games">
-            <img src="https://icon-icons.com/download-file?file=https%3A%2F%2Fimages.icon-icons.com%2F2428%2FPNG%2F512%2Fepic_games_black_logo_icon_147139.png" alt="Epic Games" style="filter: brightness(0) invert(1);">
+        <!-- Netflix no lugar do Epic Games -->
+        <div class="nav-icon" data-page="netflix">
+            <img src="https://images.ctfassets.net/4cd45et68cgf/Rx83JoRDMkYNlMC9MKzcB/2b14d5a59fc3937afd3f03191e19502d/Netflix-Symbol.png?w=700&h=456" alt="Netflix">
+        </div>
+        <!-- YouTube no lugar do Watchtower -->
+        <div class="nav-icon" data-page="youtube">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/YouTube_play_button_square_%282013-2017%29.svg/2048px-YouTube_play_button_square_%282013-2017%29.svg.png" alt="YouTube">
         </div>
         <div class="nav-icon" data-page="jw-org">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQguRAJtdxxQjekZtb9y6NLF-tqsN5mXhM0AQ&s" alt="JW.org">
         </div>
-        <div class="nav-icon" data-page="watchtower">
-            <img src="https://cms-imgp.jw-cdn.org/img/p/802013134/univ/art/802013134_univ_cnt_8_xl.jpg" alt="Watchtower Library">
-        </div>
-        <div class="nav-icon" data-page="vscode">
-            <img src="https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxj7kCzMIlSC20SNjaJf9GmG15ocnF.zbBRgxMSlB7Ejh6FbgNzxLvZOoW7N3ML56fn3m5Z4MO.M8pYrCFVKIhqM-&format=source" alt="VS Code">
+        <!-- Riot Games movido para cima do Google Photos -->
+        <div class="nav-icon" data-page="riot-client">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKnJaJcVfuAJc2YxBhBp4ujW956ygaVD0vaA&s" alt="Riot Client">
         </div>
         <div class="nav-icon" data-page="google-photos">
             <img src="https://www.oficinadanet.com.br/imagens/post_categoria/2671/google-photos.png" alt="Google Photos">
         </div>
-        <!-- RIOT CLIENT -->
-        <div class="nav-icon" data-page="riot-client">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKnJaJcVfuAJc2YxBhBp4ujW956ygaVD0vaA&s" alt="Riot Client">
+        <div class="nav-icon" data-page="vscode">
+            <img src="https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxj7kCzMIlSC20SNjaJf9GmG15ocnF.zbBRgxMSlB7Ejh6FbgNzxLvZOoW7N3ML56fn3m5Z4MO.M8pYrCFVKIhqM-&format=source" alt="VS Code">
+        </div>
+        <!-- GitHub -->
+        <div class="nav-icon" data-page="github">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0FKrRO9-cX37-xAMxdDM4b27efQ9jSBk0Zw" alt="GitHub">
         </div>
         <!-- NOVOS APPS NA BARRA LATERAL -->
-        <div class="nav-icon" data-page="youtube">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/YouTube_play_button_square_%282013-2017%29.svg/2048px-YouTube_play_button_square_%282013-2017%29.svg.png" alt="YouTube">
-        </div>
-        <div class="nav-icon" data-page="netflix">
-            <img src="https://images.ctfassets.net/4cd45et68cgf/Rx83JoRDMkYNlMC9MKzcB/2b14d5a59fc3937afd3f03191e19502d/Netflix-Symbol.png?w=700&h=456" alt="Netflix">
-        </div>
         <div class="nav-icon" data-page="office365">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Microsoft_365_%282022%29.svg/1862px-Microsoft_365_%282022%29.svg.png" alt="Office 365">
         </div>
@@ -1060,7 +1141,7 @@
                 </div>
 
                 <div class="app-card" data-app="gmail">
-                    <div class="app-cover" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8N6gUYJcmAzdBEdNalS_1dDs_vJCMdCN5oA&s');">
+                    <div class="app-cover" style="background-image: url('https://ravel.com.br/blog/wp-content/uploads/2021/04/como-inserir-assinatura-gmail-capa.png');">
                         <div class="app-icon">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/2560px-Gmail_icon_%282020%29.svg.png" alt="Gmail">
                         </div>
@@ -1107,23 +1188,24 @@
                     </div>
                 </div>
 
-                <!-- Apps originais -->
-                <div class="app-card" data-app="ray-links">
-                    <div class="app-cover" style="background-image: url('https://img.odcdn.com.br/wp-content/uploads/2021/05/Linktree-e1622124166688.png');">
+                <!-- GitHub -->
+                <div class="app-card" data-app="github">
+                    <div class="app-cover" style="background-image: url('https://miro.medium.com/v2/resize:fit:1400/1*F76Q8wZ8L2h6qKZLUjATkw.png');">
                         <div class="app-icon">
-                            <img src="ray.png" alt="Ray Links">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0FKrRO9-cX37-xAMxdDM4b27efQ9jSBk0Zw" alt="GitHub">
                         </div>
                     </div>
                     <div class="app-content">
-                        <h3 class="app-title">Ray Links</h3>
-                        <p class="app-description">Meu site pessoal de links, com todos os meus perfis sociais, projetos e contatos importantes em um só lugar.</p>
+                        <h3 class="app-title">GitHub</h3>
+                        <p class="app-description">Plataforma de desenvolvimento e hospedagem de código. Colabore em projetos open source.</p>
                         <div class="app-tags">
-                            <span class="app-tag">Pessoal</span>
-                            <span class="app-tag">Links</span>
+                            <span class="app-tag">Desenvolvimento</span>
+                            <span class="app-tag">Código</span>
                         </div>
                     </div>
                 </div>
 
+                <!-- Apps originais reordenados -->
                 <div class="app-card" data-app="spotify">
                     <div class="app-cover" style="background-image: url('https://s2-oglobo.glbimg.com/HN6KqxVbuSn4PfjMfvS4gBuQBQY=/0x0:5472x3648/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2024/4/B/On1ohUTheTlANGm2ayuw/106248306-files-french-singer-aya-danioko-aka-aya-nakamura-poses-during-a-photo-session-on-november.jpg');">
                         <div class="app-icon">
@@ -1156,22 +1238,6 @@
                     </div>
                 </div>
 
-                <div class="app-card" data-app="epic-games">
-                    <div class="app-cover" style="background-image: url('https://cdn2.unrealengine.com/fneco-twitter-header-1500x500-15b7e9a0aaad.jpg');">
-                        <div class="app-icon">
-                            <img src="https://icon-icons.com/download-file?file=https%3A%2F%2Fimages.icon-icons.com%2F2428%2FPNG%2F512%2Fepic_games_black_logo_icon_147139.png" alt="Epic Games">
-                        </div>
-                    </div>
-                    <div class="app-content">
-                        <h3 class="app-title">Epic Games</h3>
-                        <p class="app-description">Plataforma de distribuição digital e loja online. Acesse jogos gratuitos, Unreal Engine e Fortnite.</p>
-                        <div class="app-tags">
-                            <span class="app-tag">Jogos</span>
-                            <span class="app-tag">Plataforma</span>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="app-card" data-app="jw-org">
                     <div class="app-cover" style="background-image: url('https://www.forestprotection.com/images/orman-cesitleri.jpg');">
                         <div class="app-icon">
@@ -1184,22 +1250,6 @@
                         <div class="app-tags">
                             <span class="app-tag">Espiritual</span>
                             <span class="app-tag">Site Oficial</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="app-card" data-app="watchtower">
-                    <div class="app-cover" style="background-image: url('https://cms-imgp.jw-cdn.org/img/p/802013134/univ/art/802013134_univ_cnt_8_xl.jpg');">
-                        <div class="app-icon">
-                            <img src="https://cms-imgp.jw-cdn.org/img/p/802013134/univ/art/802013134_univ_cnt_8_xl.jpg" alt="Watchtower Library">
-                        </div>
-                    </div>
-                    <div class="app-content">
-                        <h3 class="app-title">Watchtower Library</h3>
-                        <p class="app-description">Biblioteca digital completa com publicações desde 1970 até o presente. Ferramenta essencial para pesquisa.</p>
-                        <div class="app-tags">
-                            <span class="app-tag">Espiritual</span>
-                            <span class="app-tag">Biblioteca</span>
                         </div>
                     </div>
                 </div>
@@ -1254,7 +1304,7 @@
             </div>
         </div>
 
-        <!-- =============== NOVAS PÁGINAS DOS APPS =============== -->
+        <!-- =============== PÁGINAS DOS APPS =============== -->
 
         <!-- Página do YouTube -->
         <div id="youtube-page" class="page app-page">
@@ -1456,7 +1506,7 @@
 
         <!-- Página do Gmail -->
         <div id="gmail-page" class="page app-page">
-            <div class="app-hero" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8N6gUYJcmAzdBEdNalS_1dDs_vJCMdCN5oA&s');">
+            <div class="app-hero" style="background-image: url('https://ravel.com.br/blog/wp-content/uploads/2021/04/como-inserir-assinatura-gmail-capa.png');">
                 <button class="back-button">
                     <i class="fas fa-arrow-left"></i> Voltar
                 </button>
@@ -1652,46 +1702,46 @@
             </div>
         </div>
 
-        <!-- =============== PÁGINAS ORIGINAIS =============== -->
-        <!-- Página do Ray Links -->
-        <div id="ray-links-page" class="page app-page">
-            <div class="app-hero" style="background-image: url('https://img.odcdn.com.br/wp-content/uploads/2021/05/Linktree-e1622124166688.png');">
+        <!-- Página do GitHub -->
+        <div id="github-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('https://miro.medium.com/v2/resize:fit:1400/1*F76Q8wZ8L2h6qKZLUjATkw.png');">
                 <button class="back-button">
                     <i class="fas fa-arrow-left"></i> Voltar
                 </button>
                 <div class="app-hero-content">
                     <div class="app-hero-icon">
-                        <img src="ray.png" alt="Ray Links">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0FKrRO9-cX37-xAMxdDM4b27efQ9jSBk0Zw" alt="GitHub">
                     </div>
                     <div class="app-hero-info">
-                        <h1 style="color: #FF6B6B;">Ray Links</h1>
-                        <p>Meu site pessoal de links, com todos os meus perfis sociais, projetos e contatos importantes em um só lugar.</p>
+                        <h1 style="color: #333333;">GitHub</h1>
+                        <p>Plataforma de desenvolvimento e hospedagem de código. Colabore em projetos open source.</p>
                     </div>
                 </div>
             </div>
             
             <div class="app-detail-content">
                 <div class="app-description-content">
-                    <h2>Sobre o Ray Links</h2>
-                    <p>Meu site pessoal estilo Linktree que reúne todos os meus links importantes em uma única página. Perfeito para compartilhar em perfis de redes sociais e bio.</p>
-                    <p>Organizado por categorias para fácil acesso a projetos, redes sociais, contatos profissionais e recursos úteis.</p>
+                    <h2>Sobre o GitHub</h2>
+                    <p>GitHub é a maior plataforma de desenvolvimento do mundo, onde mais de 100 milhões de desenvolvedores colaboram em projetos de código aberto e privados. É o local ideal para hospedar código, revisar trabalhos e construir software em conjunto.</p>
+                    <p>Com integração Git completa, GitHub Actions para CI/CD, e uma vasta comunidade, é essencial para qualquer desenvolvedor moderno.</p>
                     
-                    <h2>O que você encontra</h2>
+                    <h2>Recursos Principais</h2>
                     <ul>
-                        <li>Todos os meus perfis sociais em um só lugar</li>
-                        <li>Projetos pessoais e portfólio</li>
-                        <li>Links para contato profissional</li>
-                        <li>Recursos e ferramentas que recomendo</li>
-                        <li>Novidades e atualizações sobre meus projetos</li>
-                        <li>Links rápidos para minhas redes principais</li>
-                        <li>Design responsivo que funciona em qualquer dispositivo</li>
-                        <li>Atualizações regulares com novos links</li>
+                        <li>Hospedagem de repositórios Git públicos e privados</li>
+                        <li>GitHub Actions para automação de fluxos de trabalho</li>
+                        <li>GitHub Pages para hospedagem de sites estáticos</li>
+                        <li>Code review com pull requests e code owners</li>
+                        <li>Projetos e quadros Kanban para gerenciamento</li>
+                        <li>GitHub Copilot: assistente de IA para programação</li>
+                        <li>GitHub Codespaces: ambiente de desenvolvimento na nuvem</li>
+                        <li>Segurança avançada com dependabot e code scanning</li>
+                        <li>Comunidade com milhões de projetos open source</li>
                     </ul>
                 </div>
                 
                 <div class="app-sidebar">
-                    <button class="launch-button" data-url="https://loirinhodid.github.io/hublink/" style="background: linear-gradient(135deg, #FF6B6B, #FF8E53);">
-                        <i class="fas fa-external-link-alt"></i>
+                    <button class="launch-button github" data-url="https://github.com">
+                        <i class="fab fa-github"></i>
                         ACESSAR
                     </button>
                     
@@ -1699,25 +1749,26 @@
                         <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
                         <div class="info-item">
                             <span class="info-label">Categoria</span>
-                            <span class="info-value">Pessoal</span>
+                            <span class="info-value">Desenvolvimento</span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">Tipo</span>
-                            <span class="info-value">Site de Links</span>
+                            <span class="info-value">Plataforma de Código</span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Disponibilidade</span>
-                            <span class="info-value" style="color: #FF6B6B;">24/7</span>
+                            <span class="info-label">Desenvolvedores</span>
+                            <span class="info-value" style="color: #333333;">100M+</span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Acesso</span>
-                            <span class="info-value">Gratuito</span>
+                            <span class="info-label">Repositórios</span>
+                            <span class="info-value">330M+</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Páginas originais restantes (Spotify, WhatsApp, JW.org, VS Code, Google Photos, Riot Client) -->
         <!-- Página do Spotify -->
         <div id="spotify-page" class="page app-page">
             <div class="app-hero" style="background-image: url('https://s2-oglobo.glbimg.com/HN6KqxVbuSn4PfjMfvS4gBuQBQY=/0x0:5472x3648/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2024/4/B/On1ohUTheTlANGm2ayuw/106248306-files-french-singer-aya-danioko-aka-aya-nakamura-poses-during-a-photo-session-on-november.jpg');">
@@ -1754,9 +1805,9 @@
                 </div>
                 
                 <div class="app-sidebar">
-                    <button class="launch-button" data-url="spotify:" style="background: linear-gradient(135deg, #1DB954, #1ED760);">
+                    <button class="launch-button" data-url="https://open.spotify.com" style="background: linear-gradient(135deg, #1DB954, #1ED760);">
                         <i class="fas fa-play-circle"></i>
-                        ABRIR
+                        ACESSAR
                     </button>
                     
                     <div class="app-info-grid">
@@ -1770,12 +1821,12 @@
                             <span class="info-value">Streaming de Música</span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Disponibilidade</span>
-                            <span class="info-value" style="color: #1DB954;">Online</span>
+                            <span class="info-label">Usuários</span>
+                            <span class="info-value" style="color: #1DB954;">550M+</span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Plano Gratuito</span>
-                            <span class="info-value">Disponível</span>
+                            <span class="info-label">Assinantes</span>
+                            <span class="info-value">220M+</span>
                         </div>
                     </div>
                 </div>
@@ -1819,9 +1870,9 @@
                 </div>
                 
                 <div class="app-sidebar">
-                    <button class="launch-button" data-url="whatsapp://" style="background: linear-gradient(135deg, #25D366, #128C7E);">
+                    <button class="launch-button" data-url="https://web.whatsapp.com" style="background: linear-gradient(135deg, #25D366, #128C7E);">
                         <i class="fas fa-comment"></i>
-                        ABRIR
+                        ACESSAR
                     </button>
                     
                     <div class="app-info-grid">
@@ -1835,79 +1886,12 @@
                             <span class="info-value">Mensagens Instantâneas</span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Disponibilidade</span>
-                            <span class="info-value" style="color: #25D366;">Global</span>
+                            <span class="info-label">Usuários</span>
+                            <span class="info-value" style="color: #25D366;">2B+</span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">Criptografia</span>
                             <span class="info-value">Ponta a Ponta</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Página da Epic Games - REMOVIDA COR AMARELA -->
-        <div id="epic-games-page" class="page app-page">
-            <div class="app-hero" style="background-image: url('https://cdn2.unrealengine.com/fneco-twitter-header-1500x500-15b7e9a0aaad.jpg');">
-                <button class="back-button">
-                    <i class="fas fa-arrow-left"></i> Voltar
-                </button>
-                <div class="app-hero-content">
-                    <div class="app-hero-icon" style="background: white; padding: 15px;">
-                        <img src="https://icon-icons.com/download-file?file=https%3A%2F%2Fimages.icon-icons.com%2F2428%2FPNG%2F512%2Fepic_games_black_logo_icon_147139.png" alt="Epic Games" style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
-                    <div class="app-hero-info">
-                        <h1 style="color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.7);">Epic Games</h1>
-                        <p>Plataforma de distribuição digital e loja online. Acesse jogos gratuitos, Unreal Engine e Fortnite.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="app-detail-content">
-                <div class="app-description-content">
-                    <h2>Sobre a Epic Games</h2>
-                    <p>A Epic Games é uma empresa americana de desenvolvimento de jogos e software conhecida por criar o Unreal Engine, Fortnite, e a Epic Games Store. A plataforma oferece jogos gratuitos semanais, descontos exclusivos e acesso a ferramentas de desenvolvimento.</p>
-                    <p>A Epic Games Store revolucionou o mercado com seu programa de jogos gratuitos semanais e uma taxa de revenda mais justa para desenvolvedores.</p>
-                    
-                    <h2>Recursos Principais</h2>
-                    <ul>
-                        <li>Jogos gratuitos semanais para manter na biblioteca</li>
-                        <li>Epic Games Store com descontos exclusivos</li>
-                        <li>Unreal Engine - motor gráfico líder da indústria</li>
-                        <li>Fortnite - Battle Royale gratuito e popular</li>
-                        <li>Suporte a desenvolvedores com 88% de royalties</li>
-                        <li>Integração com Epic Online Services</li>
-                        <li>Biblioteca de jogos multiplataforma</li>
-                        <li>Epic Rewards e programas de fidelidade</li>
-                        <li>Lançamentos exclusivos de jogos</li>
-                        <li>Ferramentas para desenvolvedores gratuitas</li>
-                    </ul>
-                </div>
-                
-                <div class="app-sidebar">
-                    <button class="launch-button" data-url="com.epicgames.launcher://" style="background: linear-gradient(135deg, #4a6de5, #6a8eff); border: 2px solid #4a6de5; color: #ffffff; font-weight: bold;">
-                        <i class="fas fa-rocket" style="color: #ffffff;"></i>
-                        ABRIR
-                    </button>
-                    
-                    <div class="app-info-grid">
-                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
-                        <div class="info-item">
-                            <span class="info-label">Categoria</span>
-                            <span class="info-value">Jogos</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Tipo</span>
-                            <span class="info-value">Plataforma de Jogos</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Usuários</span>
-                            <span class="info-value" style="color: #4a6de5;">230M+</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Jogos Gratuitos</span>
-                            <span class="info-value">Semanais</span>
                         </div>
                     </div>
                 </div>
@@ -1972,74 +1956,8 @@
                             <span class="info-value">1.000+</span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Conteúdo</span>
-                            <span class="info-value">Gratuito</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Página do Watchtower Library -->
-        <div id="watchtower-page" class="page app-page">
-            <div class="app-hero" style="background-image: url('https://cms-imgp.jw-cdn.org/img/p/802013134/univ/art/802013134_univ_cnt_8_xl.jpg');">
-                <button class="back-button">
-                    <i class="fas fa-arrow-left"></i> Voltar
-                </button>
-                <div class="app-hero-content">
-                    <div class="app-hero-icon">
-                        <img src="https://cms-imgp.jw-cdn.org/img/p/802013134/univ/art/802013134_univ_cnt_8_xl.jpg" alt="Watchtower Library">
-                    </div>
-                    <div class="app-hero-info">
-                        <h1 style="color: #4169E1;">Watchtower Library</h1>
-                        <p>Biblioteca digital completa com publicações desde 1970 até o presente. Ferramenta essencial para pesquisa.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="app-detail-content">
-                <div class="app-description-content">
-                    <h2>Sobre a Watchtower Library</h2>
-                    <p>Biblioteca digital abrangente que contém publicações das Testemunhas de Jeová desde 1970 até os dias atuais, incluindo todas as revistas A Sentinela e Despertai!.</p>
-                    <p>Ferramenta essencial para pesquisa e estudo bíblico com funcionalidades de busca avançada e referências cruzadas entre publicações.</p>
-                    
-                    <h2>Recursos Principais</h2>
-                    <ul>
-                        <li>Publicações desde 1970 até o presente</li>
-                        <li>Busca avançada por palavras, frases ou tópicos</li>
-                        <li>Referências cruzadas entre diferentes publicações</li>
-                        <li>Ferramentas de anotação e marcação de texto</li>
-                        <li>Índices temáticos organizados por assunto</li>
-                        <li>Publicações disponíveis em múltiplos formatos</li>
-                        <li>Atualizações regulares com novas publicações</li>
-                        <li>Interface intuitiva e fácil de navegar</li>
-                        <li>Exportação de anotações e marcações</li>
-                    </ul>
-                </div>
-                
-                <div class="app-sidebar">
-                    <button class="launch-button" data-url="https://wol.jw.org" style="background: linear-gradient(135deg, #4169E1, #6495ED);">
-                        <i class="fas fa-search"></i>
-                        ABRIR
-                    </button>
-                    
-                    <div class="app-info-grid">
-                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
-                        <div class="info-item">
-                            <span class="info-label">Categoria</span>
-                            <span class="info-value">Espiritual</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Tipo</span>
-                            <span class="info-value">Biblioteca Digital</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Período</span>
-                            <span class="info-value">1970-Presente</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Conteúdo</span>
-                            <span class="info-value">Histórico</span>
+                            <span class="info-label">Acessos Diários</span>
+                            <span class="info-value" style="color: #2196F3;">Milhões</span>
                         </div>
                     </div>
                 </div>
@@ -2085,9 +2003,9 @@
                 </div>
                 
                 <div class="app-sidebar">
-                    <button class="launch-button" data-url="vscode://" style="background: linear-gradient(135deg, #007ACC, #1F9CF0);">
+                    <button class="launch-button" data-url="https://code.visualstudio.com" style="background: linear-gradient(135deg, #007ACC, #1F9CF0);">
                         <i class="fas fa-code"></i>
-                        ABRIR
+                        ACESSAR
                     </button>
                     
                     <div class="app-info-grid">
@@ -2101,12 +2019,12 @@
                             <span class="info-value">Editor de Código</span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Disponibilidade</span>
-                            <span class="info-value" style="color: #007ACC;">Multiplataforma</span>
+                            <span class="info-label">Usuários</span>
+                            <span class="info-value" style="color: #007ACC;">15M+</span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Licença</span>
-                            <span class="info-value">Gratuito</span>
+                            <span class="info-label">Extensões</span>
+                            <span class="info-value">40.000+</span>
                         </div>
                     </div>
                 </div>
@@ -2154,7 +2072,7 @@
                 <div class="app-sidebar">
                     <button class="launch-button" data-url="https://photos.google.com" style="background: linear-gradient(135deg, #4285F4, #34A853);">
                         <i class="fas fa-images"></i>
-                        ABRIR
+                        ACESSAR
                     </button>
                     
                     <div class="app-info-grid">
@@ -2168,12 +2086,12 @@
                             <span class="info-value">Armazenamento de Fotos</span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Armazenamento</span>
-                            <span class="info-value" style="color: #34A853;">15GB Gratuito</span>
+                            <span class="info-label">Usuários</span>
+                            <span class="info-value" style="color: #4285F4;">2B+</span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Inteligência</span>
-                            <span class="info-value">Busca por IA</span>
+                            <span class="info-label">Fotos Armazenadas</span>
+                            <span class="info-value">4 Trilhões+</span>
                         </div>
                     </div>
                 </div>
@@ -2219,9 +2137,9 @@
                 </div>
                 
                 <div class="app-sidebar">
-                    <button class="launch-button" data-url="riotclient:" style="background: linear-gradient(135deg, #FF4654, #FF6B7C);">
+                    <button class="launch-button" data-url="https://riotgames.com" style="background: linear-gradient(135deg, #FF4654, #FF6B7C);">
                         <i class="fas fa-gamepad"></i>
-                        ABRIR
+                        ACESSAR
                     </button>
                     
                     <div class="app-info-grid">
@@ -2235,8 +2153,8 @@
                             <span class="info-value">Plataforma de Jogos</span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Disponibilidade</span>
-                            <span class="info-value" style="color: #FF4654;">Global</span>
+                            <span class="info-label">Jogadores Mensais</span>
+                            <span class="info-value" style="color: #FF4654;">180M+</span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">Jogos</span>
@@ -2259,13 +2177,6 @@
 ================================ */
 const appsData = {
     'home': { name: 'Início' },
-    'ray-links': {
-        name: 'Ray Links',
-        url: 'https://loirinhodid.github.io/hublink/',
-        mobileUrl: 'https://loirinhodid.github.io/hublink/',
-        protocol: null,
-        color: '#FF6B6B'
-    },
     'spotify': {
         name: 'Spotify',
         url: 'https://open.spotify.com',
@@ -2280,12 +2191,19 @@ const appsData = {
         protocol: 'whatsapp://',
         color: '#25D366'
     },
-    'epic-games': {
-        name: 'Epic Games',
-        url: 'https://store.epicgames.com',
-        mobileUrl: 'https://store.epicgames.com',
-        protocol: 'com.epicgames.launcher://',
-        color: '#4a6de5' // MUDADO: Azul em vez de amarelo
+    'netflix': {
+        name: 'Netflix',
+        url: 'https://www.netflix.com',
+        mobileUrl: 'https://www.netflix.com',
+        protocol: null,
+        color: '#E50914'
+    },
+    'youtube': {
+        name: 'YouTube',
+        url: 'https://www.youtube.com',
+        mobileUrl: 'https://www.youtube.com',
+        protocol: null,
+        color: '#FF0000'
     },
     'jw-org': {
         name: 'JW.org',
@@ -2294,19 +2212,12 @@ const appsData = {
         protocol: null,
         color: '#2196F3'
     },
-    'watchtower': {
-        name: 'Watchtower Library',
-        url: 'https://wol.jw.org',
-        mobileUrl: 'https://wol.jw.org',
-        protocol: null,
-        color: '#4169E1'
-    },
-    'vscode': {
-        name: 'Visual Studio Code',
-        url: 'https://code.visualstudio.com',
-        mobileUrl: 'https://code.visualstudio.com',
-        protocol: 'vscode://',
-        color: '#007ACC'
+    'riot-client': {
+        name: 'Riot Client',
+        url: 'https://riotgames.com',
+        mobileUrl: 'https://riotgames.com',
+        protocol: 'riotclient://',
+        color: '#FF4654'
     },
     'google-photos': {
         name: 'Google Photos',
@@ -2315,27 +2226,19 @@ const appsData = {
         protocol: null,
         color: '#4285F4'
     },
-    'riot-client': {
-        name: 'Riot Client',
-        url: 'https://riotgames.com',
-        mobileUrl: 'https://riotgames.com',
-        protocol: 'riotclient://',
-        color: '#FF4654'
+    'vscode': {
+        name: 'Visual Studio Code',
+        url: 'https://code.visualstudio.com',
+        mobileUrl: 'https://code.visualstudio.com',
+        protocol: 'vscode://',
+        color: '#007ACC'
     },
-    // NOVOS APPS
-    'youtube': {
-        name: 'YouTube',
-        url: 'https://www.youtube.com',
-        mobileUrl: 'https://www.youtube.com',
+    'github': {
+        name: 'GitHub',
+        url: 'https://github.com',
+        mobileUrl: 'https://github.com',
         protocol: null,
-        color: '#FF0000'
-    },
-    'netflix': {
-        name: 'Netflix',
-        url: 'https://www.netflix.com',
-        mobileUrl: 'https://www.netflix.com',
-        protocol: null,
-        color: '#E50914'
+        color: '#333333'
     },
     'office365': {
         name: 'Office 365',
@@ -2569,6 +2472,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Redirecionar para projetos.html quando clicar em Projetos
+    document.querySelector('.neon-projetos')?.addEventListener('click', () => {
+        window.open('projetos.html', '_blank', 'noopener');
+    });
+
     // Inicializar
     navigateToPage('home');
 });
@@ -2576,3 +2484,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
+
