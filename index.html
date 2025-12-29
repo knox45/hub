@@ -6,7 +6,7 @@
     <title>Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="hub.png" type="image/png">
-   <style>
+    <style>
         * {
             margin: 0;
             padding: 0;
@@ -15,7 +15,7 @@
         }
 
         body {
-            background-color: #0a0a12;
+            background-color: #2727ae;
             color: #f0f0f0;
             min-height: 100vh;
             background-image: linear-gradient(to bottom, #0a0a12, #151522);
@@ -76,6 +76,7 @@
             position: relative;
             overflow: hidden;
             flex-shrink: 0;
+            text-decoration: none;
         }
 
         .nav-icon:hover {
@@ -232,58 +233,62 @@
             background: none !important;
         }
 
-        /* Cores específicas para ícones ativos - APENAS PARA ÍCONES NÃO-NEON */
+        /* CORES LEGAIS PARA CADA ÍCONE ATIVO */
         .nav-icon.active[data-page="spotify"] {
-            background: linear-gradient(135deg, #1DB954, #1ED760);
-            box-shadow: 0 5px 20px rgba(29, 185, 84, 0.4);
+            background: linear-gradient(135deg, #1DB954, #1ED760) !important;
+            box-shadow: 0 5px 20px rgba(29, 185, 84, 0.4) !important;
         }
         .nav-icon.active[data-page="whatsapp"] {
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            background: linear-gradient(135deg, #25D366, #128C7E) !important;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4) !important;
         }
         .nav-icon.active[data-page="netflix"] {
-            background: linear-gradient(135deg, #E50914, #FF1A1A);
-            box-shadow: 0 5px 20px rgba(229, 9, 20, 0.4);
+            background: linear-gradient(135deg, #E50914, #FF1A1A) !important;
+            box-shadow: 0 5px 20px rgba(229, 9, 20, 0.4) !important;
         }
         .nav-icon.active[data-page="youtube"] {
-            background: linear-gradient(135deg, #FF0000, #FF3333);
-            box-shadow: 0 5px 20px rgba(255, 0, 0, 0.4);
+            background: linear-gradient(135deg, #FF0000, #FF3333) !important;
+            box-shadow: 0 5px 20px rgba(255, 0, 0, 0.4) !important;
         }
         .nav-icon.active[data-page="jw-org"] {
-            background: linear-gradient(135deg, #2196F3, #64B5F6);
-            box-shadow: 0 5px 20px rgba(33, 150, 243, 0.4);
+            background: linear-gradient(135deg, #2196F3, #64B5F6) !important;
+            box-shadow: 0 5px 20px rgba(33, 150, 243, 0.4) !important;
         }
         .nav-icon.active[data-page="github"] {
-            background: linear-gradient(135deg, #333333, #666666);
-            box-shadow: 0 5px 20px rgba(51, 51, 51, 0.4);
+            background: linear-gradient(135deg, #333333, #666666) !important;
+            box-shadow: 0 5px 20px rgba(51, 51, 51, 0.4) !important;
         }
         .nav-icon.active[data-page="vscode"] {
-            background: linear-gradient(135deg, #007ACC, #1F9CF0);
-            box-shadow: 0 5px 20px rgba(0, 122, 204, 0.4);
+            background: linear-gradient(135deg, #007ACC, #1F9CF0) !important;
+            box-shadow: 0 5px 20px rgba(0, 122, 204, 0.4) !important;
         }
         .nav-icon.active[data-page="google-photos"] {
-            background: linear-gradient(135deg, #4285F4, #34A853);
-            box-shadow: 0 5px 20px rgba(66, 133, 244, 0.4);
+            background: linear-gradient(135deg, #4285F4, #34A853) !important;
+            box-shadow: 0 5px 20px rgba(66, 133, 244, 0.4) !important;
         }
         .nav-icon.active[data-page="riot-client"] {
-            background: linear-gradient(135deg, #FF4654, #FF6B7C);
-            box-shadow: 0 5px 20px rgba(255, 70, 84, 0.4);
+            background: linear-gradient(135deg, #FF4654, #FF6B7C) !important;
+            box-shadow: 0 5px 20px rgba(255, 70, 84, 0.4) !important;
         }
         .nav-icon.active[data-page="office365"] {
-            background: linear-gradient(135deg, #D83B01, #FF6B35);
-            box-shadow: 0 5px 20px rgba(216, 59, 1, 0.4);
+            background: linear-gradient(135deg, #D83B01, #FF6B35) !important;
+            box-shadow: 0 5px 20px rgba(216, 59, 1, 0.4) !important;
         }
         .nav-icon.active[data-page="gmail"] {
-            background: linear-gradient(135deg, #EA4335, #FF6B5B);
-            box-shadow: 0 5px 20px rgba(234, 67, 53, 0.4);
+            background: linear-gradient(135deg, #EA4335, #FF6B5B) !important;
+            box-shadow: 0 5px 20px rgba(234, 67, 53, 0.4) !important;
         }
         .nav-icon.active[data-page="discord"] {
-            background: linear-gradient(135deg, #5865F2, #7289DA);
-            box-shadow: 0 5px 20px rgba(88, 101, 242, 0.4);
+            background: linear-gradient(135deg, #5865F2, #7289DA) !important;
+            box-shadow: 0 5px 20px rgba(88, 101, 242, 0.4) !important;
         }
         .nav-icon.active[data-page="drive"] {
-            background: linear-gradient(135deg, #4285F4, #5C9BFF);
-            box-shadow: 0 5px 20px rgba(66, 133, 244, 0.4);
+            background: linear-gradient(135deg, #4285F4, #5C9BFF) !important;
+            box-shadow: 0 5px 20px rgba(66, 133, 244, 0.4) !important;
+        }
+        .nav-icon.active[data-page="epic-games"] {
+            background: linear-gradient(135deg, #2A2A2A, #404040) !important;
+            box-shadow: 0 5px 20px rgba(42, 42, 42, 0.4) !important;
         }
 
         /* Barra superior */
@@ -451,6 +456,22 @@
             position: relative;
         }
 
+        /* PLACEHOLDER PARA IMAGENS FALTANTES */
+        .app-cover.placeholder {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.5), rgba(45, 45, 74, 0.5));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 2rem;
+        }
+
+        .app-cover.placeholder::before {
+            content: '🖼️';
+            font-size: 3rem;
+            opacity: 0.5;
+        }
+
         .app-cover::after {
             content: '';
             position: absolute;
@@ -516,7 +537,7 @@
             border: none;
         }
 
-        /* Páginas de apps */
+        /* Páginas de apps - LAYOUT SIMPLIFICADO */
         .app-page {
             min-height: calc(100vh - 60px);
         }
@@ -580,129 +601,231 @@
             max-width: 600px;
         }
 
-        .app-detail-content {
+        /* CONTAINER SIMPLIFICADO PARA PÁGINAS DE APP */
+        .app-page-content {
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px;
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 40px;
+            margin: 40px auto;
+            padding: 0 60px;
         }
 
-        /* Caixas de conteúdo */
-        .app-description-content {
-            background: rgba(26, 26, 46, 0.2);
-            border-radius: 20px;
-            padding: 40px;
-            border: none;
-            backdrop-filter: blur(10px);
-        }
-
-        .app-description-content h2 {
-            font-size: 2rem;
-            margin-bottom: 25px;
-            color: white;
-        }
-
-        .app-description-content p {
-            color: #b0b0c0;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
-
-        .app-description-content ul {
-            color: #b0b0c0;
-            line-height: 1.6;
-            padding-left: 20px;
-            margin-bottom: 20px;
-        }
-
-        .app-description-content li {
-            margin-bottom: 10px;
-        }
-
-        .app-sidebar {
-            background: rgba(26, 26, 46, 0.2);
-            border-radius: 20px;
-            padding: 40px;
-            border: none;
+        /* BARRA SUPERIOR DE AÇÃO NO CANTO ESQUERDO */
+        .app-action-bar {
             display: flex;
-            flex-direction: column;
-            gap: 30px;
-            backdrop-filter: blur(10px);
+            align-items: center;
+            margin-bottom: 40px;
+            gap: 20px;
         }
 
-        .launch-button {
+        .app-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        /* BOTÕES PRINCIPAIS COM CORES LEGAIS */
+        .app-main-button {
             background: linear-gradient(135deg, #4a6de5, #6a8eff);
             color: white;
             border: none;
-            padding: 25px;
-            border-radius: 15px;
-            font-size: 1.4rem;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 1.1rem;
             font-weight: 700;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
             transition: all 0.3s;
+            min-width: 180px;
+            text-decoration: none;
         }
 
-        .launch-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(74, 109, 229, 0.4);
+        .app-main-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(74, 109, 229, 0.4);
         }
 
-        /* CORES ESPECIAIS PARA BOTÕES DE APPS */
-        .launch-button.youtube {
+        /* CORES LEGAIS ESPECÍFICAS PARA CADA APP */
+        .app-main-button.youtube {
             background: linear-gradient(135deg, #FF0000, #CC0000) !important;
         }
-        .launch-button.netflix {
+        .app-main-button.netflix {
             background: linear-gradient(135deg, #E50914, #B20710) !important;
         }
-        .launch-button.office365 {
+        .app-main-button.office365 {
             background: linear-gradient(135deg, #D83B01, #A52C00) !important;
         }
-        .launch-button.gmail {
+        .app-main-button.gmail {
             background: linear-gradient(135deg, #EA4335, #D14836) !important;
         }
-        .launch-button.discord {
+        .app-main-button.discord {
             background: linear-gradient(135deg, #5865F2, #4752C4) !important;
         }
-        .launch-button.drive {
+        .app-main-button.drive {
             background: linear-gradient(135deg, #4285F4, #3367D6) !important;
         }
-        .launch-button.github {
+        .app-main-button.github {
             background: linear-gradient(135deg, #333333, #555555) !important;
         }
+        .app-main-button.epic-games {
+            background: linear-gradient(135deg, #2A2A2A, #404040) !important;
+        }
+        .app-main-button.spotify {
+            background: linear-gradient(135deg, #1DB954, #1ED760) !important;
+        }
+        .app-main-button.whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E) !important;
+        }
+        .app-main-button.jw-org {
+            background: linear-gradient(135deg, #2196F3, #64B5F6) !important;
+        }
+        .app-main-button.vscode {
+            background: linear-gradient(135deg, #007ACC, #1F9CF0) !important;
+        }
+        .app-main-button.google-photos {
+            background: linear-gradient(135deg, #4285F4, #34A853) !important;
+        }
+        .app-main-button.riot-client {
+            background: linear-gradient(135deg, #FF4654, #FF6B7C) !important;
+        }
 
-        .launch-button.youtube:hover {
-            box-shadow: 0 15px 30px rgba(255, 0, 0, 0.4) !important;
+        .app-main-button.youtube:hover {
+            box-shadow: 0 10px 25px rgba(255, 0, 0, 0.4) !important;
         }
-        .launch-button.netflix:hover {
-            box-shadow: 0 15px 30px rgba(229, 9, 20, 0.4) !important;
+        .app-main-button.netflix:hover {
+            box-shadow: 0 10px 25px rgba(229, 9, 20, 0.4) !important;
         }
-        .launch-button.office365:hover {
-            box-shadow: 0 15px 30px rgba(216, 59, 1, 0.4) !important;
+        .app-main-button.office365:hover {
+            box-shadow: 0 10px 25px rgba(216, 59, 1, 0.4) !important;
         }
-        .launch-button.gmail:hover {
-            box-shadow: 0 15px 30px rgba(234, 67, 53, 0.4) !important;
+        .app-main-button.gmail:hover {
+            box-shadow: 0 10px 25px rgba(234, 67, 53, 0.4) !important;
         }
-        .launch-button.discord:hover {
-            box-shadow: 0 15px 30px rgba(88, 101, 242, 0.4) !important;
+        .app-main-button.discord:hover {
+            box-shadow: 0 10px 25px rgba(88, 101, 242, 0.4) !important;
         }
-        .launch-button.drive:hover {
-            box-shadow: 0 15px 30px rgba(66, 133, 244, 0.4) !important;
+        .app-main-button.drive:hover {
+            box-shadow: 0 10px 25px rgba(66, 133, 244, 0.4) !important;
         }
-        .launch-button.github:hover {
-            box-shadow: 0 15px 30px rgba(51, 51, 51, 0.4) !important;
+        .app-main-button.github:hover {
+            box-shadow: 0 10px 25px rgba(51, 51, 51, 0.4) !important;
+        }
+        .app-main-button.epic-games:hover {
+            box-shadow: 0 10px 25px rgba(42, 42, 42, 0.4) !important;
+        }
+        .app-main-button.spotify:hover {
+            box-shadow: 0 10px 25px rgba(29, 185, 84, 0.4) !important;
+        }
+        .app-main-button.whatsapp:hover {
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4) !important;
+        }
+        .app-main-button.jw-org:hover {
+            box-shadow: 0 10px 25px rgba(33, 150, 243, 0.4) !important;
+        }
+        .app-main-button.vscode:hover {
+            box-shadow: 0 10px 25px rgba(0, 122, 204, 0.4) !important;
+        }
+        .app-main-button.google-photos:hover {
+            box-shadow: 0 10px 25px rgba(66, 133, 244, 0.4) !important;
+        }
+        .app-main-button.riot-client:hover {
+            box-shadow: 0 10px 25px rgba(255, 70, 84, 0.4) !important;
         }
 
-        .app-info-grid {
+        .app-secondary-button {
+            background: rgba(26, 26, 46, 0.3);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 25px;
+            border-radius: 12px;
+            font-size: 1rem;
+            cursor: pointer;
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .app-secondary-button:hover {
+            background: rgba(45, 45, 74, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* VISUALIZAÇÃO DE IMAGENS/BANNER - SEM DIVISÓRIAS */
+        .app-images-section {
+            margin-top: 40px;
+        }
+
+        .app-images-grid {
+            display: flex;
+            gap: 0;
+            margin-top: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .app-image-item {
+            flex: 1;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: transform 0.3s ease, flex 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        /* PLACEHOLDER PARA IMAGENS FALTANTES NAS PÁGINAS */
+        .app-image-item.placeholder {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.6), rgba(45, 45, 74, 0.6));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .app-image-item.placeholder::before {
+            content: '📷';
+            font-size: 2.5rem;
+            opacity: 0.5;
+        }
+
+        .app-image-item:hover {
+            transform: scale(1.05);
+            z-index: 1;
+            flex: 1.2;
+        }
+
+        .app-image-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 70%, rgba(0,0,0,0.7) 100%);
+        }
+
+        .app-image-label {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            color: white;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        /* INFORMÇÕES SIMPLIFICADAS */
+        .app-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 20px;
+            margin-top: 40px;
+            background: rgba(26, 26, 46, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
         }
 
         .info-item {
@@ -800,21 +923,56 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
-        /* ADAPTAÇÕES PARA MOBILE */
-        @media (max-width: 768px) {
+        /* ============================================= */
+        /* ADAPTAÇÕES ESPECÍFICAS PARA MOBILE - OTIMIZADO */
+        /* ============================================= */
+        @media (max-width: 1024px) {
             .sidebar {
-                width: 70px;
+                width: 80px;
                 padding: 20px 0;
                 gap: 20px;
             }
             
             .nav-icon {
-                width: 50px;
-                height: 50px;
+                width: 55px;
+                height: 55px;
             }
             
-            .nav-icon i {
-                font-size: 1.2rem;
+            .main-content {
+                margin-left: 80px;
+            }
+            
+            .top-bar {
+                left: 80px;
+            }
+            
+            .home-header h1 {
+                font-size: 3rem;
+            }
+            
+            .apps-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .app-hero {
+                height: 350px;
+            }
+            
+            .app-hero-info h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 70px;
+                padding: 15px 0;
+                gap: 15px;
+            }
+            
+            .nav-icon {
+                width: 50px;
+                height: 50px;
             }
             
             .nav-icon img {
@@ -828,29 +986,27 @@
             
             .top-bar {
                 left: 70px;
-                padding: 0 20px;
+                height: 50px;
+                padding: 0 15px;
             }
             
             .home-header {
-                padding: 40px 20px 30px;
+                padding: 30px 20px 25px;
             }
             
             .home-header h1 {
                 font-size: 2.5rem;
-            }
-            
-            .home-header p {
-                font-size: 1rem;
+                text-align: center;
             }
             
             .apps-grid {
-                grid-template-columns: 1fr;
-                padding: 0 20px 40px;
-                gap: 20px;
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                padding: 0 20px 30px;
+                gap: 15px;
             }
             
             .app-card {
-                height: 300px;
+                height: 280px;
             }
             
             .app-cover {
@@ -860,8 +1016,6 @@
             .app-icon {
                 width: 50px;
                 height: 50px;
-                bottom: 15px;
-                left: 15px;
             }
             
             .app-hero {
@@ -884,56 +1038,40 @@
                 font-size: 2.5rem;
             }
             
-            .app-hero-info p {
-                font-size: 1rem;
+            .app-page-content {
+                padding: 0 20px;
             }
             
-            .app-detail-content {
-                padding: 30px 20px;
+            .app-action-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .app-buttons {
+                width: 100%;
+                flex-direction: column;
+            }
+            
+            .app-main-button, .app-secondary-button {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .app-images-grid {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .app-image-item {
+                height: 150px;
+            }
+            
+            .app-info-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .app-description-content,
-            .app-sidebar {
-                padding: 25px;
             }
             
             .footer {
                 margin-left: 70px;
-                padding: 25px 20px;
-            }
-            
-            .back-button {
-                top: 20px;
-                left: 20px;
-                padding: 10px 18px;
-                font-size: 0.9rem;
-            }
-
-            .user-actions {
-                gap: 10px;
-            }
-            
-            .terms-icon {
-                width: 35px;
-                height: 35px;
-                border-radius: 10px;
-            }
-            
-            .terms-icon i {
-                font-size: 1rem;
-            }
-            
-            .user-avatar {
-                width: 35px;
-                height: 35px;
-                font-size: 1rem;
-            }
-
-            .device-indicator {
-                font-size: 0.7rem;
-                padding: 5px 12px;
             }
         }
 
@@ -948,8 +1086,8 @@
             }
             
             .nav-icon img {
-                width: 26px;
-                height: 26px;
+                width: 25px;
+                height: 25px;
             }
             
             .main-content {
@@ -968,73 +1106,48 @@
                 font-size: 2rem;
             }
             
+            .apps-grid {
+                grid-template-columns: 1fr;
+            }
+            
             .app-card {
-                height: 280px;
-            }
-            
-            .app-cover {
-                height: 130px;
-            }
-
-            .terms-icon {
-                width: 32px;
-                height: 32px;
-                border-radius: 8px;
-            }
-            
-            .terms-icon i {
-                font-size: 0.9rem;
-            }
-            
-            .user-avatar {
-                width: 32px;
-                height: 32px;
-                font-size: 0.9rem;
-            }
-
-            .device-indicator {
-                font-size: 0.65rem;
-                padding: 4px 10px;
+                height: 260px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Barra lateral estilo Riot - COM SCROLL -->
+    <!-- Barra lateral estilo Riot - COM SCROLL (ORDEM ORIGINAL) -->
     <div class="sidebar">
-      
-       <!-- Ícone Home com efeito neon azul -->
-    <div class="nav-icon active neon-home" data-page="home">
-        <i class="fas fa-home"></i>
-    </div>
+        <!-- Ícone Home com efeito neon azul -->
+        <div class="nav-icon active neon-home" data-page="home">
+            <i class="fas fa-home"></i>
+        </div>
         
         <a href="game.html" class="nav-icon neon-games" title="Games">
             <i class="fa-solid fa-grip"></i>
         </a>
-        <!-- Adicione este código na barra lateral (sidebar), logo após o botão de Games -->
-       <a href="projetos.html" class="nav-icon neon-projetos" title="Projetos">
-       <i class="fa-regular fa-gem"></i>
-       </a>
+        
+        <a href="projetos.html" class="nav-icon neon-projetos" title="Projetos">
+            <i class="fa-regular fa-gem"></i>
+        </a>
 
-
+        <!-- ORDEM ORIGINAL DOS ÍCONES -->
         <div class="nav-icon" data-page="spotify">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwDiicpDsawpNveT7Ota2-EC_vZbP8vneTbg&s" alt="Spotify">
         </div>
         <div class="nav-icon" data-page="whatsapp">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/2048px-WhatsApp.svg.png" alt="WhatsApp">
         </div>
-        <!-- Netflix no lugar do Epic Games -->
         <div class="nav-icon" data-page="netflix">
             <img src="https://images.ctfassets.net/4cd45et68cgf/Rx83JoRDMkYNlMC9MKzcB/2b14d5a59fc3937afd3f03191e19502d/Netflix-Symbol.png?w=700&h=456" alt="Netflix">
         </div>
-        <!-- YouTube no lugar do Watchtower -->
         <div class="nav-icon" data-page="youtube">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/YouTube_play_button_square_%282013-2017%29.svg/2048px-YouTube_play_button_square_%282013-2017%29.svg.png" alt="YouTube">
         </div>
         <div class="nav-icon" data-page="jw-org">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQguRAJtdxxQjekZtb9y6NLF-tqsN5mXhM0AQ&s" alt="JW.org">
         </div>
-        <!-- Riot Games movido para cima do Google Photos -->
         <div class="nav-icon" data-page="riot-client">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKnJaJcVfuAJc2YxBhBp4ujW956ygaVD0vaA&s" alt="Riot Client">
         </div>
@@ -1044,16 +1157,17 @@
         <div class="nav-icon" data-page="vscode">
             <img src="https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxj7kCzMIlSC20SNjaJf9GmG15ocnF.zbBRgxMSlB7Ejh6FbgNzxLvZOoW7N3ML56fn3m5Z4MO.M8pYrCFVKIhqM-&format=source" alt="VS Code">
         </div>
-        <!-- GitHub -->
         <div class="nav-icon" data-page="github">
             <img src="https://cdn.iconscout.com/icon/free/png-256/free-github-logo-icon-svg-download-png-8630395.png?f=webp" alt="GitHub">
         </div>
-        <!-- NOVOS APPS NA BARRA LATERAL -->
         <div class="nav-icon" data-page="office365">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Microsoft_365_%282022%29.svg/1862px-Microsoft_365_%282022%29.svg.png" alt="Office 365">
         </div>
         <div class="nav-icon" data-page="gmail">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/2560px-Gmail_icon_%282020%29.svg.png" alt="Gmail">
+        </div>
+        <div class="nav-icon" data-page="epic-games">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Epic_Games_logo.svg/882px-Epic_Games_logo.svg.png" alt="Epic Games">
         </div>
         <div class="nav-icon" data-page="discord">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQusefcTCWIdEVgzSSoMgGjozRdyu7kdV_BEw&s" alt="Discord">
@@ -1088,7 +1202,8 @@
             </div>
 
             <div class="apps-grid">
-                <!-- Apps novos -->
+                <!-- Apps na ORDEM ORIGINAL -->
+                <!-- YouTube -->
                 <div class="app-card" data-app="youtube">
                     <div class="app-cover" style="background-image: url('https://www.hardware.com.br/wp-content/uploads/2025/10/youtube-1280x600.jpg');">
                         <div class="app-icon">
@@ -1105,6 +1220,7 @@
                     </div>
                 </div>
 
+                <!-- Netflix -->
                 <div class="app-card" data-app="netflix">
                     <div class="app-cover" style="background-image: url('https://images.ctfassets.net/4cd45et68cgf/420BtDZ84P3YSypsaRUzPQ/64fb5aae97e75630ca61f9910bc27729/MHU_FINAL_D2_936x622.jpg?w=2000');">
                         <div class="app-icon">
@@ -1121,6 +1237,7 @@
                     </div>
                 </div>
 
+                <!-- Office 365 -->
                 <div class="app-card" data-app="office365">
                     <div class="app-cover" style="background-image: url('https://petri.com/wp-content/uploads/2022/10/microsoft-365-app-icon-1.jpg');">
                         <div class="app-icon">
@@ -1137,6 +1254,7 @@
                     </div>
                 </div>
 
+                <!-- Gmail -->
                 <div class="app-card" data-app="gmail">
                     <div class="app-cover" style="background-image: url('https://ravel.com.br/blog/wp-content/uploads/2021/04/como-inserir-assinatura-gmail-capa.png');">
                         <div class="app-icon">
@@ -1153,6 +1271,24 @@
                     </div>
                 </div>
 
+                <!-- Epic Games -->
+                <div class="app-card" data-app="epic-games">
+                    <div class="app-cover" style="background-image: url('https://images.ctfassets.net/5owu3y35gz1g/4TFV2U8iZRUXw8xNOe3eHq/ea8f27b2c8bb174773f6b1bb3fc5d77b/EGS_Primary_Logo_Horiz_White_RGB_1500x500.png');">
+                        <div class="app-icon">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Epic_Games_logo.svg/882px-Epic_Games_logo.svg.png" alt="Epic Games">
+                        </div>
+                    </div>
+                    <div class="app-content">
+                        <h3 class="app-title">Epic Games</h3>
+                        <p class="app-description">Loja de jogos com títulos gratuitos semanais. Jogos como Fortnite, Rocket League e mais.</p>
+                        <div class="app-tags">
+                            <span class="app-tag">Jogos</span>
+                            <span class="app-tag">Loja</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Discord -->
                 <div class="app-card" data-app="discord">
                     <div class="app-cover" style="background-image: url('https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/665643dd8c7ac752237b5cef_Discord-OG-1200x630.jpg');">
                         <div class="app-icon">
@@ -1169,6 +1305,7 @@
                     </div>
                 </div>
 
+                <!-- Google Drive -->
                 <div class="app-card" data-app="drive">
                     <div class="app-cover" style="background-image: url('https://lh3.googleusercontent.com/0N6ohR0v9enAmZau0C3CiuWy0ikhIx8Q95ZNN_1lO7VMbBO9OvDKzxcbspPW8sVGPEgUc1kQ-OGtBSC7MrPdY6F7_a3yemSO5Sg87Q=e365-pa-nu-rw-w600');">
                         <div class="app-icon">
@@ -1202,7 +1339,7 @@
                     </div>
                 </div>
 
-                <!-- Apps originais reordenados -->
+                <!-- Spotify -->
                 <div class="app-card" data-app="spotify">
                     <div class="app-cover" style="background-image: url('https://s2-oglobo.glbimg.com/HN6KqxVbuSn4PfjMfvS4gBuQBQY=/0x0:5472x3648/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2024/4/B/On1ohUTheTlANGm2ayuw/106248306-files-french-singer-aya-danioko-aka-aya-nakamura-poses-during-a-photo-session-on-november.jpg');">
                         <div class="app-icon">
@@ -1219,6 +1356,7 @@
                     </div>
                 </div>
 
+                <!-- WhatsApp -->
                 <div class="app-card" data-app="whatsapp">
                     <div class="app-cover" style="background-image: url('https://static.whatsapp.net/rsrc.php/v4/yd/r/1kqYbgBsNIE.png');">
                         <div class="app-icon">
@@ -1235,6 +1373,7 @@
                     </div>
                 </div>
 
+                <!-- JW.org -->
                 <div class="app-card" data-app="jw-org">
                     <div class="app-cover" style="background-image: url('https://www.forestprotection.com/images/orman-cesitleri.jpg');">
                         <div class="app-icon">
@@ -1251,6 +1390,7 @@
                     </div>
                 </div>
 
+                <!-- VS Code -->
                 <div class="app-card" data-app="vscode">
                     <div class="app-cover" style="background-image: url('https://learn.microsoft.com/pt-br/shows/visual-studio-code/media/visual-studio-code-banner-image.jpg');">
                         <div class="app-icon">
@@ -1267,6 +1407,7 @@
                     </div>
                 </div>
 
+                <!-- Google Photos -->
                 <div class="app-card" data-app="google-photos">
                     <div class="app-cover" style="background-image: url('https://www.notebookcheck.info/fileadmin/Notebooks/News/_nc4/Google-Photos-Quick-Edit-feature.jpg');">
                         <div class="app-icon">
@@ -1283,6 +1424,7 @@
                     </div>
                 </div>
 
+                <!-- Riot Client -->
                 <div class="app-card" data-app="riot-client">
                     <div class="app-cover" style="background-image: url('https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/cf701cc9fda8942c3cfdf9f26e6ed410d4c59343-1920x1080.jpg?accountingTag=TFT?auto=format&fit=fill&q=80&w=1920');">
                         <div class="app-icon">
@@ -1315,55 +1457,52 @@
                     </div>
                     <div class="app-hero-info">
                         <h1 style="color: #FF0000;">YouTube</h1>
-                        <p>Assista a vídeos, músicas, tutoriais e muito mais. A maior plataforma de vídeos do mundo.</p>
+                        <p>Assista a vídeos, músicas, tutoriais e muito mais</p>
                     </div>
                 </div>
             </div>
             
-            <div class="app-detail-content">
-                <div class="app-description-content">
-                    <h2>Sobre o YouTube</h2>
-                    <p>O YouTube é a maior plataforma de compartilhamento de vídeos do mundo, permitindo que usuários assistam, compartilhem e carreguem vídeos. Com bilhões de usuários, é uma fonte essencial de entretenimento, educação e informação.</p>
-                    <p>Oferece conteúdos gratuitos e premium (YouTube Premium), streaming ao vivo, criação de playlists personalizadas e recomendações baseadas em seus interesses.</p>
-                    
-                    <h2>Recursos Principais</h2>
-                    <ul>
-                        <li>Biblioteca com bilhões de vídeos em diversas categorias</li>
-                        <li>YouTube Premium: sem anúncios e conteúdo exclusivo</li>
-                        <li>YouTube Music: streaming de músicas integrado</li>
-                        <li>YouTube Kids: conteúdo seguro para crianças</li>
-                        <li>Transmissões ao vivo e eventos em tempo real</li>
-                        <li>Criação e compartilhamento de playlists</li>
-                        <li>Download de vídeos para assistir offline</li>
-                        <li>YouTube Studio para criadores de conteúdo</li>
-                        <li>Integração com Google Assistente e Chromecast</li>
-                    </ul>
+            <div class="app-page-content">
+                <div class="app-action-bar">
+                    <div class="app-buttons">
+                        <button class="app-main-button youtube" data-url="https://www.youtube.com">
+                            <i class="fas fa-play-circle"></i>
+                            ASSISTIR
+                        </button>
+                    </div>
                 </div>
-                
-                <div class="app-sidebar">
-                    <button class="launch-button youtube" data-url="https://www.youtube.com">
-                        <i class="fas fa-play-circle"></i>
-                        ACESSAR
-                    </button>
-                    
-                    <div class="app-info-grid">
-                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
-                        <div class="info-item">
-                            <span class="info-label">Categoria</span>
-                            <span class="info-value">Entretenimento</span>
+
+                <div class="app-images-section">
+                    <h3 style="color: white; margin-bottom: 20px;">Conteúdo</h3>
+                    <div class="app-images-grid">
+                        <div class="app-image-item" style="background-image: url('https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg');">
+                            <span class="app-image-label">Músicas</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Tipo</span>
-                            <span class="info-value">Plataforma de Vídeos</span>
+                        <div class="app-image-item" style="background-image: url('https://i.ytimg.com/vi/otmgFQHbaDo/maxresdefault.jpg');">
+                            <span class="app-image-label">Tutoriais</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Usuários</span>
-                            <span class="info-value" style="color: #FF0000;">2B+</span>
+                        <div class="app-image-item" style="background-image: url('https://i.ytimg.com/vi/5qap5aO4i9A/maxresdefault.jpg');">
+                            <span class="app-image-label">Ao Vivo</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Disponibilidade</span>
-                            <span class="info-value">Global</span>
-                        </div>
+                    </div>
+                </div>
+
+                <div class="app-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Categoria</span>
+                        <span class="info-value">Entretenimento</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Usuários</span>
+                        <span class="info-value">2B+</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Conteúdo</span>
+                        <span class="info-value">Vídeos</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Premium</span>
+                        <span class="info-value">Disponível</span>
                     </div>
                 </div>
             </div>
@@ -1381,391 +1520,57 @@
                     </div>
                     <div class="app-hero-info">
                         <h1 style="color: #E50914;">Netflix</h1>
-                        <p>Filmes, séries e documentários sob demanda. Assista a conteúdos exclusivos em qualquer dispositivo.</p>
+                        <p>Filmes, séries e documentários sob demanda</p>
                     </div>
                 </div>
             </div>
             
-            <div class="app-detail-content">
-                <div class="app-description-content">
-                    <h2>Sobre o Netflix</h2>
-                    <p>Netflix é o principal serviço de streaming por assinatura do mundo, oferecendo uma vasta biblioteca de filmes, séries, documentários e conteúdos originais premiados. Disponível em mais de 190 países.</p>
-                    <p>Com planos para diferentes necessidades, perfis personalizados e download para assistir offline, o Netflix revolucionou a forma como consumimos entretenimento.</p>
-                    
-                    <h2>Recursos Principais</h2>
-                    <ul>
-                        <li>Biblioteca com milhares de títulos originais e licenciados</li>
-                        <li>Produções exclusivas premiadas (Netflix Originals)</li>
-                        <li>Até 4 perfis por conta com recomendações personalizadas</li>
-                        <li>Download de conteúdos para assistir offline</li>
-                        <li>Suporte a 4K Ultra HD e Dolby Atmos</li>
-                        <li>Controles parentais e classificação por idade</li>
-                        <li>Disponível em smartphones, tablets, TVs e computadores</li>
-                        <li>Novos conteúdos adicionados semanalmente</li>
-                        <li>Plano móvel para celulares com preço reduzido</li>
-                    </ul>
+            <div class="app-page-content">
+                <div class="app-action-bar">
+                    <div class="app-buttons">
+                        <button class="app-main-button netflix" data-url="https://www.netflix.com">
+                            <i class="fas fa-film"></i>
+                            ASSISTIR
+                        </button>
+                    </div>
                 </div>
-                
-                <div class="app-sidebar">
-                    <button class="launch-button netflix" data-url="https://www.netflix.com">
-                        <i class="fas fa-film"></i>
-                        ACESSAR
-                    </button>
-                    
-                    <div class="app-info-grid">
-                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
-                        <div class="info-item">
-                            <span class="info-label">Categoria</span>
-                            <span class="info-value">Entretenimento</span>
+
+                <div class="app-images-section">
+                    <h3 style="color: white; margin-bottom: 20px;">Produções</h3>
+                    <div class="app-images-grid">
+                        <div class="app-image-item" style="background-image: url('https://www.joblo.com/wp-content/uploads/2023/02/stranger-things-season-4-poster.jpg');">
+                            <span class="app-image-label">Stranger Things</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Tipo</span>
-                            <span class="info-value">Streaming</span>
+                        <div class="app-image-item" style="background-image: url('https://m.media-amazon.com/images/M/MV5BN2ZmYjg1YmItNWQ4OC00YWM0LWE0ZDktYThjOTZiZjhhN2Q2XkEyXkFqcGdeQXVyNjgxNzA3ODQ@._V1_.jpg');">
+                            <span class="app-image-label">The Crown</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Assinantes</span>
-                            <span class="info-value" style="color: #E50914;">250M+</span>
+                        <div class="app-image-item" style="background-image: url('https://m.media-amazon.com/images/M/MV5BODcwNWE3OTMtMDc3MS00NDFjLWE1OTAtNDU3NjgxODMxY2UyXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_FMjpg_UX1000_.jpg');">
+                            <span class="app-image-label">La Casa de Papel</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Países</span>
-                            <span class="info-value">190+</span>
-                        </div>
+                    </div>
+                </div>
+
+                <div class="app-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Categoria</span>
+                        <span class="info-value">Entretenimento</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Assinantes</span>
+                        <span class="info-value">250M+</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Países</span>
+                        <span class="info-value">190+</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">4K</span>
+                        <span class="info-value">Disponível</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Página do Office 365 -->
-        <div id="office365-page" class="page app-page">
-            <div class="app-hero" style="background-image: url('https://petri.com/wp-content/uploads/2022/10/microsoft-365-app-icon-1.jpg');">
-                <button class="back-button">
-                    <i class="fas fa-arrow-left"></i> Voltar
-                </button>
-                <div class="app-hero-content">
-                    <div class="app-hero-icon">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Microsoft_365_%282022%29.svg/1862px-Microsoft_365_%282022%29.svg.png" alt="Office 365">
-                    </div>
-                    <div class="app-hero-info">
-                        <h1 style="color: #D83B01;">Office 365</h1>
-                        <p>Word, Excel, PowerPoint e Outlook online. Trabalhe em qualquer lugar com as ferramentas da Microsoft.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="app-detail-content">
-                <div class="app-description-content">
-                    <h2>Sobre o Office 365</h2>
-                    <p>Microsoft 365 (anteriormente Office 365) é um pacote de produtividade baseado em assinatura que inclui aplicativos premium do Office, armazenamento em nuvem e ferramentas de colaboração. Trabalhe de qualquer lugar, em qualquer dispositivo.</p>
-                    <p>Com versões online e desktop, colaboração em tempo real e integração com serviços Microsoft, é a solução completa para produtividade pessoal e profissional.</p>
-                    
-                    <h2>Recursos Principais</h2>
-                    <ul>
-                        <li>Aplicativos completos: Word, Excel, PowerPoint, Outlook</li>
-                        <li>1TB de armazenamento no OneDrive por usuário</li>
-                        <li>Versões web, desktop e mobile sincronizadas</li>
-                        <li>Colaboração em tempo real em documentos</li>
-                        <li>Microsoft Teams integrado para comunicação</li>
-                        <li>Proteção avançada contra ameaças de segurança</li>
-                        <li>Modelos profissionais e ferramentas de IA</li>
-                        <li>Suporte técnico 24/7 da Microsoft</li>
-                        <li>Atualizações automáticas e novos recursos regulares</li>
-                    </ul>
-                </div>
-                
-                <div class="app-sidebar">
-                    <button class="launch-button office365" data-url="https://www.office.com">
-                        <i class="fas fa-file-alt"></i>
-                        ACESSAR
-                    </button>
-                    
-                    <div class="app-info-grid">
-                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
-                        <div class="info-item">
-                            <span class="info-label">Categoria</span>
-                            <span class="info-value">Produtividade</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Tipo</span>
-                            <span class="info-value">Suíte de Escritório</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Armazenamento</span>
-                            <span class="info-value" style="color: #D83B01;">1TB/usuário</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Dispositivos</span>
-                            <span class="info-value">5 simultâneos</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Página do Gmail -->
-        <div id="gmail-page" class="page app-page">
-            <div class="app-hero" style="background-image: url('https://ravel.com.br/blog/wp-content/uploads/2021/04/como-inserir-assinatura-gmail-capa.png');">
-                <button class="back-button">
-                    <i class="fas fa-arrow-left"></i> Voltar
-                </button>
-                <div class="app-hero-content">
-                    <div class="app-hero-icon">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/2560px-Gmail_icon_%282020%29.svg.png" alt="Gmail">
-                    </div>
-                    <div class="app-hero-info">
-                        <h1 style="color: #EA4335;">Gmail</h1>
-                        <p>Email seguro, organizado e eficiente. Filtros inteligentes e 15GB de armazenamento gratuito.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="app-detail-content">
-                <div class="app-description-content">
-                    <h2>Sobre o Gmail</h2>
-                    <p>Gmail é o serviço de email do Google, conhecido por sua interface limpa, recursos de organização avançados e integração perfeita com outros serviços do Google. Com proteção contra spam e phishing, é um dos serviços de email mais seguros do mundo.</p>
-                    <p>Oferece 15GB de armazenamento gratuito compartilhado com Google Drive e Google Fotos, além de recursos de produtividade como agendamento de emails e respostas inteligentes.</p>
-                    
-                    <h2>Recursos Principais</h2>
-                    <ul>
-                        <li>15GB de armazenamento gratuito</li>
-                        <li>Filtros inteligentes contra spam e phishing</li>
-                        <li>Organização automática por categorias (Primária, Social, Promoções)</li>
-                        <li>Pesquisa poderosa com operadores do Google</li>
-                        <li>Integração com Google Meet, Calendar e Drive</li>
-                        <li>Modo confidencial com expiração e proteção por senha</li>
-                        <li>Agendamento de emails para envio posterior</li>
-                        <li>Respostas inteligentes sugeridas por IA</li>
-                        <li>Offline: leitura e escrita sem internet</li>
-                    </ul>
-                </div>
-                
-                <div class="app-sidebar">
-                    <button class="launch-button gmail" data-url="https://mail.google.com">
-                        <i class="fas fa-envelope"></i>
-                        ACESSAR
-                    </button>
-                    
-                    <div class="app-info-grid">
-                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
-                        <div class="info-item">
-                            <span class="info-label">Categoria</span>
-                            <span class="info-value">Comunicação</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Tipo</span>
-                            <span class="info-value">Serviço de Email</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Armazenamento</span>
-                            <span class="info-value" style="color: #EA4335;">15GB Gratuito</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Usuários</span>
-                            <span class="info-value">1.8B+</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Página do Discord -->
-        <div id="discord-page" class="page app-page">
-            <div class="app-hero" style="background-image: url('https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/665643dd8c7ac752237b5cef_Discord-OG-1200x630.jpg');">
-                <button class="back-button">
-                    <i class="fas fa-arrow-left"></i> Voltar
-                </button>
-                <div class="app-hero-content">
-                    <div class="app-hero-icon">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQusefcTCWIdEVgzSSoMgGjozRdyu7kdV_BEw&s" alt="Discord">
-                    </div>
-                    <div class="app-hero-info">
-                        <h1 style="color: #5865F2;">Discord</h1>
-                        <p>Comunicação por voz, vídeo e texto. Crie servidores para jogos, estudo e comunidades.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="app-detail-content">
-                <div class="app-description-content">
-                    <h2>Sobre o Discord</h2>
-                    <p>Discord é uma plataforma de comunicação gratuita projetada originalmente para gamers, mas agora usada por diversas comunidades. Oferece chat por texto, voz e vídeo de alta qualidade, organizado em servidores e canais temáticos.</p>
-                    <p>Com recursos avançados de moderação, integração com jogos e streaming, e uma API poderosa para bots, Discord se tornou essencial para comunidades online.</p>
-                    
-                    <h2>Recursos Principais</h2>
-                    <ul>
-                        <li>Servidores com até 500.000 membros (gratuito)</li>
-                        <li>Chamadas de voz e vídeo em alta qualidade</li>
-                        <li>Streaming de tela e compartilhamento de jogos</li>
-                        <li>Sistema de cargos e permissões granular</li>
-                        <li>Integração com Spotify, Xbox, PlayStation e mais</li>
-                        <li>API para bots customizados (Discord.js, Python)</li>
-                        <li>Discord Nitro: emojis personalizados, upload maior</li>
-                        <li>Modo desenvolvedor e webhooks</li>
-                        <li>Aplicativo desktop, web e mobile</li>
-                    </ul>
-                </div>
-                
-                <div class="app-sidebar">
-                    <button class="launch-button discord" data-url="https://discord.com/app">
-                        <i class="fas fa-comments"></i>
-                        ACESSAR
-                    </button>
-                    
-                    <div class="app-info-grid">
-                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
-                        <div class="info-item">
-                            <span class="info-label">Categoria</span>
-                            <span class="info-value">Comunicação</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Tipo</span>
-                            <span class="info-value">Plataforma de Comunidade</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Usuários Ativos</span>
-                            <span class="info-value" style="color: #5865F2;">150M+</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Armazenamento</span>
-                            <span class="info-value">Ilimitado (chat)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Página do Google Drive -->
-        <div id="drive-page" class="page app-page">
-            <div class="app-hero" style="background-image: url('https://lh3.googleusercontent.com/0N6ohR0v9enAmZau0C3CiuWy0ikhIx8Q95ZNN_1lO7VMbBO9OvDKzxcbspPW8sVGPEgUc1kQ-OGtBSC7MrPdY6F7_a3yemSO5Sg87Q=e365-pa-nu-rw-w600');">
-                <button class="back-button">
-                    <i class="fas fa-arrow-left"></i> Voltar
-                </button>
-                <div class="app-hero-content">
-                    <div class="app-hero-icon">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/1200px-Google_Drive_icon_%282020%29.svg.png" alt="Google Drive">
-                    </div>
-                    <div class="app-hero-info">
-                        <h1 style="color: #4285F4;">Google Drive</h1>
-                        <p>Armazenamento em nuvem e sincronização de arquivos. Acesse seus documentos de qualquer lugar.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="app-detail-content">
-                <div class="app-description-content">
-                    <h2>Sobre o Google Drive</h2>
-                    <p>Google Drive é o serviço de armazenamento em nuvem do Google que permite salvar arquivos online e acessá-los de qualquer smartphone, tablet ou computador. Integrado com Google Docs, Sheets e Slides para criação e edição colaborativa.</p>
-                    <p>Com 15GB de armazenamento gratuito compartilhado entre Drive, Gmail e Google Fotos, e planos pagos até 30TB, é uma solução completa para backup e colaboração.</p>
-                    
-                    <h2>Recursos Principais</h2>
-                    <ul>
-                        <li>15GB de armazenamento gratuito</li>
-                        <li>Google Docs, Sheets, Slides integrados</li>
-                        <li>Edição colaborativa em tempo real</li>
-                        <li>Histórico de versões por 30 dias (até 100 versões)</li>
-                        <li>Busca por conteúdo dentro de arquivos (OCR)</li>
-                        <li>Compartilhamento avançado com permissões granular</li>
-                        <li>Backup automático de fotos (Google Fotos) e emails (Gmail)</li>
-                        <li>Aplicativos para Windows, macOS, Android e iOS</li>
-                        <li>Google One: planos pagos até 30TB</li>
-                    </ul>
-                </div>
-                
-                <div class="app-sidebar">
-                    <button class="launch-button drive" data-url="https://drive.google.com">
-                        <i class="fas fa-cloud"></i>
-                        ACESSAR
-                    </button>
-                    
-                    <div class="app-info-grid">
-                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
-                        <div class="info-item">
-                            <span class="info-label">Categoria</span>
-                            <span class="info-value">Armazenamento</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Tipo</span>
-                            <span class="info-value">Nuvem</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Gratuito</span>
-                            <span class="info-value" style="color: #4285F4;">15GB</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Máximo</span>
-                            <span class="info-value">30TB (pago)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Página do GitHub -->
-        <div id="github-page" class="page app-page">
-            <div class="app-hero" style="background-image: url('https://web-assets.eset.com/fileadmin/_processed_/8/a/csm_1800x1200github_eeec710881.jpg');">
-                <button class="back-button">
-                    <i class="fas fa-arrow-left"></i> Voltar
-                </button>
-                <div class="app-hero-content">
-                    <div class="app-hero-icon">
-                        <img src="https://cdn.iconscout.com/icon/free/png-256/free-github-logo-icon-svg-download-png-8630395.png?f=webp" alt="GitHub">
-                    </div>
-                    <div class="app-hero-info">
-                        <h1 style="color: #333333;">GitHub</h1>
-                        <p>Plataforma de desenvolvimento e hospedagem de código. Colabore em projetos open source.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="app-detail-content">
-                <div class="app-description-content">
-                    <h2>Sobre o GitHub</h2>
-                    <p>GitHub é a maior plataforma de desenvolvimento do mundo, onde mais de 100 milhões de desenvolvedores colaboram em projetos de código aberto e privados. É o local ideal para hospedar código, revisar trabalhos e construir software em conjunto.</p>
-                    <p>Com integração Git completa, GitHub Actions para CI/CD, e uma vasta comunidade, é essencial para qualquer desenvolvedor moderno.</p>
-                    
-                    <h2>Recursos Principais</h2>
-                    <ul>
-                        <li>Hospedagem de repositórios Git públicos e privados</li>
-                        <li>GitHub Actions para automação de fluxos de trabalho</li>
-                        <li>GitHub Pages para hospedagem de sites estáticos</li>
-                        <li>Code review com pull requests e code owners</li>
-                        <li>Projetos e quadros Kanban para gerenciamento</li>
-                        <li>GitHub Copilot: assistente de IA para programação</li>
-                        <li>GitHub Codespaces: ambiente de desenvolvimento na nuvem</li>
-                        <li>Segurança avançada com dependabot e code scanning</li>
-                        <li>Comunidade com milhões de projetos open source</li>
-                    </ul>
-                </div>
-                
-                <div class="app-sidebar">
-                    <button class="launch-button github" data-url="https://github.com">
-                        <i class="fab fa-github"></i>
-                        ACESSAR
-                    </button>
-                    
-                    <div class="app-info-grid">
-                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
-                        <div class="info-item">
-                            <span class="info-label">Categoria</span>
-                            <span class="info-value">Desenvolvimento</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Tipo</span>
-                            <span class="info-value">Plataforma de Código</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Desenvolvedores</span>
-                            <span class="info-value" style="color: #333333;">100M+</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Repositórios</span>
-                            <span class="info-value">330M+</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Páginas originais restantes (Spotify, WhatsApp, JW.org, VS Code, Google Photos, Riot Client) -->
         <!-- Página do Spotify -->
         <div id="spotify-page" class="page app-page">
             <div class="app-hero" style="background-image: url('https://s2-oglobo.glbimg.com/HN6KqxVbuSn4PfjMfvS4gBuQBQY=/0x0:5472x3648/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2024/4/B/On1ohUTheTlANGm2ayuw/106248306-files-french-singer-aya-danioko-aka-aya-nakamura-poses-during-a-photo-session-on-november.jpg');">
@@ -1778,53 +1583,52 @@
                     </div>
                     <div class="app-hero-info">
                         <h1 style="color: #1DB954;">Spotify</h1>
-                        <p>Streaming de música, podcasts e playlists. Milhões de músicas e podcasts disponíveis.</p>
+                        <p>Música e podcasts ilimitados</p>
                     </div>
                 </div>
             </div>
             
-            <div class="app-detail-content">
-                <div class="app-description-content">
-                    <h2>Sobre o Spotify</h2>
-                    <p>Serviço de streaming de música que oferece acesso a milhões de músicas, podcasts e playlists de artistas de todo o mundo.</p>
-                    <p>Recursos básicos gratuitos com opção de upgrade para Premium para remover anúncios e obter funcionalidades adicionais.</p>
-                    
-                    <h2>Recursos Principais</h2>
-                    <ul>
-                        <li>Acesso a milhões de músicas e podcasts</li>
-                        <li>Criação e compartilhamento de playlists personalizadas</li>
-                        <li>Recomendações personalizadas baseadas em seu gosto</li>
-                        <li>Modo offline disponível para assinantes Premium</li>
-                        <li>Qualidade de áudio alta (até 320 kbps)</li>
-                        <li>Integração com diversas plataformas e dispositivos</li>
-                        <li>Controles de privacidade e compartilhamento</li>
-                    </ul>
+            <div class="app-page-content">
+                <div class="app-action-bar">
+                    <div class="app-buttons">
+                        <button class="app-main-button spotify" data-url="https://open.spotify.com">
+                            <i class="fas fa-music"></i>
+                            OUVIR
+                        </button>
+                    </div>
                 </div>
-                
-                <div class="app-sidebar">
-                    <button class="launch-button" data-url="https://open.spotify.com" style="background: linear-gradient(135deg, #1DB954, #1ED760);">
-                        <i class="fas fa-play-circle"></i>
-                        ACESSAR
-                    </button>
-                    
-                    <div class="app-info-grid">
-                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
-                        <div class="info-item">
-                            <span class="info-label">Categoria</span>
-                            <span class="info-value">Entretenimento</span>
+
+                <div class="app-images-section">
+                    <h3 style="color: white; margin-bottom: 20px;">Playlists</h3>
+                    <div class="app-images-grid">
+                        <div class="app-image-item" style="background-image: url('https://i.scdn.co/image/ab67706f00000002fe24d7084be472288cd6ee6c');">
+                            <span class="app-image-label">Top Hits</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Tipo</span>
-                            <span class="info-value">Streaming de Música</span>
+                        <div class="app-image-item placeholder">
+                            <span class="app-image-label">Podcasts</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Usuários</span>
-                            <span class="info-value" style="color: #1DB954;">550M+</span>
+                        <div class="app-image-item placeholder">
+                            <span class="app-image-label">Descobrir</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Assinantes</span>
-                            <span class="info-value">220M+</span>
-                        </div>
+                    </div>
+                </div>
+
+                <div class="app-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Categoria</span>
+                        <span class="info-value">Música</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Usuários</span>
+                        <span class="info-value">550M+</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Músicas</span>
+                        <span class="info-value">100M+</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Premium</span>
+                        <span class="info-value">Disponível</span>
                     </div>
                 </div>
             </div>
@@ -1842,187 +1646,115 @@
                     </div>
                     <div class="app-hero-info">
                         <h1 style="color: #25D366;">WhatsApp</h1>
-                        <p>Mensagens e chamadas gratuitas. Simples, seguro e confiável. Disponível em telefones no mundo todo.</p>
+                        <p>Mensagens e chamadas gratuitas</p>
                     </div>
                 </div>
             </div>
             
-            <div class="app-detail-content">
-                <div class="app-description-content">
-                    <h2>Sobre o WhatsApp</h2>
-                    <p>Aplicativo de mensagens gratuito e multiplataforma que permite fazer chamadas e enviar mensagens de forma fácil, segura e confiável.</p>
-                    <p>Disponível em telefones no mundo todo, com criptografia de ponta a ponta para garantir a privacidade das conversas.</p>
-                    
-                    <h2>Recursos Principais</h2>
-                    <ul>
-                        <li>Mensagens simples e privadas com criptografia</li>
-                        <li>Chamadas de voz e vídeo gratuitas de alta qualidade</li>
-                        <li>Grupos para manter contato com família e amigos</li>
-                        <li>WhatsApp Web para usar no computador</li>
-                        <li>Figurinhas para expressar emoções</li>
-                        <li>Status que desaparece após 24 horas</li>
-                        <li>Compartilhamento de arquivos de até 2GB</li>
-                        <li>Mensagens temporárias que se autodestroem</li>
-                    </ul>
+            <div class="app-page-content">
+                <div class="app-action-bar">
+                    <div class="app-buttons">
+                        <button class="app-main-button whatsapp" data-url="https://web.whatsapp.com">
+                            <i class="fas fa-comment-alt"></i>
+                            MENSAGENS
+                        </button>
+                    </div>
                 </div>
-                
-                <div class="app-sidebar">
-                    <button class="launch-button" data-url="https://web.whatsapp.com" style="background: linear-gradient(135deg, #25D366, #128C7E);">
-                        <i class="fas fa-comment"></i>
-                        ACESSAR
-                    </button>
-                    
-                    <div class="app-info-grid">
-                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
-                        <div class="info-item">
-                            <span class="info-label">Categoria</span>
-                            <span class="info-value">Comunicação</span>
+
+                <div class="app-images-section">
+                    <h3 style="color: white; margin-bottom: 20px;">Recursos</h3>
+                    <div class="app-images-grid">
+                        <div class="app-image-item placeholder">
+                            <span class="app-image-label">Chats</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Tipo</span>
-                            <span class="info-value">Mensagens Instantâneas</span>
+                        <div class="app-image-item placeholder">
+                            <span class="app-image-label">Chamadas</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Usuários</span>
-                            <span class="info-value" style="color: #25D366;">2B+</span>
+                        <div class="app-image-item placeholder">
+                            <span class="app-image-label">Status</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Criptografia</span>
-                            <span class="info-value">Ponta a Ponta</span>
-                        </div>
+                    </div>
+                </div>
+
+                <div class="app-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Categoria</span>
+                        <span class="info-value">Comunicação</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Usuários</span>
+                        <span class="info-value">2B+</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Mensagens/dia</span>
+                        <span class="info-value">100B+</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Criptografia</span>
+                        <span class="info-value">End-to-End</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Página do JW.org -->
-        <div id="jw-org-page" class="page app-page">
-            <div class="app-hero" style="background-image: url('https://www.forestprotection.com/images/orman-cesitleri.jpg');">
+        <!-- Página do Riot Client -->
+        <div id="riot-client-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/cf701cc9fda8942c3cfdf9f26e6ed410d4c59343-1920x1080.jpg?accountingTag=TFT?auto=format&fit=fill&q=80&w=1920');">
                 <button class="back-button">
                     <i class="fas fa-arrow-left"></i> Voltar
                 </button>
                 <div class="app-hero-content">
                     <div class="app-hero-icon">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQguRAJtdxxQjekZtb9y6NLF-tqsN5mXhM0AQ&s" alt="JW.org">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKnJaJcVfuAJc2YxBhBp4ujW956ygaVD0vaA&s" alt="Riot Client">
                     </div>
                     <div class="app-hero-info">
-                        <h1 style="color: #2196F3;">JW.org</h1>
-                        <p>Site oficial das Testemunhas de Jeová. Respostas bíblicas, notícias e publicações em 1.000+ idiomas.</p>
+                        <h1 style="color: #FF4654;">Riot Games</h1>
+                        <p>Plataforma de jogos da Riot Games</p>
                     </div>
                 </div>
             </div>
             
-            <div class="app-detail-content">
-                <div class="app-description-content">
-                    <h2>Sobre o JW.org</h2>
-                    <p>Site oficial das Testemunhas de Jeová, disponível em mais de 1.000 idiomas. Considerada a maior página da internet de conteúdo bíblico.</p>
-                    <p>Oferece biblioteca completa de publicações, vídeos, áudios e ferramentas de estudo para pessoas de todas as idades.</p>
-                    
-                    <h2>Recursos Principais</h2>
-                    <ul>
-                        <li>Disponível em mais de 1.000 idiomas</li>
-                        <li>Biblioteca completa de publicações bíblicas</li>
-                        <li>Vídeos educativos e transmissões ao vivo</li>
-                        <li>Notícias sobre atividades mundiais</li>
-                        <li>Ferramentas de estudo e pesquisa avançada</li>
-                        <li>Download de publicações em PDF e outros formatos</li>
-                        <li>Seções especiais para crianças e jovens</li>
-                        <li>Respostas a perguntas bíblicas comuns</li>
-                        <li>Guia de estudo da Bíblia</li>
-                    </ul>
-                </div>
-                
-                <div class="app-sidebar">
-                    <button class="launch-button" data-url="https://www.jw.org/pt" style="background: linear-gradient(135deg, #2196F3, #64B5F6);">
-                        <i class="fas fa-globe"></i>
-                        ACESSAR
-                    </button>
-                    
-                    <div class="app-info-grid">
-                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
-                        <div class="info-item">
-                            <span class="info-label">Categoria</span>
-                            <span class="info-value">Espiritual</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Tipo</span>
-                            <span class="info-value">Site Oficial</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Idiomas</span>
-                            <span class="info-value">1.000+</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Acessos Diários</span>
-                            <span class="info-value" style="color: #2196F3;">Milhões</span>
-                        </div>
+            <div class="app-page-content">
+                <div class="app-action-bar">
+                    <div class="app-buttons">
+                        <button class="app-main-button riot-client" data-url="https://riotgames.com">
+                            <i class="fas fa-gamepad"></i>
+                            JOGAR
+                        </button>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- Página do Visual Studio Code -->
-        <div id="vscode-page" class="page app-page">
-            <div class="app-hero" style="background-image: url('https://learn.microsoft.com/pt-br/shows/visual-studio-code/media/visual-studio-code-banner-image.jpg');">
-                <button class="back-button">
-                    <i class="fas fa-arrow-left"></i> Voltar
-                </button>
-                <div class="app-hero-content">
-                    <div class="app-hero-icon">
-                        <img src="https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxj7kCzMIlSC20SNjaJf9GmG15ocnF.zbBRgxMSlB7Ejh6FbgNzxLvZOoW7N3ML56fn3m5Z4MO.M8pYrCFVKIhqM-&format=source" alt="VS Code">
-                    </div>
-                    <div class="app-hero-info">
-                        <h1 style="color: #007ACC;">Visual Studio Code</h1>
-                        <p>Editor de código fonte leve e poderoso com suporte para desenvolvimento em diversas linguagens.</p>
+                <div class="app-images-section">
+                    <h3 style="color: white; margin-bottom: 20px;">Jogos</h3>
+                    <div class="app-images-grid">
+                        <div class="app-image-item" style="background-image: url('https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blt0c6a86a9e7ea0f65/618d4b64c467a90efc0a8e6c/2021_Worlds_Finals_Assets_V5.jpg');">
+                            <span class="app-image-label">League of Legends</span>
+                        </div>
+                        <div class="app-image-item" style="background-image: url('https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blt5e7094e7d4d1e1ed/642b5688c1e49e6e3e0a90de/VAL_EP6_ACTI_PlayVALORANT_Media16x9.jpg');">
+                            <span class="app-image-label">Valorant</span>
+                        </div>
+                        <div class="app-image-item placeholder">
+                            <span class="app-image-label">Teamfight Tactics</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="app-detail-content">
-                <div class="app-description-content">
-                    <h2>Sobre o Visual Studio Code</h2>
-                    <p>Editor de código-fonte desenvolvido pela Microsoft para Windows, Linux e macOS. Inclui suporte para depuração, controle Git incorporado, realce de sintaxe, complementação inteligente de código e refatoração de código.</p>
-                    <p>Leve, rápido e altamente customizável através de extensões disponíveis no marketplace oficial.</p>
-                    
-                    <h2>Recursos Principais</h2>
-                    <ul>
-                        <li>Suporte para múltiplas linguagens de programação</li>
-                        <li>Depurador integrado para debugging</li>
-                        <li>Controle Git incorporado</li>
-                        <li>IntelliSense para autocompletar código inteligente</li>
-                        <li>Sistema de extensões para personalização</li>
-                        <li>Terminal integrado</li>
-                        <li>Multiplataforma (Windows, macOS, Linux)</li>
-                        <li>Gratuito e de código aberto</li>
-                        <li>Suporte a múltiplos cursores e seleção múltipla</li>
-                        <li>Comparador de arquivos integrado</li>
-                    </ul>
-                </div>
-                
-                <div class="app-sidebar">
-                    <button class="launch-button" data-url="https://code.visualstudio.com" style="background: linear-gradient(135deg, #007ACC, #1F9CF0);">
-                        <i class="fas fa-code"></i>
-                        ACESSAR
-                    </button>
-                    
-                    <div class="app-info-grid">
-                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
-                        <div class="info-item">
-                            <span class="info-label">Categoria</span>
-                            <span class="info-value">Desenvolvimento</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Tipo</span>
-                            <span class="info-value">Editor de Código</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Usuários</span>
-                            <span class="info-value" style="color: #007ACC;">15M+</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Extensões</span>
-                            <span class="info-value">40.000+</span>
-                        </div>
+
+                <div class="app-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Categoria</span>
+                        <span class="info-value">Jogos</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Jogadores</span>
+                        <span class="info-value">180M+</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Jogos</span>
+                        <span class="info-value">5+</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Plataforma</span>
+                        <span class="info-value">Unificada</span>
                     </div>
                 </div>
             </div>
@@ -2040,123 +1772,556 @@
                     </div>
                     <div class="app-hero-info">
                         <h1 style="color: #4285F4;">Google Photos</h1>
-                        <p>Armazenamento inteligente de fotos e vídeos com backup automático e ferramentas de edição.</p>
+                        <p>Fotos e vídeos na nuvem</p>
                     </div>
                 </div>
             </div>
             
-            <div class="app-detail-content">
-                <div class="app-description-content">
-                    <h2>Sobre o Google Photos</h2>
-                    <p>Serviço de compartilhamento e armazenamento de fotos desenvolvido pelo Google. Permite backup automático de fotos e vídeos, reconhecimento facial, criação de álbuns automáticos e ferramentas avançadas de edição.</p>
-                    <p>Oferece armazenamento gratuito (com compressão) ou armazenamento original contando na cota do Google One.</p>
-                    
-                    <h2>Recursos Principais</h2>
-                    <ul>
-                        <li>Backup automático de fotos e vídeos</li>
-                        <li>Reconhecimento facial e agrupamento por pessoas</li>
-                        <li>Busca inteligente por objetos, lugares e pessoas</li>
-                        <li>Criação automática de álbuns, animações e filmes</li>
-                        <li>Ferramentas avançadas de edição de fotos</li>
-                        <li>Compartilhamento fácil com familiares e amigos</li>
-                        <li>Sincronização entre dispositivos</li>
-                        <li>Armazenamento ilimitado em qualidade "Alta"</li>
-                        <li>Recuperação de fotos excluídas por 60 dias</li>
-                        <li>Integração com outros serviços Google</li>
-                    </ul>
+            <div class="app-page-content">
+                <div class="app-action-bar">
+                    <div class="app-buttons">
+                        <button class="app-main-button google-photos" data-url="https://photos.google.com">
+                            <i class="fas fa-images"></i>
+                            FOTOS
+                        </button>
+                    </div>
                 </div>
-                
-                <div class="app-sidebar">
-                    <button class="launch-button" data-url="https://photos.google.com" style="background: linear-gradient(135deg, #4285F4, #34A853);">
-                        <i class="fas fa-images"></i>
-                        ACESSAR
-                    </button>
-                    
-                    <div class="app-info-grid">
-                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
-                        <div class="info-item">
-                            <span class="info-label">Categoria</span>
-                            <span class="info-value">Fotos</span>
+
+                <div class="app-images-section">
+                    <h3 style="color: white; margin-bottom: 20px;">Recursos</h3>
+                    <div class="app-images-grid">
+                        <div class="app-image-item placeholder">
+                            <span class="app-image-label">Backup</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Tipo</span>
-                            <span class="info-value">Armazenamento de Fotos</span>
+                        <div class="app-image-item placeholder">
+                            <span class="app-image-label">Edição</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Usuários</span>
-                            <span class="info-value" style="color: #4285F4;">2B+</span>
+                        <div class="app-image-item placeholder">
+                            <span class="app-image-label">Compartilhamento</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Fotos Armazenadas</span>
-                            <span class="info-value">4 Trilhões+</span>
-                        </div>
+                    </div>
+                </div>
+
+                <div class="app-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Categoria</span>
+                        <span class="info-value">Fotos</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Usuários</span>
+                        <span class="info-value">2B+</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Armazenamento</span>
+                        <span class="info-value">15GB Compartilhado</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">IA</span>
+                        <span class="info-value">Reconhecimento</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Página do Riot Client -->
-        <div id="riot-client-page" class="page app-page">
-            <div class="app-hero" style="background-image: url('https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/cf701cc9fda8942c3cfdf9f26e6ed410d4c59343-1920x1080.jpg?accountingTag=TFT?auto=format&fit=fill&q=80&w=1920');">
+        <!-- Página do VS Code -->
+        <div id="vscode-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('https://learn.microsoft.com/pt-br/shows/visual-studio-code/media/visual-studio-code-banner-image.jpg');">
                 <button class="back-button">
                     <i class="fas fa-arrow-left"></i> Voltar
                 </button>
                 <div class="app-hero-content">
                     <div class="app-hero-icon">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKnJaJcVfuAJc2YxBhBp4ujW956ygaVD0vaA&s" alt="Riot Client">
+                        <img src="https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxj7kCzMIlSC20SNjaJf9GmG15ocnF.zbBRgxMSlB7Ejh6FbgNzxLvZOoW7N3ML56fn3m5Z4MO.M8pYrCFVKIhqM-&format=source" alt="VS Code">
                     </div>
                     <div class="app-hero-info">
-                        <h1 style="color: #FF4654;">Riot Client</h1>
-                        <p>Plataforma da Riot Games para acessar todos os jogos: Valorant, League of Legends, Wild Rift e mais.</p>
+                        <h1 style="color: #007ACC;">VS Code</h1>
+                        <p>Editor de código poderoso</p>
                     </div>
                 </div>
             </div>
             
-            <div class="app-detail-content">
-                <div class="app-description-content">
-                    <h2>Sobre o Riot Client</h2>
-                    <p>Plataforma unificada da Riot Games que permite acesso a todos os jogos da empresa em uma única interface. Gerencie seus jogos, amigos, compras e configurações de forma centralizada.</p>
-                    <p>O Riot Client serve como hub para Valorant, League of Legends, Legends of Runeterra, Teamfight Tactics e Wild Rift (no PC).</p>
-                    
-                    <h2>Recursos Principais</h2>
-                    <ul>
-                        <li>Acesso a todos os jogos da Riot em um só lugar</li>
-                        <li>Gerenciamento centralizado de amigos e chat</li>
-                        <li>Loja unificada para compras em qualquer jogo</li>
-                        <li>Notificações de atualizações e eventos</li>
-                        <li>Biblioteca de jogos organizada</li>
-                        <li>Sistema de recompensas e missões</li>
-                        <li>Configurações de conta centralizadas</li>
-                        <li>Suporte a múltiplas contas e regiões</li>
-                        <li>Integração com serviços Riot</li>
-                        <li>Atualizações automáticas de jogos</li>
-                    </ul>
+            <div class="app-page-content">
+                <div class="app-action-bar">
+                    <div class="app-buttons">
+                        <button class="app-main-button vscode" data-url="https://code.visualstudio.com">
+                            <i class="fas fa-code"></i>
+                            PROGRAMAR
+                        </button>
+                    </div>
                 </div>
-                
-                <div class="app-sidebar">
-                    <button class="launch-button" data-url="https://riotgames.com" style="background: linear-gradient(135deg, #FF4654, #FF6B7C);">
-                        <i class="fas fa-gamepad"></i>
-                        ACESSAR
-                    </button>
-                    
-                    <div class="app-info-grid">
-                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
-                        <div class="info-item">
-                            <span class="info-label">Categoria</span>
-                            <span class="info-value">Jogos</span>
+
+                <div class="app-images-section">
+                    <h3 style="color: white; margin-bottom: 20px;">Recursos</h3>
+                    <div class="app-images-grid">
+                        <div class="app-image-item" style="background-image: url('https://code.visualstudio.com/assets/docs/editor/intellisense/intellisense.png');">
+                            <span class="app-image-label">IntelliSense</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Tipo</span>
-                            <span class="info-value">Plataforma de Jogos</span>
+                        <div class="app-image-item" style="background-image: url('https://code.visualstudio.com/assets/docs/editor/debugging/debugging_hero.png');">
+                            <span class="app-image-label">Debugging</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Jogadores Mensais</span>
-                            <span class="info-value" style="color: #FF4654;">180M+</span>
+                        <div class="app-image-item placeholder">
+                            <span class="app-image-label">Extensões</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Jogos</span>
-                            <span class="info-value">5+</span>
+                    </div>
+                </div>
+
+                <div class="app-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Categoria</span>
+                        <span class="info-value">Desenvolvimento</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Usuários</span>
+                        <span class="info-value">15M+</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Extensões</span>
+                        <span class="info-value">40.000+</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Gratuito</span>
+                        <span class="info-value">Sim</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página do GitHub -->
+        <div id="github-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('https://cdn.mos.cms.futurecdn.net/W5LnBksnN2E3PTCdgDF9g3-1600-80.png');">
+                <button class="back-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+                <div class="app-hero-content">
+                    <div class="app-hero-icon">
+                        <img src="https://cdn.iconscout.com/icon/free/png-256/free-github-logo-icon-svg-download-png-8630395.png?f=webp" alt="GitHub">
+                    </div>
+                    <div class="app-hero-info">
+                        <h1 style="color: #333333;">GitHub</h1>
+                        <p>Desenvolvimento e código</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="app-page-content">
+                <div class="app-action-bar">
+                    <div class="app-buttons">
+                        <button class="app-main-button github" data-url="https://github.com">
+                            <i class="fab fa-github"></i>
+                            CÓDIGO
+                        </button>
+                    </div>
+                </div>
+
+                <div class="app-images-section">
+                    <h3 style="color: white; margin-bottom: 20px;">Recursos</h3>
+                    <div class="app-images-grid">
+                        <div class="app-image-item" style="background-image: url('https://github.githubassets.com/assets/illo-repo-5e13-6c9e2c80a4ad.png');">
+                            <span class="app-image-label">Repositórios</span>
                         </div>
+                        <div class="app-image-item" style="background-image: url('https://github.githubassets.com/assets/illo-pull-request-2-5b0d7298cf2c.png');">
+                            <span class="app-image-label">Pull Requests</span>
+                        </div>
+                        <div class="app-image-item placeholder">
+                            <span class="app-image-label">Actions</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="app-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Categoria</span>
+                        <span class="info-value">Desenvolvimento</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Desenvolvedores</span>
+                        <span class="info-value">100M+</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Repositórios</span>
+                        <span class="info-value">330M+</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Open Source</span>
+                        <span class="info-value">Sim</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página do JW.org -->
+        <div id="jw-org-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('https://www.forestprotection.com/images/orman-cesitleri.jpg');">
+                <button class="back-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+                <div class="app-hero-content">
+                    <div class="app-hero-icon">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQguRAJtdxxQjekZtb9y6NLF-tqsN5mXhM0AQ&s" alt="JW.org">
+                    </div>
+                    <div class="app-hero-info">
+                        <h1 style="color: #2196F3;">JW.org</h1>
+                        <p>Site oficial das Testemunhas de Jeová</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="app-page-content">
+                <div class="app-action-bar">
+                    <div class="app-buttons">
+                        <button class="app-main-button jw-org" data-url="https://www.jw.org/pt">
+                            <i class="fas fa-globe"></i>
+                            ACESSAR
+                        </button>
+                    </div>
+                </div>
+
+                <div class="app-images-section">
+                    <h3 style="color: white; margin-bottom: 20px;">Recursos</h3>
+                    <div class="app-images-grid">
+                        <div class="app-image-item placeholder">
+                            <span class="app-image-label">Biblioteca</span>
+                        </div>
+                        <div class="app-image-item placeholder">
+                            <span class="app-image-label">Vídeos</span>
+                        </div>
+                        <div class="app-image-item placeholder">
+                            <span class="app-image-label">Publicações</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="app-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Categoria</span>
+                        <span class="info-value">Espiritual</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Idiomas</span>
+                        <span class="info-value">1.000+</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Conteúdo</span>
+                        <span class="info-value">Gratuito</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Acessos</span>
+                        <span class="info-value">Milhões/dia</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página do Office 365 -->
+        <div id="office365-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('https://petri.com/wp-content/uploads/2022/10/microsoft-365-app-icon-1.jpg');">
+                <button class="back-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+                <div class="app-hero-content">
+                    <div class="app-hero-icon">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Microsoft_365_%282022%29.svg/1862px-Microsoft_365_%282022%29.svg.png" alt="Office 365">
+                    </div>
+                    <div class="app-hero-info">
+                        <h1 style="color: #D83B01;">Office 365</h1>
+                        <p>Produtividade e colaboração</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="app-page-content">
+                <div class="app-action-bar">
+                    <div class="app-buttons">
+                        <button class="app-main-button office365" data-url="https://www.office.com">
+                            <i class="fas fa-file-alt"></i>
+                            TRABALHAR
+                        </button>
+                    </div>
+                </div>
+
+                <div class="app-images-section">
+                    <h3 style="color: white; margin-bottom: 20px;">Aplicativos</h3>
+                    <div class="app-images-grid">
+                        <div class="app-image-item placeholder">
+                            <span class="app-image-label">Word</span>
+                        </div>
+                        <div class="app-image-item placeholder">
+                            <span class="app-image-label">Excel</span>
+                        </div>
+                        <div class="app-image-item placeholder">
+                            <span class="app-image-label">PowerPoint</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="app-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Categoria</span>
+                        <span class="info-value">Produtividade</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Usuários</span>
+                        <span class="info-value">345M+</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Aplicativos</span>
+                        <span class="info-value">10+</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Nuvem</span>
+                        <span class="info-value">OneDrive</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página do Gmail -->
+        <div id="gmail-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('https://ravel.com.br/blog/wp-content/uploads/2021/04/como-inserir-assinatura-gmail-capa.png');">
+                <button class="back-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+                <div class="app-hero-content">
+                    <div class="app-hero-icon">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/2560px-Gmail_icon_%282020%29.svg.png" alt="Gmail">
+                    </div>
+                    <div class="app-hero-info">
+                        <h1 style="color: #EA4335;">Gmail</h1>
+                        <p>Email rápido e seguro</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="app-page-content">
+                <div class="app-action-bar">
+                    <div class="app-buttons">
+                        <button class="app-main-button gmail" data-url="https://mail.google.com">
+                            <i class="fas fa-envelope"></i>
+                            EMAIL
+                        </button>
+                    </div>
+                </div>
+
+                <div class="app-images-section">
+                    <h3 style="color: white; margin-bottom: 20px;">Recursos</h3>
+                    <div class="app-images-grid">
+                        <div class="app-image-item placeholder">
+                            <span class="app-image-label">Caixa de Entrada</span>
+                        </div>
+                        <div class="app-image-item placeholder">
+                            <span class="app-image-label">Filtros</span>
+                        </div>
+                        <div class="app-image-item placeholder">
+                            <span class="app-image-label">Armazenamento</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="app-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Categoria</span>
+                        <span class="info-value">Email</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Usuários</span>
+                        <span class="info-value">1.8B+</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Armazenamento</span>
+                        <span class="info-value">15GB</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Segurança</span>
+                        <span class="info-value">Anti-spam</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página do Discord -->
+        <div id="discord-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/665643dd8c7ac752237b5cef_Discord-OG-1200x630.jpg');">
+                <button class="back-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+                <div class="app-hero-content">
+                    <div class="app-hero-icon">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQusefcTCWIdEVgzSSoMgGjozRdyu7kdV_BEw&s" alt="Discord">
+                    </div>
+                    <div class="app-hero-info">
+                        <h1 style="color: #5865F2;">Discord</h1>
+                        <p>Comunicação para comunidades</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="app-page-content">
+                <div class="app-action-bar">
+                    <div class="app-buttons">
+                        <button class="app-main-button discord" data-url="https://discord.com/app">
+                            <i class="fab fa-discord"></i>
+                            COMUNIDADE
+                        </button>
+                    </div>
+                </div>
+
+                <div class="app-images-section">
+                    <h3 style="color: white; margin-bottom: 20px;">Recursos</h3>
+                    <div class="app-images-grid">
+                        <div class="app-image-item placeholder">
+                            <span class="app-image-label">Canais</span>
+                        </div>
+                        <div class="app-image-item placeholder">
+                            <span class="app-image-label">Voz</span>
+                        </div>
+                        <div class="app-image-item placeholder">
+                            <span class="app-image-label">Comunidades</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="app-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Categoria</span>
+                        <span class="info-value">Comunicação</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Usuários</span>
+                        <span class="info-value">150M+</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Servidores</span>
+                        <span class="info-value">19M+</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Gratuito</span>
+                        <span class="info-value">Sim</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página do Google Drive -->
+        <div id="drive-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('https://lh3.googleusercontent.com/0N6ohR0v9enAmZau0C3CiuWy0ikhIx8Q95ZNN_1lO7VMbBO9OvDKzxcbspPW8sVGPEgUc1kQ-OGtBSC7MrPdY6F7_a3yemSO5Sg87Q=e365-pa-nu-rw-w600');">
+                <button class="back-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+                <div class="app-hero-content">
+                    <div class="app-hero-icon">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/1200px-Google_Drive_icon_%282020%29.svg.png" alt="Google Drive">
+                    </div>
+                    <div class="app-hero-info">
+                        <h1 style="color: #4285F4;">Google Drive</h1>
+                        <p>Armazenamento na nuvem</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="app-page-content">
+                <div class="app-action-bar">
+                    <div class="app-buttons">
+                        <button class="app-main-button drive" data-url="https://drive.google.com">
+                            <i class="fas fa-cloud"></i>
+                            ARMAZENAR
+                        </button>
+                    </div>
+                </div>
+
+                <div class="app-images-section">
+                    <h3 style="color: white; margin-bottom: 20px;">Recursos</h3>
+                    <div class="app-images-grid">
+                        <div class="app-image-item placeholder">
+                            <span class="app-image-label">Arquivos</span>
+                        </div>
+                        <div class="app-image-item placeholder">
+                            <span class="app-image-label">Compartilhamento</span>
+                        </div>
+                        <div class="app-image-item placeholder">
+                            <span class="app-image-label">Colaboração</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="app-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Categoria</span>
+                        <span class="info-value">Armazenamento</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Usuários</span>
+                        <span class="info-value">2B+</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Armazenamento</span>
+                        <span class="info-value">15GB Gratuito</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Integração</span>
+                        <span class="info-value">Google Workspace</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página do Epic Games -->
+        <div id="epic-games-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('https://images.ctfassets.net/5owu3y35gz1g/4TFV2U8iZRUXw8xNOe3eHq/ea8f27b2c8bb174773f6b1bb3fc5d77b/EGS_Primary_Logo_Horiz_White_RGB_1500x500.png');">
+                <button class="back-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+                <div class="app-hero-content">
+                    <div class="app-hero-icon">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Epic_Games_logo.svg/882px-Epic_Games_logo.svg.png" alt="Epic Games">
+                    </div>
+                    <div class="app-hero-info">
+                        <h1 style="color: #2A2A2A;">Epic Games</h1>
+                        <p>Loja de jogos e desenvolvimento</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="app-page-content">
+                <div class="app-action-bar">
+                    <div class="app-buttons">
+                        <button class="app-main-button epic-games" data-url="https://store.epicgames.com">
+                            <i class="fas fa-shopping-bag"></i>
+                            LOJA
+                        </button>
+                    </div>
+                </div>
+
+                <div class="app-images-section">
+                    <h3 style="color: white; margin-bottom: 20px;">Jogos</h3>
+                    <div class="app-images-grid">
+                        <div class="app-image-item" style="background-image: url('https://cdn2.unrealengine.com/fortnite-key-art-3840x2160-a3edda6aff9c.jpg');">
+                            <span class="app-image-label">Fortnite</span>
+                        </div>
+                        <div class="app-image-item" style="background-image: url('https://cdn2.unrealengine.com/egs-rocketleague-psyonixllc-g1a-00-1920x1080-4c6c9f5b3e98.jpg');">
+                            <span class="app-image-label">Rocket League</span>
+                        </div>
+                        <div class="app-image-item placeholder">
+                            <span class="app-image-label">Semanal Gratuito</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="app-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Categoria</span>
+                        <span class="info-value">Jogos</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Usuários</span>
+                        <span class="info-value">230M+</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Jogos Gratuitos</span>
+                        <span class="info-value">Semanais</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Motor</span>
+                        <span class="info-value">Unreal Engine</span>
                     </div>
                 </div>
             </div>
@@ -2168,321 +2333,326 @@
         </div>
     </div>
 
-<script>
-    /* ===============================
-   APPS COMPLETO
-================================ */
-const appsData = {
-    'home': { name: 'Início' },
-    'spotify': {
-        name: 'Spotify',
-        url: 'https://open.spotify.com',
-        mobileUrl: 'https://open.spotify.com',
-        protocol: 'spotify:',
-        color: '#1DB954'
-    },
-    'whatsapp': {
-        name: 'WhatsApp',
-        url: 'https://web.whatsapp.com',
-        mobileUrl: 'https://web.whatsapp.com',
-        protocol: 'whatsapp://',
-        color: '#25D366'
-    },
-    'netflix': {
-        name: 'Netflix',
-        url: 'https://www.netflix.com',
-        mobileUrl: 'https://www.netflix.com',
-        protocol: null,
-        color: '#E50914'
-    },
-    'youtube': {
-        name: 'YouTube',
-        url: 'https://www.youtube.com',
-        mobileUrl: 'https://www.youtube.com',
-        protocol: null,
-        color: '#FF0000'
-    },
-    'jw-org': {
-        name: 'JW.org',
-        url: 'https://www.jw.org/pt',
-        mobileUrl: 'https://www.jw.org/pt',
-        protocol: null,
-        color: '#2196F3'
-    },
-    'riot-client': {
-        name: 'Riot Client',
-        url: 'https://riotgames.com',
-        mobileUrl: 'https://riotgames.com',
-        protocol: 'riotclient://',
-        color: '#FF4654'
-    },
-    'google-photos': {
-        name: 'Google Photos',
-        url: 'https://photos.google.com',
-        mobileUrl: 'https://photos.google.com',
-        protocol: null,
-        color: '#4285F4'
-    },
-    'vscode': {
-        name: 'Visual Studio Code',
-        url: 'https://code.visualstudio.com',
-        mobileUrl: 'https://code.visualstudio.com',
-        protocol: 'vscode://',
-        color: '#007ACC'
-    },
-    'github': {
-        name: 'GitHub',
-        url: 'https://github.com',
-        mobileUrl: 'https://github.com',
-        protocol: null,
-        color: '#333333'
-    },
-    'office365': {
-        name: 'Office 365',
-        url: 'https://www.office.com',
-        mobileUrl: 'https://www.office.com',
-        protocol: null,
-        color: '#D83B01'
-    },
-    'gmail': {
-        name: 'Gmail',
-        url: 'https://mail.google.com',
-        mobileUrl: 'https://mail.google.com',
-        protocol: null,
-        color: '#EA4335'
-    },
-    'discord': {
-        name: 'Discord',
-        url: 'https://discord.com/app',
-        mobileUrl: 'https://discord.com/app',
-        protocol: null,
-        color: '#5865F2'
-    },
-    'drive': {
-        name: 'Google Drive',
-        url: 'https://drive.google.com',
-        mobileUrl: 'https://drive.google.com',
-        protocol: null,
-        color: '#4285F4'
-    }
-};
-
-/* ===============================
-   MOBILE
-================================ */
-function isMobile() {
-    return /android|iphone|ipad|ipod|mobile/i.test(navigator.userAgent);
-}
-
-/* ===============================
-   INDICADOR COM ANIMAÇÃO
-================================ */
-function createDeviceIndicator() {
-    document.querySelector('.device-indicator')?.remove();
-
-    const el = document.createElement('div');
-    el.className = 'device-indicator';
-    el.style.cssText = `
-        position: fixed;
-        top: 12px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 9999;
-        padding: 6px 14px;
-        border-radius: 20px;
-        background: rgba(0, 0, 0, 0.35);
-        color: #fff;
-        font-size: .75rem;
-        display: flex;
-        gap: 8px;
-        align-items: center;
-        pointer-events: none;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        animation: pulse 2s infinite;
-    `;
-
-    el.innerHTML = `
-        <i class="fas ${isMobile() ? 'fa-mobile-alt' : 'fa-desktop'}"></i>
-        <span>${isMobile() ? 'Mobile' : 'Computador'}</span>
-    `;
-
-    document.body.appendChild(el);
-}
-
-/* ===============================
-   NAVEGAÇÃO
-================================ */
-function navigateToPage(pageId) {
-    // Esconder todas as páginas
-    document.querySelectorAll('.page, .app-page')
-        .forEach(p => p.classList.remove('active'));
-
-    // Remover active de todos os ícones
-    document.querySelectorAll('.nav-icon')
-        .forEach(i => i.classList.remove('active'));
-
-    // Mostrar a página solicitada
-    const pageElement = document.getElementById(`${pageId}-page`);
-    if (pageElement) {
-        pageElement.classList.add('active');
-        
-        // Ativar o ícone correspondente na barra lateral
-        const iconElement = document.querySelector(`.nav-icon[data-page="${pageId}"]`);
-        if (iconElement) {
-            iconElement.classList.add('active');
-        }
-    }
-
-    // Scroll suave para o topo
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-/* ===============================
-   ABRIR APP
-================================ */
-function openApp(appId, button) {
-    const app = appsData[appId];
-    if (!app) return;
-
-    // Mostrar estado de carregamento no botão
-    if (button) {
-        const originalHTML = button.innerHTML;
-        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Abrindo...';
-        button.disabled = true;
-
-        setTimeout(() => {
-            button.innerHTML = originalHTML;
-            button.disabled = false;
-        }, 2000);
-    }
-
-    // Pequeno delay
-    setTimeout(() => {
-        // COMPUTADOR
-        if (!isMobile()) {
-            if (app.protocol) {
-                const openedProtocol = window.open(app.protocol, '_self');
-                
-                if (!openedProtocol) {
-                    setTimeout(() => {
-                        if (window.location.href.indexOf('http') === 0) {
-                            window.open(app.url, '_blank', 'noopener,noreferrer');
-                        }
-                    }, 500);
-                }
-            } else {
-                window.open(app.url, '_blank', 'noopener,noreferrer');
+    <script>
+        /* ===============================
+           APPS COMPLETO COM TODAS AS PÁGINAS
+        ================================= */
+        const appsData = {
+            'home': { name: 'Início' },
+            'spotify': {
+                name: 'Spotify',
+                url: 'https://open.spotify.com',
+                mobileUrl: 'https://open.spotify.com',
+                protocol: 'spotify:',
+                color: '#1DB954'
+            },
+            'whatsapp': {
+                name: 'WhatsApp',
+                url: 'https://web.whatsapp.com',
+                mobileUrl: 'https://web.whatsapp.com',
+                protocol: 'whatsapp://',
+                color: '#25D366'
+            },
+            'netflix': {
+                name: 'Netflix',
+                url: 'https://www.netflix.com',
+                mobileUrl: 'https://www.netflix.com',
+                protocol: null,
+                color: '#E50914'
+            },
+            'youtube': {
+                name: 'YouTube',
+                url: 'https://www.youtube.com',
+                mobileUrl: 'https://www.youtube.com',
+                protocol: null,
+                color: '#FF0000'
+            },
+            'jw-org': {
+                name: 'JW.org',
+                url: 'https://www.jw.org/pt',
+                mobileUrl: 'https://www.jw.org/pt',
+                protocol: null,
+                color: '#2196F3'
+            },
+            'epic-games': {
+                name: 'Epic Games',
+                url: 'https://store.epicgames.com',
+                mobileUrl: 'https://store.epicgames.com',
+                protocol: 'com.epicgames.launcher://',
+                color: '#2A2A2A'
+            },
+            'office365': {
+                name: 'Office 365',
+                url: 'https://www.office.com',
+                mobileUrl: 'https://www.office.com',
+                protocol: null,
+                color: '#D83B01'
+            },
+            'gmail': {
+                name: 'Gmail',
+                url: 'https://mail.google.com',
+                mobileUrl: 'https://mail.google.com',
+                protocol: null,
+                color: '#EA4335'
+            },
+            'riot-client': {
+                name: 'Riot Client',
+                url: 'https://riotgames.com',
+                mobileUrl: 'https://riotgames.com',
+                protocol: 'riotclient://',
+                color: '#FF4654'
+            },
+            'google-photos': {
+                name: 'Google Photos',
+                url: 'https://photos.google.com',
+                mobileUrl: 'https://photos.google.com',
+                protocol: null,
+                color: '#4285F4'
+            },
+            'vscode': {
+                name: 'Visual Studio Code',
+                url: 'https://code.visualstudio.com',
+                mobileUrl: 'https://code.visualstudio.com',
+                protocol: 'vscode://',
+                color: '#007ACC'
+            },
+            'github': {
+                name: 'GitHub',
+                url: 'https://github.com',
+                mobileUrl: 'https://github.com',
+                protocol: null,
+                color: '#333333'
+            },
+            'discord': {
+                name: 'Discord',
+                url: 'https://discord.com/app',
+                mobileUrl: 'https://discord.com/app',
+                protocol: null,
+                color: '#5865F2'
+            },
+            'drive': {
+                name: 'Google Drive',
+                url: 'https://drive.google.com',
+                mobileUrl: 'https://drive.google.com',
+                protocol: null,
+                color: '#4285F4'
             }
+        };
+
+        /* ===============================
+           MOBILE
+        ================================= */
+        function isMobile() {
+            return /android|iphone|ipad|ipod|mobile/i.test(navigator.userAgent);
         }
-        // MOBILE
-        else {
-            if (app.protocol) {
-                const iframe = document.createElement('iframe');
-                iframe.style.display = 'none';
-                iframe.src = app.protocol;
-                document.body.appendChild(iframe);
+
+        /* ===============================
+           INDICADOR COM ANIMAÇÃO
+        ================================= */
+        function createDeviceIndicator() {
+            document.querySelector('.device-indicator')?.remove();
+
+            const el = document.createElement('div');
+            el.className = 'device-indicator';
+            el.style.cssText = `
+                position: fixed;
+                top: 12px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 9999;
+                padding: 6px 14px;
+                border-radius: 20px;
+                background: rgba(0, 0, 0, 0.35);
+                color: #fff;
+                font-size: .75rem;
+                display: flex;
+                gap: 8px;
+                align-items: center;
+                pointer-events: none;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                animation: pulse 2s infinite;
+            `;
+
+            el.innerHTML = `
+                <i class="fas ${isMobile() ? 'fa-mobile-alt' : 'fa-desktop'}"></i>
+                <span>${isMobile() ? 'Mobile' : 'Computador'}</span>
+            `;
+
+            document.body.appendChild(el);
+        }
+
+        /* ===============================
+           NAVEGAÇÃO
+        ================================= */
+        function navigateToPage(pageId) {
+            // Esconder todas as páginas
+            document.querySelectorAll('.page, .app-page')
+                .forEach(p => p.classList.remove('active'));
+
+            // Remover active de todos os ícones
+            document.querySelectorAll('.nav-icon')
+                .forEach(i => i.classList.remove('active'));
+
+            // Mostrar a página solicitada
+            const pageElement = document.getElementById(`${pageId}-page`);
+            if (pageElement) {
+                pageElement.classList.add('active');
                 
+                // Ativar o ícone correspondente na barra lateral
+                const iconElement = document.querySelector(`.nav-icon[data-page="${pageId}"]`);
+                if (iconElement) {
+                    iconElement.classList.add('active');
+                }
+            }
+
+            // Scroll suave para o topo
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* ===============================
+           ABRIR APP
+        ================================= */
+        function openApp(appId, button) {
+            const app = appsData[appId];
+            if (!app) return;
+
+            // Mostrar estado de carregamento no botão
+            if (button) {
+                const originalHTML = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Abrindo...';
+                button.disabled = true;
+
                 setTimeout(() => {
-                    iframe.remove();
-                }, 100);
-                
-                setTimeout(() => {
-                    if (!document.hidden) {
+                    button.innerHTML = originalHTML;
+                    button.disabled = false;
+                }, 2000);
+            }
+
+            // Pequeno delay
+            setTimeout(() => {
+                // COMPUTADOR
+                if (!isMobile()) {
+                    if (app.protocol) {
+                        const openedProtocol = window.open(app.protocol, '_self');
+                        
+                        if (!openedProtocol) {
+                            setTimeout(() => {
+                                if (window.location.href.indexOf('http') === 0) {
+                                    window.open(app.url, '_blank', 'noopener,noreferrer');
+                                }
+                            }, 500);
+                        }
+                    } else {
+                        window.open(app.url, '_blank', 'noopener,noreferrer');
+                    }
+                }
+                // MOBILE
+                else {
+                    if (app.protocol) {
+                        const iframe = document.createElement('iframe');
+                        iframe.style.display = 'none';
+                        iframe.src = app.protocol;
+                        document.body.appendChild(iframe);
+                        
+                        setTimeout(() => {
+                            iframe.remove();
+                        }, 100);
+                        
+                        setTimeout(() => {
+                            if (!document.hidden) {
+                                window.location.href = app.mobileUrl;
+                            }
+                        }, 1200);
+                    } else {
                         window.location.href = app.mobileUrl;
                     }
-                }, 1200);
-            } else {
-                window.location.href = app.mobileUrl;
-            }
-        }
-    }, 300);
-}
-
-/* ===============================
-   TERMOS
-================================ */
-document.querySelector('.terms-icon')?.addEventListener('click', () => {
-    window.open('termos.html', '_blank', 'noopener');
-});
-
-/* ===============================
-   EVENTOS
-================================ */
-document.addEventListener('DOMContentLoaded', () => {
-    createDeviceIndicator();
-    window.addEventListener('resize', createDeviceIndicator);
-
-    // Navegação pelos ícones da barra lateral
-    document.querySelectorAll('.nav-icon').forEach(icon => {
-        icon.addEventListener('click', () => {
-            const pageId = icon.dataset.page;
-            
-            if (pageId === 'home') {
-                navigateToPage('home');
-            } else {
-                navigateToPage(pageId);
-            }
-        });
-    });
-
-    // Navegação pelos cards na página inicial
-    document.querySelectorAll('.app-card').forEach(card => {
-        card.addEventListener('click', () => {
-            const appId = card.dataset.app;
-            navigateToPage(appId);
-        });
-    });
-
-    // Botões voltar
-    document.querySelectorAll('.back-button').forEach(btn => {
-        btn.addEventListener('click', () => navigateToPage('home'));
-    });
-
-    // Botões de lançar
-    document.querySelectorAll('.launch-button').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            const appPage = this.closest('.app-page');
-            if (!appPage) return;
-            
-            const appId = appPage.id.replace('-page', '');
-            
-            if (appsData[appId]) {
-                openApp(appId, this);
-            } else {
-                const url = this.dataset.url;
-                if (isMobile()) {
-                    window.location.href = url;
-                } else {
-                    window.open(url, '_blank', 'noopener,noreferrer');
                 }
-            }
-        });
-    });
-
-    // Tecla ESC para voltar
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') {
-            navigateToPage('home');
+            }, 300);
         }
-    });
 
-   // Redirecionar para projetos.html quando clicar em Projetos - NA MESMA ABA
-document.querySelector('.neon-projetos')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    window.location.href = 'projetos.html';
-});
+        /* ===============================
+           TERMOS
+        ================================= */
+        document.querySelector('.terms-icon')?.addEventListener('click', () => {
+            window.open('termos.html', '_blank', 'noopener');
+        });
 
-    // Inicializar
-    navigateToPage('home');
-});
-</script>
+        /* ===============================
+           EVENTOS
+        ================================= */
+        document.addEventListener('DOMContentLoaded', () => {
+            createDeviceIndicator();
+            window.addEventListener('resize', createDeviceIndicator);
 
+            // Navegação pelos ícones da barra lateral
+            document.querySelectorAll('.nav-icon').forEach(icon => {
+                icon.addEventListener('click', (e) => {
+                    // Verificar se o ícone é um link para outra página
+                    if (icon.tagName === 'A' && icon.hasAttribute('href')) {
+                        // Links para projetos.html e game.html já funcionam
+                        return;
+                    }
+                    
+                    const pageId = icon.dataset.page;
+                    
+                    if (pageId === 'home') {
+                        navigateToPage('home');
+                    } else {
+                        navigateToPage(pageId);
+                    }
+                });
+            });
+
+            // Navegação pelos cards na página inicial
+            document.querySelectorAll('.app-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const appId = card.dataset.app;
+                    navigateToPage(appId);
+                });
+            });
+
+            // Botões voltar
+            document.querySelectorAll('.back-button').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    navigateToPage('home');
+                });
+            });
+
+            // Botões de lançar
+            document.querySelectorAll('.app-main-button').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const appPage = this.closest('.app-page');
+                    if (!appPage) return;
+                    
+                    const appId = appPage.id.replace('-page', '');
+                    
+                    if (appsData[appId]) {
+                        openApp(appId, this);
+                    } else {
+                        const url = this.dataset.url;
+                        if (isMobile()) {
+                            window.location.href = url;
+                        } else {
+                            window.open(url, '_blank', 'noopener,noreferrer');
+                        }
+                    }
+                });
+            });
+
+            // Tecla ESC para voltar
+            document.addEventListener('keydown', e => {
+                if (e.key === 'Escape') {
+                    navigateToPage('home');
+                }
+            });
+
+            // Inicializar
+            navigateToPage('home');
+        });
+    </script>
 </body>
 </html>
-
-
-''
