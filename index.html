@@ -2277,11 +2277,11 @@ const appsData = {
     },
     'games': { 
         name: 'Games',
-        url: 'game.html'  // Abre game.html
+        url: 'game.html'
     },
     'projetos': { 
         name: 'Projetos',
-        url: 'projetos.html'  // Abre projetos.html
+        url: 'projetos.html'
     },
     'spotify': {
         name: 'Spotify',
@@ -2388,17 +2388,35 @@ function openWithProtocol(appId) {
 
     // Se for DESKTOP:
     if (app.protocol) {
-        // Tentar abrir com protocolo primeiro (app nativo)
-        const iframe = document.createElement('iframe');
-        iframe.style.display = 'none';
-        iframe.src = app.protocol;
-        document.body.appendChild(iframe);
+        // Método mais confiável para tentar protocolo sem abrir duplicado
+        let protocolOpened = false;
         
-        // Fallback: se o protocolo não funcionar em 1 segundo, abrir site
+        // Criar um link temporário
+        const link = document.createElement('a');
+        link.href = app.protocol;
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        
+        // Adicionar evento para detectar se a página perdeu foco (indicando que o app abriu)
+        window.addEventListener('blur', function onBlur() {
+            protocolOpened = true;
+            window.removeEventListener('blur', onBlur);
+        });
+        
+        // Tentar clicar no link (isso aciona o protocolo)
+        link.click();
+        
+        // Remover o link após um breve momento
         setTimeout(() => {
-            document.body.removeChild(iframe);
-            window.open(app.url, '_blank', 'noopener,noreferrer');
-        }, 1000);
+            document.body.removeChild(link);
+        }, 100);
+        
+        // Se após 500ms a página não perdeu foco (protocolo não funcionou), abrir site
+        setTimeout(() => {
+            if (!protocolOpened) {
+                window.open(app.url, '_blank', 'noopener,noreferrer');
+            }
+        }, 800);
     } else {
         // Apps sem protocolo: abrir site normal
         window.open(app.url, '_blank', 'noopener,noreferrer');
