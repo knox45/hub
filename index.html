@@ -2266,272 +2266,273 @@
         </div>
     </div>
 
-    <script>
-        /* ===============================
-           APPS COMPLETO COM TODAS AS PÁGINAS
-        ================================= */
-        const appsData = {
-            'home': { 
-                name: 'Início',
-                url: '#'
-            },
-            'games': { 
-                name: 'Games',
-                url: 'game.html'  // Abre game.html
-            },
-            'projetos': { 
-                name: 'Projetos',
-                url: 'projetos.html'  // Abre projetos.html
-            },
-            'spotify': {
-                name: 'Spotify',
-                url: 'https://open.spotify.com',
-                protocol: 'spotify://',
-                color: '#1DB954'
-            },
-            'whatsapp': {
-                name: 'WhatsApp',
-                url: 'https://web.whatsapp.com',
-                protocol: 'whatsapp://',
-                color: '#25D366'
-            },
-            'netflix': {
-                name: 'Netflix',
-                url: 'https://www.netflix.com',
-                color: '#E50914'
-            },
-            'youtube': {
-                name: 'YouTube',
-                url: 'https://www.youtube.com',
-                color: '#FF0000'
-            },
-            'jw-org': {
-                name: 'JW.org',
-                url: 'https://www.jw.org/pt',
-                color: '#2196F3'
-            },
-            'epic-games': {
-                name: 'Epic Games',
-                url: 'https://store.epicgames.com',
-                color: '#2A2A2A'
-            },
-            'office365': {
-                name: 'Office 365',
-                url: 'https://www.office.com',
-                color: '#D83B01'
-            },
-            'gmail': {
-                name: 'Gmail',
-                url: 'https://mail.google.com',
-                color: '#EA4335'
-            },
-            'riot-client': {
-                name: 'Riot Client',
-                url: 'https://riotgames.com',
-                protocol: 'riotclient://',
-                color: '#FF4654'
-            },
-            'google-photos': {
-                name: 'Google Photos',
-                url: 'https://photos.google.com',
-                color: '#4285F4'
-            },
-            'vscode': {
-                name: 'Visual Studio Code',
-                url: 'https://code.visualstudio.com',
-                protocol: 'vscode://',
-                color: '#007ACC'
-            },
-            'github': {
-                name: 'GitHub',
-                url: 'https://github.com',
-                color: '#333333'
-            },
-            'discord': {
-                name: 'Discord',
-                url: 'https://discord.com/app',
-                protocol: 'discord://',
-                color: '#5865F2'
-            },
-            'drive': {
-                name: 'Google Drive',
-                url: 'https://drive.google.com',
-                color: '#4285F4'
-            }
-        };
+   <script>
+    /* ===============================
+   APPS COMPLETO COM TODAS AS PÁGINAS
+================================= */
+const appsData = {
+    'home': { 
+        name: 'Início',
+        url: '#'
+    },
+    'games': { 
+        name: 'Games',
+        url: 'game.html'  // Abre game.html
+    },
+    'projetos': { 
+        name: 'Projetos',
+        url: 'projetos.html'  // Abre projetos.html
+    },
+    'spotify': {
+        name: 'Spotify',
+        url: 'https://open.spotify.com',
+        protocol: 'spotify://',
+        color: '#1DB954'
+    },
+    'whatsapp': {
+        name: 'WhatsApp',
+        url: 'https://web.whatsapp.com',
+        protocol: 'whatsapp://',
+        color: '#25D366'
+    },
+    'netflix': {
+        name: 'Netflix',
+        url: 'https://www.netflix.com',
+        color: '#E50914'
+    },
+    'youtube': {
+        name: 'YouTube',
+        url: 'https://www.youtube.com',
+        color: '#FF0000'
+    },
+    'jw-org': {
+        name: 'JW.org',
+        url: 'https://www.jw.org/pt',
+        color: '#2196F3'
+    },
+    'epic-games': {
+        name: 'Epic Games',
+        url: 'https://store.epicgames.com',
+        color: '#2A2A2A'
+    },
+    'office365': {
+        name: 'Office 365',
+        url: 'https://www.office.com',
+        color: '#D83B01'
+    },
+    'gmail': {
+        name: 'Gmail',
+        url: 'https://mail.google.com',
+        color: '#EA4335'
+    },
+    'riot-client': {
+        name: 'Riot Client',
+        url: 'https://riotgames.com',
+        protocol: 'riotclient://',
+        color: '#FF4654'
+    },
+    'google-photos': {
+        name: 'Google Photos',
+        url: 'https://photos.google.com',
+        color: '#4285F4'
+    },
+    'vscode': {
+        name: 'Visual Studio Code',
+        url: 'https://code.visualstudio.com',
+        protocol: 'vscode://',
+        color: '#007ACC'
+    },
+    'github': {
+        name: 'GitHub',
+        url: 'https://github.com',
+        color: '#333333'
+    },
+    'discord': {
+        name: 'Discord',
+        url: 'https://discord.com/app',
+        protocol: 'discord://',
+        color: '#5865F2'
+    },
+    'drive': {
+        name: 'Google Drive',
+        url: 'https://drive.google.com',
+        color: '#4285F4'
+    }
+};
 
-        /* ===============================
-           FUNÇÃO PARA DETECTAR SE É COMPUTADOR
-        ================================= */
-        function isDesktop() {
-            return !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+/* ===============================
+   FUNÇÃO PARA DETECTAR SE É COMPUTADOR
+================================= */
+function isDesktop() {
+    return !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+/* ===============================
+   FUNÇÃO PARA ABRIR COM PROTOCOLO OU SITE
+================================= */
+function openWithProtocol(appId) {
+    const app = appsData[appId];
+    if (!app || !app.url) return;
+
+    // Para Games e Projetos - sempre abrir as páginas HTML
+    if (appId === 'games' || appId === 'projetos') {
+        window.open(app.url, '_blank', 'noopener,noreferrer');
+        return;
+    }
+
+    // Se for MOBILE: abrir sempre o site normal
+    if (!isDesktop()) {
+        window.open(app.url, '_blank', 'noopener,noreferrer');
+        return;
+    }
+
+    // Se for DESKTOP:
+    if (app.protocol) {
+        // Tentar abrir com protocolo primeiro (app nativo)
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = app.protocol;
+        document.body.appendChild(iframe);
+        
+        // Fallback: se o protocolo não funcionar em 1 segundo, abrir site
+        setTimeout(() => {
+            document.body.removeChild(iframe);
+            window.open(app.url, '_blank', 'noopener,noreferrer');
+        }, 1000);
+    } else {
+        // Apps sem protocolo: abrir site normal
+        window.open(app.url, '_blank', 'noopener,noreferrer');
+    }
+}
+
+/* ===============================
+   NAVEGAÇÃO
+================================= */
+function navigateToPage(pageId) {
+    // Se for Games ou Projetos, abrir página externa
+    if (pageId === 'games' || pageId === 'projetos') {
+        openWithProtocol(pageId);
+        return;
+    }
+
+    // Para outras páginas, navegação normal
+    document.querySelectorAll('.page, .app-page')
+        .forEach(p => p.classList.remove('active'));
+
+    document.querySelectorAll('.nav-icon')
+        .forEach(i => i.classList.remove('active'));
+
+    const pageElement = document.getElementById(`${pageId}-page`);
+    if (pageElement) {
+        pageElement.classList.add('active');
+        
+        const iconElement = document.querySelector(`.nav-icon[data-page="${pageId}"]`);
+        if (iconElement) {
+            iconElement.classList.add('active');
         }
+    } else {
+        document.getElementById('home-page').classList.add('active');
+        document.querySelector('.nav-icon[data-page="home"]').classList.add('active');
+    }
 
-        /* ===============================
-           FUNÇÃO PARA ABRIR COM PROTOCOLO OU SITE
-        ================================= */
-        function openWithProtocol(appId) {
-            const app = appsData[appId];
-            if (!app || !app.url) return;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
-            // Para Games e Projetos - sempre abrir as páginas HTML
-            if (appId === 'games' || appId === 'projetos') {
-                window.open(app.url, '_blank', 'noopener,noreferrer');
-                return;
-            }
+/* ===============================
+   ABRIR APP
+================================= */
+function openApp(appId, button) {
+    const app = appsData[appId];
+    if (!app || !app.url) return;
 
-            // Para outros apps com protocolo
-            if (app.protocol && isDesktop()) {
-                // Tentar abrir com protocolo no PC
-                try {
-                    // Criar um iframe invisível para tentar o protocolo
-                    const iframe = document.createElement('iframe');
-                    iframe.style.display = 'none';
-                    iframe.src = app.protocol;
-                    document.body.appendChild(iframe);
-                    
-                    // Se o protocolo falhar, abrir o site normal
-                    setTimeout(() => {
-                        document.body.removeChild(iframe);
-                        window.open(app.url, '_blank', 'noopener,noreferrer');
-                    }, 500);
-                } catch (e) {
-                    window.open(app.url, '_blank', 'noopener,noreferrer');
-                }
-            } else {
-                // Para mobile ou apps sem protocolo, abrir site normal
-                window.open(app.url, '_blank', 'noopener,noreferrer');
-            }
+    // Mostrar estado de carregamento no botão
+    if (button) {
+        const originalHTML = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Abrindo...';
+        button.disabled = true;
+
+        setTimeout(() => {
+            button.innerHTML = originalHTML;
+            button.disabled = false;
+        }, 1500);
+    }
+
+    setTimeout(() => {
+        if (app.url === '#') {
+            navigateToPage(appId);
+        } else {
+            openWithProtocol(appId);
         }
+    }, 300);
+}
 
-        /* ===============================
-           NAVEGAÇÃO
-        ================================= */
-        function navigateToPage(pageId) {
-            // Se for Games ou Projetos, abrir página externa
-            if (pageId === 'games' || pageId === 'projetos') {
-                openWithProtocol(pageId);
-                return;
-            }
+/* ===============================
+   TERMOS
+================================= */
+document.querySelector('.terms-icon')?.addEventListener('click', () => {
+    alert('Página de termos - Implemente sua própria lógica aqui');
+});
 
-            // Para outras páginas, navegação normal
-            document.querySelectorAll('.page, .app-page')
-                .forEach(p => p.classList.remove('active'));
-
-            document.querySelectorAll('.nav-icon')
-                .forEach(i => i.classList.remove('active'));
-
-            const pageElement = document.getElementById(`${pageId}-page`);
-            if (pageElement) {
-                pageElement.classList.add('active');
-                
-                const iconElement = document.querySelector(`.nav-icon[data-page="${pageId}"]`);
-                if (iconElement) {
-                    iconElement.classList.add('active');
-                }
-            } else {
-                document.getElementById('home-page').classList.add('active');
-                document.querySelector('.nav-icon[data-page="home"]').classList.add('active');
-            }
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        /* ===============================
-           ABRIR APP
-        ================================= */
-        function openApp(appId, button) {
-            const app = appsData[appId];
-            if (!app || !app.url) return;
-
-            // Mostrar estado de carregamento no botão
-            if (button) {
-                const originalHTML = button.innerHTML;
-                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Abrindo...';
-                button.disabled = true;
-
-                setTimeout(() => {
-                    button.innerHTML = originalHTML;
-                    button.disabled = false;
-                }, 1500);
-            }
-
-            setTimeout(() => {
-                if (app.url === '#') {
-                    navigateToPage(appId);
-                } else {
-                    openWithProtocol(appId);
-                }
-            }, 300);
-        }
-
-        /* ===============================
-           TERMOS
-        ================================= */
-        document.querySelector('.terms-icon')?.addEventListener('click', () => {
-            alert('Página de termos - Implemente sua própria lógica aqui');
+/* ===============================
+   EVENTOS
+================================= */
+document.addEventListener('DOMContentLoaded', () => {
+    // Navegação pelos ícones da barra lateral
+    document.querySelectorAll('.nav-icon').forEach(icon => {
+        icon.addEventListener('click', () => {
+            const pageId = icon.dataset.page;
+            navigateToPage(pageId);
         });
+    });
 
-        /* ===============================
-           EVENTOS
-        ================================= */
-        document.addEventListener('DOMContentLoaded', () => {
-            // Navegação pelos ícones da barra lateral
-            document.querySelectorAll('.nav-icon').forEach(icon => {
-                icon.addEventListener('click', () => {
-                    const pageId = icon.dataset.page;
-                    navigateToPage(pageId);
-                });
-            });
+    // Navegação pelos cards na página inicial
+    document.querySelectorAll('.app-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const appId = card.dataset.app;
+            navigateToPage(appId);
+        });
+    });
 
-            // Navegação pelos cards na página inicial
-            document.querySelectorAll('.app-card').forEach(card => {
-                card.addEventListener('click', () => {
-                    const appId = card.dataset.app;
-                    navigateToPage(appId);
-                });
-            });
-
-            // Botões voltar
-            document.querySelectorAll('.back-button').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    navigateToPage('home');
-                });
-            });
-
-            // Botões de lançar
-            document.querySelectorAll('.app-main-button').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    const appPage = this.closest('.app-page');
-                    if (!appPage) return;
-                    
-                    const appId = appPage.id.replace('-page', '');
-                    
-                    if (appsData[appId]) {
-                        openApp(appId, this);
-                    } else {
-                        const url = this.dataset.url;
-                        if (url && url !== '#') {
-                            window.open(url, '_blank', 'noopener,noreferrer');
-                        }
-                    }
-                });
-            });
-
-            // Tecla ESC para voltar
-            document.addEventListener('keydown', e => {
-                if (e.key === 'Escape') {
-                    navigateToPage('home');
-                }
-            });
-
-            // Inicializar na home
+    // Botões voltar
+    document.querySelectorAll('.back-button').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
             navigateToPage('home');
         });
-    </script>
+    });
+
+    // Botões de lançar
+    document.querySelectorAll('.app-main-button').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const appPage = this.closest('.app-page');
+            if (!appPage) return;
+            
+            const appId = appPage.id.replace('-page', '');
+            
+            if (appsData[appId]) {
+                openApp(appId, this);
+            } else {
+                const url = this.dataset.url;
+                if (url && url !== '#') {
+                    window.open(url, '_blank', 'noopener,noreferrer');
+                }
+            }
+        });
+    });
+
+    // Tecla ESC para voltar
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            navigateToPage('home');
+        }
+    });
+
+    // Inicializar na home
+    navigateToPage('home');
+});
+   </script>
 </body>
 </html>
