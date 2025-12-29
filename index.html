@@ -3722,13 +3722,7 @@
                 }, 300);
             }
 
-            /* ===============================
-               TERMOS
-            ================================= */
-            document.querySelector('.terms-icon')?.addEventListener('click', () => {
-                alert('Página de termos - Implemente sua própria lógica aqui');
-            });
-
+            
             /* ===============================
                EVENTOS
             ================================= */
@@ -3752,6 +3746,12 @@
                         navigateToPage(appId);
                     });
                 });
+                /* ===============================
+           TERMOS
+        ================================= */
+        document.querySelector('.terms-icon')?.addEventListener('click', () => {
+            window.open('termos.html', '_blank', 'noopener');
+        });
 
                 // Botões voltar
                 document.querySelectorAll('.back-button').forEach(btn => {
