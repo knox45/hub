@@ -77,6 +77,7 @@
             overflow: hidden;
             flex-shrink: 0;
             text-decoration: none;
+            border: 2px solid transparent;
         }
 
         .nav-icon:hover {
@@ -103,115 +104,174 @@
         }
 
         /* =========================
-           ÍCONE HOME - NEON AZUL
+           ÍCONE HOME - NEON AZUL INTERNO
         ========================= */
-        .neon-home {
+        .nav-icon.neon-home {
+            border: 2px solid transparent;
+            position: relative;
+            overflow: visible;
+        }
+
+        .nav-icon.neon-home::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
             background: linear-gradient(
                 135deg,
                 #0066ff,
                 #00ccff,
                 #0066ff,
                 #0099ff
-            ) !important;
-            background-size: 300% 300% !important;
-            color: #fff !important;
-            box-shadow:
-                0 0 10px rgba(0, 102, 255, 0.6),
-                0 0 20px rgba(0, 204, 255, 0.5),
-                0 0 30px rgba(0, 153, 255, 0.4) !important;
-            animation: neonBlueFlow 3s ease infinite !important;
+            );
+            border-radius: 17px;
+            z-index: -1;
+            opacity: 0;
+            animation: neonBlueFlow 3s ease infinite;
+            transition: opacity 0.3s ease;
         }
 
-        /* Quando o Home está ativo (página inicial) */
-        .neon-home.active {
-            background: linear-gradient(
-                135deg,
-                #0066ff,
-                #00ccff,
-                #0066ff,
-                #0099ff
-            ) !important;
-            background-size: 300% 300% !important;
-            box-shadow:
-                0 0 15px #0066ff,
-                0 0 30px #00ccff,
-                0 0 45px #0099ff !important;
+        .nav-icon.neon-home:hover::before {
+            opacity: 0.7;
         }
 
-        .neon-home:hover {
-            transform: translateY(-4px) scale(1.06) !important;
-            box-shadow:
-                0 0 20px #0066ff,
-                0 0 40px #00ccff,
-                0 0 60px #0099ff !important;
+        .nav-icon.neon-home.active::before {
+            opacity: 1;
+            box-shadow: 
+                0 0 10px #0066ff,
+                0 0 20px #00ccff;
         }
 
-        @keyframes neonBlueFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .nav-icon.neon-home i {
+            color: #b0b0c0;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav-icon.neon-home:hover i {
+            color: #ffffff;
+            text-shadow: 0 0 10px #00ccff;
+        }
+
+        .nav-icon.neon-home.active i {
+            color: #ffffff;
+            text-shadow: 0 0 10px #00ccff;
         }
 
         /* =========================
-           BOTÃO PROJETOS - NEON ROXO
+           BOTÃO PROJETOS - NEON ROXO INTERNO
         ========================= */
-        .neon-projetos {
+        .nav-icon.neon-projetos {
+            border: 2px solid transparent;
+            position: relative;
+            overflow: visible;
+        }
+
+        .nav-icon.neon-projetos::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
             background: linear-gradient(
                 135deg,
                 #9d4edd,
                 #c77dff,
                 #7b2cbf,
                 #9d4edd
-            ) !important;
-            background-size: 300% 300% !important;
-            color: #fff !important;
-            box-shadow:
-                0 0 10px rgba(157, 78, 221, 0.6),
-                0 0 20px rgba(199, 125, 255, 0.5),
-                0 0 30px rgba(123, 44, 191, 0.4) !important;
-            animation: neonPurpleFlow 4s ease infinite !important;
+            );
+            border-radius: 17px;
+            z-index: -1;
+            opacity: 0;
+            animation: neonPurpleFlow 4s ease infinite;
+            transition: opacity 0.3s ease;
         }
 
-        .neon-projetos:hover {
-            transform: translateY(-4px) scale(1.06) !important;
-            box-shadow:
-                0 0 20px #9d4edd,
-                0 0 40px #c77dff,
-                0 0 60px #7b2cbf !important;
+        .nav-icon.neon-projetos:hover::before {
+            opacity: 0.7;
         }
 
-        @keyframes neonPurpleFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .nav-icon.neon-projetos.active::before {
+            opacity: 1;
+            box-shadow: 
+                0 0 10px #9d4edd,
+                0 0 20px #c77dff;
+        }
+
+        .nav-icon.neon-projetos i {
+            color: #b0b0c0;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav-icon.neon-projetos:hover i {
+            color: #ffffff;
+            text-shadow: 0 0 10px #c77dff;
         }
 
         /* =========================
-           BOTÃO GAMES - NEON QUENTE
+           BOTÃO GAMES - NEON QUENTE INTERNO
         ========================= */
-        .neon-games {
+        .nav-icon.neon-games {
+            border: 2px solid transparent;
+            position: relative;
+            overflow: visible;
+        }
+
+        .nav-icon.neon-games::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
             background: linear-gradient(
                 135deg,
                 #ff6a00,
                 #ff1744,
                 #ff9100,
                 #ff3d00
-            ) !important;
-            background-size: 300% 300% !important;
-            color: #fff !important;
-            box-shadow:
-                0 0 8px rgba(255, 106, 0, 0.6),
-                0 0 18px rgba(255, 23, 68, 0.5),
-                0 0 28px rgba(255, 61, 0, 0.4) !important;
-            animation: neonHotFlow 3.5s ease infinite !important;
+            );
+            border-radius: 17px;
+            z-index: -1;
+            opacity: 0;
+            animation: neonHotFlow 3.5s ease infinite;
+            transition: opacity 0.3s ease;
         }
 
-        .neon-games:hover {
-            transform: translateY(-4px) scale(1.06) !important;
-            box-shadow:
-                0 0 15px #ff6a00,
-                0 0 30px #ff1744,
-                0 0 45px #ff9100 !important;
+        .nav-icon.neon-games:hover::before {
+            opacity: 0.7;
+        }
+
+        .nav-icon.neon-games.active::before {
+            opacity: 1;
+            box-shadow: 
+                0 0 10px #ff6a00,
+                0 0 20px #ff1744;
+        }
+
+        .nav-icon.neon-games i {
+            color: #b0b0c0;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav-icon.neon-games:hover i {
+            color: #ffffff;
+            text-shadow: 0 0 10px #ff1744;
+        }
+
+        /* Animações dos neons */
+        @keyframes neonBlueFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         @keyframes neonHotFlow {
@@ -220,17 +280,10 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* IMPORTANTE: Remover o estilo padrão .nav-icon.active para não sobrescrever os neon */
-        .nav-icon.neon-home,
-        .nav-icon.neon-projetos,
-        .nav-icon.neon-games {
-            background: none !important;
-        }
-        
-        .nav-icon.neon-home:hover,
-        .nav-icon.neon-projetos:hover,
-        .nav-icon.neon-games:hover {
-            background: none !important;
+        @keyframes neonPurpleFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         /* CORES LEGAIS PARA CADA ÍCONE ATIVO */
@@ -328,7 +381,7 @@
             gap: 15px;
         }
 
-        /* Botão de Termos no estilo dos ícones */
+        /* Botão de Termos */
         .terms-icon {
             width: 40px;
             height: 40px;
@@ -420,7 +473,7 @@
             font-size: 1.2rem;
         }
 
-        /* Grid de aplicativos - COMPACTADO */
+        /* Grid de aplicativos - FIXADO */
         .apps-grid {
             padding: 0 40px 60px;
             display: grid;
@@ -428,12 +481,12 @@
             gap: 25px;
         }
 
-        /* Card de app */
+        /* Card de app - SEM ANIMAÇÃO INTERNA, SÓ BORDA */
         .app-card {
             background: rgba(26, 26, 46, 0.2);
             border-radius: 20px;
             overflow: hidden;
-            border: none;
+            border: 2px solid rgba(74, 109, 229, 0.1);
             transition: all 0.4s ease;
             cursor: pointer;
             position: relative;
@@ -444,7 +497,10 @@
         .app-card:hover {
             transform: translateY(-8px) scale(1.02);
             background: rgba(26, 26, 46, 0.3);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.5),
+                0 0 0 2px rgba(74, 109, 229, 0.3);
+            border-color: rgba(74, 109, 229, 0.5);
         }
 
         .app-cover {
@@ -537,7 +593,7 @@
             border: none;
         }
 
-        /* Páginas de apps - LAYOUT SIMPLIFICADO */
+        /* Páginas de apps */
         .app-page {
             min-height: calc(100vh - 60px);
         }
@@ -601,14 +657,14 @@
             max-width: 600px;
         }
 
-        /* CONTAINER SIMPLIFICADO PARA PÁGINAS DE APP */
+        /* CONTAINER PARA PÁGINAS DE APP */
         .app-page-content {
             max-width: 1200px;
             margin: 40px auto;
             padding: 0 60px;
         }
 
-        /* BARRA SUPERIOR DE AÇÃO NO CANTO ESQUERDO */
+        /* BARRA SUPERIOR DE AÇÃO */
         .app-action-bar {
             display: flex;
             align-items: center;
@@ -621,7 +677,7 @@
             gap: 15px;
         }
 
-        /* BOTÕES PRINCIPAIS COM CORES LEGAIS */
+        /* BOTÕES PRINCIPAIS */
         .app-main-button {
             background: linear-gradient(135deg, #4a6de5, #6a8eff);
             color: white;
@@ -645,7 +701,7 @@
             box-shadow: 0 10px 25px rgba(74, 109, 229, 0.4);
         }
 
-        /* CORES LEGAIS ESPECÍFICAS PARA CADA APP */
+        /* CORES ESPECÍFICAS PARA CADA APP */
         .app-main-button.youtube {
             background: linear-gradient(135deg, #FF0000, #CC0000) !important;
         }
@@ -752,31 +808,38 @@
             transform: translateY(-2px);
         }
 
-        /* VISUALIZAÇÃO DE IMAGENS/BANNER - SEM DIVISÓRIAS */
+        /* VISUALIZAÇÃO DE IMAGENS - COM ESPAÇAMENTO E BORDAS */
         .app-images-section {
             margin-top: 40px;
         }
 
         .app-images-grid {
-            display: flex;
-            gap: 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
             margin-top: 20px;
-            border-radius: 12px;
-            overflow: hidden;
         }
 
         .app-image-item {
-            flex: 1;
-            height: 200px;
+            height: 220px;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            transition: transform 0.3s ease, flex 0.3s ease;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
             cursor: pointer;
             position: relative;
+            overflow: hidden;
         }
 
-        /* PLACEHOLDER PARA IMAGENS FALTANTES NAS PÁGINAS */
+        /* BORDA AO PASSAR O MOUSE */
+        .app-image-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(74, 109, 229, 0.6);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
         .app-image-item.placeholder {
             background: linear-gradient(135deg, rgba(26, 26, 46, 0.6), rgba(45, 45, 74, 0.6));
             display: flex;
@@ -791,22 +854,6 @@
             opacity: 0.5;
         }
 
-        .app-image-item:hover {
-            transform: scale(1.05);
-            z-index: 1;
-            flex: 1.2;
-        }
-
-        .app-image-item::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to bottom, transparent 70%, rgba(0,0,0,0.7) 100%);
-        }
-
         .app-image-label {
             position: absolute;
             bottom: 15px;
@@ -814,9 +861,10 @@
             color: white;
             font-weight: 600;
             z-index: 2;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
         }
 
-        /* INFORMÇÕES SIMPLIFICADAS */
+        /* INFORMÇÕES */
         .app-info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -826,6 +874,7 @@
             border-radius: 15px;
             padding: 30px;
             backdrop-filter: blur(10px);
+            border: 2px solid rgba(74, 109, 229, 0.1);
         }
 
         .info-item {
@@ -863,10 +912,12 @@
             z-index: 3;
             transition: all 0.3s;
             backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
         }
 
         .back-button:hover {
             background: rgba(45, 45, 74, 0.9);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
         /* Footer */
@@ -880,55 +931,13 @@
             backdrop-filter: blur(10px);
         }
 
-        /* Indicador de dispositivo com animação */
-        .device-indicator {
-            position: fixed;
-            top: 12px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 9999;
-            padding: 6px 14px;
-            border-radius: 20px;
-            background: rgba(0, 0, 0, 0.35);
-            color: #fff;
-            font-size: 0.75rem;
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            pointer-events: none;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            animation: pulse 2s infinite;
-        }
-
-    @keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
-        border-color: rgba(34, 197, 94, 0.3);
-    }
-    70% {
-        box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
-        border-color: rgba(34, 197, 94, 0.5);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
-        border-color: rgba(34, 197, 94, 0.3);
-    }
-}
-
         /* Animações */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
 
-        @keyframes slideUp {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        /* ============================================= */
-        /* ADAPTAÇÕES ESPECÍFICAS PARA MOBILE - OTIMIZADO */
-        /* ============================================= */
+        /* Responsividade */
         @media (max-width: 1024px) {
             .sidebar {
                 width: 80px;
@@ -957,12 +966,8 @@
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
             
-            .app-hero {
-                height: 350px;
-            }
-            
-            .app-hero-info h1 {
-                font-size: 3rem;
+            .app-images-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -999,7 +1004,6 @@
             
             .home-header h1 {
                 font-size: 2.5rem;
-                text-align: center;
             }
             
             .apps-grid {
@@ -1008,173 +1012,100 @@
                 gap: 15px;
             }
             
-            .app-card {
-                height: 280px;
-            }
-            
-            .app-cover {
-                height: 140px;
-            }
-            
-            .app-icon {
-                width: 50px;
-                height: 50px;
-            }
-            
-            .app-hero {
-                height: 300px;
-                padding: 0 20px;
-            }
-            
-            .app-hero-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 20px;
-            }
-            
-            .app-hero-icon {
-                width: 100px;
-                height: 100px;
-            }
-            
-            .app-hero-info h1 {
-                font-size: 2.5rem;
-            }
-            
-            .app-page-content {
-                padding: 0 20px;
-            }
-            
-            .app-action-bar {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .app-buttons {
-                width: 100%;
-                flex-direction: column;
-            }
-            
-            .app-main-button, .app-secondary-button {
-                width: 100%;
-                justify-content: center;
-            }
-            
             .app-images-grid {
-                flex-direction: column;
-                gap: 10px;
+                grid-template-columns: 1fr;
             }
             
             .app-image-item {
-                height: 150px;
-            }
-            
-            .app-info-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer {
-                margin-left: 70px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .sidebar {
-                width: 60px;
-            }
-            
-            .nav-icon {
-                width: 45px;
-                height: 45px;
-            }
-            
-            .nav-icon img {
-                width: 25px;
-                height: 25px;
-            }
-            
-            .main-content {
-                margin-left: 60px;
-            }
-            
-            .top-bar {
-                left: 60px;
-            }
-            
-            .footer {
-                margin-left: 60px;
-            }
-            
-            .home-header h1 {
-                font-size: 2rem;
-            }
-            
-            .apps-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .app-card {
-                height: 260px;
+                height: 180px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Barra lateral estilo Riot - COM SCROLL (ORDEM ORIGINAL) -->
+    <!-- Barra lateral com todos os ícones -->
     <div class="sidebar">
         <!-- Ícone Home com efeito neon azul -->
-        <div class="nav-icon active neon-home" data-page="home">
+        <div class="nav-icon neon-home active" data-page="home">
             <i class="fas fa-home"></i>
         </div>
         
-        <a href="game.html" class="nav-icon neon-games" title="Games">
+        <!-- Games -->
+        <div class="nav-icon neon-games" data-page="games">
             <i class="fa-solid fa-grip"></i>
-        </a>
+        </div>
         
-        <a href="projetos.html" class="nav-icon neon-projetos" title="Projetos">
+        <!-- Projetos -->
+        <div class="nav-icon neon-projetos" data-page="projetos">
             <i class="fa-regular fa-gem"></i>
-        </a>
+        </div>
 
-        <!-- ORDEM ORIGINAL DOS ÍCONES -->
+        <!-- Spotify -->
         <div class="nav-icon" data-page="spotify">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwDiicpDsawpNveT7Ota2-EC_vZbP8vneTbg&s" alt="Spotify">
         </div>
+        
+        <!-- WhatsApp -->
         <div class="nav-icon" data-page="whatsapp">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/2048px-WhatsApp.svg.png" alt="WhatsApp">
         </div>
+        
+        <!-- Netflix -->
         <div class="nav-icon" data-page="netflix">
             <img src="https://images.ctfassets.net/4cd45et68cgf/Rx83JoRDMkYNlMC9MKzcB/2b14d5a59fc3937afd3f03191e19502d/Netflix-Symbol.png?w=700&h=456" alt="Netflix">
         </div>
+        
+        <!-- YouTube -->
         <div class="nav-icon" data-page="youtube">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/YouTube_play_button_square_%282013-2017%29.svg/2048px-YouTube_play_button_square_%282013-2017%29.svg.png" alt="YouTube">
         </div>
+        
+        <!-- JW.org -->
         <div class="nav-icon" data-page="jw-org">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQguRAJtdxxQjekZtb9y6NLF-tqsN5mXhM0AQ&s" alt="JW.org">
         </div>
+        
+        <!-- Riot Client -->
         <div class="nav-icon" data-page="riot-client">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKnJaJcVfuAJc2YxBhBp4ujW956ygaVD0vaA&s" alt="Riot Client">
         </div>
+        
+        <!-- Google Photos -->
         <div class="nav-icon" data-page="google-photos">
             <img src="https://www.oficinadanet.com.br/imagens/post_categoria/2671/google-photos.png" alt="Google Photos">
         </div>
+        
+        <!-- VS Code -->
         <div class="nav-icon" data-page="vscode">
             <img src="https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxj7kCzMIlSC20SNjaJf9GmG15ocnF.zbBRgxMSlB7Ejh6FbgNzxLvZOoW7N3ML56fn3m5Z4MO.M8pYrCFVKIhqM-&format=source" alt="VS Code">
         </div>
+        
+        <!-- GitHub -->
         <div class="nav-icon" data-page="github">
             <img src="https://cdn.iconscout.com/icon/free/png-256/free-github-logo-icon-svg-download-png-8630395.png?f=webp" alt="GitHub">
         </div>
+        
+        <!-- Office 365 -->
         <div class="nav-icon" data-page="office365">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Microsoft_365_%282022%29.svg/1862px-Microsoft_365_%282022%29.svg.png" alt="Office 365">
         </div>
+        
+        <!-- Gmail -->
         <div class="nav-icon" data-page="gmail">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/2560px-Gmail_icon_%282020%29.svg.png" alt="Gmail">
         </div>
+        
+        <!-- Epic Games -->
         <div class="nav-icon" data-page="epic-games">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Epic_Games_logo.svg/882px-Epic_Games_logo.svg.png" alt="Epic Games">
         </div>
+        
+        <!-- Discord -->
         <div class="nav-icon" data-page="discord">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQusefcTCWIdEVgzSSoMgGjozRdyu7kdV_BEw&s" alt="Discord">
         </div>
+        
+        <!-- Google Drive -->
         <div class="nav-icon" data-page="drive">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/1200px-Google_Drive_icon_%282020%29.svg.png" alt="Google Drive">
         </div>
@@ -1205,7 +1136,6 @@
             </div>
 
             <div class="apps-grid">
-                <!-- Apps na ORDEM ORIGINAL -->
                 <!-- YouTube -->
                 <div class="app-card" data-app="youtube">
                     <div class="app-cover" style="background-image: url('https://www.hardware.com.br/wp-content/uploads/2025/10/youtube-1280x600.jpg');">
@@ -1276,7 +1206,7 @@
 
                 <!-- Epic Games -->
                 <div class="app-card" data-app="epic-games">
-                    <div class="app-cover" style="background-image: url('https://images.ctfassets.net/5owu3y35gz1g/4TFV2U8iZRUXw8xNOe3eHq/ea8f27b2c8bb174773f6b1bb3fc5d77b/EGS_Primary_Logo_Horiz_White_RGB_1500x500.png');">
+                    <div class="app-cover" style="background-image: url('https://cdn2.unrealengine.com/epic-games-store-ratings-and-polls-update-1920x1080-dc391bf9ab36.jpg');">
                         <div class="app-icon">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Epic_Games_logo.svg/882px-Epic_Games_logo.svg.png" alt="Epic Games">
                         </div>
@@ -1478,14 +1408,14 @@
                 <div class="app-images-section">
                     <h3 style="color: white; margin-bottom: 20px;">Conteúdo</h3>
                     <div class="app-images-grid">
-                        <div class="app-image-item" style="background-image: url('https://artlist.io/blog/wp-content/uploads/2022/02/45930f45c0a18220ebc8ffd4a5773a85852207aa.jpg');">
-                            <span class="app-image-label">Conteúdo Premium</span>
+                        <div class="app-image-item" style="background-image: url('https://img.odcdn.com.br/wp-content/uploads/2024/04/youtube-app-tv-e1712858026133.jpg');">
+                            <span class="app-image-label">YouTube TV</span>
                         </div>
-                        <div class="app-image-item" style="background-image: url('https://i0.wp.com/mobilegamer.biz/wp-content/uploads/2023/11/youtube-playables.jpg?fit=1024%2C403&ssl=1');">
-                            <span class="app-image-label">Jogos</span>
+                        <div class="app-image-item" style="background-image: url('https://s2-g1.glbimg.com/XXDvBiywcOhD0LaIG1Y2tKAFRjY=/0x0:2486x1398/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2025/V/q/99dzqbSA2CBDtPV5HaZw/youtube.jpg');">
+                            <span class="app-image-label">YouTube Shorts</span>
                         </div>
-                        <div class="app-image-item" style="background-image: url('https://mlabs-wordpress-site.s3.amazonaws.com/wp-content/uploads/2020/05/tamanho-da-capa-do-youtube-header.jpg');">
-                            <span class="app-image-label">Criadores</span>
+                        <div class="app-image-item" style="background-image: url('https://t2.tudocdn.net/599176?w=824&h=494');">
+                            <span class="app-image-label">YouTube Premium</span>
                         </div>
                     </div>
                 </div>
@@ -1856,13 +1786,13 @@
                 <div class="app-images-section">
                     <h3 style="color: white; margin-bottom: 20px;">Recursos</h3>
                     <div class="app-images-grid">
-                        <div class="app-image-item" style="background-image: url('https://external-preview.redd.it/ueUoRwxLMsV01pmB6t2W8iW7kOXCGdIiPvKLkKwQm_Q.jpg?auto=webp&s=d8de1f1476ad840920baea4f5ed4500aa116fbed');">
-                            <span class="app-image-label">Interface</span>
-                        </div>
-                        <div class="app-image-item" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVZ2GE62mFjWs4UgWLtlZ__ctcWGIddjNmxQ&s');">
-                            <span class="app-image-label">IntelliSense</span>
+                        <div class="app-image-item" style="background-image: url('https://blog.casadodesenvolvedor.com.br/wp-content/uploads/2023/04/post193-desenvolvimento-atalhos-vscode.png');">
+                            <span class="app-image-label">Atalhos</span>
                         </div>
                         <div class="app-image-item" style="background-image: url('https://hub.asimov.academy/wp-content/uploads/2025/05/visual-studio-code-guia-completo-python-thumbnail.webp');">
+                            <span class="app-image-label">Python</span>
+                        </div>
+                        <div class="app-image-item" style="background-image: url('https://i.redd.it/ijdgsvae5lt91.jpg');">
                             <span class="app-image-label">Extensões</span>
                         </div>
                     </div>
@@ -1952,70 +1882,69 @@
             </div>
         </div>
 
-      <!-- Página do JW.org - CORREÇÃO APLICADA -->
-<div id="jw-org-page" class="page app-page">
-    <div class="app-hero" style="background-image: url('https://www.forestprotection.com/images/orman-cesitleri.jpg');">
-        <button class="back-button">
-            <i class="fas fa-arrow-left"></i> Voltar
-        </button>
-        <div class="app-hero-content">
-            <div class="app-hero-icon">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQguRAJtdxxQjekZtb9y6NLF-tqsN5mXhM0AQ&s" alt="JW.org">
-            </div>
-            <div class="app-hero-info">
-                <h1 style="color: #2196F3;">JW.org</h1>
-                <p>Site oficial das Testemunhas de Jeová</p>
-            </div>
-        </div>
-    </div>
-    
-    <div class="app-page-content">
-        <div class="app-action-bar">
-            <div class="app-buttons">
-                <button class="app-main-button jw-org" data-url="https://www.jw.org/pt">
-                    <i class="fas fa-globe"></i>
-                    ACESSAR
+        <!-- Página do JW.org -->
+        <div id="jw-org-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('https://www.forestprotection.com/images/orman-cesitleri.jpg');">
+                <button class="back-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
                 </button>
+                <div class="app-hero-content">
+                    <div class="app-hero-icon">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQguRAJtdxxQjekZtb9y6NLF-tqsN5mXhM0AQ&s" alt="JW.org">
+                    </div>
+                    <div class="app-hero-info">
+                        <h1 style="color: #2196F3;">JW.org</h1>
+                        <p>Site oficial das Testemunhas de Jeová</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="app-page-content">
+                <div class="app-action-bar">
+                    <div class="app-buttons">
+                        <button class="app-main-button jw-org" data-url="https://www.jw.org/pt">
+                            <i class="fas fa-globe"></i>
+                            ACESSAR
+                        </button>
+                    </div>
+                </div>
+
+                <div class="app-images-section">
+                    <h3 style="color: white; margin-bottom: 20px;">Recursos</h3>
+                    <div class="app-images-grid">
+                        <div class="app-image-item" style="background-image: url('https://www.worldanimalprotection.org.br/cdn-cgi/image/width=800,format=auto,fit=cover/contentassets/bf4984c96ef44e7b869a41d683c2fbc5/dia-internacional-da-floresta-header.jpg');">
+                            <span class="app-image-label">Natureza</span>
+                        </div>
+                        <div class="app-image-item" style="background-image: url('https://neofeed.com.br/wp-content/uploads/2022/02/animais-1-1200x675.jpg');">
+                            <span class="app-image-label">Animais</span>
+                        </div>
+                        <div class="app-image-item" style="background-image: url('https://wickbold.com.br/wp-content/uploads/2023/11/Piquenique-em-familia-Dicas-essenciais-para-o-seu-passeio.webp');">
+                            <span class="app-image-label">Família</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="app-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Categoria</span>
+                        <span class="info-value">Espiritual</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Idiomas</span>
+                        <span class="info-value">1.000+</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Conteúdo</span>
+                        <span class="info-value">Gratuito</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Acessos</span>
+                        <span class="info-value">Milhões/dia</span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- SEÇÃO DE IMAGENS CORRIGIDA -->
-        <div class="app-images-section">
-            <h3 style="color: white; margin-bottom: 20px;">Conteúdo</h3>
-            <div class="app-images-grid">
-                <div class="app-image-item" style="background-image: url('https://wickbold.com.br/wp-content/uploads/2023/11/Piquenique-em-familia-Dicas-essenciais-para-o-seu-passeio.webp');">
-                    <span class="app-image-label">Família</span>
-                </div>
-                <div class="app-image-item" style="background-image: url('https://cdn.oantagonista.com/uploads/2025/01/Personalidade-dos-signos-representada-nos-animais-1024x576.jpg');">
-                    <span class="app-image-label">Animais</span>
-                </div>
-                <div class="app-image-item" style="background-image: url('https://forbes.com.br/wp-content/uploads/2020/05/Carreira_NaturezaEstresseQuarentena_120520_Getty.jpg');">
-                    <span class="app-image-label">Natureza</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- FECHAMENTO CORRETO DAS DIVS -->
-        <div class="app-info-grid">
-            <div class="info-item">
-                <span class="info-label">Categoria</span>
-                <span class="info-value">Espiritual</span>
-            </div>
-            <div class="info-item">
-                <span class="info-label">Idiomas</span>
-                <span class="info-value">1.000+</span>
-            </div>
-            <div class="info-item">
-                <span class="info-label">Conteúdo</span>
-                <span class="info-value">Gratuito</span>
-            </div>
-            <div class="info-item">
-                <span class="info-label">Acessos</span>
-                <span class="info-value">Milhões/dia</span>
-            </div>
-        </div>
-    </div>
-</div>
         <!-- Página do Office 365 -->
         <div id="office365-page" class="page app-page">
             <div class="app-hero" style="background-image: url('https://petri.com/wp-content/uploads/2022/10/microsoft-365-app-icon-1.jpg');">
@@ -2172,14 +2101,14 @@
                 <div class="app-images-section">
                     <h3 style="color: white; margin-bottom: 20px;">Recursos</h3>
                     <div class="app-images-grid">
-                        <div class="app-image-item" style="background-image: url('https://s2-techtudo.glbimg.com/uy59lAT2y02_jxH4CQFqpK6CGoU=/0x0:768x432/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2023/u/W/7DN43ST7OJzaRDjEN8uw/playstation-discord-768x432.jpg');">
-                            <span class="app-image-label">Canais</span>
+                        <div class="app-image-item" style="background-image: url('https://cdn2.unrealengine.com/egs-discord-discord-g1a-00-1920x1080-fc958a14c6ef.jpg');">
+                            <span class="app-image-label">Integração</span>
                         </div>
-                        <div class="app-image-item" style="background-image: url('https://play-lh.googleusercontent.com/OuNfO0JQde07EV0Ryq3RLp6u-yaA4ckFElk8vjJbx-Jl51X3wGOr8YTYsx0bh_gVxVY=w526-h296-rw');">
-                            <span class="app-image-label">Voz</span>
+                        <div class="app-image-item" style="background-image: url('https://cdn.aptoide.com/imgs/e/2/e/e2e441eec8b84922f7306c9936a980e0_fgraphic.png');">
+                            <span class="app-image-label">Nitro</span>
                         </div>
-                        <div class="app-image-item" style="background-image: url('https://xboxwire.thesourcemediaassets.com/sites/8/2022/09/Xbox-Discord-hero-logos-Final-and-Approved-8c539835809cea02ced9.jpg');">
-                            <span class="app-image-label">Comunidades</span>
+                        <div class="app-image-item" style="background-image: url('https://cdn1.epicgames.com/offer/5f3c898b2a3244af99e9900e015717f8/DiscordNitro_2560x14402_2560x1440-8d2a9bce01ef4ddd882351a2a92271d5');">
+                            <span class="app-image-label">Servidores</span>
                         </div>
                     </div>
                 </div>
@@ -2235,14 +2164,14 @@
                 <div class="app-images-section">
                     <h3 style="color: white; margin-bottom: 20px;">Recursos</h3>
                     <div class="app-images-grid">
-                        <div class="app-image-item" style="background-image: url('https://s2-techtudo.glbimg.com/doe9SoBZmLwIJoeMptuCMwiee-c=/540x304/top/smart/https://i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2025/o/j/zPKhU5SYyBQ4QnHkO8rQ/design-sem-nome-1-.jpg');">
-                            <span class="app-image-label">Arquivos</span>
+                        <div class="app-image-item" style="background-image: url('https://www.revelaweb.com.br/wp-content/uploads/2023/06/google-drive.webp');">
+                            <span class="app-image-label">Interface</span>
                         </div>
-                        <div class="app-image-item" style="background-image: url('https://t.ctcdn.com.br/E8hCqhWZrCBmi_P3cmbvqp237w4=/1200x675/smart/i424776.png');">
-                            <span class="app-image-label">Compartilhamento</span>
+                        <div class="app-image-item" style="background-image: url('https://geoambiente.com.br/blog/wp-content/uploads/2024/05/Guia-completo-Google-Drive-para-empresas.jpg');">
+                            <span class="app-image-label">Empresas</span>
                         </div>
-                        <div class="app-image-item" style="background-image: url('https://www.meupositivo.com.br/doseujeito/wp-content/uploads/2018/12/10-recursos-sensacionais-do-Google-Drive-que-provavelmente-voce-nao-conhece.jpg');">
-                            <span class="app-image-label">Colaboração</span>
+                        <div class="app-image-item" style="background-image: url('https://www.multcloud.com/screenshot/pt/other/google-drive/google-drive.png');">
+                            <span class="app-image-label">Aplicativo</span>
                         </div>
                     </div>
                 </div>
@@ -2270,7 +2199,7 @@
 
         <!-- Página do Epic Games -->
         <div id="epic-games-page" class="page app-page">
-            <div class="app-hero" style="background-image: url('https://images.ctfassets.net/5owu3y35gz1g/4TFV2U8iZRUXw8xNOe3eHq/ea8f27b2c8bb174773f6b1bb3fc5d77b/EGS_Primary_Logo_Horiz_White_RGB_1500x500.png');">
+            <div class="app-hero" style="background-image: url('https://cdn2.unrealengine.com/epic-games-store-ratings-and-polls-update-1920x1080-dc391bf9ab36.jpg');">
                 <button class="back-button">
                     <i class="fas fa-arrow-left"></i> Voltar
                 </button>
@@ -2331,13 +2260,138 @@
             </div>
         </div>
 
+        <!-- Página do Games -->
+        <div id="games-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/cf701cc9fda8942c3cfdf9f26e6ed410d4c59343-1920x1080.jpg?accountingTag=TFT?auto=format&fit=fill&q=80&w=1920');">
+                <button class="back-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+                <div class="app-hero-content">
+                    <div class="app-hero-icon">
+                        <i class="fa-solid fa-grip" style="font-size: 4rem; color: #ff6a00;"></i>
+                    </div>
+                    <div class="app-hero-info">
+                        <h1 style="color: #ff6a00;">Games</h1>
+                        <p>Todos os seus jogos favoritos em um só lugar</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="app-page-content">
+                <div class="app-action-bar">
+                    <div class="app-buttons">
+                        <button class="app-main-button" data-url="#">
+                            <i class="fas fa-gamepad"></i>
+                            VER JOGOS
+                        </button>
+                    </div>
+                </div>
+
+                <div class="app-images-section">
+                    <h3 style="color: white; margin-bottom: 20px;">Categorias</h3>
+                    <div class="app-images-grid">
+                        <div class="app-image-item" style="background-image: url('https://cdn2.unrealengine.com/epic-games-store-ratings-and-polls-update-1920x1080-dc391bf9ab36.jpg');">
+                            <span class="app-image-label">Epic Games</span>
+                        </div>
+                        <div class="app-image-item" style="background-image: url('https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/cf701cc9fda8942c3cfdf9f26e6ed410d4c59343-1920x1080.jpg');">
+                            <span class="app-image-label">Riot Games</span>
+                        </div>
+                        <div class="app-image-item" style="background-image: url('https://cdn2.unrealengine.com/egs-free-games-breaker-jan-2024-1920x1080-028e40df3111.jpg');">
+                            <span class="app-image-label">Gratuitos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="app-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Categoria</span>
+                        <span class="info-value">Jogos</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Plataformas</span>
+                        <span class="info-value">3+</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Jogos</span>
+                        <span class="info-value">50+</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Status</span>
+                        <span class="info-value">Ativo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página do Projetos -->
+        <div id="projetos-page" class="page app-page">
+            <div class="app-hero" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                <button class="back-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+                <div class="app-hero-content">
+                    <div class="app-hero-icon">
+                        <i class="fa-regular fa-gem" style="font-size: 4rem; color: #9d4edd;"></i>
+                    </div>
+                    <div class="app-hero-info">
+                        <h1 style="color: #9d4edd;">Projetos</h1>
+                        <p>Meus projetos pessoais e profissionais</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="app-page-content">
+                <div class="app-action-bar">
+                    <div class="app-buttons">
+                        <button class="app-main-button" data-url="#">
+                            <i class="fas fa-rocket"></i>
+                            VER PROJETOS
+                        </button>
+                    </div>
+                </div>
+
+                <div class="app-images-section">
+                    <h3 style="color: white; margin-bottom: 20px;">Categorias</h3>
+                    <div class="app-images-grid">
+                        <div class="app-image-item" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+                            <span class="app-image-label">Desenvolvimento</span>
+                        </div>
+                        <div class="app-image-item" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+                            <span class="app-image-label">Design</span>
+                        </div>
+                        <div class="app-image-item" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+                            <span class="app-image-label">Análise de Dados</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="app-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Categoria</span>
+                        <span class="info-value">Projetos</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Projetos</span>
+                        <span class="info-value">15+</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Status</span>
+                        <span class="info-value">Ativo</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Tecnologias</span>
+                        <span class="info-value">10+</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Footer -->
         <div class="footer">
             © 2025 RayRay Hub • Todos os aplicativos disponíveis
         </div>
     </div>
-
-    <script>
+  <script>
         /* ===============================
            APPS COMPLETO COM TODAS AS PÁGINAS
         ================================= */
