@@ -77,6 +77,7 @@
             overflow: hidden;
             flex-shrink: 0;
             text-decoration: none;
+            border: 2px solid transparent;
         }
 
         .nav-icon:hover {
@@ -103,115 +104,174 @@
         }
 
         /* =========================
-           ÍCONE HOME - NEON AZUL
+           ÍCONE HOME - NEON AZUL INTERNO
         ========================= */
-        .neon-home {
+        .nav-icon.neon-home {
+            border: 2px solid transparent;
+            position: relative;
+            overflow: visible;
+        }
+
+        .nav-icon.neon-home::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
             background: linear-gradient(
                 135deg,
                 #0066ff,
                 #00ccff,
                 #0066ff,
                 #0099ff
-            ) !important;
-            background-size: 300% 300% !important;
-            color: #fff !important;
-            box-shadow:
-                0 0 10px rgba(0, 102, 255, 0.6),
-                0 0 20px rgba(0, 204, 255, 0.5),
-                0 0 30px rgba(0, 153, 255, 0.4) !important;
-            animation: neonBlueFlow 3s ease infinite !important;
+            );
+            border-radius: 17px;
+            z-index: -1;
+            opacity: 0;
+            animation: neonBlueFlow 3s ease infinite;
+            transition: opacity 0.3s ease;
         }
 
-        /* Quando o Home está ativo (página inicial) */
-        .neon-home.active {
-            background: linear-gradient(
-                135deg,
-                #0066ff,
-                #00ccff,
-                #0066ff,
-                #0099ff
-            ) !important;
-            background-size: 300% 300% !important;
-            box-shadow:
-                0 0 15px #0066ff,
-                0 0 30px #00ccff,
-                0 0 45px #0099ff !important;
+        .nav-icon.neon-home:hover::before {
+            opacity: 0.7;
         }
 
-        .neon-home:hover {
-            transform: translateY(-4px) scale(1.06) !important;
-            box-shadow:
-                0 0 20px #0066ff,
-                0 0 40px #00ccff,
-                0 0 60px #0099ff !important;
+        .nav-icon.neon-home.active::before {
+            opacity: 1;
+            box-shadow: 
+                0 0 10px #0066ff,
+                0 0 20px #00ccff;
         }
 
-        @keyframes neonBlueFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .nav-icon.neon-home i {
+            color: #b0b0c0;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav-icon.neon-home:hover i {
+            color: #ffffff;
+            text-shadow: 0 0 10px #00ccff;
+        }
+
+        .nav-icon.neon-home.active i {
+            color: #ffffff;
+            text-shadow: 0 0 10px #00ccff;
         }
 
         /* =========================
-           BOTÃO PROJETOS - NEON ROXO
+           BOTÃO PROJETOS - NEON ROXO INTERNO
         ========================= */
-        .neon-projetos {
+        .nav-icon.neon-projetos {
+            border: 2px solid transparent;
+            position: relative;
+            overflow: visible;
+        }
+
+        .nav-icon.neon-projetos::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
             background: linear-gradient(
                 135deg,
                 #9d4edd,
                 #c77dff,
                 #7b2cbf,
                 #9d4edd
-            ) !important;
-            background-size: 300% 300% !important;
-            color: #fff !important;
-            box-shadow:
-                0 0 10px rgba(157, 78, 221, 0.6),
-                0 0 20px rgba(199, 125, 255, 0.5),
-                0 0 30px rgba(123, 44, 191, 0.4) !important;
-            animation: neonPurpleFlow 4s ease infinite !important;
+            );
+            border-radius: 17px;
+            z-index: -1;
+            opacity: 0;
+            animation: neonPurpleFlow 4s ease infinite;
+            transition: opacity 0.3s ease;
         }
 
-        .neon-projetos:hover {
-            transform: translateY(-4px) scale(1.06) !important;
-            box-shadow:
-                0 0 20px #9d4edd,
-                0 0 40px #c77dff,
-                0 0 60px #7b2cbf !important;
+        .nav-icon.neon-projetos:hover::before {
+            opacity: 0.7;
         }
 
-        @keyframes neonPurpleFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .nav-icon.neon-projetos.active::before {
+            opacity: 1;
+            box-shadow: 
+                0 0 10px #9d4edd,
+                0 0 20px #c77dff;
+        }
+
+        .nav-icon.neon-projetos i {
+            color: #b0b0c0;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav-icon.neon-projetos:hover i {
+            color: #ffffff;
+            text-shadow: 0 0 10px #c77dff;
         }
 
         /* =========================
-           BOTÃO GAMES - NEON QUENTE
+           BOTÃO GAMES - NEON QUENTE INTERNO
         ========================= */
-        .neon-games {
+        .nav-icon.neon-games {
+            border: 2px solid transparent;
+            position: relative;
+            overflow: visible;
+        }
+
+        .nav-icon.neon-games::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
             background: linear-gradient(
                 135deg,
                 #ff6a00,
                 #ff1744,
                 #ff9100,
                 #ff3d00
-            ) !important;
-            background-size: 300% 300% !important;
-            color: #fff !important;
-            box-shadow:
-                0 0 8px rgba(255, 106, 0, 0.6),
-                0 0 18px rgba(255, 23, 68, 0.5),
-                0 0 28px rgba(255, 61, 0, 0.4) !important;
-            animation: neonHotFlow 3.5s ease infinite !important;
+            );
+            border-radius: 17px;
+            z-index: -1;
+            opacity: 0;
+            animation: neonHotFlow 3.5s ease infinite;
+            transition: opacity 0.3s ease;
         }
 
-        .neon-games:hover {
-            transform: translateY(-4px) scale(1.06) !important;
-            box-shadow:
-                0 0 15px #ff6a00,
-                0 0 30px #ff1744,
-                0 0 45px #ff9100 !important;
+        .nav-icon.neon-games:hover::before {
+            opacity: 0.7;
+        }
+
+        .nav-icon.neon-games.active::before {
+            opacity: 1;
+            box-shadow: 
+                0 0 10px #ff6a00,
+                0 0 20px #ff1744;
+        }
+
+        .nav-icon.neon-games i {
+            color: #b0b0c0;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav-icon.neon-games:hover i {
+            color: #ffffff;
+            text-shadow: 0 0 10px #ff1744;
+        }
+
+        /* Animações dos neons */
+        @keyframes neonBlueFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         @keyframes neonHotFlow {
@@ -220,17 +280,10 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* IMPORTANTE: Remover o estilo padrão .nav-icon.active para não sobrescrever os neon */
-        .nav-icon.neon-home,
-        .nav-icon.neon-projetos,
-        .nav-icon.neon-games {
-            background: none !important;
-        }
-        
-        .nav-icon.neon-home:hover,
-        .nav-icon.neon-projetos:hover,
-        .nav-icon.neon-games:hover {
-            background: none !important;
+        @keyframes neonPurpleFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         /* CORES LEGAIS PARA CADA ÍCONE ATIVO */
@@ -328,7 +381,7 @@
             gap: 15px;
         }
 
-        /* Botão de Termos no estilo dos ícones */
+        /* Botão de Termos */
         .terms-icon {
             width: 40px;
             height: 40px;
@@ -420,7 +473,7 @@
             font-size: 1.2rem;
         }
 
-        /* Grid de aplicativos - COMPACTADO */
+        /* Grid de aplicativos - FIXADO */
         .apps-grid {
             padding: 0 40px 60px;
             display: grid;
@@ -428,12 +481,12 @@
             gap: 25px;
         }
 
-        /* Card de app */
+        /* Card de app - SEM ANIMAÇÃO INTERNA, SÓ BORDA */
         .app-card {
             background: rgba(26, 26, 46, 0.2);
             border-radius: 20px;
             overflow: hidden;
-            border: none;
+            border: 2px solid rgba(74, 109, 229, 0.1);
             transition: all 0.4s ease;
             cursor: pointer;
             position: relative;
@@ -444,7 +497,10 @@
         .app-card:hover {
             transform: translateY(-8px) scale(1.02);
             background: rgba(26, 26, 46, 0.3);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.5),
+                0 0 0 2px rgba(74, 109, 229, 0.3);
+            border-color: rgba(74, 109, 229, 0.5);
         }
 
         .app-cover {
@@ -537,7 +593,7 @@
             border: none;
         }
 
-        /* Páginas de apps - LAYOUT SIMPLIFICADO */
+        /* Páginas de apps */
         .app-page {
             min-height: calc(100vh - 60px);
         }
@@ -601,14 +657,14 @@
             max-width: 600px;
         }
 
-        /* CONTAINER SIMPLIFICADO PARA PÁGINAS DE APP */
+        /* CONTAINER PARA PÁGINAS DE APP */
         .app-page-content {
             max-width: 1200px;
             margin: 40px auto;
             padding: 0 60px;
         }
 
-        /* BARRA SUPERIOR DE AÇÃO NO CANTO ESQUERDO */
+        /* BARRA SUPERIOR DE AÇÃO */
         .app-action-bar {
             display: flex;
             align-items: center;
@@ -621,7 +677,7 @@
             gap: 15px;
         }
 
-        /* BOTÕES PRINCIPAIS COM CORES LEGAIS */
+        /* BOTÕES PRINCIPAIS */
         .app-main-button {
             background: linear-gradient(135deg, #4a6de5, #6a8eff);
             color: white;
@@ -645,7 +701,7 @@
             box-shadow: 0 10px 25px rgba(74, 109, 229, 0.4);
         }
 
-        /* CORES LEGAIS ESPECÍFICAS PARA CADA APP */
+        /* CORES ESPECÍFICAS PARA CADA APP */
         .app-main-button.youtube {
             background: linear-gradient(135deg, #FF0000, #CC0000) !important;
         }
@@ -752,31 +808,38 @@
             transform: translateY(-2px);
         }
 
-        /* VISUALIZAÇÃO DE IMAGENS/BANNER - SEM DIVISÓRIAS */
+        /* VISUALIZAÇÃO DE IMAGENS - COM ESPAÇAMENTO E BORDAS */
         .app-images-section {
             margin-top: 40px;
         }
 
         .app-images-grid {
-            display: flex;
-            gap: 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
             margin-top: 20px;
-            border-radius: 12px;
-            overflow: hidden;
         }
 
         .app-image-item {
-            flex: 1;
-            height: 200px;
+            height: 220px;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            transition: transform 0.3s ease, flex 0.3s ease;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
             cursor: pointer;
             position: relative;
+            overflow: hidden;
         }
 
-        /* PLACEHOLDER PARA IMAGENS FALTANTES NAS PÁGINAS */
+        /* BORDA AO PASSAR O MOUSE */
+        .app-image-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(74, 109, 229, 0.6);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
         .app-image-item.placeholder {
             background: linear-gradient(135deg, rgba(26, 26, 46, 0.6), rgba(45, 45, 74, 0.6));
             display: flex;
@@ -791,22 +854,6 @@
             opacity: 0.5;
         }
 
-        .app-image-item:hover {
-            transform: scale(1.05);
-            z-index: 1;
-            flex: 1.2;
-        }
-
-        .app-image-item::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to bottom, transparent 70%, rgba(0,0,0,0.7) 100%);
-        }
-
         .app-image-label {
             position: absolute;
             bottom: 15px;
@@ -814,9 +861,10 @@
             color: white;
             font-weight: 600;
             z-index: 2;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
         }
 
-        /* INFORMÇÕES SIMPLIFICADAS */
+        /* INFORMÇÕES */
         .app-info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -826,6 +874,7 @@
             border-radius: 15px;
             padding: 30px;
             backdrop-filter: blur(10px);
+            border: 2px solid rgba(74, 109, 229, 0.1);
         }
 
         .info-item {
@@ -863,10 +912,12 @@
             z-index: 3;
             transition: all 0.3s;
             backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
         }
 
         .back-button:hover {
             background: rgba(45, 45, 74, 0.9);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
         /* Footer */
@@ -880,52 +931,13 @@
             backdrop-filter: blur(10px);
         }
 
-        /* Indicador de dispositivo com animação */
-        .device-indicator {
-            position: fixed;
-            top: 12px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 9999;
-            padding: 6px 14px;
-            border-radius: 20px;
-            background: rgba(0, 0, 0, 0.35);
-            color: #fff;
-            font-size: 0.75rem;
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            pointer-events: none;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(74, 109, 229, 0.4);
-            }
-            70% {
-                box-shadow: 0 0 0 6px rgba(74, 109, 229, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(74, 109, 229, 0);
-            }
-        }
-
         /* Animações */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
 
-        @keyframes slideUp {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        /* ============================================= */
-        /* ADAPTAÇÕES ESPECÍFICAS PARA MOBILE - OTIMIZADO */
-        /* ============================================= */
+        /* Responsividade */
         @media (max-width: 1024px) {
             .sidebar {
                 width: 80px;
@@ -954,12 +966,8 @@
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
             
-            .app-hero {
-                height: 350px;
-            }
-            
-            .app-hero-info h1 {
-                font-size: 3rem;
+            .app-images-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -996,7 +1004,6 @@
             
             .home-header h1 {
                 font-size: 2.5rem;
-                text-align: center;
             }
             
             .apps-grid {
@@ -1005,173 +1012,100 @@
                 gap: 15px;
             }
             
-            .app-card {
-                height: 280px;
-            }
-            
-            .app-cover {
-                height: 140px;
-            }
-            
-            .app-icon {
-                width: 50px;
-                height: 50px;
-            }
-            
-            .app-hero {
-                height: 300px;
-                padding: 0 20px;
-            }
-            
-            .app-hero-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 20px;
-            }
-            
-            .app-hero-icon {
-                width: 100px;
-                height: 100px;
-            }
-            
-            .app-hero-info h1 {
-                font-size: 2.5rem;
-            }
-            
-            .app-page-content {
-                padding: 0 20px;
-            }
-            
-            .app-action-bar {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .app-buttons {
-                width: 100%;
-                flex-direction: column;
-            }
-            
-            .app-main-button, .app-secondary-button {
-                width: 100%;
-                justify-content: center;
-            }
-            
             .app-images-grid {
-                flex-direction: column;
-                gap: 10px;
+                grid-template-columns: 1fr;
             }
             
             .app-image-item {
-                height: 150px;
-            }
-            
-            .app-info-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer {
-                margin-left: 70px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .sidebar {
-                width: 60px;
-            }
-            
-            .nav-icon {
-                width: 45px;
-                height: 45px;
-            }
-            
-            .nav-icon img {
-                width: 25px;
-                height: 25px;
-            }
-            
-            .main-content {
-                margin-left: 60px;
-            }
-            
-            .top-bar {
-                left: 60px;
-            }
-            
-            .footer {
-                margin-left: 60px;
-            }
-            
-            .home-header h1 {
-                font-size: 2rem;
-            }
-            
-            .apps-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .app-card {
-                height: 260px;
+                height: 180px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Barra lateral estilo Riot - COM SCROLL (ORDEM ORIGINAL) -->
+    <!-- Barra lateral com todos os ícones -->
     <div class="sidebar">
         <!-- Ícone Home com efeito neon azul -->
-        <div class="nav-icon active neon-home" data-page="home">
+        <div class="nav-icon neon-home active" data-page="home">
             <i class="fas fa-home"></i>
         </div>
         
-        <a href="game.html" class="nav-icon neon-games" title="Games">
+        <!-- Games -->
+        <div class="nav-icon neon-games" data-page="games">
             <i class="fa-solid fa-grip"></i>
-        </a>
+        </div>
         
-        <a href="projetos.html" class="nav-icon neon-projetos" title="Projetos">
+        <!-- Projetos -->
+        <div class="nav-icon neon-projetos" data-page="projetos">
             <i class="fa-regular fa-gem"></i>
-        </a>
+        </div>
 
-        <!-- ORDEM ORIGINAL DOS ÍCONES -->
+        <!-- Spotify -->
         <div class="nav-icon" data-page="spotify">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwDiicpDsawpNveT7Ota2-EC_vZbP8vneTbg&s" alt="Spotify">
         </div>
+        
+        <!-- WhatsApp -->
         <div class="nav-icon" data-page="whatsapp">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/2048px-WhatsApp.svg.png" alt="WhatsApp">
         </div>
+        
+        <!-- Netflix -->
         <div class="nav-icon" data-page="netflix">
             <img src="https://images.ctfassets.net/4cd45et68cgf/Rx83JoRDMkYNlMC9MKzcB/2b14d5a59fc3937afd3f03191e19502d/Netflix-Symbol.png?w=700&h=456" alt="Netflix">
         </div>
+        
+        <!-- YouTube -->
         <div class="nav-icon" data-page="youtube">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/YouTube_play_button_square_%282013-2017%29.svg/2048px-YouTube_play_button_square_%282013-2017%29.svg.png" alt="YouTube">
         </div>
+        
+        <!-- JW.org -->
         <div class="nav-icon" data-page="jw-org">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQguRAJtdxxQjekZtb9y6NLF-tqsN5mXhM0AQ&s" alt="JW.org">
         </div>
+        
+        <!-- Riot Client -->
         <div class="nav-icon" data-page="riot-client">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKnJaJcVfuAJc2YxBhBp4ujW956ygaVD0vaA&s" alt="Riot Client">
         </div>
+        
+        <!-- Google Photos -->
         <div class="nav-icon" data-page="google-photos">
             <img src="https://www.oficinadanet.com.br/imagens/post_categoria/2671/google-photos.png" alt="Google Photos">
         </div>
+        
+        <!-- VS Code -->
         <div class="nav-icon" data-page="vscode">
             <img src="https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxj7kCzMIlSC20SNjaJf9GmG15ocnF.zbBRgxMSlB7Ejh6FbgNzxLvZOoW7N3ML56fn3m5Z4MO.M8pYrCFVKIhqM-&format=source" alt="VS Code">
         </div>
+        
+        <!-- GitHub -->
         <div class="nav-icon" data-page="github">
             <img src="https://cdn.iconscout.com/icon/free/png-256/free-github-logo-icon-svg-download-png-8630395.png?f=webp" alt="GitHub">
         </div>
+        
+        <!-- Office 365 -->
         <div class="nav-icon" data-page="office365">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Microsoft_365_%282022%29.svg/1862px-Microsoft_365_%282022%29.svg.png" alt="Office 365">
         </div>
+        
+        <!-- Gmail -->
         <div class="nav-icon" data-page="gmail">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/2560px-Gmail_icon_%282020%29.svg.png" alt="Gmail">
         </div>
+        
+        <!-- Epic Games -->
         <div class="nav-icon" data-page="epic-games">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Epic_Games_logo.svg/882px-Epic_Games_logo.svg.png" alt="Epic Games">
         </div>
+        
+        <!-- Discord -->
         <div class="nav-icon" data-page="discord">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQusefcTCWIdEVgzSSoMgGjozRdyu7kdV_BEw&s" alt="Discord">
         </div>
+        
+        <!-- Google Drive -->
         <div class="nav-icon" data-page="drive">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/1200px-Google_Drive_icon_%282020%29.svg.png" alt="Google Drive">
         </div>
@@ -1202,7 +1136,6 @@
             </div>
 
             <div class="apps-grid">
-                <!-- Apps na ORDEM ORIGINAL -->
                 <!-- YouTube -->
                 <div class="app-card" data-app="youtube">
                     <div class="app-cover" style="background-image: url('https://www.hardware.com.br/wp-content/uploads/2025/10/youtube-1280x600.jpg');">
@@ -1273,7 +1206,7 @@
 
                 <!-- Epic Games -->
                 <div class="app-card" data-app="epic-games">
-                    <div class="app-cover" style="background-image: url('https://images.ctfassets.net/5owu3y35gz1g/4TFV2U8iZRUXw8xNOe3eHq/ea8f27b2c8bb174773f6b1bb3fc5d77b/EGS_Primary_Logo_Horiz_White_RGB_1500x500.png');">
+                    <div class="app-cover" style="background-image: url('https://cdn2.unrealengine.com/epic-games-store-ratings-and-polls-update-1920x1080-dc391bf9ab36.jpg');">
                         <div class="app-icon">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Epic_Games_logo.svg/882px-Epic_Games_logo.svg.png" alt="Epic Games">
                         </div>
@@ -1475,14 +1408,14 @@
                 <div class="app-images-section">
                     <h3 style="color: white; margin-bottom: 20px;">Conteúdo</h3>
                     <div class="app-images-grid">
-                        <div class="app-image-item" style="background-image: url('https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg');">
-                            <span class="app-image-label">Músicas</span>
+                        <div class="app-image-item" style="background-image: url('https://img.odcdn.com.br/wp-content/uploads/2024/04/youtube-app-tv-e1712858026133.jpg');">
+                            <span class="app-image-label">YouTube TV</span>
                         </div>
-                        <div class="app-image-item" style="background-image: url('https://i.ytimg.com/vi/otmgFQHbaDo/maxresdefault.jpg');">
-                            <span class="app-image-label">Tutoriais</span>
+                        <div class="app-image-item" style="background-image: url('https://s2-g1.glbimg.com/XXDvBiywcOhD0LaIG1Y2tKAFRjY=/0x0:2486x1398/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2025/V/q/99dzqbSA2CBDtPV5HaZw/youtube.jpg');">
+                            <span class="app-image-label">YouTube Shorts</span>
                         </div>
-                        <div class="app-image-item" style="background-image: url('https://i.ytimg.com/vi/5qap5aO4i9A/maxresdefault.jpg');">
-                            <span class="app-image-label">Ao Vivo</span>
+                        <div class="app-image-item" style="background-image: url('https://t2.tudocdn.net/599176?w=824&h=494');">
+                            <span class="app-image-label">YouTube Premium</span>
                         </div>
                     </div>
                 </div>
@@ -1538,14 +1471,14 @@
                 <div class="app-images-section">
                     <h3 style="color: white; margin-bottom: 20px;">Produções</h3>
                     <div class="app-images-grid">
-                        <div class="app-image-item" style="background-image: url('https://www.joblo.com/wp-content/uploads/2023/02/stranger-things-season-4-poster.jpg');">
-                            <span class="app-image-label">Stranger Things</span>
+                        <div class="app-image-item" style="background-image: url('https://dnm.nflximg.net/api/v6/BvVbc2Wxr2w6QuoANoSpJKEIWjQ/AAAAQWKFQOd5GY1iPLtsM6OHAtPAe3L3VgCh8gI1yQUNUwehG9UteSHqEl3WFFFRh5v5M8Gh5VhbYZU5pn5MokZom8tIUqRnxDYe0vQIyidizju34wCdX_r_VZCTzZugB1-yhQfnXHyVd0rqq1rCG8-qIeEguzI.jpg?r=4a3');">
+                            <span class="app-image-label">Séries Exclusivas</span>
                         </div>
-                        <div class="app-image-item" style="background-image: url('https://m.media-amazon.com/images/M/MV5BN2ZmYjg1YmItNWQ4OC00YWM0LWE0ZDktYThjOTZiZjhhN2Q2XkEyXkFqcGdeQXVyNjgxNzA3ODQ@._V1_.jpg');">
-                            <span class="app-image-label">The Crown</span>
+                        <div class="app-image-item" style="background-image: url('https://comandogeek.com.br/blog/wp-content/uploads/2024/11/Ranma.png');">
+                            <span class="app-image-label">Animes</span>
                         </div>
-                        <div class="app-image-item" style="background-image: url('https://m.media-amazon.com/images/M/MV5BODcwNWE3OTMtMDc3MS00NDFjLWE1OTAtNDU3NjgxODMxY2UyXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_FMjpg_UX1000_.jpg');">
-                            <span class="app-image-label">La Casa de Papel</span>
+                        <div class="app-image-item" style="background-image: url('https://www.bloomberglinea.com/resizer/v2/S7BGQDSLQFCOTNYHXZ6NKK5IME.jpg?auth=4d4bddfee6dc86ddda6a9b7871d249e92a6804e28ee363085bfc654f4f92972e&width=800&height=449&quality=80&smart=true');">
+                            <span class="app-image-label">Filmes Originais</span>
                         </div>
                     </div>
                 </div>
@@ -1599,16 +1532,16 @@
                 </div>
 
                 <div class="app-images-section">
-                    <h3 style="color: white; margin-bottom: 20px;">Playlists</h3>
+                    <h3 style="color: white; margin-bottom: 20px;">Recursos</h3>
                     <div class="app-images-grid">
-                        <div class="app-image-item" style="background-image: url('https://i.scdn.co/image/ab67706f00000002fe24d7084be472288cd6ee6c');">
-                            <span class="app-image-label">Top Hits</span>
+                        <div class="app-image-item" style="background-image: url('https://rollingstone.com.br/wp-content/uploads/2025/05/spotify-snooze-foto-divulgacao.jpg');">
+                            <span class="app-image-label">Playlists</span>
                         </div>
-                        <div class="app-image-item placeholder">
+                        <div class="app-image-item" style="background-image: url('https://i.ytimg.com/vi/x4Cm5WhW1M4/maxresdefault.jpg');">
+                            <span class="app-image-label">Recomendações</span>
+                        </div>
+                        <div class="app-image-item" style="background-image: url('https://static-www.adweek.com/wp-content/uploads/2024/05/spotify-newfronts-video-inventory-2024.jpg?w=1200');">
                             <span class="app-image-label">Podcasts</span>
-                        </div>
-                        <div class="app-image-item placeholder">
-                            <span class="app-image-label">Descobrir</span>
                         </div>
                     </div>
                 </div>
@@ -1664,14 +1597,14 @@
                 <div class="app-images-section">
                     <h3 style="color: white; margin-bottom: 20px;">Recursos</h3>
                     <div class="app-images-grid">
-                        <div class="app-image-item placeholder">
+                        <div class="app-image-item" style="background-image: url('https://olhardigital.com.br/wp-content/uploads/2021/10/WhatsApp-Web-na-tela-do-computador-e-aplicativo-no-celular-695x500.jpg');">
+                            <span class="app-image-label">Web</span>
+                        </div>
+                        <div class="app-image-item" style="background-image: url('https://s2-techtudo.glbimg.com/vEFXKFnEUNUkY9sVVRWIrs1HoUk=/0x0:1280x720/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2022/8/f/9AjUYRQzaaixWFzeJ8mQ/wpp-envie-mensagens-pra-vc-msm-1-.png');">
                             <span class="app-image-label">Chats</span>
                         </div>
-                        <div class="app-image-item placeholder">
-                            <span class="app-image-label">Chamadas</span>
-                        </div>
-                        <div class="app-image-item placeholder">
-                            <span class="app-image-label">Status</span>
+                        <div class="app-image-item" style="background-image: url('https://whaticket.com/pt/wp-content/uploads/2024/02/Como-fazer-bloqueio-de-conversas-no-WhatsApp-com-codigo-.jpg');">
+                            <span class="app-image-label">Segurança</span>
                         </div>
                     </div>
                 </div>
@@ -1727,14 +1660,14 @@
                 <div class="app-images-section">
                     <h3 style="color: white; margin-bottom: 20px;">Jogos</h3>
                     <div class="app-images-grid">
-                        <div class="app-image-item" style="background-image: url('https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blt0c6a86a9e7ea0f65/618d4b64c467a90efc0a8e6c/2021_Worlds_Finals_Assets_V5.jpg');">
-                            <span class="app-image-label">League of Legends</span>
+                        <div class="app-image-item" style="background-image: url('https://www.riotgames.com/darkroom/1440/3842e6d651ce3662ac121876e11a4f75:72320612f65ada7ccd0b2c7af52cd4c1/rg-article-header-riot-client-game-hubs.png');">
+                            <span class="app-image-label">Plataforma</span>
                         </div>
-                        <div class="app-image-item" style="background-image: url('https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blt5e7094e7d4d1e1ed/642b5688c1e49e6e3e0a90de/VAL_EP6_ACTI_PlayVALORANT_Media16x9.jpg');">
-                            <span class="app-image-label">Valorant</span>
+                        <div class="app-image-item" style="background-image: url('https://www.riotgames.com/darkroom/1000/8136f3cda272877a691918dada74750a:4ba7d1d2166963ed7aa6c988770d1535/allgames-card-v6-final-lesstext-1920.jpg');">
+                            <span class="app-image-label">Todos Jogos</span>
                         </div>
-                        <div class="app-image-item placeholder">
-                            <span class="app-image-label">Teamfight Tactics</span>
+                        <div class="app-image-item" style="background-image: url('https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/0d8da14d9cc0c69376e8fb42cc6344276bf937ad-1200x600.jpg?accountingTag=2XKO?w=1200&h=630&fm=webp&fit=crop&crop=center');">
+                            <span class="app-image-label">Novidades</span>
                         </div>
                     </div>
                 </div>
@@ -1790,13 +1723,13 @@
                 <div class="app-images-section">
                     <h3 style="color: white; margin-bottom: 20px;">Recursos</h3>
                     <div class="app-images-grid">
-                        <div class="app-image-item placeholder">
+                        <div class="app-image-item" style="background-image: url('https://img.odcdn.com.br/wp-content/uploads/2023/10/google-fotos.jpg');">
                             <span class="app-image-label">Backup</span>
                         </div>
-                        <div class="app-image-item placeholder">
+                        <div class="app-image-item" style="background-image: url('https://files.tecnoblog.net/wp-content/uploads/2024/03/capa-google-fotos-2_tb-1060x596.png');">
                             <span class="app-image-label">Edição</span>
                         </div>
-                        <div class="app-image-item placeholder">
+                        <div class="app-image-item" style="background-image: url('https://storage.googleapis.com/gweb-uniblog-publish-prod/images/BlogPostIn-Line_ShareCard_ANV01_.width-1000.format-webp.webp');">
                             <span class="app-image-label">Compartilhamento</span>
                         </div>
                     </div>
@@ -1853,13 +1786,13 @@
                 <div class="app-images-section">
                     <h3 style="color: white; margin-bottom: 20px;">Recursos</h3>
                     <div class="app-images-grid">
-                        <div class="app-image-item" style="background-image: url('https://code.visualstudio.com/assets/docs/editor/intellisense/intellisense.png');">
-                            <span class="app-image-label">IntelliSense</span>
+                        <div class="app-image-item" style="background-image: url('https://blog.casadodesenvolvedor.com.br/wp-content/uploads/2023/04/post193-desenvolvimento-atalhos-vscode.png');">
+                            <span class="app-image-label">Atalhos</span>
                         </div>
-                        <div class="app-image-item" style="background-image: url('https://code.visualstudio.com/assets/docs/editor/debugging/debugging_hero.png');">
-                            <span class="app-image-label">Debugging</span>
+                        <div class="app-image-item" style="background-image: url('https://hub.asimov.academy/wp-content/uploads/2025/05/visual-studio-code-guia-completo-python-thumbnail.webp');">
+                            <span class="app-image-label">Python</span>
                         </div>
-                        <div class="app-image-item placeholder">
+                        <div class="app-image-item" style="background-image: url('https://i.redd.it/ijdgsvae5lt91.jpg');">
                             <span class="app-image-label">Extensões</span>
                         </div>
                     </div>
@@ -1916,13 +1849,13 @@
                 <div class="app-images-section">
                     <h3 style="color: white; margin-bottom: 20px;">Recursos</h3>
                     <div class="app-images-grid">
-                        <div class="app-image-item" style="background-image: url('https://github.githubassets.com/assets/illo-repo-5e13-6c9e2c80a4ad.png');">
+                        <div class="app-image-item" style="background-image: url('https://user-images.githubusercontent.com/106932234/219651058-efbbebd7-f567-4754-af61-950c0a2c4acb.png');">
                             <span class="app-image-label">Repositórios</span>
                         </div>
-                        <div class="app-image-item" style="background-image: url('https://github.githubassets.com/assets/illo-pull-request-2-5b0d7298cf2c.png');">
-                            <span class="app-image-label">Pull Requests</span>
+                        <div class="app-image-item" style="background-image: url('https://www.green.com.br/wp-content/uploads/2024/02/github-copilot.webp');">
+                            <span class="app-image-label">Copilot</span>
                         </div>
-                        <div class="app-image-item placeholder">
+                        <div class="app-image-item" style="background-image: url('https://static.imasters.com.br/wp-content/uploads/2025/05/06111350/github-capa.jpg');">
                             <span class="app-image-label">Actions</span>
                         </div>
                     </div>
@@ -1979,14 +1912,14 @@
                 <div class="app-images-section">
                     <h3 style="color: white; margin-bottom: 20px;">Recursos</h3>
                     <div class="app-images-grid">
-                        <div class="app-image-item placeholder">
-                            <span class="app-image-label">Biblioteca</span>
+                        <div class="app-image-item" style="background-image: url('https://www.worldanimalprotection.org.br/cdn-cgi/image/width=800,format=auto,fit=cover/contentassets/bf4984c96ef44e7b869a41d683c2fbc5/dia-internacional-da-floresta-header.jpg');">
+                            <span class="app-image-label">Natureza</span>
                         </div>
-                        <div class="app-image-item placeholder">
-                            <span class="app-image-label">Vídeos</span>
+                        <div class="app-image-item" style="background-image: url('https://neofeed.com.br/wp-content/uploads/2022/02/animais-1-1200x675.jpg');">
+                            <span class="app-image-label">Animais</span>
                         </div>
-                        <div class="app-image-item placeholder">
-                            <span class="app-image-label">Publicações</span>
+                        <div class="app-image-item" style="background-image: url('https://wickbold.com.br/wp-content/uploads/2023/11/Piquenique-em-familia-Dicas-essenciais-para-o-seu-passeio.webp');">
+                            <span class="app-image-label">Família</span>
                         </div>
                     </div>
                 </div>
@@ -2042,13 +1975,13 @@
                 <div class="app-images-section">
                     <h3 style="color: white; margin-bottom: 20px;">Aplicativos</h3>
                     <div class="app-images-grid">
-                        <div class="app-image-item placeholder">
+                        <div class="app-image-item" style="background-image: url('https://support.microsoft.com/images/pt-br/a800a3f9-f73c-46b0-9b08-774017436549');">
                             <span class="app-image-label">Word</span>
                         </div>
-                        <div class="app-image-item placeholder">
+                        <div class="app-image-item" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1Wlq2nKicSxNTNAkuZ0iNDf-wNEopDHgvjg&s');">
                             <span class="app-image-label">Excel</span>
                         </div>
-                        <div class="app-image-item placeholder">
+                        <div class="app-image-item" style="background-image: url('https://lattinegroup.com/wp-content/uploads/2020/08/microsoft-365.png');">
                             <span class="app-image-label">PowerPoint</span>
                         </div>
                     </div>
@@ -2105,13 +2038,13 @@
                 <div class="app-images-section">
                     <h3 style="color: white; margin-bottom: 20px;">Recursos</h3>
                     <div class="app-images-grid">
-                        <div class="app-image-item placeholder">
+                        <div class="app-image-item" style="background-image: url('https://files.tecnoblog.net/wp-content/uploads/2018/04/gmail-novo-caixa-entrada.gif');">
                             <span class="app-image-label">Caixa de Entrada</span>
                         </div>
-                        <div class="app-image-item placeholder">
+                        <div class="app-image-item" style="background-image: url('https://tribunademinas.com.br/colunas/maistendencias/wp-content/uploads/2025/03/gmail.webp');">
                             <span class="app-image-label">Filtros</span>
                         </div>
-                        <div class="app-image-item placeholder">
+                        <div class="app-image-item" style="background-image: url('https://gdm-catalog-fmapi-prod.imgix.net/ProductScreenshot/eda6dc07-f977-4769-b6e2-56cf79a92724.png');">
                             <span class="app-image-label">Armazenamento</span>
                         </div>
                     </div>
@@ -2168,14 +2101,14 @@
                 <div class="app-images-section">
                     <h3 style="color: white; margin-bottom: 20px;">Recursos</h3>
                     <div class="app-images-grid">
-                        <div class="app-image-item placeholder">
-                            <span class="app-image-label">Canais</span>
+                        <div class="app-image-item" style="background-image: url('https://cdn2.unrealengine.com/egs-discord-discord-g1a-00-1920x1080-fc958a14c6ef.jpg');">
+                            <span class="app-image-label">Integração</span>
                         </div>
-                        <div class="app-image-item placeholder">
-                            <span class="app-image-label">Voz</span>
+                        <div class="app-image-item" style="background-image: url('https://cdn.aptoide.com/imgs/e/2/e/e2e441eec8b84922f7306c9936a980e0_fgraphic.png');">
+                            <span class="app-image-label">Nitro</span>
                         </div>
-                        <div class="app-image-item placeholder">
-                            <span class="app-image-label">Comunidades</span>
+                        <div class="app-image-item" style="background-image: url('https://cdn1.epicgames.com/offer/5f3c898b2a3244af99e9900e015717f8/DiscordNitro_2560x14402_2560x1440-8d2a9bce01ef4ddd882351a2a92271d5');">
+                            <span class="app-image-label">Servidores</span>
                         </div>
                     </div>
                 </div>
@@ -2231,14 +2164,14 @@
                 <div class="app-images-section">
                     <h3 style="color: white; margin-bottom: 20px;">Recursos</h3>
                     <div class="app-images-grid">
-                        <div class="app-image-item placeholder">
-                            <span class="app-image-label">Arquivos</span>
+                        <div class="app-image-item" style="background-image: url('https://www.revelaweb.com.br/wp-content/uploads/2023/06/google-drive.webp');">
+                            <span class="app-image-label">Interface</span>
                         </div>
-                        <div class="app-image-item placeholder">
-                            <span class="app-image-label">Compartilhamento</span>
+                        <div class="app-image-item" style="background-image: url('https://geoambiente.com.br/blog/wp-content/uploads/2024/05/Guia-completo-Google-Drive-para-empresas.jpg');">
+                            <span class="app-image-label">Empresas</span>
                         </div>
-                        <div class="app-image-item placeholder">
-                            <span class="app-image-label">Colaboração</span>
+                        <div class="app-image-item" style="background-image: url('https://www.multcloud.com/screenshot/pt/other/google-drive/google-drive.png');">
+                            <span class="app-image-label">Aplicativo</span>
                         </div>
                     </div>
                 </div>
@@ -2266,7 +2199,7 @@
 
         <!-- Página do Epic Games -->
         <div id="epic-games-page" class="page app-page">
-            <div class="app-hero" style="background-image: url('https://images.ctfassets.net/5owu3y35gz1g/4TFV2U8iZRUXw8xNOe3eHq/ea8f27b2c8bb174773f6b1bb3fc5d77b/EGS_Primary_Logo_Horiz_White_RGB_1500x500.png');">
+            <div class="app-hero" style="background-image: url('https://cdn2.unrealengine.com/epic-games-store-ratings-and-polls-update-1920x1080-dc391bf9ab36.jpg');">
                 <button class="back-button">
                     <i class="fas fa-arrow-left"></i> Voltar
                 </button>
@@ -2294,14 +2227,14 @@
                 <div class="app-images-section">
                     <h3 style="color: white; margin-bottom: 20px;">Jogos</h3>
                     <div class="app-images-grid">
-                        <div class="app-image-item" style="background-image: url('https://cdn2.unrealengine.com/fortnite-key-art-3840x2160-a3edda6aff9c.jpg');">
+                        <div class="app-image-item" style="background-image: url('https://uploads.folhavitoria.com.br/2024/11/XRi40h8B-207444c0-8f5b-11ed-aa33-617bd4d4c82d-minified.png');">
                             <span class="app-image-label">Fortnite</span>
                         </div>
-                        <div class="app-image-item" style="background-image: url('https://cdn2.unrealengine.com/egs-rocketleague-psyonixllc-g1a-00-1920x1080-4c6c9f5b3e98.jpg');">
-                            <span class="app-image-label">Rocket League</span>
+                        <div class="app-image-item" style="background-image: url('https://cdn2.unrealengine.com/egs-free-games-breaker-jan-2024-1920x1080-028e40df3111.jpg?resize=1&w=854&h=480&quality=medium');">
+                            <span class="app-image-label">Jogos Gratuitos</span>
                         </div>
-                        <div class="app-image-item placeholder">
-                            <span class="app-image-label">Semanal Gratuito</span>
+                        <div class="app-image-item" style="background-image: url('https://cdn2.unrealengine.com/pt-br-egs-fb-social-1920x1080-1920x1080-8ddebe5d6031.jpg');">
+                            <span class="app-image-label">Unreal Engine</span>
                         </div>
                     </div>
                 </div>
@@ -2338,174 +2271,169 @@
            APPS COMPLETO COM TODAS AS PÁGINAS
         ================================= */
         const appsData = {
-            'home': { name: 'Início' },
+            'home': { 
+                name: 'Início',
+                url: '#'
+            },
+            'games': { 
+                name: 'Games',
+                url: 'game.html'  // Abre game.html
+            },
+            'projetos': { 
+                name: 'Projetos',
+                url: 'projetos.html'  // Abre projetos.html
+            },
             'spotify': {
                 name: 'Spotify',
                 url: 'https://open.spotify.com',
-                mobileUrl: 'https://open.spotify.com',
-                protocol: 'spotify:',
+                protocol: 'spotify://',
                 color: '#1DB954'
             },
             'whatsapp': {
                 name: 'WhatsApp',
                 url: 'https://web.whatsapp.com',
-                mobileUrl: 'https://web.whatsapp.com',
                 protocol: 'whatsapp://',
                 color: '#25D366'
             },
             'netflix': {
                 name: 'Netflix',
                 url: 'https://www.netflix.com',
-                mobileUrl: 'https://www.netflix.com',
-                protocol: null,
                 color: '#E50914'
             },
             'youtube': {
                 name: 'YouTube',
                 url: 'https://www.youtube.com',
-                mobileUrl: 'https://www.youtube.com',
-                protocol: null,
                 color: '#FF0000'
             },
             'jw-org': {
                 name: 'JW.org',
                 url: 'https://www.jw.org/pt',
-                mobileUrl: 'https://www.jw.org/pt',
-                protocol: null,
                 color: '#2196F3'
             },
             'epic-games': {
                 name: 'Epic Games',
                 url: 'https://store.epicgames.com',
-                mobileUrl: 'https://store.epicgames.com',
-                protocol: 'com.epicgames.launcher://',
                 color: '#2A2A2A'
             },
             'office365': {
                 name: 'Office 365',
                 url: 'https://www.office.com',
-                mobileUrl: 'https://www.office.com',
-                protocol: null,
                 color: '#D83B01'
             },
             'gmail': {
                 name: 'Gmail',
                 url: 'https://mail.google.com',
-                mobileUrl: 'https://mail.google.com',
-                protocol: null,
                 color: '#EA4335'
             },
             'riot-client': {
                 name: 'Riot Client',
                 url: 'https://riotgames.com',
-                mobileUrl: 'https://riotgames.com',
                 protocol: 'riotclient://',
                 color: '#FF4654'
             },
             'google-photos': {
                 name: 'Google Photos',
                 url: 'https://photos.google.com',
-                mobileUrl: 'https://photos.google.com',
-                protocol: null,
                 color: '#4285F4'
             },
             'vscode': {
                 name: 'Visual Studio Code',
                 url: 'https://code.visualstudio.com',
-                mobileUrl: 'https://code.visualstudio.com',
                 protocol: 'vscode://',
                 color: '#007ACC'
             },
             'github': {
                 name: 'GitHub',
                 url: 'https://github.com',
-                mobileUrl: 'https://github.com',
-                protocol: null,
                 color: '#333333'
             },
             'discord': {
                 name: 'Discord',
                 url: 'https://discord.com/app',
-                mobileUrl: 'https://discord.com/app',
-                protocol: null,
+                protocol: 'discord://',
                 color: '#5865F2'
             },
             'drive': {
                 name: 'Google Drive',
                 url: 'https://drive.google.com',
-                mobileUrl: 'https://drive.google.com',
-                protocol: null,
                 color: '#4285F4'
             }
         };
 
         /* ===============================
-           MOBILE
+           FUNÇÃO PARA DETECTAR SE É COMPUTADOR
         ================================= */
-        function isMobile() {
-            return /android|iphone|ipad|ipod|mobile/i.test(navigator.userAgent);
+        function isDesktop() {
+            return !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         }
 
         /* ===============================
-           INDICADOR COM ANIMAÇÃO
+           FUNÇÃO PARA ABRIR COM PROTOCOLO OU SITE
         ================================= */
-        function createDeviceIndicator() {
-            document.querySelector('.device-indicator')?.remove();
+        function openWithProtocol(appId) {
+            const app = appsData[appId];
+            if (!app || !app.url) return;
 
-            const el = document.createElement('div');
-            el.className = 'device-indicator';
-            el.style.cssText = `
-                position: fixed;
-                top: 12px;
-                left: 50%;
-                transform: translateX(-50%);
-                z-index: 9999;
-                padding: 6px 14px;
-                border-radius: 20px;
-                background: rgba(0, 0, 0, 0.35);
-                color: #fff;
-                font-size: .75rem;
-                display: flex;
-                gap: 8px;
-                align-items: center;
-                pointer-events: none;
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                animation: pulse 2s infinite;
-            `;
+            // Para Games e Projetos - sempre abrir as páginas HTML
+            if (appId === 'games' || appId === 'projetos') {
+                window.open(app.url, '_blank', 'noopener,noreferrer');
+                return;
+            }
 
-            el.innerHTML = `
-                <i class="fas ${isMobile() ? 'fa-mobile-alt' : 'fa-desktop'}"></i>
-                <span>${isMobile() ? 'Mobile' : 'Computador'}</span>
-            `;
-
-            document.body.appendChild(el);
+            // Para outros apps com protocolo
+            if (app.protocol && isDesktop()) {
+                // Tentar abrir com protocolo no PC
+                try {
+                    // Criar um iframe invisível para tentar o protocolo
+                    const iframe = document.createElement('iframe');
+                    iframe.style.display = 'none';
+                    iframe.src = app.protocol;
+                    document.body.appendChild(iframe);
+                    
+                    // Se o protocolo falhar, abrir o site normal
+                    setTimeout(() => {
+                        document.body.removeChild(iframe);
+                        window.open(app.url, '_blank', 'noopener,noreferrer');
+                    }, 500);
+                } catch (e) {
+                    window.open(app.url, '_blank', 'noopener,noreferrer');
+                }
+            } else {
+                // Para mobile ou apps sem protocolo, abrir site normal
+                window.open(app.url, '_blank', 'noopener,noreferrer');
+            }
         }
 
         /* ===============================
            NAVEGAÇÃO
         ================================= */
         function navigateToPage(pageId) {
-            // Esconder todas as páginas
+            // Se for Games ou Projetos, abrir página externa
+            if (pageId === 'games' || pageId === 'projetos') {
+                openWithProtocol(pageId);
+                return;
+            }
+
+            // Para outras páginas, navegação normal
             document.querySelectorAll('.page, .app-page')
                 .forEach(p => p.classList.remove('active'));
 
-            // Remover active de todos os ícones
             document.querySelectorAll('.nav-icon')
                 .forEach(i => i.classList.remove('active'));
 
-            // Mostrar a página solicitada
             const pageElement = document.getElementById(`${pageId}-page`);
             if (pageElement) {
                 pageElement.classList.add('active');
                 
-                // Ativar o ícone correspondente na barra lateral
                 const iconElement = document.querySelector(`.nav-icon[data-page="${pageId}"]`);
                 if (iconElement) {
                     iconElement.classList.add('active');
                 }
+            } else {
+                document.getElementById('home-page').classList.add('active');
+                document.querySelector('.nav-icon[data-page="home"]').classList.add('active');
             }
 
-            // Scroll suave para o topo
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -2514,7 +2442,7 @@
         ================================= */
         function openApp(appId, button) {
             const app = appsData[appId];
-            if (!app) return;
+            if (!app || !app.url) return;
 
             // Mostrar estado de carregamento no botão
             if (button) {
@@ -2525,47 +2453,14 @@
                 setTimeout(() => {
                     button.innerHTML = originalHTML;
                     button.disabled = false;
-                }, 2000);
+                }, 1500);
             }
 
-            // Pequeno delay
             setTimeout(() => {
-                // COMPUTADOR
-                if (!isMobile()) {
-                    if (app.protocol) {
-                        const openedProtocol = window.open(app.protocol, '_self');
-                        
-                        if (!openedProtocol) {
-                            setTimeout(() => {
-                                if (window.location.href.indexOf('http') === 0) {
-                                    window.open(app.url, '_blank', 'noopener,noreferrer');
-                                }
-                            }, 500);
-                        }
-                    } else {
-                        window.open(app.url, '_blank', 'noopener,noreferrer');
-                    }
-                }
-                // MOBILE
-                else {
-                    if (app.protocol) {
-                        const iframe = document.createElement('iframe');
-                        iframe.style.display = 'none';
-                        iframe.src = app.protocol;
-                        document.body.appendChild(iframe);
-                        
-                        setTimeout(() => {
-                            iframe.remove();
-                        }, 100);
-                        
-                        setTimeout(() => {
-                            if (!document.hidden) {
-                                window.location.href = app.mobileUrl;
-                            }
-                        }, 1200);
-                    } else {
-                        window.location.href = app.mobileUrl;
-                    }
+                if (app.url === '#') {
+                    navigateToPage(appId);
+                } else {
+                    openWithProtocol(appId);
                 }
             }, 300);
         }
@@ -2574,32 +2469,18 @@
            TERMOS
         ================================= */
         document.querySelector('.terms-icon')?.addEventListener('click', () => {
-            window.open('termos.html', '_blank', 'noopener');
+            alert('Página de termos - Implemente sua própria lógica aqui');
         });
 
         /* ===============================
            EVENTOS
         ================================= */
         document.addEventListener('DOMContentLoaded', () => {
-            createDeviceIndicator();
-            window.addEventListener('resize', createDeviceIndicator);
-
             // Navegação pelos ícones da barra lateral
             document.querySelectorAll('.nav-icon').forEach(icon => {
-                icon.addEventListener('click', (e) => {
-                    // Verificar se o ícone é um link para outra página
-                    if (icon.tagName === 'A' && icon.hasAttribute('href')) {
-                        // Links para projetos.html e game.html já funcionam
-                        return;
-                    }
-                    
+                icon.addEventListener('click', () => {
                     const pageId = icon.dataset.page;
-                    
-                    if (pageId === 'home') {
-                        navigateToPage('home');
-                    } else {
-                        navigateToPage(pageId);
-                    }
+                    navigateToPage(pageId);
                 });
             });
 
@@ -2634,9 +2515,7 @@
                         openApp(appId, this);
                     } else {
                         const url = this.dataset.url;
-                        if (isMobile()) {
-                            window.location.href = url;
-                        } else {
+                        if (url && url !== '#') {
                             window.open(url, '_blank', 'noopener,noreferrer');
                         }
                     }
@@ -2650,7 +2529,7 @@
                 }
             });
 
-            // Inicializar
+            // Inicializar na home
             navigateToPage('home');
         });
     </script>
