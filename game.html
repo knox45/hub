@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Games Favoritos</title>
+    <title>Meus Jogos | Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="hub.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -49,42 +49,41 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        /* ===== INDICADOR DO DISPOSITIVO COM ANIMAÇÃO ===== */
+       /* Indicador de dispositivo com animação */
         .device-indicator {
             position: fixed;
             top: 12px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 9999;
-            padding: 8px 20px;
-            border-radius: 25px;
-            background: rgba(74, 109, 229, 0.25);
-            backdrop-filter: blur(15px);
-            color: #8a9eff;
-            font-size: 0.85rem;
-            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.35);
+            color: #fff;
+            font-size: 0.75rem;
             display: flex;
-            gap: 10px;
+            gap: 8px;
             align-items: center;
             pointer-events: none;
-            border: 1px solid rgba(74, 109, 229, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             animation: pulse 2s infinite;
         }
 
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(74, 109, 229, 0.4);
-                border-color: rgba(74, 109, 229, 0.3);
-            }
-            70% {
-                box-shadow: 0 0 0 10px rgba(74, 109, 229, 0);
-                border-color: rgba(74, 109, 229, 0.5);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(74, 109, 229, 0);
-                border-color: rgba(74, 109, 229, 0.3);
-            }
-        }
+     @keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4);
+        border-color: rgba(255, 0, 0, 0.3);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 0, 0, 0);
+        border-color: rgba(255, 0, 0, 0.5);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+        border-color: rgba(255, 0, 0, 0.3);
+    }
+}
+
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-20px); }
@@ -468,8 +467,8 @@
     <!-- ===== CONTEÚDO PRINCIPAL ===== -->
     <div class="main-content">
         <div class="games-header">
-            <h1><i class="fas fa-gamepad"></i>Games Favoritos</h1>
-            <p>Clique em qualquer jogo para abrir o site oficial. pronto para dowload.!</p>
+            <h1><i class="fas fa-gamepad"></i> Meus Jogos</h1>
+            <p>Clique em qualquer jogo para abrir. Todos estão disponíveis e prontos para jogar!</p>
         </div>
 
         <section class="gallery" id="gallery"></section>
@@ -653,4 +652,3 @@ setInterval(updateDeviceIndicator, 5000);
 
 </body>
 </html>
-
