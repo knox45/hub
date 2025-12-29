@@ -2369,6 +2369,9 @@ function isDesktop() {
 
 /* ===============================
    FUNÇÃO PARA ABRIR COM PROTOCOLO OU SITE
+   - PC: SEMPRE tenta protocolo primeiro
+   - Mobile: SEMPRE abre site
+   - NUNCA abre os dois
 ================================= */
 function openWithProtocol(appId) {
     const app = appsData[appId];
@@ -2380,45 +2383,62 @@ function openWithProtocol(appId) {
         return;
     }
 
-    // Se for MOBILE: abrir sempre o site normal
+    // SE FOR MOBILE: abrir SEMPRE o site normal
     if (!isDesktop()) {
         window.open(app.url, '_blank', 'noopener,noreferrer');
         return;
     }
 
-    // Se for DESKTOP:
+    // SE FOR DESKTOP (PC):
+    // Apps COM protocolo
     if (app.protocol) {
-        // Método mais confiável para tentar protocolo sem abrir duplicado
-        let protocolOpened = false;
+        // Método 1: Tenta protocolo com timeout controlado
+        let protocolAttempted = false;
+        let fallbackTimer = null;
         
-        // Criar um link temporário
-        const link = document.createElement('a');
-        link.href = app.protocol;
-        link.style.display = 'none';
-        document.body.appendChild(link);
-        
-        // Adicionar evento para detectar se a página perdeu foco (indicando que o app abriu)
-        window.addEventListener('blur', function onBlur() {
-            protocolOpened = true;
-            window.removeEventListener('blur', onBlur);
-        });
-        
-        // Tentar clicar no link (isso aciona o protocolo)
-        link.click();
-        
-        // Remover o link após um breve momento
-        setTimeout(() => {
-            document.body.removeChild(link);
-        }, 100);
-        
-        // Se após 500ms a página não perdeu foco (protocolo não funcionou), abrir site
-        setTimeout(() => {
-            if (!protocolOpened) {
+        // Handler para fallback
+        function doFallback() {
+            if (!protocolAttempted) {
+                protocolAttempted = true;
                 window.open(app.url, '_blank', 'noopener,noreferrer');
             }
-        }, 800);
+        }
+        
+        // Configura fallback após 1.5 segundos
+        fallbackTimer = setTimeout(doFallback, 1500);
+        
+        // Tenta abrir o protocolo
+        try {
+            // Cria um link invisível
+            const link = document.createElement('a');
+            link.href = app.protocol;
+            link.style.display = 'none';
+            
+            // Adiciona eventos para detectar se abriu
+            link.onclick = function() {
+                // Se clicou, o protocolo foi tentado
+                clearTimeout(fallbackTimer);
+                protocolAttempted = true;
+            };
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Se chegou aqui e não foi redirecionado em 100ms, programa o fallback
+            setTimeout(() => {
+                if (!protocolAttempted) {
+                    doFallback();
+                }
+            }, 100);
+            
+        } catch (error) {
+            // Se der erro, faz fallback imediato
+            doFallback();
+        }
+        
     } else {
-        // Apps sem protocolo: abrir site normal
+        // Apps SEM protocolo: abrir site normal
         window.open(app.url, '_blank', 'noopener,noreferrer');
     }
 }
@@ -2475,6 +2495,7 @@ function openApp(appId, button) {
         }, 1500);
     }
 
+    // Pequeno delay para ver o efeito
     setTimeout(() => {
         if (app.url === '#') {
             navigateToPage(appId);
