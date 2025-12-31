@@ -104,35 +104,35 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* ===== BOTÃO VOLTAR PARA PROJETOS (NO CANTO ESQUERDO) ===== */
-        .back-to-menu-button {
-            position: fixed;
-            top: 30px;
-            left: 110px; /* Posição ao lado da sidebar */
-            background: rgba(26, 26, 46, 0.9);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 1001; /* Acima da sidebar */
-            transition: all 0.3s;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(156, 74, 226, 0.3);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
+       /* ===== BOTÃO VOLTAR PARA PROJETOS ===== */
+.back-to-menu-button {
+    position: fixed;
+    top: 80px;              /* 60px da top-bar + 20px de espaçamento */
+    left: 110px;            /* alinhado após a sidebar */
+    background: rgba(26, 26, 46, 0.9);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1001;          /* acima da top-bar e sidebar */
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(156, 74, 226, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
 
-        .back-to-menu-button:hover {
-            background: rgba(45, 45, 74, 0.95);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
-            border-color: rgba(156, 74, 226, 0.5);
-        }
+.back-to-menu-button:hover {
+    background: rgba(45, 45, 74, 0.95);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    border-color: rgba(156, 74, 226, 0.5);
+}
 
         body {
             background-color: #0a0a12;
@@ -947,14 +947,13 @@
 
     <!-- ===== BOTÃO VOLTAR PARA PROJETOS (CANTO ESQUERDO) ===== -->
     <button class="back-to-menu-button" id="backToMenuButton" style="display: none;">
-        <i class="fas fa-arrow-left"></i> Voltar para Projetos
+        <i class="fas fa-arrow-left"></i> Voltar
     </button>
 
     <!-- Barra superior -->
     <div class="top-bar">
         <div class="logo">
             <img src="tipo.png" alt="logo">
-            <span>Meus Projetos</span>
         </div>
         <div class="user-actions">
             <div class="user-avatar">
