@@ -935,9 +935,78 @@
                 height: 130px;
             }
         }
+        /* =========================================
+   DEVICE INDICATOR – INDEX STYLE (PURPLE)
+   BLOCO ÚNICO / ISOLADO
+========================================= */
+
+.device-indicator-index-purple {
+    position: fixed;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+
+    padding: 6px 14px;
+    border-radius: 20px;
+
+    background: rgba(0, 0, 0, 0.35);
+    color: #ffffff;
+
+    font-size: 0.75rem;
+    font-weight: 500;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    pointer-events: none;
+
+    border: 1px solid rgba(199, 125, 255, 0.35);
+
+    animation: pulse-purple 2s infinite;
+}
+
+.device-indicator-index-purple i {
+    color: #c77dff;
+    font-size: 0.8rem;
+}
+
+/* ========== MOBILE (MESMO COMPORTAMENTO DA INDEX) ========== */
+
+@media (max-width: 768px) {
+    .device-indicator-index-purple {
+        top: 70px; /* abaixo da top-bar */
+    }
+}
+
+/* ========== ANIMAÇÃO (CLONE DA INDEX, SÓ ROXA) ========== */
+
+@keyframes pulse-purple {
+    0% {
+        box-shadow: 0 0 0 0 rgba(157, 78, 221, 0.4);
+        border-color: rgba(157, 78, 221, 0.3);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(157, 78, 221, 0);
+        border-color: rgba(199, 125, 255, 0.5);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(157, 78, 221, 0);
+        border-color: rgba(157, 78, 221, 0.3);
+    }
+}
+
     </style>
 </head>
 <body>
+    <div class="device-indicator-index-purple">
+    <i class="fas fa-desktop"></i>
+    <span class="device-text"></span>
+</div>
+
     <!-- ===== BARRA LATERAL COM ÍCONE HOME ===== -->
     <div class="sidebar">
         <div class="nav-icon" id="homeButton">
@@ -1346,6 +1415,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicializar
     navigateToPage('home-page');
 });
+(function () {
+    const indicator = document.querySelector('.device-indicator-index-purple');
+    if (!indicator) return;
+
+    const icon = indicator.querySelector('i');
+
+    function updateDeviceIndicator() {
+        const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+        if (isMobile) {
+            icon.className = 'fas fa-mobile-alt';
+            indicator.lastChild.textContent = ' Mobile';
+        } else {
+            icon.className = 'fas fa-desktop';
+            indicator.lastChild.textContent = 'Computador';
+        }
+    }
+
+    updateDeviceIndicator();
+    window.addEventListener('resize', updateDeviceIndicator);
+})();
 </script>
 
 </body>
