@@ -976,9 +976,14 @@
 
 @media (max-width: 768px) {
     .device-indicator-index-purple {
-        top: 70px; /* abaixo da top-bar */
+        top: 8px;
+
+        /* centraliza respeitando a sidebar mobile */
+        left: calc(70px + (100% - 70px) / 2);
+        transform: translateX(-50%);
     }
 }
+
 
 /* ========== ANIMAÇÃO (CLONE DA INDEX, SÓ ROXA) ========== */
 
