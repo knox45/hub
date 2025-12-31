@@ -14,33 +14,124 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* ===== BOTÃO VOLTAR PARA HUB (REPOSICIONADO) ===== */
-        .back-button-hub {
+        /* ===== BARRA LATERAL COM ÍCONE HOME ===== */
+        .sidebar {
             position: fixed;
-            top: 20px; /* Posicionado no topo, ao lado do logo */
-            right: 120px; /* Posicionado à direita, depois do avatar do usuário */
-            background: rgba(26, 26, 46, 0.8);
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 90px;
+            background: rgba(15, 15, 25, 0.85);
+            backdrop-filter: blur(15px);
+            border-right: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 25px 0;
+            gap: 25px;
+            z-index: 1000;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(74, 109, 229, 0.5) transparent;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background-color: rgba(74, 109, 229, 0.5);
+            border-radius: 10px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(74, 109, 229, 0.7);
+        }
+
+        /* ÍCONE HOME - NEON AZUL (IGUAL AO INDEX) */
+        .nav-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            background: linear-gradient(
+                135deg,
+                #0066ff,
+                #00ccff,
+                #0066ff,
+                #0099ff
+            ) !important;
+            background-size: 300% 300% !important;
+            color: #fff !important;
+            box-shadow:
+                0 0 15px #0066ff,
+                0 0 30px #00ccff,
+                0 0 45px #0099ff !important;
+            animation: neonBlueFlow 3s ease infinite !important;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+            text-decoration: none;
+            border: none;
+            margin-top: 20px;
+        }
+
+        .nav-icon:hover {
+            transform: translateY(-4px) scale(1.06) !important;
+            box-shadow:
+                0 0 20px #0066ff,
+                0 0 40px #00ccff,
+                0 0 60px #0099ff !important;
+        }
+
+        .nav-icon i {
+            font-size: 1.5rem;
+        }
+
+        @keyframes neonBlueFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* ===== BOTÃO VOLTAR PARA PROJETOS (NO CANTO ESQUERDO) ===== */
+        .back-to-menu-button {
+            position: fixed;
+            top: 30px;
+            left: 110px; /* Posição ao lado da sidebar */
+            background: rgba(26, 26, 46, 0.9);
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 10px;
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 8px;
-            z-index: 1000;
+            gap: 10px;
+            z-index: 1001; /* Acima da sidebar */
             transition: all 0.3s;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(74, 109, 229, 0.2);
+            border: 1px solid rgba(156, 74, 226, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
-        .back-button-hub:hover {
-            background: rgba(45, 45, 74, 0.9);
+        .back-to-menu-button:hover {
+            background: rgba(45, 45, 74, 0.95);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            border-color: rgba(74, 109, 229, 0.4);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+            border-color: rgba(156, 74, 226, 0.5);
         }
 
         body {
@@ -51,11 +142,11 @@
             overflow-x: hidden;
         }
 
-        /* Barra superior simplificada - SEM barra lateral */
+        /* Barra superior - COM MARGEM PARA SIDEBAR */
         .top-bar {
             position: fixed;
             top: 0;
-            left: 0;
+            left: 90px; /* Margem para a sidebar */
             right: 0;
             height: 60px;
             background: rgba(15, 15, 25, 0.95);
@@ -118,8 +209,9 @@
             transform: scale(1.1);
         }
 
-        /* Conteúdo principal - SEM margem lateral */
+        /* Conteúdo principal - COM margem para sidebar */
         .main-content {
+            margin-left: 90px; /* Margem para a sidebar */
             padding-top: 60px;
             min-height: 100vh;
         }
@@ -161,7 +253,7 @@
             margin: 0 auto;
         }
 
-        /* Grid de aplicativos - COMPACTADO */
+        /* Grid de projetos - COMPACTADO */
         .apps-grid {
             padding: 0 40px 60px;
             display: grid;
@@ -171,7 +263,7 @@
             margin: 0 auto;
         }
 
-        /* Card de app */
+        /* Card de projeto */
         .app-card {
             background: rgba(26, 26, 46, 0.2);
             border-radius: 20px;
@@ -210,7 +302,7 @@
             background: linear-gradient(to top, rgba(26, 26, 46, 0.9), transparent);
         }
 
-        /* Ícone do app no canto esquerdo - ATUALIZADO COM ÍCONES FA */
+        /* Ícone do projeto no canto esquerdo */
         .app-icon {
             position: absolute;
             bottom: 20px;
@@ -285,7 +377,7 @@
             border: 1px solid rgba(156, 74, 226, 0.3);
         }
 
-        /* Páginas de apps */
+        /* Páginas de projetos */
         .app-page {
             min-height: calc(100vh - 60px);
         }
@@ -322,7 +414,7 @@
             width: 100%;
         }
 
-        /* Ícone do app na página de detalhes - ATUALIZADO COM ÍCONES FA */
+        /* Ícone do projeto na página de detalhes */
         .app-hero-icon {
             width: 140px;
             height: 140px;
@@ -366,118 +458,170 @@
             max-width: 600px;
         }
 
-        .app-detail-content {
+        /* CONTAINER SIMPLIFICADO */
+        .app-page-content {
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px;
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 40px;
+            margin: 40px auto;
+            padding: 0 60px;
         }
 
-        /* Caixas de conteúdo */
-        .app-description-content {
-            background: rgba(26, 26, 46, 0.2);
-            border-radius: 20px;
-            padding: 40px;
-            border: 1px solid rgba(156, 74, 226, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .app-description-content h2 {
-            font-size: 2rem;
-            margin-bottom: 25px;
-            color: white;
-        }
-
-        .app-description-content p {
-            color: #b0b0c0;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
-
-        .app-description-content ul {
-            color: #b0b0c0;
-            line-height: 1.6;
-            padding-left: 20px;
-            margin-bottom: 20px;
-        }
-
-        .app-description-content li {
-            margin-bottom: 10px;
-        }
-
-        .app-sidebar {
-            background: rgba(26, 26, 46, 0.2);
-            border-radius: 20px;
-            padding: 40px;
-            border: 1px solid rgba(156, 74, 226, 0.1);
+        /* BARRA DE AÇÕES */
+        .app-action-bar {
             display: flex;
-            flex-direction: column;
-            gap: 30px;
-            backdrop-filter: blur(10px);
+            align-items: center;
+            margin-bottom: 40px;
+            gap: 20px;
         }
 
-        .launch-button {
+        .app-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        /* BOTÕES PRINCIPAIS - IGUAL AO INDEX */
+        .app-main-button {
             background: linear-gradient(135deg, #9c4ae2, #6a8eff);
             color: white;
             border: none;
-            padding: 25px;
-            border-radius: 15px;
-            font-size: 1.4rem;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 1.1rem;
             font-weight: 700;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
             transition: all 0.3s;
+            min-width: 180px;
+            text-decoration: none;
         }
 
-        .launch-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(156, 74, 226, 0.4);
+        .app-main-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(74, 109, 229, 0.4);
         }
 
-        /* CORES ESPECIAIS PARA BOTÕES DOS PROJETOS */
-        .launch-button.dschurros {
+        /* CORES ESPECÍFICAS PARA CADA PROJETO */
+        .app-main-button.dschurros {
             background: linear-gradient(135deg, #FF6B6B, #FF8E53) !important;
         }
-        .launch-button.the-spike-ahri {
+        .app-main-button.the-spike-ahri {
             background: linear-gradient(135deg, #9C27B0, #E91E63) !important;
         }
-        .launch-button.receitas-italianas {
+        .app-main-button.receitas-italianas {
             background: linear-gradient(135deg, #da1010, #c32a04) !important;
         }
-        .launch-button.links-dschurros {
+        .app-main-button.links-dschurros {
             background: linear-gradient(135deg, #2196F3, #64B5F6) !important;
         }
 
-        .launch-button.dschurros:hover {
-            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4) !important;
+        .app-main-button.dschurros:hover {
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4) !important;
         }
-        .launch-button.the-spike-ahri:hover {
-            box-shadow: 0 15px 30px rgba(156, 39, 176, 0.4) !important;
+        .app-main-button.the-spike-ahri:hover {
+            box-shadow: 0 10px 25px rgba(156, 39, 176, 0.4) !important;
         }
-        .launch-button.receitas-italianas:hover {
-            box-shadow: 0 15px 30px rgba(76, 175, 80, 0.4) !important;
+        .app-main-button.receitas-italianas:hover {
+            box-shadow: 0 10px 25px rgba(218, 16, 16, 0.4) !important;
         }
-        .launch-button.links-dschurros:hover {
-            box-shadow: 0 15px 30px rgba(33, 150, 243, 0.4) !important;
+        .app-main-button.links-dschurros:hover {
+            box-shadow: 0 10px 25px rgba(33, 150, 243, 0.4) !important;
         }
 
+        /* ===== IMAGENS OTIMIZADAS PARA DESKTOP E MOBILE ===== */
+        .app-images-section {
+            margin-top: 40px;
+        }
+
+        .app-images-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 colunas no desktop */
+            gap: 20px; /* Espaçamento entre imagens */
+            margin-top: 20px;
+        }
+
+        .app-image-item {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            border-radius: 15px; /* Bordas arredondadas */
+            overflow: hidden;
+            border: 3px solid rgba(255, 255, 255, 0.1); /* Moldura sutil */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra */
+        }
+
+        /* Efeito de brilho na borda ao passar o mouse */
+        .app-image-item::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, 
+                rgba(156, 74, 226, 0.3),
+                rgba(255, 255, 255, 0.2),
+                rgba(156, 74, 226, 0.3));
+            border-radius: 17px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .app-image-item:hover::before {
+            opacity: 1;
+        }
+
+        .app-image-item:hover {
+            transform: translateY(-5px) scale(1.03);
+            border-color: rgba(156, 74, 226, 0.4);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .app-image-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.8) 100%);
+        }
+
+        .app-image-label {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            color: white;
+            font-weight: 600;
+            z-index: 2;
+            font-size: 1.1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        /* INFORMÇÕES SIMPLIFICADAS */
         .app-info-grid {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 20px;
+            margin-top: 40px;
+            background: rgba(26, 26, 46, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(156, 74, 226, 0.1);
         }
 
         .info-item {
             display: flex;
             justify-content: space-between;
             padding-bottom: 15px;
-            border-bottom: 1px solid rgba(156, 74, 226, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .info-label {
@@ -489,33 +633,6 @@
             font-weight: 600;
         }
 
-        /* Botão voltar na página de detalhes */
-        .app-back-button {
-            position: absolute;
-            top: 30px;
-            left: 30px;
-            background: rgba(26, 26, 46, 0.8);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 3;
-            transition: all 0.3s;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(156, 74, 226, 0.2);
-        }
-
-        .app-back-button:hover {
-            background: rgba(45, 45, 74, 0.9);
-            border-color: rgba(156, 74, 226, 0.4);
-        }
-
         /* Footer */
         .footer {
             text-align: center;
@@ -524,63 +641,62 @@
             border-top: 1px solid rgba(156, 74, 226, 0.1);
             background: rgba(15, 15, 25, 0.3);
             backdrop-filter: blur(10px);
+            margin-left: 90px;
         }
 
-      /* Indicador de dispositivo com animação */
-.device-indicator {
-    position: fixed;
-    top: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 9999;
-    padding: 6px 14px;
-    border-radius: 20px;
-    background: rgba(0, 0, 0, 0.35);
-    color: #fff;
-    font-size: 0.75rem;
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    pointer-events: none;
-    border: 1px solid rgba(156, 74, 226, 0.3);
-    animation: pulse 2s infinite;
-}
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.45);
-        border-color: rgba(168, 85, 247, 0.35);
-    }
-    70% {
-        box-shadow: 0 0 0 10px rgba(168, 85, 247, 0);
-        border-color: rgba(168, 85, 247, 0.6);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(168, 85, 247, 0);
-        border-color: rgba(168, 85, 247, 0.35);
-    }
-}
+        /* ===== ADAPTAÇÕES PARA MOBILE OTIMIZADAS ===== */
+        @media (max-width: 1024px) {
+            .app-images-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 colunas em tablets */
+                gap: 15px;
+            }
+            
+            .app-image-item {
+                height: 200px;
+            }
+        }
 
-/* Animações */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes slideUp {
-    from { transform: translateY(30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-
-        /* ADAPTAÇÕES PARA MOBILE */
         @media (max-width: 768px) {
-            /* Botão voltar para hub responsivo */
-            .back-button-hub {
-                top: 15px;
-                right: 100px;
-                padding: 8px 15px;
-                font-size: 0.8rem;
+            /* Sidebar responsiva */
+            .sidebar {
+                width: 70px;
+                padding: 15px 0;
+                gap: 15px;
+            }
+            
+            .nav-icon {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .nav-icon i {
+                font-size: 1.2rem;
+            }
+            
+            .main-content {
+                margin-left: 70px;
+            }
+            
+            .top-bar {
+                left: 70px;
+            }
+            
+            /* Botão voltar OTIMIZADO PARA MOBILE */
+            .back-to-menu-button {
+                top: 20px;
+                left: 85px; /* Ajustado para mobile */
+                padding: 10px 20px;
+                font-size: 0.9rem;
+                z-index: 1002; /* Garantir que fique acima */
+                background: rgba(26, 26, 46, 0.95);
+                border: 2px solid rgba(156, 74, 226, 0.4);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
             }
             
             .top-bar {
@@ -656,25 +772,53 @@
                 font-size: 1rem;
             }
             
-            .app-detail-content {
-                padding: 30px 20px;
-                grid-template-columns: 1fr;
-                gap: 20px;
+            .app-page-content {
+                padding: 0 20px;
             }
             
-            .app-description-content,
-            .app-sidebar {
-                padding: 25px;
+            .app-action-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .app-buttons {
+                width: 100%;
+                flex-direction: column;
+            }
+            
+            .app-main-button {
+                width: 100%;
+                justify-content: center;
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+            
+            /* IMAGENS RESPONSIVAS PARA MOBILE */
+            .app-images-grid {
+                grid-template-columns: 1fr; /* 1 coluna em mobile */
+                gap: 12px;
+            }
+            
+            .app-image-item {
+                height: 180px;
+                border-width: 2px;
+            }
+            
+            .app-image-label {
+                font-size: 1rem;
+                bottom: 10px;
+                left: 10px;
+            }
+            
+            .app-info-grid {
+                grid-template-columns: 1fr;
+                padding: 20px;
+                gap: 15px;
             }
             
             .footer {
                 padding: 25px 20px;
-            }
-            
-            .app-back-button {
-                top: 20px;
-                left: 20px;
-                padding: 10px 18px;
+                margin-left: 70px;
                 font-size: 0.9rem;
             }
 
@@ -687,19 +831,38 @@
                 height: 35px;
                 font-size: 1rem;
             }
-
-            .device-indicator {
-                font-size: 0.7rem;
-                padding: 5px 12px;
-            }
         }
 
         @media (max-width: 480px) {
-            .back-button-hub {
-                top: 12px;
-                right: 90px;
-                padding: 6px 12px;
-                font-size: 0.75rem;
+            .sidebar {
+                width: 60px;
+            }
+            
+            .nav-icon {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .nav-icon i {
+                font-size: 1rem;
+            }
+            
+            .main-content {
+                margin-left: 60px;
+            }
+            
+            .top-bar {
+                left: 60px;
+            }
+            
+            /* Botão voltar para mobile muito pequeno */
+            .back-to-menu-button {
+                top: 15px;
+                left: 70px;
+                padding: 8px 15px;
+                font-size: 0.8rem;
+                min-width: auto;
+                white-space: nowrap;
             }
             
             .home-header h1 {
@@ -713,27 +876,81 @@
             .app-cover {
                 height: 130px;
             }
+            
+            .app-image-item {
+                height: 150px;
+            }
+
+            .footer {
+                margin-left: 60px;
+                padding: 20px 15px;
+                font-size: 0.8rem;
+            }
 
             .user-avatar {
                 width: 32px;
                 height: 32px;
                 font-size: 0.9rem;
             }
+            
+            /* Ajustes finos para mobile muito pequeno */
+            .app-hero {
+                height: 250px;
+                padding: 0 15px;
+            }
+            
+            .app-hero-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+            
+            .app-hero-info h1 {
+                font-size: 2rem;
+            }
+            
+            .app-hero-info p {
+                font-size: 0.9rem;
+            }
+        }
 
-            .device-indicator {
-                font-size: 0.65rem;
-                padding: 4px 10px;
+        /* Para telas muito pequenas (menos de 360px) */
+        @media (max-width: 360px) {
+            .back-to-menu-button {
+                left: 65px;
+                padding: 6px 12px;
+                font-size: 0.75rem;
+            }
+            
+            .nav-icon {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .nav-icon i {
+                font-size: 0.9rem;
+            }
+            
+            .app-image-item {
+                height: 130px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- ===== BOTÃO VOLTAR PARA HUB (REPOSICIONADO) ===== -->
-    <button class="back-button-hub" id="backButtonHub">
-        <i class="fas fa-arrow-left"></i> Voltar para Hub
+    <!-- ===== BARRA LATERAL COM ÍCONE HOME ===== -->
+    <div class="sidebar">
+        <div class="nav-icon" id="homeButton">
+            <i class="fas fa-home"></i>
+        </div>
+    </div>
+
+    <!-- ===== BOTÃO VOLTAR PARA PROJETOS (CANTO ESQUERDO) ===== -->
+    <button class="back-to-menu-button" id="backToMenuButton" style="display: none;">
+        <i class="fas fa-arrow-left"></i> Voltar para Projetos
     </button>
 
-    <!-- Barra superior simplificada - SEM barra lateral -->
+    <!-- Barra superior -->
     <div class="top-bar">
         <div class="logo">
             <img src="tipo.png" alt="logo">
@@ -833,11 +1050,8 @@
         <!-- =============== PÁGINAS DOS PROJETOS =============== -->
 
         <!-- Página do Dschurros -->
-        <div id="dschurros-page" class="page">
+        <div id="dschurros-page" class="page app-page">
             <div class="app-hero" style="background-image: url('https://p2.trrsf.com/image/fget/cf/1200/630/middle/images.terra.com/2023/03/23/137588257-churros-com-chocolate.jpg');">
-                <button class="app-back-button" onclick="navigateToPage('home-page')">
-                    <i class="fas fa-arrow-left"></i> Voltar para Projetos
-                </button>
                 <div class="app-hero-content">
                     <div class="app-hero-icon">
                         <i class="fas fa-cookie-bite"></i>
@@ -849,57 +1063,51 @@
                 </div>
             </div>
             
-            <div class="app-detail-content">
-                <div class="app-description-content">
-                    <h2>Sobre o DsChurros</h2>
-                    <p>O DsChurros é um site completo dedicado aos amantes de churros, oferecendo uma experiência gastronômica única com cardápio digital e sistema de encomendas. Especializados em churros tradicionais e criativos.</p>
-                    <p>Nosso objetivo é levar a alegria dos churros artesanais diretamente até você, com qualidade premium, ingredientes selecionados e muito sabor em cada mordida.</p>
-                    
-                    <h2>Recursos Principais</h2>
-                    <ul>
-                        <li>Cardápio digital completo com fotos em alta qualidade</li>
-                        <li>Sistema de reservas para eventos e encomendas</li>
-                        <li>Atendimento personalizado via WhatsApp</li>
-                        <li>História da marca e tradição dos churros</li>
-                        <li>Promoções especiais e novidades sazonais</li>
-                    </ul>
+            <div class="app-page-content">
+                <div class="app-action-bar">
+                    <div class="app-buttons">
+                        <button class="app-main-button dschurros" data-url="https://dschurros.github.io/site/" target="_blank">
+                            <i class="fas fa-external-link-alt"></i>
+                            ACESSAR SITE
+                        </button>
+                    </div>
                 </div>
-                
-                <div class="app-sidebar">
-                    <button class="launch-button dschurros" onclick="window.open('https://dschurros.github.io/site/', '_blank')">
-                        <i class="fas fa-external-link-alt"></i>
-                        ACESSAR SITE
-                    </button>
-                    
-                    <div class="app-info-grid">
-                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
-                        <div class="info-item">
-                            <span class="info-label">Categoria</span>
-                            <span class="info-value">Alimentação</span>
+
+                <div class="app-images-section">
+                    <h3 style="color: white; margin-bottom: 20px;">Churros</h3>
+                    <div class="app-images-grid">
+                        <div class="app-image-item" style="background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg4IwMvWlU1XYAUsbQLCHJiorXPFL5fTmq45gfgGdRM6YXB8QAfRWOq0lNSeIy069x9PL3A1wNLwCiRXjihS_QsBulacmhSdukYZ2SV4GnBFsUpvdPqnbl1xpvvyGpwXZtLRXX7vllGPMM/s1600/churros-650-jpg.jpg');">
+                            <span class="app-image-label">Churros Tradicional</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Tipo</span>
-                            <span class="info-value">Site de Churros</span>
+                        <div class="app-image-item" style="background-image: url('https://www.sabornamesa.com.br/media/k2/items/cache/271fec0ea09281bfe067f8ddbe3d041e_XL.jpg');">
+                            <span class="app-image-label">Churros Gourmet</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Status</span>
-                            <span class="info-value" style="color: #FF6B6B;">Online</span>
+                        <div class="app-image-item" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQN2HdlKJ3o5nkpcx8sHdobgjdQeG-wxrY0Cw&s');">
+                            <span class="app-image-label">Variedade de Churros</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Versão</span>
-                            <span class="info-value">2.0</span>
-                        </div>
+                    </div>
+                </div>
+
+                <div class="app-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Categoria</span>
+                        <span class="info-value">Alimentação</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Especialidade</span>
+                        <span class="info-value">Churros Artesanais</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Status</span>
+                        <span class="info-value">Ativo</span>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Página do The Spike Ahri -->
-        <div id="the-spike-ahri-page" class="page">
+        <div id="the-spike-ahri-page" class="page app-page">
             <div class="app-hero" style="background-image: url('https://sm.ign.com/t/ign_in/video/2/2xko-offic/2xko-official-ahri-gameplay-trailer_5jr5.1200.png');">
-                <button class="app-back-button" onclick="navigateToPage('home-page')">
-                    <i class="fas fa-arrow-left"></i> Voltar para Projetos
-                </button>
                 <div class="app-hero-content">
                     <div class="app-hero-icon">
                         <i class="fas fa-paw"></i>
@@ -911,58 +1119,51 @@
                 </div>
             </div>
             
-            <div class="app-detail-content">
-                <div class="app-description-content">
-                    <h2>Sobre o The Spike Ahri</h2>
-                    <p>The Spike Ahri é um site dedicado à campeã Ahri do universo de League of Legends. O site apresenta um resumo completo sobre a personagem, suas habilidades detalhadas e um currículo fictício inspirado em sua história rica em lore.</p>
-                    <p>Também conta com link para uma música favorita do grupo K/DA e um mural especial dedicado à versão da Ahri no 2XKO, criado especialmente para os fãs da personagem mais carismática de Runeterra.</p>
-                    
-                    <h2>Recursos Principais</h2>
-                    <ul>
-                        <li>Seção informativa completa sobre a história da Ahri</li>
-                        <li>Lista explicativa detalhada das habilidades da campeã</li>
-                        <li>Currículo fictício apresentando o perfil profissional da Ahri</li>
-                        <li>Link integrado para música favorita do grupo K/DA</li>
-                        <li>Mural exclusivo dedicado à versão da Ahri no 2XKO</li>
-                        <li>Design inspirado no tema da Raposa de Nove Caudas</li>
-                    </ul>
+            <div class="app-page-content">
+                <div class="app-action-bar">
+                    <div class="app-buttons">
+                        <button class="app-main-button the-spike-ahri" data-url="https://loirinhodid.github.io/codex-ray/" target="_blank">
+                            <i class="fas fa-external-link-alt"></i>
+                            ACESSAR SITE
+                        </button>
+                    </div>
                 </div>
-                
-                <div class="app-sidebar">
-                    <button class="launch-button the-spike-ahri" onclick="window.open('https://loirinhodid.github.io/codex-ray/', '_blank')">
-                        <i class="fas fa-external-link-alt"></i>
-                        ACESSAR SITE
-                    </button>
-                    
-                    <div class="app-info-grid">
-                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
-                        <div class="info-item">
-                            <span class="info-label">Categoria</span>
-                            <span class="info-value">Games</span>
+
+                <div class="app-images-section">
+                    <h3 style="color: white; margin-bottom: 20px;">Ahri</h3>
+                    <div class="app-images-grid">
+                        <div class="app-image-item" style="background-image: url('https://assets.gam3s.gg/1757354922157_master_ahris_nine_tailed_arsenal_in_2xko_meta_73bea8e14f.jpg');">
+                            <span class="app-image-label">Ahri no 2XKO</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Tipo</span>
-                            <span class="info-value">Fã-site</span>
+                        <div class="app-image-item" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGCQbTKvJvNmUl_cOAKqHB_vz1K8xO95iqIg&s');">
+                            <span class="app-image-label">Ahri - League of Legends</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Jogo</span>
-                            <span class="info-value">League of Legends</span>
+                        <div class="app-image-item" style="background-image: url('https://sm.ign.com/t/ign_in/video/2/2xko-offic/2xko-official-ahri-gameplay-trailer_5jr5.1200.png');">
+                            <span class="app-image-label">Gameplay da Ahri</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Atualização</span>
-                            <span class="info-value">Por patch</span>
-                        </div>
+                    </div>
+                </div>
+
+                <div class="app-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Categoria</span>
+                        <span class="info-value">Games</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Personagem</span>
+                        <span class="info-value">Ahri</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Jogo</span>
+                        <span class="info-value">League of Legends</span>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Página do Receitas Italianas -->
-        <div id="receitas-italianas-page" class="page">
+        <div id="receitas-italianas-page" class="page app-page">
             <div class="app-hero" style="background-image: url('https://alegrafoods.com.br/wp-content/uploads/2020/07/9-img-blog.png');">
-                <button class="app-back-button" onclick="navigateToPage('home-page')">
-                    <i class="fas fa-arrow-left"></i> Voltar para Projetos
-                </button>
                 <div class="app-hero-content">
                     <div class="app-hero-icon">
                         <i class="fas fa-pizza-slice"></i>
@@ -974,59 +1175,51 @@
                 </div>
             </div>
             
-            <div class="app-detail-content">
-                <div class="app-description-content">
-                    <h2>Sobre o Receitas Italianas</h2>
-                    <p>Receitas Italianas é um site dedicado à culinária italiana autêntica. Desde receitas familiares tradicionais passadas por gerações até criações contemporâneas inovadoras, tudo com o verdadeiro sabor da Itália em cada detalhe.</p>
-                    <p>Ideal para quem quer cozinhar como um verdadeiro italiano ou simplesmente apreciar a rica cultura gastronômica da Itália através de receitas testadas e aprovadas.</p>
-                    
-                    <h2>Recursos Principais</h2>
-                    <ul>
-                        <li>Receitas tradicionais de todas as regiões da Itália</li>
-                        <li>Dicionário completo de ingredientes e técnicas italianas</li>
-                        <li>Dicas práticas para encontrar ingredientes autênticos</li>
-                        <li>Receitas adaptadas para cozinheiros iniciantes e experts</li>
-                        <li>Seção especial de massas caseiras passo a passo</li>
-                        <li>Receitas de pizzas tradicionais napolitanas</li>
-                        <li>Vídeos tutoriais com chefs italianos</li>
-                    </ul>
+            <div class="app-page-content">
+                <div class="app-action-bar">
+                    <div class="app-buttons">
+                        <button class="app-main-button receitas-italianas" data-url="https://loirinhodid.github.io/meu-site/" target="_blank">
+                            <i class="fas fa-external-link-alt"></i>
+                            ACESSAR SITE
+                        </button>
+                    </div>
                 </div>
-                
-                <div class="app-sidebar">
-                    <button class="launch-button receitas-italianas" onclick="window.open('https://loirinhodid.github.io/meu-site/', '_blank')">
-                        <i class="fas fa-external-link-alt"></i>
-                        ACESSAR SITE
-                    </button>
-                    
-                    <div class="app-info-grid">
-                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
-                        <div class="info-item">
-                            <span class="info-label">Categoria</span>
-                            <span class="info-value">Culinária</span>
+
+                <div class="app-images-section">
+                    <h3 style="color: white; margin-bottom: 20px;">Massas Italianas</h3>
+                    <div class="app-images-grid">
+                        <div class="app-image-item" style="background-image: url('https://cultivate.com.br/wp-content/uploads/2020/09/massa-pizza-receita-italiana-1200x675.jpg');">
+                            <span class="app-image-label">Massa de Pizza Italiana</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Tipo</span>
-                            <span class="info-value">Site de Receitas</span>
+                        <div class="app-image-item" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFv5LjRhbsdV0S7NWQ9s04yDDFCa_phqU2wg&s');">
+                            <span class="app-image-label">Massa Italiana Artesanal</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Cozinha</span>
-                            <span class="info-value">Italiana</span>
+                        <div class="app-image-item" style="background-image: url('https://www.caveroyale.com.br/wp-content/uploads/2025/05/descubra-os-diferentes-tipos-de-massas-e-receitas-saborosas-para-experimentar.webp');">
+                            <span class="app-image-label">Variedade de Massas</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Nível</span>
-                            <span class="info-value">Todos os níveis</span>
-                        </div>
+                    </div>
+                </div>
+
+                <div class="app-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Categoria</span>
+                        <span class="info-value">Culinária</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Cozinha</span>
+                        <span class="info-value">Italiana</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Status</span>
+                        <span class="info-value">Ativo</span>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Página do Links Dschurros -->
-        <div id="links-dschurros-page" class="page">
+        <div id="links-dschurros-page" class="page app-page">
             <div class="app-hero" style="background-image: url('https://t.ctcdn.com.br/a-ZX5Rnzm_gPIYtjYeT4E4ncC6s=/640x360/smart/i605666.jpeg');">
-                <button class="app-back-button" onclick="navigateToPage('home-page')">
-                    <i class="fas fa-arrow-left"></i> Voltar para Projetos
-                </button>
                 <div class="app-hero-content">
                     <div class="app-hero-icon">
                         <i class="fas fa-link"></i>
@@ -1038,47 +1231,43 @@
                 </div>
             </div>
             
-            <div class="app-detail-content">
-                <div class="app-description-content">
-                    <h2>Sobre o Links DsChurros</h2>
-                    <p>Links DsChurros é o hub central definitivo para todos os projetos e canais relacionados à marca DsChurros. Um único lugar organizado e acessível para encontrar todas as redes sociais, sites oficiais e pontos de contato importantes.</p>
-                    <p>Perfeito para clientes, fãs e parceiros que querem acompanhar todas as novidades, promoções e atualizações da DsChurros de maneira simples e eficiente.</p>
-                    
-                    <h2>Recursos Principais</h2>
-                    <ul>
-                        <li>Links organizados para todas as redes sociais da marca</li>
-                        <li>Acesso rápido aos sites oficiais dos projetos</li>
-                        <li>Canais de contato direto com a equipe</li>
-                        <li>Novidades e atualizações em tempo real</li>
-                        <li>Promoções exclusivas para seguidores</li>
-                        <li>Links para encomendas e delivery</li>
-                    </ul>
+            <div class="app-page-content">
+                <div class="app-action-bar">
+                    <div class="app-buttons">
+                        <button class="app-main-button links-dschurros" data-url="https://loirinhodid.github.io/linkdschurros" target="_blank">
+                            <i class="fas fa-external-link-alt"></i>
+                            ACESSAR SITE
+                        </button>
+                    </div>
                 </div>
-                
-                <div class="app-sidebar">
-                    <button class="launch-button links-dschurros" onclick="window.open('https://loirinhodid.github.io/linkdschurros', '_blank')">
-                        <i class="fas fa-external-link-alt"></i>
-                        ACESSAR SITE
-                    </button>
-                    
-                    <div class="app-info-grid">
-                        <h3 style="color: white; margin-bottom: 10px;">Informações</h3>
-                        <div class="info-item">
-                            <span class="info-label">Categoria</span>
-                            <span class="info-value">Links</span>
+
+                <div class="app-images-section">
+                    <h3 style="color: white; margin-bottom: 20px;">Conteúdo DsChurros</h3>
+                    <div class="app-images-grid">
+                        <div class="app-image-item" style="background-image: url('https://tm.ibxk.com.br/2021/03/04/04104052545110.jpg?ims=1200x675');">
+                            <span class="app-image-label">Churros em Destaque</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Tipo</span>
-                            <span class="info-value">Hub de Links</span>
+                        <div class="app-image-item" style="background-image: url('https://assets-api-file-prod.s3.amazonaws.com/files/acc655f6b1cc075eb155-Capa%20Conte%C3%BAdos%20Sebrae%20Play%20%282%29.jpg');">
+                            <span class="app-image-label">Conteúdo Empresarial</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Marca</span>
-                            <span class="info-value">DsChurros</span>
+                        <div class="app-image-item" style="background-image: url('https://files.tecnoblog.net/wp-content/uploads/2025/07/ilustracao-de-redes-sociais.jpg');">
+                            <span class="app-image-label">Redes Sociais</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Links</span>
-                            <span class="info-value">Todos os projetos</span>
-                        </div>
+                    </div>
+                </div>
+
+                <div class="app-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Categoria</span>
+                        <span class="info-value">Links</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Tipo</span>
+                        <span class="info-value">Hub de Links</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Status</span>
+                        <span class="info-value">Ativo</span>
                     </div>
                 </div>
             </div>
@@ -1089,23 +1278,6 @@
 /* ===============================
    FUNÇÕES PRINCIPAIS
 ================================ */
-function isMobile() {
-    return /android|iphone|ipad|ipod|mobile/i.test(navigator.userAgent);
-}
-
-function createDeviceIndicator() {
-    document.querySelector('.device-indicator')?.remove();
-
-    const el = document.createElement('div');
-    el.className = 'device-indicator';
-    el.innerHTML = `
-        <i class="fas ${isMobile() ? 'fa-mobile-alt' : 'fa-desktop'}"></i>
-        <span>${isMobile() ? 'Mobile' : 'Computador'}</span>
-    `;
-
-    document.body.appendChild(el);
-}
-
 function navigateToPage(pageId) {
     // Esconder todas as páginas
     document.querySelectorAll('.page').forEach(p => {
@@ -1118,41 +1290,29 @@ function navigateToPage(pageId) {
         pageElement.classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-}
-
-function openApp(url, button) {
-    // Mostrar estado de carregamento
-    if (button) {
-        const originalHTML = button.innerHTML;
-        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Abrindo...';
-        button.disabled = true;
-
-        setTimeout(() => {
-            button.innerHTML = originalHTML;
-            button.disabled = false;
-        }, 1500);
+    
+    // Controlar visibilidade do botão voltar
+    if (pageId === 'home-page') {
+        // Na página inicial: esconder botão voltar para projetos
+        document.getElementById('backToMenuButton').style.display = 'none';
+    } else {
+        // Nas páginas dos projetos: mostrar botão voltar para projetos
+        document.getElementById('backToMenuButton').style.display = 'flex';
     }
-
-    // Abrir o site
-    setTimeout(() => {
-        if (isMobile()) {
-            window.location.href = url;
-        } else {
-            window.open(url, '_blank', 'noopener,noreferrer');
-        }
-    }, 300);
 }
 
 /* ===============================
    INICIALIZAÇÃO
 ================================ */
 document.addEventListener('DOMContentLoaded', () => {
-    createDeviceIndicator();
-    window.addEventListener('resize', createDeviceIndicator);
-
-    // Botão voltar para hub
-    document.getElementById('backButtonHub').addEventListener('click', () => {
+    // Botão Home na sidebar (volta para index.html) - FUNCIONANDO
+    document.getElementById('homeButton').addEventListener('click', () => {
         window.location.href = 'index.html';
+    });
+
+    // Botão voltar para menu de projetos - FUNCIONANDO
+    document.getElementById('backToMenuButton').addEventListener('click', () => {
+        navigateToPage('home-page');
     });
 
     // Navegação pelos cards na página inicial
@@ -1173,6 +1333,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape') {
             navigateToPage('home-page');
         }
+    });
+
+    // Botões de acesso aos sites (abrir em nova aba)
+    document.querySelectorAll('.app-main-button').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const url = this.getAttribute('data-url');
+            window.open(url, '_blank', 'noopener,noreferrer');
+        });
     });
 
     // Inicializar
