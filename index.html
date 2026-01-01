@@ -1359,44 +1359,7 @@
     background: rgba(15, 15, 25, 0.8);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    /* ===== FIX DEFINITIVO PLACEHOLDER MOBILE (INDEX) ===== */
-
-/* Garante área real mesmo sem imagem */
-.app-image-item.placeholder {
-    display: block;
-    width: 100%;
-    height: 200px;              /* força altura */
-    min-height: 200px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-/* Ícone central não colapsa */
-.app-image-item.placeholder::before {
-    content: '📷';
-    position: absolute;
-    font-size: 2.2rem;
-    opacity: 0.5;
-}
-
-/* MOBILE — força comportamento tipo projetos.html */
-@media (max-width: 768px) {
-
-    /* NÃO deixar flex esmagar */
-    .app-images-grid {
-        display: grid !important;
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-
-    .app-image-item,
-    .app-image-item.placeholder {
-        height: 180px;
-        min-height: 180px;
-    }
-}
-
+    
 }
     </style>
 </head>
