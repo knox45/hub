@@ -1359,6 +1359,123 @@
     background: rgba(15, 15, 25, 0.8);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    /* ============================================= */
+/* CORREÇÃO ESPECÍFICA PARA IMAGENS INTERNAS EM MOBILE */
+/* SEM CONFLITOS COM CÓDIGO EXISTENTE */
+/* ============================================= */
+
+/* 1. CORREÇÃO PARA O GRID DE IMAGENS EM MOBILE */
+@media (max-width: 768px) {
+    /* Sobrescreve apenas o necessário */
+    .app-images-grid {
+        flex-direction: column !important;
+        gap: 15px !important;
+        overflow: visible !important;
+    }
+    
+    /* Container com borda laranja - mobile */
+    .app-image-item-wrapper {
+        flex: 1 1 100% !important;
+        margin-bottom: 0 !important;
+    }
+    
+    /* Imagem dentro do container - mobile */
+    .app-image-item-wrapper .app-image-item {
+        height: 180px !important;
+        min-height: 180px !important;
+    }
+    
+    /* Remove animação de flutuação em mobile para performance */
+    .app-image-item-wrapper .app-image-item {
+        animation: none !important;
+    }
+    
+    /* Anima apenas a borda em mobile */
+    .app-image-item-wrapper::before {
+        animation: orangeBorderMobile 3s linear infinite;
+    }
+}
+
+/* 2. AJUSTES PARA TELAS MUITO PEQUENAS (≤480px) */
+@media (max-width: 480px) {
+    .app-image-item-wrapper .app-image-item {
+        height: 150px !important;
+        min-height: 150px !important;
+    }
+    
+    .app-image-label {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+        bottom: 10px;
+        left: 10px;
+    }
+}
+
+/* 3. ANIMAÇÕES OTIMIZADAS PARA MOBILE */
+@keyframes orangeBorderMobile {
+    0%, 100% {
+        background-position: 0% 0%;
+        filter: hue-rotate(0deg);
+    }
+    50% {
+        filter: hue-rotate(20deg);
+    }
+}
+
+/* 4. CORREÇÃO PARA PLACEHOLDERS (IMAGENS FALTANTES) */
+/* Aplica apenas para mobile e apenas para placeholders */
+@media (max-width: 768px) {
+    .app-image-item.placeholder {
+        background: linear-gradient(135deg, 
+            rgba(45, 45, 74, 0.8), 
+            rgba(74, 109, 229, 0.5)
+        ) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    .app-image-item.placeholder::before {
+        content: '📷' !important;
+        font-size: 2rem !important;
+        opacity: 0.8 !important;
+        position: static !important;
+    }
+    
+    /* Remove o overlay escuro dos placeholders */
+    .app-image-item.placeholder::after {
+        display: none !important;
+    }
+}
+
+/* 5. FEEDBACK TÁTIL PARA MOBILE (SEM HOVER) */
+@media (max-width: 768px) {
+    .app-image-item-wrapper {
+        transition: transform 0.2s ease;
+    }
+    
+    .app-image-item-wrapper:active {
+        transform: scale(0.98);
+    }
+    
+    .app-image-item-wrapper:active::before {
+        opacity: 1;
+        filter: brightness(1.5);
+    }
+}
+
+/* 6. GARANTE QUE NÃO HAJA CONFLITOS EM DESKTOP */
+@media (min-width: 769px) {
+    /* Mantém o comportamento desktop original */
+    .app-images-grid {
+        display: flex;
+        gap: 20px;
+    }
+    
+    .app-image-item-wrapper {
+        flex: 1;
+    }
+}
 }
     </style>
 </head>
