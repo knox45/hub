@@ -6,7 +6,7 @@
     <title>Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="hub.png" type="image/png">
-  <style>
+   <style>
         * {
             margin: 0;
             padding: 0;
@@ -739,17 +739,17 @@
             transform: translateY(-2px);
         }
 
-        /* VISUALIZAÇÃO DE IMAGENS/BANNER - COM COBRINHA NAS BORDAS */
+        /* VISUALIZAÇÃO DE IMAGENS/BANNER - SEM DIVISÓRIAS */
         .app-images-section {
             margin-top: 40px;
         }
 
         .app-images-grid {
             display: flex;
-            gap: 20px !important; /* Espaçamento entre as imagens */
+            gap: 0;
             margin-top: 20px;
             border-radius: 12px;
-            overflow: visible !important;
+            overflow: hidden;
         }
 
         .app-image-item {
@@ -761,110 +761,6 @@
             transition: transform 0.3s ease, flex 0.3s ease;
             cursor: pointer;
             position: relative;
-            border-radius: 15px !important;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        /* COBRINHA LARANJA NAS BORDAS - ANIMAÇÃO CONTÍNUA */
-        .app-image-item::before {
-            content: '';
-            position: absolute;
-            top: -3px;
-            left: -3px;
-            right: -3px;
-            bottom: -3px;
-            border-radius: 18px;
-            z-index: 1;
-            
-            /* Gradientes para cada borda */
-            background: 
-                linear-gradient(90deg, transparent 40%, #ff5500 50%, transparent 60%) top / 300% 3px,
-                linear-gradient(180deg, transparent 40%, #ff7700 50%, transparent 60%) right / 3px 300%,
-                linear-gradient(270deg, transparent 40%, #ff9900 50%, transparent 60%) bottom / 300% 3px,
-                linear-gradient(0deg, transparent 40%, #ffaa00 50%, transparent 60%) left / 3px 300%;
-            background-repeat: no-repeat;
-            
-            /* Animação que move o gradiente */
-            animation: snakeBorder 3s linear infinite;
-            pointer-events: none;
-        }
-
-        @keyframes snakeBorder {
-            0% {
-                background-position: 
-                    -100% 0%,     /* top - começa fora à esquerda */
-                    100% -100%,   /* right - começa fora em cima */
-                    200% 100%,    /* bottom - começa fora à direita */
-                    0% 200%;      /* left - começa fora embaixo */
-            }
-            25% {
-                background-position: 
-                    0% 0%,        /* top - visível */
-                    100% 0%,      /* right - começa a descer */
-                    200% 100%,    /* bottom - ainda fora */
-                    0% 200%;      /* left - ainda fora */
-            }
-            50% {
-                background-position: 
-                    0% 0%,        /* top - visível */
-                    100% 50%,     /* right - no meio */
-                    100% 100%,    /* bottom - começa à direita */
-                    0% 200%;      /* left - ainda fora */
-            }
-            75% {
-                background-position: 
-                    0% 0%,        /* top - visível */
-                    100% 100%,    /* right - completa */
-                    50% 100%,     /* bottom - no meio */
-                    0% 100%;      /* left - começa a subir */
-            }
-            100% {
-                background-position: 
-                    0% 0%,        /* top - visível */
-                    100% 100%,    /* right - completa */
-                    0% 100%,      /* bottom - completa */
-                    0% 0%;        /* left - completa */
-            }
-        }
-
-        /* Efeito de brilho extra */
-        .app-image-item::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.7) 100%);
-            z-index: 0;
-        }
-
-        .app-image-item:hover {
-            transform: scale(1.05);
-            z-index: 1;
-            flex: 1.2;
-            box-shadow: 0 8px 25px rgba(255, 107, 0, 0.5);
-        }
-
-        /* No hover, a cobrinha fica mais rápida */
-        .app-image-item:hover::before {
-            animation-duration: 1.5s;
-        }
-
-        .app-image-label {
-            position: absolute;
-            bottom: 15px;
-            left: 15px;
-            color: white;
-            font-weight: 600;
-            z-index: 2;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-            padding: 8px 15px;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 8px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         /* PLACEHOLDER PARA IMAGENS FALTANTES NAS PÁGINAS */
@@ -880,6 +776,31 @@
             content: '📷';
             font-size: 2.5rem;
             opacity: 0.5;
+        }
+
+        .app-image-item:hover {
+            transform: scale(1.05);
+            z-index: 1;
+            flex: 1.2;
+        }
+
+        .app-image-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 70%, rgba(0,0,0,0.7) 100%);
+        }
+
+        .app-image-label {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            color: white;
+            font-weight: 600;
+            z-index: 2;
         }
 
         /* INFORMÇÕES SIMPLIFICADAS */
@@ -966,20 +887,20 @@
             animation: pulse 2s infinite;
         }
 
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
-                border-color: rgba(34, 197, 94, 0.3);
-            }
-            70% {
-                box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
-                border-color: rgba(34, 197, 94, 0.5);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
-                border-color: rgba(34, 197, 94, 0.3);
-            }
-        }
+    @keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+        border-color: rgba(34, 197, 94, 0.3);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+        border-color: rgba(34, 197, 94, 0.5);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+        border-color: rgba(34, 197, 94, 0.3);
+    }
+}
 
         /* Animações */
         @keyframes fadeIn {
@@ -1183,8 +1104,77 @@
                 height: 260px;
             }
         }
-    </style>
+        /* ================================
+   HERO COM VÍDEO DE FUNDO (RIOT GAMES) - SEM FILTRO VERMELHO
+================================ */
+.riot-video-hero {
+    position: relative;
+    height: 500px;
+    background: none !important;
+    overflow: hidden;
+}
 
+.hero-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* OVERLAY APENAS ESCURO (SEM VERMELHO) */
+.hero-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(10, 10, 18, 0.7) 0%,
+        rgba(10, 10, 18, 0.4) 50%,
+        rgba(10, 10, 18, 0.8) 100%
+    );
+    z-index: 1;
+}
+
+/* Ajuste para o conteúdo ficar sobre o vídeo */
+.riot-video-hero .app-hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* REMOVI O BORDA VERMELHA - substituí por uma borda sutil */
+.riot-video-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    z-index: 1;
+    pointer-events: none;
+    border-radius: 0;
+}
+
+/* Botão voltar ajustado para vídeo */
+.riot-video-hero .back-button {
+    background: rgba(15, 15, 25, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+    </style>
 </head>
 <body>
     <!-- Barra lateral com todos os ícones -->
@@ -1794,68 +1784,81 @@
             </div>
         </div>
 
-        <!-- Página do Riot Client -->
-        <div id="riot-client-page" class="page app-page">
-            <div class="app-hero" style="background-image: url('https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/cf701cc9fda8942c3cfdf9f26e6ed410d4c59343-1920x1080.jpg?accountingTag=TFT?auto=format&fit=fill&q=80&w=1920');">
-                <button class="back-button">
-                    <i class="fas fa-arrow-left"></i> Voltar
-                </button>
-                <div class="app-hero-content">
-                    <div class="app-hero-icon">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKnJaJcVfuAJc2YxBhBp4ujW956ygaVD0vaA&s" alt="Riot Client">
-                    </div>
-                    <div class="app-hero-info">
-                        <h1 style="color: #FF4654;">Riot Games</h1>
-                        <p>Plataforma de jogos da Riot Games</p>
-                    </div>
-                </div>
+       <!-- Página do Riot Client -->
+<div id="riot-client-page" class="page app-page">
+    <!-- HERO COM VÍDEO LIMPO -->
+    <div class="app-hero riot-video-hero">
+        <button class="back-button">
+            <i class="fas fa-arrow-left"></i> Voltar
+        </button>
+        
+        <!-- Vídeo de fundo LIMPO -->
+        <div class="hero-video-bg">
+            <video autoplay muted loop playsinline class="hero-video">
+                <source src="intro.mp4" type="video/mp4">
+            </video>
+            <!-- Overlay apenas escuro -->
+            <div class="hero-video-overlay"></div>
+        </div>
+        
+        <!-- Conteúdo sobreposto ao vídeo -->
+        <div class="app-hero-content">
+            <div class="app-hero-icon">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKnJaJcVfuAJc2YxBhBp4ujW956ygaVD0vaA&s" alt="Riot Client">
             </div>
-            
-            <div class="app-page-content">
-                <div class="app-action-bar">
-                    <div class="app-buttons">
-                        <button class="app-main-button riot-client" data-url="https://riotgames.com">
-                            <i class="fas fa-gamepad"></i>
-                            JOGAR
-                        </button>
-                    </div>
-                </div>
+            <div class="app-hero-info">
+                <h1 style="color: #FFFFFF; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);">Riot Games</h1>
+                <p style="color: #E0E0FF; text-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);">Plataforma de jogos da Riot Games</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Resto do conteúdo permanece igual -->
+    <div class="app-page-content">
+        <div class="app-action-bar">
+            <div class="app-buttons">
+                <button class="app-main-button riot-client" data-url="https://riotgames.com">
+                    <i class="fas fa-gamepad"></i>
+                    JOGAR
+                </button>
+            </div>
+        </div>
 
-                <div class="app-images-section">
-                    <h3 style="color: white; margin-bottom: 20px;">Jogos</h3>
-                    <div class="app-images-grid">
-                        <div class="app-image-item" style="background-image: url('https://www.riotgames.com/darkroom/1440/3842e6d651ce3662ac121876e11a4f75:72320612f65ada7ccd0b2c7af52cd4c1/rg-article-header-riot-client-game-hubs.png');">
-                            <span class="app-image-label">Plataforma</span>
-                        </div>
-                        <div class="app-image-item" style="background-image: url('https://www.riotgames.com/darkroom/1000/8136f3cda272877a691918dada74750a:4ba7d1d2166963ed7aa6c988770d1535/allgames-card-v6-final-lesstext-1920.jpg');">
-                            <span class="app-image-label">Todos Jogos</span>
-                        </div>
-                        <div class="app-image-item" style="background-image: url('https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/0d8da14d9cc0c69376e8fb42cc6344276bf937ad-1200x600.jpg?accountingTag=2XKO?w=1200&h=630&fm=webp&fit=crop&crop=center');">
-                            <span class="app-image-label">Novidades</span>
-                        </div>
-                    </div>
+        <div class="app-images-section">
+            <h3 style="color: white; margin-bottom: 20px;">Jogos</h3>
+            <div class="app-images-grid">
+                <div class="app-image-item" style="background-image: url('https://www.riotgames.com/darkroom/1440/3842e6d651ce3662ac121876e11a4f75:72320612f65ada7ccd0b2c7af52cd4c1/rg-article-header-riot-client-game-hubs.png');">
+                    <span class="app-image-label">Plataforma</span>
                 </div>
-
-                <div class="app-info-grid">
-                    <div class="info-item">
-                        <span class="info-label">Categoria</span>
-                        <span class="info-value">Jogos</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Jogadores</span>
-                        <span class="info-value">180M+</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Jogos</span>
-                        <span class="info-value">5+</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Plataforma</span>
-                        <span class="info-value">Unificada</span>
-                    </div>
+                <div class="app-image-item" style="background-image: url('https://www.riotgames.com/darkroom/1000/8136f3cda272877a691918dada74750a:4ba7d1d2166963ed7aa6c988770d1535/allgames-card-v6-final-lesstext-1920.jpg');">
+                    <span class="app-image-label">Todos Jogos</span>
+                </div>
+                <div class="app-image-item" style="background-image: url('https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/0d8da14d9cc0c69376e8fb42cc6344276bf937ad-1200x600.jpg?accountingTag=2XKO?w=1200&h=630&fm=webp&fit=crop&crop=center');">
+                    <span class="app-image-label">Novidades</span>
                 </div>
             </div>
         </div>
+
+        <div class="app-info-grid">
+            <div class="info-item">
+                <span class="info-label">Categoria</span>
+                <span class="info-value">Jogos</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Jogadores</span>
+                <span class="info-value">180M+</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Jogos</span>
+                <span class="info-value">5+</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Plataforma</span>
+                <span class="info-value">Unificada</span>
+            </div>
+        </div>
+    </div>
+</div>
 
         <!-- Página do Google Photos -->
         <div id="google-photos-page" class="page app-page">
