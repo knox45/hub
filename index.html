@@ -1359,7 +1359,35 @@
     background: rgba(15, 15, 25, 0.8);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    
+    /* Correção de placeholder para mobile (index) */
+.app-image-item.placeholder {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9; /* mantém proporção no mobile */
+    min-height: 160px;    /* evita virar linha */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+/* Ajuste específico para telas menores */
+@media (max-width: 768px) {
+    .app-image-item.placeholder {
+        min-height: 180px;
+        aspect-ratio: 4 / 3; /* melhor visual em celular */
+    }
+}
+
+/* Label continua visível corretamente */
+.app-image-label {
+    position: absolute;
+    bottom: 10px;
+    left: 12px;
+    z-index: 2;
+}
+
 }
     </style>
 </head>
