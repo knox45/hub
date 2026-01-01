@@ -1359,33 +1359,42 @@
     background: rgba(15, 15, 25, 0.8);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    /* Correção de placeholder para mobile (index) */
+    /* ===== FIX DEFINITIVO PLACEHOLDER MOBILE (INDEX) ===== */
+
+/* Garante área real mesmo sem imagem */
 .app-image-item.placeholder {
-    position: relative;
+    display: block;
     width: 100%;
-    aspect-ratio: 16 / 9; /* mantém proporção no mobile */
-    min-height: 160px;    /* evita virar linha */
+    height: 200px;              /* força altura */
+    min-height: 200px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    border-radius: 14px;
-    overflow: hidden;
 }
 
-/* Ajuste específico para telas menores */
-@media (max-width: 768px) {
-    .app-image-item.placeholder {
-        min-height: 180px;
-        aspect-ratio: 4 / 3; /* melhor visual em celular */
-    }
-}
-
-/* Label continua visível corretamente */
-.app-image-label {
+/* Ícone central não colapsa */
+.app-image-item.placeholder::before {
+    content: '📷';
     position: absolute;
-    bottom: 10px;
-    left: 12px;
-    z-index: 2;
+    font-size: 2.2rem;
+    opacity: 0.5;
+}
+
+/* MOBILE — força comportamento tipo projetos.html */
+@media (max-width: 768px) {
+
+    /* NÃO deixar flex esmagar */
+    .app-images-grid {
+        display: grid !important;
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .app-image-item,
+    .app-image-item.placeholder {
+        height: 180px;
+        min-height: 180px;
+    }
 }
 
 }
