@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meus Projetos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" href="r.png" type="image/png">
+    <link rel="icon" href="hub.png" type="image/png">
     <style>
         * {
             margin: 0;
@@ -99,6 +99,39 @@
         }
 
         @keyframes neonBlueFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* ===== BOTÃO ZERO (VERDE NEON) NA SIDEBAR ===== */
+        .nav-icon.zero-button {
+            background: linear-gradient(
+                135deg,
+                #00ff66,
+                #00ffcc,
+                #00ff66,
+                #00ff99
+            ) !important;
+            background-size: 300% 300% !important;
+            color: #fff !important;
+            box-shadow:
+                0 0 15px #00ff66,
+                0 0 30px #00ffcc,
+                0 0 45px #00ff99 !important;
+            animation: neonGreenFlow 3s ease infinite !important;
+            margin-top: 0;
+        }
+
+        .nav-icon.zero-button:hover {
+            transform: translateY(-4px) scale(1.06) !important;
+            box-shadow:
+                0 0 20px #00ff66,
+                0 0 40px #00ffcc,
+                0 0 60px #00ff99 !important;
+        }
+
+        @keyframes neonGreenFlow {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
@@ -1011,9 +1044,15 @@
 
     <!-- ===== BARRA LATERAL COM ÍCONE HOME ===== -->
     <div class="sidebar">
+        <!-- Botão Home (azul) -->
         <div class="nav-icon" id="homeButton">
             <i class="fas fa-home"></i>
         </div>
+        
+        <!-- NOVO: Botão Zero (verde) -->
+        <a href="zero.html" class="nav-icon zero-button" id="zeroButton">
+            <i class="fa-solid fa-hashtag"></i>
+        </a>
     </div>
 
     <!-- ===== BOTÃO VOLTAR PARA PROJETOS (CANTO ESQUERDO) ===== -->
@@ -1379,6 +1418,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('homeButton').addEventListener('click', () => {
         window.location.href = 'index.html';
     });
+
+    // Botão zero.html na sidebar - JÁ TEM LINK DIRETO NO HTML
 
     // Botão voltar para menu de projetos - FUNCIONANDO
     document.getElementById('backToMenuButton').addEventListener('click', () => {
