@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Z-ENGLISH ZONE | Social Hub</title>
+    <title>ZeroConnect</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="z.png" type="image/png">
@@ -325,6 +325,79 @@
             font-style: italic;
         }
 
+        /* Botão Hoyo Play - PRETO NO HOVER E PULSE VISÍVEL */
+        .hoyoplay-button-container {
+            position: fixed;
+            right: 150px;
+            bottom: 50px;
+            z-index: 60;
+        }
+
+        .hoyoplay-button {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #FFD700; /* Amarelo */
+            border: 2px solid #000000;
+            border-radius: 35px;
+            padding: 14px 28px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            animation: visiblePulse 3s infinite;
+        }
+
+        /* BOTÃO PRETO NO HOVER */
+        .hoyoplay-button:hover {
+            transform: translateY(-5px);
+            background: #000000; /* Preto no hover */
+            border-color: #FFD700; /* Borda amarela no hover */
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+        }
+
+        .hoyoplay-icon {
+            font-size: 22px;
+            color: #000000; /* Ícone preto normalmente */
+            transition: all 0.3s ease;
+        }
+
+        /* ÍCONE AMARELO NO HOVER (quando o botão fica preto) */
+        .hoyoplay-button:hover .hoyoplay-icon {
+            color: #FFD700; /* Ícone amarelo no hover */
+            transform: scale(1.2) rotate(8deg);
+        }
+
+        .hoyoplay-text {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: #000000; /* Texto preto normalmente */
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
+        }
+
+        /* TEXTO AMARELO NO HOVER (quando o botão fica preto) */
+        .hoyoplay-button:hover .hoyoplay-text {
+            color: #FFD700; /* Texto amarelo no hover */
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Animação de pulso VISÍVEL que combina com amarelo */
+        @keyframes visiblePulse {
+            0%, 100% {
+                box-shadow: 
+                    0 5px 20px rgba(0, 0, 0, 0.3),
+                    0 0 0 0 rgba(255, 215, 0, 0.6); /* Amarelo forte */
+            }
+            50% {
+                box-shadow: 
+                    0 5px 20px rgba(0, 0, 0, 0.3),
+                    0 0 0 12px rgba(255, 215, 0, 0); /* Pulsação maior */
+            }
+        }
+
         /* Animações */
         @keyframes fadeInUp {
             from {
@@ -359,6 +432,13 @@
         .delay-7 { animation-delay: 1.4s; opacity: 0; }
 
         /* Responsividade */
+        @media (max-width: 1024px) {
+            .hoyoplay-button-container {
+                right: 100px;
+                bottom: 45px;
+            }
+        }
+
         @media (max-width: 768px) {
             .app-container {
                 flex-direction: column;
@@ -423,6 +503,33 @@
             .social-icon:hover {
                 transform: translateY(-5px) scale(1.1);
             }
+            
+            .hoyoplay-button-container {
+                position: relative;
+                right: 0;
+                bottom: 0;
+                margin: 40px auto 0;
+                display: flex;
+                justify-content: center;
+            }
+            
+            .hoyoplay-button {
+                padding: 12px 24px;
+                transform: none !important;
+            }
+            
+            .hoyoplay-button:hover {
+                transform: translateY(-5px) !important;
+            }
+            
+            .hoyoplay-text {
+                font-size: 16px;
+                letter-spacing: 1px;
+            }
+            
+            .hoyoplay-icon {
+                font-size: 20px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -458,6 +565,20 @@
                 height: 32px;
                 font-size: 14px;
             }
+            
+            .hoyoplay-button {
+                padding: 10px 20px;
+                border-radius: 30px;
+            }
+            
+            .hoyoplay-text {
+                font-size: 15px;
+                letter-spacing: 0.8px;
+            }
+            
+            .hoyoplay-icon {
+                font-size: 18px;
+            }
         }
     </style>
 </head>
@@ -482,7 +603,7 @@
         <div class="main-content">
             <!-- Título no topo -->
             <div class="title-section fade-in">
-                <div class="title-main">Rede Sociais</div>
+                <div class="title-main">ZeroConnect</div>
                 <div class="title-subtext fade-in delay-1 float-animation">for the Night</div>
             </div>
 
@@ -518,37 +639,45 @@
         </div>
 
         <!-- Ícones sociais no lado direito -->
-        <!-- COMENTÁRIO: Substitua os "#" pelos seus links reais das redes sociais -->
         <div class="right-sidebar">
-            <!-- Instagram: coloque seu link do Instagram -->
-            <a href="#" target="_blank" class="social-icon fade-in delay-1">
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/gustta_mastergg" target="_blank" class="social-icon fade-in delay-1">
                 <i class="fab fa-instagram"></i>
             </a>
-            
-        
-            <!-- Discord: coloque seu link do Discord -->
-            <a href="#" target="_blank" class="social-icon fade-in delay-3">
+
+            <!-- Discord -->
+            <a href="https://discord.com/users/1366076126337962046 " target="_blank" class="social-icon fade-in delay-3">
                 <i class="fab fa-discord"></i>
             </a>
-            
-            <!-- YouTube: coloque seu link do YouTube -->
-            <a href="#" target="_blank" class="social-icon fade-in delay-4">
+
+            <!-- YouTube -->
+            <a href="https://www.youtube.com/@VexoDanger" target="_blank" class="social-icon fade-in delay-4">
                 <i class="fab fa-youtube"></i>
             </a>
-            
-            <!-- TikTok: coloque seu link do TikTok -->
-            <a href="#" target="_blank" class="social-icon fade-in delay-5">
+
+            <!-- TikTok -->
+            <a href="https://www.tiktok.com/@gustta.rayray" target="_blank" class="social-icon fade-in delay-5">
                 <i class="fab fa-tiktok"></i>
             </a>
-            
-            <!-- WhatsApp: coloque seu link do WhatsApp -->
-            <a href="#" target="_blank" class="social-icon fade-in delay-6">
+
+            <!-- WhatsApp -->
+            <a href="https://wa.me/998488662" target="_blank" class="social-icon fade-in delay-6">
                 <i class="fab fa-whatsapp"></i>
             </a>
-            
-            <!-- GitHub: coloque seu link do GitHub -->
-            <a href="#" target="_blank" class="social-icon fade-in delay-7">
+
+            <!-- GitHub -->
+            <a href="https://github.com/loirinhodid " target="_blank" class="social-icon fade-in delay-7">
                 <i class="fab fa-github"></i>
+            </a>
+        </div>
+
+        <!-- Botão Hoyo Play - COM EFEITOS CORRIGIDOS -->
+        <div class="hoyoplay-button-container fade-in delay-4">
+            <a href="https://hoyoplay.hoyoverse.com" target="_blank" class="hoyoplay-button" title="Acessar HoyoPlay">
+                <div class="hoyoplay-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <div class="hoyoplay-text">HOYO PLAY</div>
             </a>
         </div>
 
@@ -558,9 +687,9 @@
                 <!-- Imagem da HoyoPlay -->
                 <img src="https://preview.redd.it/pre-download-is-now-available-via-hoyoplay-pc-v0-jvu8j7o280ad1.png?width=1080&crop=smart&auto=webp&s=6ef94e166e07f806b718b0a27960eda2da2d182c" alt="HoyoPlay PC">
             </div>
-            <div class="card-title">HoyoPlay PC - Pré-download Disponível</div>
+            <div class="card-title">HoyoPlay download Disponível</div>
             <div class="card-content">
-                A HoYoverse anunciou que o pré-download para PC já está disponível através da plataforma HoyoPlay. 
+                A HoYoverse anunciou que o download para PC já está disponível através da plataforma HoyoPlay. 
                 Prepare-se para a nova atualização baixando os arquivos antecipadamente.
             </div>
             <div class="card-subtitle">Fonte: HoYoverse Official</div>
@@ -573,6 +702,7 @@
             const userIcon = document.getElementById('userIcon');
             const dropdownMenu = document.getElementById('dropdownMenu');
             const socialIcons = document.querySelectorAll('.social-icon');
+            const hoyoplayButton = document.querySelector('.hoyoplay-button');
             
             // Menu dropdown do usuário
             userIcon.addEventListener('click', function(e) {
@@ -612,6 +742,25 @@
                     console.log(`Abrindo ${platformName}...`);
                 });
             });
+            
+            // Efeito especial no botão Hoyo Play
+            if (hoyoplayButton) {
+                hoyoplayButton.addEventListener('mouseenter', function() {
+                    this.style.animation = 'visiblePulse 1.5s infinite';
+                });
+                
+                hoyoplayButton.addEventListener('mouseleave', function() {
+                    this.style.animation = 'visiblePulse 3s infinite';
+                });
+                
+                // Efeito de clique
+                hoyoplayButton.addEventListener('click', function() {
+                    this.style.transform = 'translateY(-2px) scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-5px)';
+                    }, 150);
+                });
+            }
             
             // Efeito de digitação no título
             const titleMain = document.querySelector('.title-main');
